@@ -2,7 +2,7 @@
 
 Tech For Better project by FAC21
 
-![Growing Me logo]("src/logo.svg")
+![Growing Me logo](src/logo.svg)
 
 # Team
 
