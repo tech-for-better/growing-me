@@ -1,0 +1,31 @@
+title,body,labels,status
+Database design and schema,"As an adopted child, I would like it to customize the Me Tree so that I can express my feelings creatively","E5,P1,customize Me Tree",Open
+Investigate drag and drop functionality,"As an adopted child, I would like it to customize the Me Tree so that I can express my feelings creatively","E2,P2,customize Me Tree",Open
+Upload own images to Me Tree,"As an adopted child, I would like it to customize the Me Tree so that I can express my feelings creatively","E3,P3,customize Me Tree",Open
+Add SVGs to tree - growing things,"As an adopted child, I would like it to customize the Me Tree so that I can express my feelings creatively","E3,P3,customize Me Tree",Open
+Make Me Tree page,"As an adopted child, I would like it to customize the Me Tree so that I can express my feelings creatively","E2,P2,customize Me Tree",Open
+Change tree SVG - background,"As an adopted child, I would like it to customize the Me Tree so that I can express my feelings creatively","E3,P4,customize Me Tree",
+Initial set up of Supabase,"As a parent of an adopted child, I would like it to have a secure digital space so that I can work through lifestory workshops with my child safely and conveniently.","E3,P1,authentication",Open
+Log in/out functionality,"As a parent of an adopted child, I would like it to have a secure digital space so that I can work through lifestory workshops with my child safely and conveniently.","E3,P2,authentication",Open
+Sign up functionality,"As a parent of an adopted child, I would like it to have a secure digital space so that I can work through lifestory workshops with my child safely and conveniently.","E3,P2,authentication",Open
+Delete user functionality,"As a parent of an adopted child, I would like it to have a secure digital space so that I can work through lifestory workshops with my child safely and conveniently.","E2,P4,authentication",Open
+Image carousel,"As a social/mental health worker, I would like it to present the therapeutic materials online so that my clients can access them easily to improve their wellbeing","E3,P4,content",Open
+Think bank content,"As a social/mental health worker, I would like it to present the therapeutic materials online so that my clients can access them easily to improve their wellbeing","E2,P5,content",Open
+Wonder Tree content,"As a social/mental health worker, I would like it to present the therapeutic materials online so that my clients can access them easily to improve their wellbeing","E2,P5,content",Open
+Make station content,"As a social/mental health worker, I would like it to present the therapeutic materials online so that my clients can access them easily to improve their wellbeing","E2,P5,content",Open
+Play den content,"As a social/mental health worker, I would like it to present the therapeutic materials online so that my clients can access them easily to improve their wellbeing","E2,P5,content",Open
+Progress bar,"As a parent of an adopted child, I would like it to save our progress so that I can do the activities in bite-sized chunks.","E2,P5,save progress",Open
+Progress is saved in database,"As a parent of an adopted child, I would like it to save our progress so that I can do the activities in bite-sized chunks.","E2,P4,save progress",Open
+Basic CSS - font/spacing/centering,"As an adopted child, I would like the activities to be fun and appealing so that I enjoy the creative process and bond with my adult.","E3,P3,aesthetics",Open
+Implement colour scheme,"As an adopted child, I would like the activities to be fun and appealing so that I enjoy the creative process and bond with my adult.","E2,P3,aesthetics",Open
+Use Nicky's SVGs everwhere,"As an adopted child, I would like the activities to be fun and appealing so that I enjoy the creative process and bond with my adult.","E3,P3,aesthetics",Open
+Nav bar for sections (think/play etc),"As a user of the app, I would like it to interact with a simple, accessible and intuitive UI so that I can navigate the app easily","E3,P4,simple UI",Open
+Nav bar for overview of entire journey,"As a user of the app, I would like it to interact with a simple, accessible and intuitive UI so that I can navigate the app easily","E3,P4,simple UI",Open
+Help section,"As a user of the app, I would like it to interact with a simple, accessible and intuitive UI so that I can navigate the app easily","E2,P4,simple UI",Open
+Choose avatar on login,"As an adopted child, I would like to have a personalised app account so that I feel unique and special","E2,P4,personalisation",Open
+Change avatar colour,"As an adopted child, I would like to have a personalised app account so that I feel unique and special","E3,P5,personalisation",Open
+Me tree appears in nav bar,"As an adopted child, I would like to have a personalised app account so that I feel unique and special","E3,P3,personalisation",Open
+Initial set up of React app,Additional Issues (not related to user stories),"E2,P1",Open
+Bug fixing,Additional Issues (not related to user stories),"E5,P3",Open
+Netlify setup + deployment,Additional Issues (not related to user stories),"E3,P2",Open
+Setup ESLint and Prettier,Additional Issues (not related to user stories),"E2,P2",Open
