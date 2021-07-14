@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import Auth from "./Auth";
 import Account from "./Account";
+import { LoginTree } from "./Layout/Login.styled";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -17,13 +18,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='container' style={{ padding: "50px 0 100px 0" }}>
+    <>
+      {/* // <div className="container" style={{ padding: "50px 0 100px 0" }}> */}
       {!session ? (
-        <Auth />
+        <LoginTree>
+          <Auth />
+        </LoginTree>
       ) : (
         <Account key={session.user.id} session={session} />
       )}
-    </div>
+      {/* // </div> */}
+    </>
   );
 }
 
