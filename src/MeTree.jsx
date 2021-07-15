@@ -25,8 +25,14 @@ export default function MeTree() {
   const [paletteOption, setPaletteOption] = useState("no option");
 
   function handleClick(paletteType) {
-    setPaletteOption(paletteType);
-    setVisible((visible) => !visible);
+    if (paletteType == paletteOption) {
+      setVisible((visible) => !visible);
+    } else {
+      if (!visible) {
+        setVisible((visible) => !visible);
+      }
+      setPaletteOption(paletteType);
+    }
   }
 
   return (
@@ -75,9 +81,6 @@ export default function MeTree() {
           </p>
 
           <MeTreeImage src={MeTreeGarden} alt="" />
-          {/* <MeTreeImage src={MeTreePlanet} alt="" />
-          <MeTreeImage src={MeTreeHeart} alt="" />
-          <MeTreeImage src={MeTreeCloud} alt="" /> */}
         </div>
 
         {visible ? <Palette type={paletteOption} /> : ""}
