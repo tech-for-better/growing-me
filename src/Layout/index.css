@@ -34,12 +34,12 @@ acabb3 - grey
   margin: 0;
   font-family: var(--custom-font-family);
   /* background-color: var(--custom-bg-color); */
-  background-color:#ECF0D9;
+  background-color: #ecf0d9;
 }
 
 * {
-  color: var(--custom-color);  /* text colour - palegreen */
-  color: #384B4A; /* text colour - dark olive green */
+  color: var(--custom-color); /* text colour - palegreen */
+  color: #384b4a; /* text colour - dark olive green */
   font-family: var(--custom-font-family);
   box-sizing: border-box;
 }
@@ -257,6 +257,11 @@ input[disabled] {
 .text-right {
   text-align: right;
 }
+
+.text-center {
+  text-align: center;
+}
+
 .font-light {
   font-weight: 300;
 }
