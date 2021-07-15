@@ -23,20 +23,11 @@ import Palette from "./Palette";
 export default function MeTree() {
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
-  console.log(paletteOption);
 
   function handleClick(paletteType) {
-    console.log(`paletteType : ${paletteType}`);
-    console.log(paletteOption);
     setPaletteOption(paletteType);
     setVisible((visible) => !visible);
-    console.log(paletteOption);
-    return paletteOption;
   }
-
-  useEffect(() => {
-    //
-  }, [paletteOption]);
 
   return (
     <>
