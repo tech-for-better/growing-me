@@ -1,9 +1,9 @@
 import React from "react";
-import "./index.css";
+import "./Layout/index.css";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import Auth from "./Auth";
-import Account from "./Account";
+import AdultProfile from "./AdultProfile";
 import { LoginTree } from "./Layout/Login.styled";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
           <Auth />
         </LoginTree>
       ) : (
-        <Account key={session.user.id} session={session} />
+        <AdultProfile key={session.user.id} session={session} />
       )}
       {/* // </div> */}
     </>

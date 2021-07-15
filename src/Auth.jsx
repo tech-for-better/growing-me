@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { supabase } from "./supabaseClient";
-import logo from "./../svg/Logo.svg";
+import logo from "./../assets/Logo.svg";
 import { LoginTree } from "./Layout/Login.styled";
 
 export default function Auth() {

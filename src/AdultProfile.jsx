@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
+import logo from "./../assets/Logo.svg";
+import Avatar from "./components/Avatar";
 
-export default function Account({ session }) {
+export default function AdultProfile({ session }) {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   // const [website, setWebsite] = useState(null);
@@ -66,16 +68,37 @@ export default function Account({ session }) {
   }
 
   return (
-    <div className='form-widget'>
+    <div className="form-widget">
       <div>
-        <label htmlFor='email'>Email</label>
-        <input id='email' type='text' value={session.user.email} disabled />
+        <img src={logo} className="App-logo" alt="logo" />
       </div>
       <div>
-        <label htmlFor='username'>Name</label>
+        <h1 className="header">Create your Growing Me profile</h1>
+      </div>
+      <Avatar
+        url={avatar_url}
+        size={150}
+        onUpload={(url) => {
+          setAvatarUrl(url);
+          updateProfile({ username, avatar_url: url });
+        }}
+      />
+      <div>
+        <label htmlFor="email">Email</label>
         <input
-          id='username'
-          type='text'
+          id="email"
+          type="text"
+          placeholder="Your email"
+          value={session.user.email}
+          disabled
+        />
+      </div>
+      <div>
+        <label htmlFor="username">Name</label>
+        <input
+          id="username"
+          type="text"
+          placeholder="The name your child calls you"
           value={username || ""}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -92,17 +115,19 @@ export default function Account({ session }) {
 
       <div>
         <button
-          className='button block primary'
+          className="button block primary"
           onClick={() => updateProfile({ username, avatar_url })}
-          disabled={loading}>
+          disabled={loading}
+        >
           {loading ? "Loading ..." : "Update"}
         </button>
       </div>
 
       <div>
         <button
-          className='button block'
-          onClick={() => supabase.auth.signOut()}>
+          className="button block"
+          onClick={() => supabase.auth.signOut()}
+        >
           Sign Out
         </button>
       </div>

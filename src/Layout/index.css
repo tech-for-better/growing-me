@@ -33,11 +33,13 @@ acabb3 - grey
   padding: 0;
   margin: 0;
   font-family: var(--custom-font-family);
-  background-color: var(--custom-bg-color);
+  /* background-color: var(--custom-bg-color); */
+  background-color:#ECF0D9;
 }
 
 * {
-  color: var(--custom-color);
+  color: var(--custom-color);  /* text colour - palegreen */
+  color: #384B4A; /* text colour - dark olive green */
   font-family: var(--custom-font-family);
   box-sizing: border-box;
 }
