@@ -27,6 +27,8 @@ export const ToolkitButton = styled.button`
   max-width: 10rem;
   &:hover {
     background-color: #337d8e;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    transform: scale(1.05);
   }
 `;
 

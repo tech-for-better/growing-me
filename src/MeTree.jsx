@@ -18,8 +18,26 @@ import WhatGrows from "./../assets/what_grows_on_your_tree.svg";
 import WhatShape from "./../assets/what_shape_is_your_tree.svg";
 import WhereTree from "./../assets/where_is_your_tree.svg";
 import WhoAround from "./../assets/who_is_around_your_tree.svg";
+import Palette from "./Palette";
 
-export default function MeTree({ session }) {
+export default function MeTree() {
+  const [visible, setVisible] = useState(false);
+  const [paletteOption, setPaletteOption] = useState("no option");
+  console.log(paletteOption);
+
+  function handleClick(paletteType) {
+    console.log(`paletteType : ${paletteType}`);
+    console.log(paletteOption);
+    setPaletteOption(paletteType);
+    setVisible((visible) => !visible);
+    console.log(paletteOption);
+    return paletteOption;
+  }
+
+  useEffect(() => {
+    //
+  }, [paletteOption]);
+
   return (
     <>
       <div className="form-widget">
@@ -37,19 +55,19 @@ export default function MeTree({ session }) {
           <ToolkitButton>
             <ToolkitText>Add photo</ToolkitText>
           </ToolkitButton>
-          <ToolkitButton>
+          <ToolkitButton onClick={() => handleClick("WhatColour")}>
             <BtnImage src={WhatColour} alt="" />
             <ToolkitText>Change background</ToolkitText>
           </ToolkitButton>
-          <ToolkitButton>
+          <ToolkitButton onClick={() => handleClick("WhatGrows")}>
             <BtnImage src={WhatGrows} alt="" />
             <ToolkitText>What's growing</ToolkitText>
           </ToolkitButton>
-          <ToolkitButton>
+          <ToolkitButton onClick={() => handleClick("WhoAround")}>
             <BtnImage src={WhoAround} alt="" />
             <ToolkitText>Who is around</ToolkitText>
           </ToolkitButton>
-          <ToolkitButton>
+          <ToolkitButton onClick={() => handleClick("WhereTree")}>
             <BtnImage src={WhereTree} alt="" />
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
@@ -66,10 +84,12 @@ export default function MeTree({ session }) {
           </p>
 
           <MeTreeImage src={MeTreeGarden} alt="" />
-          <MeTreeImage src={MeTreePlanet} alt="" />
+          {/* <MeTreeImage src={MeTreePlanet} alt="" />
           <MeTreeImage src={MeTreeHeart} alt="" />
-          <MeTreeImage src={MeTreeCloud} alt="" />
+          <MeTreeImage src={MeTreeCloud} alt="" /> */}
         </div>
+
+        {visible ? <Palette type={paletteOption} /> : ""}
       </div>
     </>
   );
