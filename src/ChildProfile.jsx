@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 
-export default function ChildPh({ session }) {
+export default function ChildProfile({ session }) {
 //   const [loading, setLoading] = useState(true);
 //   const [username, setUsername] = useState(null);
 //   // const [website, setWebsite] = useState(null);
@@ -66,43 +66,62 @@ export default function ChildPh({ session }) {
 //   }
 
   return (
-    <div className='form-widget'>
+    <div className="form-widget">
       <div>
-        <label htmlFor='email'>Email</label>
-        <input id='email' type='text' value={session.user.email} disabled />
+        <label htmlFor="email">Email</label>
+        <input id="email" type="text" value={session.user.email} disabled />
       </div>
       <div>
-        <label htmlFor='username'>Name</label>
+        <label htmlFor="child_username">Name</label>
         <input
-          id='username'
-          type='text'
-          value={username || ""}
-          onChange={(e) => setUsername(e.target.value)}
+          id="child_username"
+          type="text"
+          placeholder="What's your name?"
+          value={child_username || ""}
+          onChange={(e) => setChildUsername(e.target.value)}
         />
       </div>
+
+    {/* <p>Choose your avatar:</p>
+  <div>
+    <input type="radio" id="child_avatar1"
+     name="child_avatar" value={child_avatar || ""} onChange={(e) => setChildAvatar(e.target.value)}>
+    <label htmlFor="child_avatar1">A</label>
+
+    <input type="radio" id="child_avatar2"
+     name="child_avatar" value={child_avatar || ""} onChange={(e) => setChildAvatar(e.target.value)}>
+    <label htmlFor="child_avatar2">B</label>
+
+    <input type="radio" id="child_avatar3"
+     name="child_avatar" value={child_avatar || ""} onChange={(e) => setChildAvatar(e.target.value)}>
+    <label htmlFor="child_avatar3">C</label>
+  </div> */}
+
       {/* <div>
-        <label htmlFor='website'>Website</label>
+        <label htmlFor='child_avatar'>Choose your avatar</label>
         <input
-          id='website'
-          type='website'
-          value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
+          id='child_avatar'
+          type='child_avatar'
+          value={child_avatar || ""}
+          onChange={(e) => setChildAvatar(e.target.value)}
         />
       </div> */}
 
       <div>
         <button
-          className='button block primary'
-          onClick={() => updateProfile({ username, avatar_url })}
-          disabled={loading}>
+          className="button block primary"
+          onClick={() => updateProfile({ child_username, avatar_url })}
+          disabled={loading}
+        >
           {loading ? "Loading ..." : "Update"}
         </button>
       </div>
 
       <div>
         <button
-          className='button block'
-          onClick={() => supabase.auth.signOut()}>
+          className="button block"
+          onClick={() => supabase.auth.signOut()}
+        >
           Sign Out
         </button>
       </div>

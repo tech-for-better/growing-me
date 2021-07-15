@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 
-export default function MeTree({ session }) {
+export default function WhosePlaying({ session }) {
   //   const [loading, setLoading] = useState(true);
   //   const [username, setUsername] = useState(null);
   //   // const [website, setWebsite] = useState(null);
@@ -65,9 +65,5 @@ export default function MeTree({ session }) {
   //     }
   //   }
 
-  return (
-    <div className="form-widget">
-      
-    </div>
-  );
+  return <div className="form-widget"></div>;
 }
