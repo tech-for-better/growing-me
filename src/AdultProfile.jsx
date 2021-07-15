@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import logo from "./../assets/Logo.svg";
 import Avatar from "./components/Avatar";
+import { Link } from 'react-router-dom';
 
 export default function AdultProfile({ session }) {
+
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   // const [website, setWebsite] = useState(null);
@@ -75,6 +77,14 @@ export default function AdultProfile({ session }) {
       <div>
         <h1 className="header">Create your Growing Me profile</h1>
       </div>
+
+      <p>
+        Go to <Link to="/me-tree">MeTree</Link>
+        <Link to="/whose-playing"> whose </Link>
+        <Link to="/child-profile">child </Link>
+        <Link to="/login">login </Link>
+        <Link to="/">adult </Link>
+      </p>
       <Avatar
         url={avatar_url}
         size={150}

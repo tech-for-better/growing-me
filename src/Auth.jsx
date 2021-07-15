@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "./supabaseClient";
 import logo from "./../assets/Logo.svg";
 import { LoginTree } from "./Layout/Login.styled";
+import { Link } from "react-router-dom";
 
 export default function Auth() {
   const [loading, setLoading] = useState(false);
