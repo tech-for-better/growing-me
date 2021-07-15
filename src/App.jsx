@@ -1,10 +1,15 @@
 import React from "react";
-import "./index.css";
+import "./Layout/index.css";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-import Auth from "./Auth";
-import Account from "./Account";
 import { LoginTree } from "./Layout/Login.styled";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import AdultProfile from "./AdultProfile";
+import ChildProfile from "./ChildProfile";
+import Auth from "./Auth";
+import MeTree from "./MeTree";
+import WhosePlaying from "./WhosePlaying";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -20,13 +25,24 @@ export default function Home() {
   return (
     <>
       {/* // <div className="container" style={{ padding: "50px 0 100px 0" }}> */}
-      {!session ? (
-        <LoginTree>
-          <Auth />
-        </LoginTree>
-      ) : (
-        <Account key={session.user.id} session={session} />
-      )}
+
+      <Router>
+        <Switch>
+          <Route exact path="/me-tree" component={MeTree} />
+          <Route path="/login" component={Auth} />
+          <Route path="/adult-profile" component={AdultProfile} />
+          <Route path="/child-profile" component={ChildProfile} />
+          <Route path="/whose-playing" component={WhosePlaying} />
+
+          {!session ? (
+            <LoginTree>
+              <Auth />
+            </LoginTree>
+          ) : (
+            <AdultProfile key={session.user.id} session={session} />
+          )}
+        </Switch>
+      </Router>
       {/* // </div> */}
     </>
   );

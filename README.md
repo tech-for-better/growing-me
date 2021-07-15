@@ -2,18 +2,19 @@
 
 Tech For Better project by FAC21
 
-![Growing Me logo](src/logo.svg)
+![Growing Me logo](svg/Logo.svg)
 
-# Team
+#
 
 - [Safia](https://github.com/fi-ya)
 - [Jo](https://github.com/jamdelion)
 
 # Table of contents
 
-- [Team](#team)
+- [Growing Me](#growing-me)
+- [Table of contents](#table-of-contents)
 - [Installation](#installation)
-- [?](#?)
+- [Footer](#footer)
 
 # Installation
 
