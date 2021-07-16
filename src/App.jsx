@@ -25,6 +25,27 @@ export default function Home() {
   return (
     <>
       {/* // <div className="container" style={{ padding: "50px 0 100px 0" }}> */}
+      {/* 
+      <Router>
+        <Switch>
+          <Route exact path="/me-tree" component={MeTree} />
+          <Route path="/login" component={Auth} />
+          <Route path="/child-profile" component={ChildProfile} />
+          <Route path="/whose-playing" component={WhosePlaying} />
+    
+          <Route path="/adult-profile">
+            <AdultProfile key={session.user.id} session={session} />
+          </Route>
+
+          {!session ? (
+            <LoginTree>
+              <Auth />
+            </LoginTree>
+          ) : (
+            <MeTree key={session.user.id} session={session} />
+          )}
+        </Switch>
+      </Router> */}
 
       <Router>
         <Switch>

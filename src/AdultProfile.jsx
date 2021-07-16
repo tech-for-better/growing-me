@@ -3,14 +3,21 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import logo from "./../assets/Logo.svg";
 import Avatar from "./components/Avatar";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
+// import ChildProfile from "./ChildProfile";
+import cuteVisitor from "./../assets/cute_visitors.svg";
+import pricklyVisitor from "../assets/prickly_visitors.svg";
+import fluffyVisitor from "./../assets/fluffy_visitors.svg";
+import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
+import { ChildAvatar } from "./Layout/ChildProfile.styled";
 
 export default function AdultProfile({ session }) {
-
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
-  // const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
+  const [child_name, setChildName] = useState(null);
+  const [child_avatar, setChildAvatarUrl] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     getProfile();
@@ -23,7 +30,7 @@ export default function AdultProfile({ session }) {
 
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(`username, avatar_url`)
+        .select(`username, avatar_url, child_name, child_avatar`)
         .eq("id", user.id)
         .single();
 
@@ -33,8 +40,9 @@ export default function AdultProfile({ session }) {
 
       if (data) {
         setUsername(data.username);
-        // setWebsite(data.website);
+        setChildName(data.child_name);
         setAvatarUrl(data.avatar_url);
+        setChildAvatarUrl(data.child_avatar);
       }
     } catch (error) {
       alert(error.message);
@@ -43,7 +51,12 @@ export default function AdultProfile({ session }) {
     }
   }
 
-  async function updateProfile({ username, avatar_url }) {
+  async function updateProfile({
+    username,
+    avatar_url,
+    child_name,
+    child_avatar,
+  }) {
     try {
       setLoading(true);
       const user = supabase.auth.user();
@@ -52,6 +65,8 @@ export default function AdultProfile({ session }) {
         id: user.id,
         username,
         avatar_url,
+        child_name,
+        child_avatar,
         updated_at: new Date(),
       };
 
@@ -66,6 +81,7 @@ export default function AdultProfile({ session }) {
       alert(error.message);
     } finally {
       setLoading(false);
+      history.push("/me-tree");
     }
   }
 
@@ -83,14 +99,19 @@ export default function AdultProfile({ session }) {
         <Link to="/whose-playing"> whose </Link>
         <Link to="/child-profile">child </Link>
         <Link to="/login">login </Link>
-        <Link to="/">adult </Link>
+        <Link to="/adult-profile">Profile</Link>
       </p>
       <Avatar
         url={avatar_url}
         size={150}
         onUpload={(url) => {
           setAvatarUrl(url);
-          updateProfile({ username, avatar_url: url });
+          updateProfile({
+            username,
+            avatar_url: url,
+            child_name,
+            child_avatar,
+          });
         }}
       />
       <div>
@@ -104,7 +125,7 @@ export default function AdultProfile({ session }) {
         />
       </div>
       <div>
-        <label htmlFor="username">Name</label>
+        <label htmlFor="username">Adult's Name</label>
         <input
           id="username"
           type="text"
@@ -113,20 +134,69 @@ export default function AdultProfile({ session }) {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      {/* <div>
-        <label htmlFor='website'>Website</label>
-        <input
-          id='website'
-          type='website'
-          value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div> */}
 
+      <div>
+        <label htmlFor="child_username">Child's Name</label>
+        <input
+          id="child_username"
+          type="text"
+          placeholder="What's your name?"
+          value={child_name || ""}
+          onChange={(e) => setChildName(e.target.value)}
+        />
+      </div>
+
+      <p>Choose your avatar:</p>
+      <div>
+        <input
+          type="radio"
+          id="child_avatar1"
+          name="child_avatar"
+          value="./../assets/cute_visitors.svg"
+          onChange={(e) => setChildAvatarUrl(e.target.value)}
+        />
+        <label htmlFor="child_avatar1">
+          <ChildAvatar src={cuteVisitor} alt="" />
+        </label>
+
+        <input
+          type="radio"
+          id="child_avatar2"
+          name="child_avatar"
+          value="./../assets/fluffy_visitors.svg"
+          onChange={(e) => setChildAvatarUrl(e.target.value)}
+        />
+        <label htmlFor="child_avatar2">
+          <ChildAvatar src={fluffyVisitor} alt="" />
+        </label>
+
+        <input
+          type="radio"
+          id="child_avatar3"
+          name="child_avatar"
+          value="./../assets/prickly_visitors.svg"
+          onChange={(e) => setChildAvatarUrl(e.target.value)}
+        />
+        <label htmlFor="child_avatar4">
+          <ChildAvatar src={pricklyVisitor} alt="" />
+        </label>
+        <input
+          type="radio"
+          id="child_avatar4"
+          name="child_avatar"
+          value="./../assets/creepy_crawly_visitors.svg"
+          onChange={(e) => setChildAvatarUrl(e.target.value)}
+        />
+        <label htmlFor="child_avatar3">
+          <ChildAvatar src={creepyCrawlyVisitor} alt="" />
+        </label>
+      </div>
       <div>
         <button
           className="button block primary"
-          onClick={() => updateProfile({ username, avatar_url })}
+          onClick={() =>
+            updateProfile({ username, avatar_url, child_name, child_avatar })
+          }
           disabled={loading}
         >
           {loading ? "Loading ..." : "Update"}

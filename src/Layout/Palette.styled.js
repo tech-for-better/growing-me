@@ -19,6 +19,13 @@ export const PaletteImg = styled.img`
   height: 100%;
 `;
 
+export const PaletteBtn = styled.button`
+  border: solid black 1px;
+  background: none;
+  height: 100%;
+  width: 100%;
+`;
+
 // COLOURS
 // d6f7d - darkblue
 // e8eedf - palegrey

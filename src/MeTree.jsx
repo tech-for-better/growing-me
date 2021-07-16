@@ -21,6 +21,16 @@ import WhoAround from "./../assets/who_is_around_your_tree.svg";
 import Palette from "./Palette";
 
 export default function MeTree() {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
@@ -43,7 +53,7 @@ export default function MeTree() {
           <Link to="/whose-playing"> whose </Link>
           <Link to="/child-profile">child </Link>
           <Link to="/login">login </Link>
-          <Link to="/">adult </Link>
+          <Link to="/adult-profile">adult </Link>
         </p>
       </div>
 

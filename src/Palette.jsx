@@ -2,7 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
-import { PaletteContainer, PaletteImg } from "./Layout/Palette.styled";
+import {
+  PaletteContainer,
+  PaletteImg,
+  PaletteBtn,
+} from "./Layout/Palette.styled";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
 import MeTreeHeart from "./../assets/where_-_on_a_big_love_heart.svg";
@@ -29,7 +33,14 @@ import ovalBlob from "./../assets/oval_blob.svg";
 export default function Palette(props) {
   let option = props.type;
   let paletteOptions = {
-    WhatColour: [mountainBlob, spikeyBlob,minecraftBlob, jellyBlob, heartBlob, cloudyBlob],
+    WhatColour: [
+      mountainBlob,
+      spikeyBlob,
+      minecraftBlob,
+      jellyBlob,
+      heartBlob,
+      cloudyBlob,
+    ],
     WhatGrows: [apple, banana, batwings, cherries, chocolate, pizza],
     WhoAround: [
       cuteVisitor,
@@ -41,6 +52,94 @@ export default function Palette(props) {
     WhereTree: [MeTreeGarden, MeTreeCloud, MeTreeHeart, MeTreePlanet],
   };
 
+  // const [treeLocation, setTreeLocation] = useState(null);
+
+  async function handleClick(event) {
+    console.log("clicked");
+    setTreeLocation(event.target.src);
+    updateMeTree({
+      background,
+      treeLocation,
+      whoAround,
+      growing,
+    });
+    // updateTreeData("treeLocation", treeLocation);
+    // const { data, error } = await supabase
+    //   .from("me_tree")
+    //   .update({ tree_location: `${treeLocation}` });
+    // .match...child id
+  }
+
+  const [loading, setLoading] = useState(true);
+  const [treeLocation, setTreeLocation] = useState(null);
+  const [background, setBackground] = useState(null);
+  const [growing, setGrowing] = useState(null);
+  const [whoAround, setWhoAround] = useState(null);
+
+  useEffect(() => {
+    getMeTree();
+  }, []);
+
+  async function getMeTree() {
+    try {
+      setLoading(true);
+      const user = supabase.auth.user();
+
+      let { data, error, status } = await supabase
+        .from("me_tree")
+        .select(`background, tree_location, who_around, growing`)
+        .eq("id", user.id)
+        .single();
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setTreeLocation(data.tree_location);
+        setBackground(data.background);
+        setGrowing(data.growing);
+        setWhoAround(data.who_around);
+      }
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function updateMeTree({
+    background,
+    tree_location,
+    who_around,
+    growing,
+  }) {
+    try {
+      setLoading(true);
+      const user = supabase.auth.user();
+
+      const updates = {
+        id: user.id,
+        background,
+        tree_location,
+        who_around,
+        growing,
+      };
+
+      let { error } = await supabase.from("me_tree").upsert(updates, {
+        returning: "minimal", // Don't return the value after inserting
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <PaletteContainer>
@@ -48,7 +147,9 @@ export default function Palette(props) {
         {paletteOptions[option].map((image) => {
           return (
             <>
-              <PaletteImg src={image} alt={image} />
+              <PaletteBtn image={image} onClick={(event) => handleClick(event)}>
+                <PaletteImg key={image} src={image} alt={image} />
+              </PaletteBtn>
             </>
           );
         })}
