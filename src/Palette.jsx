@@ -18,12 +18,18 @@ import batwings from "./../assets/growing_batwings.svg";
 import cherries from "./../assets/growing_cherries.svg";
 import chocolate from "./../assets/growing_chocolate.svg";
 import pizza from "./../assets/growing_pizza.svg";
-import backgroundBlobs from "./../assets/background_blobs.svg";
+import mountainBlob from "./../assets/mountain_blob.svg";
+import spikeyBlob from "./../assets/spikey_blob.svg";
+import minecraftBlob from "./../assets/minecraft_blob.svg";
+import jellyBlob from "./../assets/jelly_blob.svg";
+import heartBlob from "./../assets/heart_blob.svg";
+import cloudyBlob from "./../assets/cloudy_blob.svg";
+import ovalBlob from "./../assets/oval_blob.svg";
 
 export default function Palette(props) {
   let option = props.type;
   let paletteOptions = {
-    WhatColour: [backgroundBlobs],
+    WhatColour: [mountainBlob, spikeyBlob,minecraftBlob, jellyBlob, heartBlob, cloudyBlob],
     WhatGrows: [apple, banana, batwings, cherries, chocolate, pizza],
     WhoAround: [
       cuteVisitor,
