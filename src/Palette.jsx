@@ -40,6 +40,7 @@ export default function Palette(props) {
       jellyBlob,
       heartBlob,
       cloudyBlob,
+      ovalBlob,
     ],
     WhatGrows: [apple, banana, batwings, cherries, chocolate, pizza],
     WhoAround: [
@@ -52,33 +53,27 @@ export default function Palette(props) {
     WhereTree: [MeTreeGarden, MeTreeCloud, MeTreeHeart, MeTreePlanet],
   };
 
-  // const [treeLocation, setTreeLocation] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [treeLocation, setTreeLocation] = useState("fake location");
+  const [background, setBackground] = useState(null);
+  const [growing, setGrowing] = useState(null);
+  const [whoAround, setWhoAround] = useState(null);
 
   async function handleClick(event) {
-    console.log("clicked");
+    console.log("treeLocation before being set", treeLocation);
+    console.log("clicked on event src", event.target.src);
     setTreeLocation(event.target.src);
-    updateMeTree({
+    console.log("treeLocation after being set", treeLocation);
+  }
+
+  useEffect(() => {
+    updateMeTreeInDb({
       background,
       treeLocation,
       whoAround,
       growing,
     });
-    // updateTreeData("treeLocation", treeLocation);
-    // const { data, error } = await supabase
-    //   .from("me_tree")
-    //   .update({ tree_location: `${treeLocation}` });
-    // .match...child id
-  }
-
-  const [loading, setLoading] = useState(true);
-  const [treeLocation, setTreeLocation] = useState(null);
-  const [background, setBackground] = useState(null);
-  const [growing, setGrowing] = useState(null);
-  const [whoAround, setWhoAround] = useState(null);
-
-  useEffect(() => {
-    getMeTree();
-  }, []);
+  }, [background, treeLocation, whoAround, growing]);
 
   async function getMeTree() {
     try {
@@ -108,10 +103,10 @@ export default function Palette(props) {
     }
   }
 
-  async function updateMeTree({
+  async function updateMeTreeInDb({
     background,
-    tree_location,
-    who_around,
+    treeLocation,
+    whoAround,
     growing,
   }) {
     try {
@@ -121,8 +116,8 @@ export default function Palette(props) {
       const updates = {
         id: user.id,
         background,
-        tree_location,
-        who_around,
+        tree_location: treeLocation,
+        who_around: whoAround,
         growing,
       };
 
@@ -136,6 +131,7 @@ export default function Palette(props) {
     } catch (error) {
       alert(error.message);
     } finally {
+      console.log("updated meTree data in db", treeLocation);
       setLoading(false);
     }
   }
