@@ -31,6 +31,13 @@ import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 
 export default function Palette(props) {
+  // @TODO these variables should call getTreeData and update according to what is in DB
+  const [loading, setLoading] = useState(true);
+  const [treeLocation, setTreeLocation] = useState(null);
+  const [background, setBackground] = useState(null);
+  const [growing, setGrowing] = useState(null);
+  const [whoAround, setWhoAround] = useState(null);
+
   let option = props.type;
   let paletteOptions = {
     WhatColour: [
@@ -53,17 +60,59 @@ export default function Palette(props) {
     WhereTree: [MeTreeGarden, MeTreeCloud, MeTreeHeart, MeTreePlanet],
   };
 
-  const [loading, setLoading] = useState(true);
-  const [treeLocation, setTreeLocation] = useState("fake location");
-  const [background, setBackground] = useState(null);
-  const [growing, setGrowing] = useState(null);
-  const [whoAround, setWhoAround] = useState(null);
+  const imgToFunctionMapping = {
+    "where_-_cloud.svg": setTreeLocation,
+    "where_-_garden.svg": setTreeLocation,
+    "where_-_on_a_big_love_heart.svg": setTreeLocation,
+    "where_-_another_planet.svg": setTreeLocation,
+    "cute_visitors.svg": setWhoAround,
+    "prickly_visitors.svg": setWhoAround,
+    "fluffy_visitors.svg": setWhoAround,
+    "creepy_crawly_visitors.svg": setWhoAround,
+    "home_for_worms.svg": setWhoAround,
+    "growing_apples.svg": setGrowing,
+    "growing_bananas.svg": setGrowing,
+    "growing_batwings.svg": setGrowing,
+    "growing_chocolate.svg": setGrowing,
+    "growing_cherries.svg": setGrowing,
+    "growing_pizza.svg": setGrowing,
+    "mountain_blob.svg": setBackground,
+    "spikey_blob.svg": setBackground,
+    "minecraft_blob.svg": setBackground,
+    "jelly_blob.svg": setBackground,
+    "heart_blob.svg": setBackground,
+    "cloudy_blob.svg": setBackground,
+    "oval_blob.svg": setBackground,
+  };
 
-  async function handleClick(event) {
-    console.log("treeLocation before being set", treeLocation);
-    console.log("clicked on event src", event.target.src);
-    setTreeLocation(event.target.src);
-    console.log("treeLocation after being set", treeLocation);
+  async function handleClick(event, image) {
+    // try {
+    //   let imageNameArray = image.split("/");
+    //   let imageFileName = imageNameArray[imageNameArray.length - 1];
+
+    //   console.log("mapping", imgToFunctionMapping[imageFileName]);
+    //   let stateFunction = imgToFunctionMapping[imageFileName];
+    //   await stateFunction(event.target.src);
+    // } catch (err) {
+    //   throw new Error(`Something failed`);
+    // } finally {
+    //   console.log("treeLocation", treeLocation);
+    //   console.log("background", background);
+    //   console.log("growing", growing);
+    //   console.log("whoaround", whoAround);
+    // }
+    let imageNameArray = image.split("/");
+    let imageFileName = imageNameArray[imageNameArray.length - 1];
+
+    console.log("mapping", imgToFunctionMapping[imageFileName]);
+    let stateFunction = imgToFunctionMapping[imageFileName];
+    await stateFunction(event.target.src);
+
+    // @TODO these console logs are one click behind, but the database updates accurately - use async/await? Or getTreeData
+    console.log("treeLocation", treeLocation);
+    console.log("background", background);
+    console.log("growing", growing);
+    console.log("whoaround", whoAround);
   }
 
   useEffect(() => {
@@ -73,9 +122,10 @@ export default function Palette(props) {
       whoAround,
       growing,
     });
+    // getTreeData();
   }, [background, treeLocation, whoAround, growing]);
 
-  async function getMeTree() {
+  async function getTreeData() {
     try {
       setLoading(true);
       const user = supabase.auth.user();
@@ -117,8 +167,8 @@ export default function Palette(props) {
         id: user.id,
         background,
         tree_location: treeLocation,
-        who_around: whoAround,
-        growing,
+        who_around: [whoAround],
+        growing: [growing],
       };
 
       let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -129,9 +179,8 @@ export default function Palette(props) {
         throw error;
       }
     } catch (error) {
-      alert(error.message);
+      console.log("Error: ", error.message);
     } finally {
-      console.log("updated meTree data in db", treeLocation);
       setLoading(false);
     }
   }
@@ -139,11 +188,13 @@ export default function Palette(props) {
   return (
     <>
       <PaletteContainer>
-        {/* <p style={{ color: "white" }}>Hi I'm a palette + {props.type}</p> */}
         {paletteOptions[option].map((image) => {
           return (
             <>
-              <PaletteBtn image={image} onClick={(event) => handleClick(event)}>
+              <PaletteBtn
+                image={image}
+                onClick={(event) => handleClick(event, image)}
+              >
                 <PaletteImg key={image} src={image} alt={image} />
               </PaletteBtn>
             </>
