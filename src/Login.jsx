@@ -23,8 +23,9 @@ export default function Login() {
     if (error) {
       alert("error signing in");
     } else {
-      // Redirect user to Dashboard
-      history.push("/me-tree");
+      // check if adult has a child name entered? @TODO
+      // Redirect user to Me Tree
+      history.push("/");
     }
   }
 

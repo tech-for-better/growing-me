@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useState } from "react";
-import { Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
 
 export default function Signup() {
@@ -29,10 +29,10 @@ export default function Signup() {
     }
   }
 
-    return (
-
+  return (
     <>
       <form onSubmit={handleSubmit}>
+        <div>{error && JSON.stringify(error)}</div>
         <label htmlFor="input-email">Email</label>
         <input id="input-email" type="email" ref={emailRef} />
 

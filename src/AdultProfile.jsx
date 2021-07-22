@@ -4,6 +4,7 @@ import { supabase } from "./supabaseClient";
 import logo from "./../assets/Logo.svg";
 import Avatar from "./components/Avatar";
 import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "./contexts/Auth";
 // import ChildProfile from "./ChildProfile";
 import cuteVisitor from "./../assets/cute_visitors.svg";
 import pricklyVisitor from "../assets/prickly_visitors.svg";
@@ -11,17 +12,19 @@ import fluffyVisitor from "./../assets/fluffy_visitors.svg";
 import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
 
-export default function AdultProfile({ session }) {
+export default function AdultProfile() {
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(null);
+  const [adult_name, setAdultName] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
   const [child_name, setChildName] = useState(null);
   const [child_avatar, setChildAvatarUrl] = useState(null);
   const history = useHistory();
 
+  const { user } = useAuth();
+
   useEffect(() => {
     getProfile();
-  }, [session]);
+  }, [user]);
 
   async function getProfile() {
     try {
@@ -30,7 +33,7 @@ export default function AdultProfile({ session }) {
 
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(`username, avatar_url, child_name, child_avatar`)
+        .select(`adult_name, avatar_url, child_name, child_avatar`)
         .eq("id", user.id)
         .single();
 
@@ -39,7 +42,7 @@ export default function AdultProfile({ session }) {
       }
 
       if (data) {
-        setUsername(data.username);
+        setAdultName(data.adult_name);
         setChildName(data.child_name);
         setAvatarUrl(data.avatar_url);
         setChildAvatarUrl(data.child_avatar);
@@ -52,7 +55,7 @@ export default function AdultProfile({ session }) {
   }
 
   async function updateProfile({
-    username,
+    adult_name,
     avatar_url,
     child_name,
     child_avatar,
@@ -63,7 +66,7 @@ export default function AdultProfile({ session }) {
 
       const updates = {
         id: user.id,
-        username,
+        adult_name,
         avatar_url,
         child_name,
         child_avatar,
@@ -81,7 +84,7 @@ export default function AdultProfile({ session }) {
       alert(error.message);
     } finally {
       setLoading(false);
-      history.push("/me-tree");
+      history.push("/");
     }
   }
 
@@ -107,7 +110,7 @@ export default function AdultProfile({ session }) {
         onUpload={(url) => {
           setAvatarUrl(url);
           updateProfile({
-            username,
+            adult_name,
             avatar_url: url,
             child_name,
             child_avatar,
@@ -120,18 +123,18 @@ export default function AdultProfile({ session }) {
           id="email"
           type="text"
           placeholder="Your email"
-          value={session.user.email}
+          value={user.email}
           disabled
         />
       </div>
       <div>
-        <label htmlFor="username">Adult's Name</label>
+        <label htmlFor="adult_name">Adult's Name</label>
         <input
-          id="username"
+          id="adult_name"
           type="text"
           placeholder="The name your child calls you"
-          value={username || ""}
-          onChange={(e) => setUsername(e.target.value)}
+          value={adult_name || ""}
+          onChange={(e) => setAdultName(e.target.value)}
         />
       </div>
 
@@ -195,7 +198,7 @@ export default function AdultProfile({ session }) {
         <button
           className="button block primary"
           onClick={() =>
-            updateProfile({ username, avatar_url, child_name, child_avatar })
+            updateProfile({ adult_name, avatar_url, child_name, child_avatar })
           }
           disabled={loading}
         >

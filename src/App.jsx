@@ -9,8 +9,9 @@ import { AuthProvider } from "./contexts/Auth";
 import AdultProfile from "./AdultProfile";
 import ChildProfile from "./ChildProfile";
 import MagicLinkLogIn from "./MagicLinkLogIn";
+import { PrivateRoute } from "./components/PrivateRoute";
 import Signup from "./Signup";
-import  Login from "./Login";
+import Login from "./Login";
 import MeTree from "./MeTree";
 import WhosePlaying from "./WhosePlaying";
 
@@ -30,28 +31,29 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route exact path="/me-tree" component={MeTree} />
+            <PrivateRoute exact path="/" component={MeTree} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/magic-link-login" component={MagicLinkLogIn} />
-            <Route path="/adult-profile" component={AdultProfile} />
-            <Route path="/child-profile" component={ChildProfile} />
-            <Route path="/whose-playing" component={WhosePlaying} />
+            <PrivateRoute path="/adult-profile" component={AdultProfile} />
+            <PrivateRoute path="/child-profile" component={ChildProfile} />
+            <PrivateRoute path="/whose-playing" component={WhosePlaying} />
 
-            {!session ? (
+            {/* {!session ? (
               <LoginTree>
                 <Signup />
                 <MagicLinkLogIn />
               </LoginTree>
             ) : (
               <AdultProfile key={session.user.id} session={session} />
-            )}
+            )} */}
           </Switch>
         </AuthProvider>
       </Router>
-      {/* // </div> */}
+      {/* <LoginTree>
+        <Signup />
+        <MagicLinkLogIn /> */}
+      {/* </LoginTree> */}
     </>
   );
 }
-
-// export default App;

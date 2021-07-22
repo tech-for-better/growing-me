@@ -26,17 +26,20 @@ import Palette from "./Palette";
 export default function MeTree() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [adult_name, setAdultName] = useState(null);
+  const [child_name, setChildName] = useState(null);
 
   // Get current user and signOut function from context
   const { user, signOut } = useAuth();
   const history = useHistory();
 
   useEffect(() => {
-    setSession(supabase.auth.session());
+    // setSession(supabase.auth.session());
 
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
+    // supabase.auth.onAuthStateChange((_event, session) => {
+    //   setSession(session);
+    // });
+    getNames();
   }, []);
 
   const [visible, setVisible] = useState(false);
@@ -53,13 +56,36 @@ export default function MeTree() {
     }
   }
 
-    async function handleSignOut() {
-      // Ends user session
-      await signOut();
+  async function getNames() {
+    try {
+      setLoading(true);
+      let { data, error, status } = await supabase
+        .from("profiles")
+        .select(`adult_name, child_name`)
+        .eq("id", user.id)
+        .single();
 
-      // Redirects the user to Login page
-      history.push("/");
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setAdultName(data.adult_name);
+        setChildName(data.child_name);
+      }
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
     }
+  }
+
+  async function handleSignOut() {
+    // Ends user session
+    await signOut();
+    // Redirects the user to Login page
+    history.push("/");
+  }
   // const handleLogOut = async () => {
   //   try {
   //     setLoading(true);
@@ -126,7 +152,13 @@ export default function MeTree() {
         </Toolkit>
 
         <div className="flex column center text-center items-center">
-          <h2>Welcome back Nicky {user?.id} and Ben!</h2>
+          {console.log("user", user)}
+          <h2>
+            {adult_name
+              ? "Welcome back " + adult_name + " and "
+              : "Welcome back"}
+            {child_name ?? "friend"}!
+          </h2>
           <p className="narrow">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
