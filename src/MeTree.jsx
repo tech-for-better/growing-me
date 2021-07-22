@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Toolkit,
   ToolkitButton,
@@ -9,6 +9,7 @@ import {
   BtnImage,
   ToolkitText,
 } from "./Layout/MeTree.styled";
+import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
 import MeTreeHeart from "./../assets/where_-_on_a_big_love_heart.svg";
@@ -22,6 +23,8 @@ import Palette from "./Palette";
 
 export default function MeTree() {
   const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -45,16 +48,43 @@ export default function MeTree() {
     }
   }
 
+  const handleLogOut = async () => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.signOut();
+    } catch (error) {
+      alert(error.error_description || error.message);
+    } finally {
+      setLoading(false);
+      history.push("/login");
+    }
+  };
+
   return (
     <>
+      <div className="flex space-between">
+        <Link to="/adult-profile">
+          <img src={arrow} alt="back-arrow" />
+        </Link>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleLogOut();
+          }}
+          disabled={loading}
+        >
+          {loading ? <span>Loading</span> : <span>Logout</span>}
+        </button>
+      </div>
+
       <div className="form-widget">
-        <p>
+        {/* <p>
           Go to <Link to="/me-tree">MeTree</Link>
           <Link to="/whose-playing"> whose </Link>
           <Link to="/child-profile">child </Link>
           <Link to="/login">login </Link>
           <Link to="/adult-profile">adult </Link>
-        </p>
+        </p> */}
       </div>
 
       <div className="flex">

@@ -232,6 +232,9 @@ input[disabled] {
 .flex {
   display: flex;
 }
+.flex.space-between {
+  justify-content: space-between;
+}
 .flex.column {
   flex-direction: column;
 }
@@ -271,7 +274,6 @@ input[disabled] {
 
 /* Button */
 
-button,
 .button {
   color: var(--custom-color);
   border: var(--custom-border);
