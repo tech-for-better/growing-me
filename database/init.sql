@@ -50,6 +50,7 @@ create table me_tree (
   id uuid references auth.users not null,
   background text,
   tree_location text,
-
+  growing varchar[],
+  who_around varchar[],
   primary key (id)
 );
