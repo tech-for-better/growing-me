@@ -5,7 +5,7 @@ import logo from "./../assets/Logo.svg";
 import { LoginTree } from "./Layout/Login.styled";
 import { Link } from "react-router-dom";
 
-export default function Auth() {
+export default function MagicLinkLogIn() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 

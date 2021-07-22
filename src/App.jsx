@@ -4,10 +4,14 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import { LoginTree } from "./Layout/Login.styled";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/Auth";
 
 import AdultProfile from "./AdultProfile";
 import ChildProfile from "./ChildProfile";
-import Auth from "./Auth";
+import MagicLinkLogIn from "./MagicLinkLogIn";
+import { PrivateRoute } from "./components/PrivateRoute";
+import Signup from "./Signup";
+import Login from "./Login";
 import MeTree from "./MeTree";
 import WhosePlaying from "./WhosePlaying";
 
@@ -24,49 +28,32 @@ export default function Home() {
 
   return (
     <>
-      {/* // <div className="container" style={{ padding: "50px 0 100px 0" }}> */}
-      {/* 
       <Router>
-        <Switch>
-          <Route exact path="/me-tree" component={MeTree} />
-          <Route path="/login" component={Auth} />
-          <Route path="/child-profile" component={ChildProfile} />
-          <Route path="/whose-playing" component={WhosePlaying} />
-    
-          <Route path="/adult-profile">
-            <AdultProfile key={session.user.id} session={session} />
-          </Route>
+        <AuthProvider>
+          <Switch>
+            <PrivateRoute exact path="/" component={MeTree} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/magic-link-login" component={MagicLinkLogIn} />
+            <PrivateRoute path="/adult-profile" component={AdultProfile} />
+            <PrivateRoute path="/child-profile" component={ChildProfile} />
+            <PrivateRoute path="/whose-playing" component={WhosePlaying} />
 
-          {!session ? (
-            <LoginTree>
-              <Auth />
-            </LoginTree>
-          ) : (
-            <MeTree key={session.user.id} session={session} />
-          )}
-        </Switch>
-      </Router> */}
-
-      <Router>
-        <Switch>
-          <Route exact path="/me-tree" component={MeTree} />
-          <Route path="/login" component={Auth} />
-          <Route path="/adult-profile" component={AdultProfile} />
-          <Route path="/child-profile" component={ChildProfile} />
-          <Route path="/whose-playing" component={WhosePlaying} />
-
-          {!session ? (
-            <LoginTree>
-              <Auth />
-            </LoginTree>
-          ) : (
-            <AdultProfile key={session.user.id} session={session} />
-          )}
-        </Switch>
+            {/* {!session ? (
+              <LoginTree>
+                <Signup />
+                <MagicLinkLogIn />
+              </LoginTree>
+            ) : (
+              <AdultProfile key={session.user.id} session={session} />
+            )} */}
+          </Switch>
+        </AuthProvider>
       </Router>
-      {/* // </div> */}
+      {/* <LoginTree>
+        <Signup />
+        <MagicLinkLogIn /> */}
+      {/* </LoginTree> */}
     </>
   );
 }
-
-// export default App;

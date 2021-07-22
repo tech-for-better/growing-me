@@ -7,6 +7,8 @@ import {
   PaletteImg,
   PaletteBtn,
 } from "./Layout/Palette.styled";
+import { getMeTree, setTreeData } from "../database/model";
+import { getShortImagePath } from "../utils/utils";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
 import MeTreeHeart from "./../assets/where_-_on_a_big_love_heart.svg";
@@ -86,24 +88,7 @@ export default function Palette(props) {
   };
 
   async function handleClick(event, image) {
-    // try {
-    //   let imageNameArray = image.split("/");
-    //   let imageFileName = imageNameArray[imageNameArray.length - 1];
-
-    //   console.log("mapping", imgToFunctionMapping[imageFileName]);
-    //   let stateFunction = imgToFunctionMapping[imageFileName];
-    //   await stateFunction(event.target.src);
-    // } catch (err) {
-    //   throw new Error(`Something failed`);
-    // } finally {
-    //   console.log("treeLocation", treeLocation);
-    //   console.log("background", background);
-    //   console.log("growing", growing);
-    //   console.log("whoaround", whoAround);
-    // }
-    let imageNameArray = image.split("/");
-    let imageFileName = imageNameArray[imageNameArray.length - 1];
-
+    let imageFileName = getShortImagePath(image);
     console.log("mapping", imgToFunctionMapping[imageFileName]);
     let stateFunction = imgToFunctionMapping[imageFileName];
     await stateFunction(event.target.src);
@@ -128,18 +113,7 @@ export default function Palette(props) {
   async function getTreeData() {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
-
-      let { data, error, status } = await supabase
-        .from("me_tree")
-        .select(`background, tree_location, who_around, growing`)
-        .eq("id", user.id)
-        .single();
-
-      if (error && status !== 406) {
-        throw error;
-      }
-
+      let data = await getMeTree();
       if (data) {
         setTreeLocation(data.tree_location);
         setBackground(data.background);
@@ -161,23 +135,12 @@ export default function Palette(props) {
   }) {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
-
-      const updates = {
-        id: user.id,
+      setTreeData({
         background,
-        tree_location: treeLocation,
-        who_around: [whoAround],
-        growing: [growing],
-      };
-
-      let { error } = await supabase.from("me_tree").upsert(updates, {
-        returning: "minimal", // Don't return the value after inserting
+        treeLocation,
+        whoAround,
+        growing,
       });
-
-      if (error) {
-        throw error;
-      }
     } catch (error) {
       console.log("Error: ", error.message);
     } finally {

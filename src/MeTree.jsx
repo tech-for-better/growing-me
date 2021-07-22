@@ -1,7 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
+import { getMeTree, getProfileData } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
+// import { useHistory } from "react-router";
+import { useAuth } from "./contexts/Auth";
 import {
   Toolkit,
   ToolkitButton,
@@ -20,22 +23,34 @@ import WhatShape from "./../assets/what_shape_is_your_tree.svg";
 import WhereTree from "./../assets/where_is_your_tree.svg";
 import WhoAround from "./../assets/who_is_around_your_tree.svg";
 import Palette from "./Palette";
+import { getShortImagePath } from "../utils/utils";
 
 export default function MeTree() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [adult_name, setAdultName] = useState(null);
+  const [child_name, setChildName] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const [paletteOption, setPaletteOption] = useState("no option");
+  const [treeLocation, setTreeLocation] = useState(null);
+  const [background, setBackground] = useState(null);
+  const [growing, setGrowing] = useState(null);
+  const [whoAround, setWhoAround] = useState(null);
+
+  // Get current user and signOut function from context
+  const { user, signOut } = useAuth();
   const history = useHistory();
 
   useEffect(() => {
-    setSession(supabase.auth.session());
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
+    // getMeTreeUpdates();
+    getNames();
   }, []);
 
-  const [visible, setVisible] = useState(false);
-  const [paletteOption, setPaletteOption] = useState("no option");
+  useEffect(() => {
+    console.log("treeLocation in useeffect", treeLocation);
+
+    getMeTreeUpdates();
+  }, [treeLocation]);
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -48,17 +63,61 @@ export default function MeTree() {
     }
   }
 
-  const handleLogOut = async () => {
+  const ImgSrcToImportMappings = {
+    "where_-_cloud.svg": MeTreeCloud,
+    "where_-_garden.svg": MeTreeGarden,
+    "where_-_on_a_big_love_heart.svg": MeTreeHeart,
+    "where_-_another_planet.svg": MeTreePlanet,
+  };
+
+  async function getMeTreeUpdates() {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signOut();
+      const user = supabase.auth.user();
+
+      let data = await getMeTree();
+      if (data) {
+        console.log("data", data);
+        let treeLocationTemp = getShortImagePath(data.tree_location);
+        // let backgroundTemp = getShortImagePath(data.background);
+        // let growingTemp = getShortImagePath(data.growing);
+        // let whoAroundTemp = getShortImagePath(data.who_around);
+
+        setTreeLocation(ImgSrcToImportMappings[treeLocationTemp]);
+        // setBackground(ImgSrcToImportMappings[backgroundTemp]);
+        // setGrowing(ImgSrcToImportMappings[growingTemp]);
+        // setWhoAround(ImgSrcToImportMappings[whoAroundTemp]);
+      }
     } catch (error) {
-      alert(error.error_description || error.message);
+      console.error(error.message);
     } finally {
       setLoading(false);
-      history.push("/login");
     }
-  };
+  }
+
+  async function getNames() {
+    try {
+      setLoading(true);
+      let data = await getProfileData();
+
+      if (data) {
+        console.log("profiledata", data);
+        setAdultName(data.adult_name);
+        setChildName(data.child_name);
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleSignOut() {
+    // Ends user session
+    await signOut();
+    // Redirects the user to Login page
+    history.push("/");
+  }
 
   return (
     <>
@@ -69,7 +128,7 @@ export default function MeTree() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            handleLogOut();
+            handleSignOut();
           }}
           disabled={loading}
         >
@@ -114,13 +173,18 @@ export default function MeTree() {
         </Toolkit>
 
         <div className="flex column center text-center items-center">
-          <h2>Welcome back Nicky and Ben!</h2>
+          <h2>
+            {adult_name
+              ? "Welcome back " + adult_name + " and "
+              : "Welcome back "}
+            {child_name ?? "friend"}!
+          </h2>
           <p className="narrow">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </p>
 
-          <MeTreeImage src={MeTreeGarden} alt="" />
+          <MeTreeImage src={treeLocation} alt="" />
         </div>
 
         {visible ? <Palette type={paletteOption} /> : ""}
