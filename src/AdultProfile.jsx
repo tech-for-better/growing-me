@@ -98,7 +98,7 @@ export default function AdultProfile({ session }) {
         Go to <Link to="/me-tree">MeTree</Link>
         <Link to="/whose-playing"> whose </Link>
         <Link to="/child-profile">child </Link>
-        <Link to="/login">login </Link>
+        <Link to="/magic-link-login">login </Link>
         <Link to="/adult-profile">Profile</Link>
       </p>
       <Avatar

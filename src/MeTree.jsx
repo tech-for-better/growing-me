@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import { Link, useHistory } from "react-router-dom";
+// import { useHistory } from "react-router";
+import { useAuth } from "./contexts/Auth";
 import {
   Toolkit,
   ToolkitButton,
@@ -24,6 +26,9 @@ import Palette from "./Palette";
 export default function MeTree() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  // Get current user and signOut function from context
+  const { user, signOut } = useAuth();
   const history = useHistory();
 
   useEffect(() => {
@@ -48,17 +53,24 @@ export default function MeTree() {
     }
   }
 
-  const handleLogOut = async () => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signOut();
-    } catch (error) {
-      alert(error.error_description || error.message);
-    } finally {
-      setLoading(false);
-      history.push("/login");
+    async function handleSignOut() {
+      // Ends user session
+      await signOut();
+
+      // Redirects the user to Login page
+      history.push("/");
     }
-  };
+  // const handleLogOut = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const { error } = await supabase.auth.signOut();
+  //   } catch (error) {
+  //     alert(error.error_description || error.message);
+  //   } finally {
+  //     setLoading(false);
+  //     history.push("/login");
+  //   }
+  // };
 
   return (
     <>
@@ -69,7 +81,7 @@ export default function MeTree() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            handleLogOut();
+            handleSignOut();
           }}
           disabled={loading}
         >
@@ -114,7 +126,7 @@ export default function MeTree() {
         </Toolkit>
 
         <div className="flex column center text-center items-center">
-          <h2>Welcome back Nicky and Ben!</h2>
+          <h2>Welcome back Nicky {user?.id} and Ben!</h2>
           <p className="narrow">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
