@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-import { getMeTree } from "../database/model";
+import { getMeTree, getProfileData } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
 // import { useHistory } from "react-router";
 import { useAuth } from "./contexts/Auth";
@@ -98,17 +98,10 @@ export default function MeTree() {
   async function getNames() {
     try {
       setLoading(true);
-      let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`adult_name, child_name`)
-        .eq("id", user.id)
-        .single();
-
-      if (error && status !== 406) {
-        throw error;
-      }
+      let data = await getProfileData();
 
       if (data) {
+        console.log("profiledata", data);
         setAdultName(data.adult_name);
         setChildName(data.child_name);
       }

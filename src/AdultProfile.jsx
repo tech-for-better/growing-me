@@ -11,6 +11,7 @@ import pricklyVisitor from "../assets/prickly_visitors.svg";
 import fluffyVisitor from "./../assets/fluffy_visitors.svg";
 import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
+import { getProfileData, setProfileData } from "../database/model";
 
 export default function AdultProfile() {
   const [loading, setLoading] = useState(true);
@@ -29,17 +30,7 @@ export default function AdultProfile() {
   async function getProfile() {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
-
-      let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`adult_name, avatar_url, child_name, child_avatar`)
-        .eq("id", user.id)
-        .single();
-
-      if (error && status !== 406) {
-        throw error;
-      }
+      let data = await getProfileData();
 
       if (data) {
         setAdultName(data.adult_name);
@@ -62,24 +53,12 @@ export default function AdultProfile() {
   }) {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
-
-      const updates = {
-        id: user.id,
+      setProfileData({
         adult_name,
         avatar_url,
         child_name,
         child_avatar,
-        updated_at: new Date(),
-      };
-
-      let { error } = await supabase.from("profiles").upsert(updates, {
-        returning: "minimal", // Don't return the value after inserting
       });
-
-      if (error) {
-        throw error;
-      }
     } catch (error) {
       alert(error.message);
     } finally {
