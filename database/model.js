@@ -16,12 +16,12 @@ export async function getMeTree() {
   return data;
 }
 
-export async function setTreeData({
+export async function setTreeData(
   background,
   treeLocation,
   whoAround,
-  growing,
-}) {
+  growing
+) {
   const user = supabase.auth.user();
 
   const updates = {

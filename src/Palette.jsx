@@ -35,10 +35,10 @@ import ovalBlob from "./../assets/oval_blob.svg";
 export default function Palette(props) {
   // @TODO these variables should call getTreeData and update according to what is in DB
   const [loading, setLoading] = useState(true);
-  const [treeLocation, setTreeLocation] = useState(null);
-  const [background, setBackground] = useState(null);
-  const [growing, setGrowing] = useState(null);
-  const [whoAround, setWhoAround] = useState(null);
+  // const [treeLocation, props.setTreeLocation] = useState(null);
+  // const [background, props.setBackground] = useState(null);
+  // const [growing, props.setGrowing] = useState(null);
+  // const [whoAround, props.setWhoAround] = useState(null);
 
   let option = props.type;
   let paletteOptions = {
@@ -63,62 +63,65 @@ export default function Palette(props) {
   };
 
   const imgToFunctionMapping = {
-    "where_-_cloud.svg": setTreeLocation,
-    "where_-_garden.svg": setTreeLocation,
-    "where_-_on_a_big_love_heart.svg": setTreeLocation,
-    "where_-_another_planet.svg": setTreeLocation,
-    "cute_visitors.svg": setWhoAround,
-    "prickly_visitors.svg": setWhoAround,
-    "fluffy_visitors.svg": setWhoAround,
-    "creepy_crawly_visitors.svg": setWhoAround,
-    "home_for_worms.svg": setWhoAround,
-    "growing_apples.svg": setGrowing,
-    "growing_bananas.svg": setGrowing,
-    "growing_batwings.svg": setGrowing,
-    "growing_chocolate.svg": setGrowing,
-    "growing_cherries.svg": setGrowing,
-    "growing_pizza.svg": setGrowing,
-    "mountain_blob.svg": setBackground,
-    "spikey_blob.svg": setBackground,
-    "minecraft_blob.svg": setBackground,
-    "jelly_blob.svg": setBackground,
-    "heart_blob.svg": setBackground,
-    "cloudy_blob.svg": setBackground,
-    "oval_blob.svg": setBackground,
+    "where_-_cloud.svg": props.setTreeLocation,
+    "where_-_garden.svg": props.setTreeLocation,
+    "where_-_on_a_big_love_heart.svg": props.setTreeLocation,
+    "where_-_another_planet.svg": props.setTreeLocation,
+    "cute_visitors.svg": props.setWhoAround,
+    "prickly_visitors.svg": props.setWhoAround,
+    "fluffy_visitors.svg": props.setWhoAround,
+    "creepy_crawly_visitors.svg": props.setWhoAround,
+    "home_for_worms.svg": props.setWhoAround,
+    "growing_apples.svg": props.setGrowing,
+    "growing_bananas.svg": props.setGrowing,
+    "growing_batwings.svg": props.setGrowing,
+    "growing_chocolate.svg": props.setGrowing,
+    "growing_cherries.svg": props.setGrowing,
+    "growing_pizza.svg": props.setGrowing,
+    "mountain_blob.svg": props.setBackground,
+    "spikey_blob.svg": props.setBackground,
+    "minecraft_blob.svg": props.setBackground,
+    "jelly_blob.svg": props.setBackground,
+    "heart_blob.svg": props.setBackground,
+    "cloudy_blob.svg": props.setBackground,
+    "oval_blob.svg": props.setBackground,
   };
 
   async function handleClick(event, image) {
+    console.log( "event", event, "imgage", image)
     let imageFileName = getShortImagePath(image);
     console.log("mapping", imgToFunctionMapping[imageFileName]);
     let stateFunction = imgToFunctionMapping[imageFileName];
     await stateFunction(event.target.src);
 
     // @TODO these console logs are one click behind, but the database updates accurately - use async/await? Or getTreeData
-    console.log("treeLocation", treeLocation);
-    console.log("background", background);
-    console.log("growing", growing);
-    console.log("whoaround", whoAround);
+    console.log("treeLocation", props.treeLocation);
+    console.log("background", props.background);
+    console.log("growing", props.growing);
+    console.log("whoAround", props.whoAround);
   }
 
   useEffect(() => {
-    updateMeTreeInDb({
-      background,
-      treeLocation,
-      whoAround,
-      growing,
-    });
+
+    console.log('props.back', props.background)
+    updateMeTreeInDb(
+      props.background,
+      props.treeLocation,
+      props.whoAround,
+      props.growing
+    );
     // getTreeData();
-  }, [background, treeLocation, whoAround, growing]);
+  }, [props.background, props.treeLocation, props.whoAround, props.growing]);
 
   async function getTreeData() {
     try {
       setLoading(true);
       let data = await getMeTree();
       if (data) {
-        setTreeLocation(data.tree_location);
-        setBackground(data.background);
-        setGrowing(data.growing);
-        setWhoAround(data.who_around);
+        props.setTreeLocation(data.tree_location);
+        props.setBackground(data.background);
+        props.setGrowing(data.growing);
+        props.setWhoAround(data.who_around);
       }
     } catch (error) {
       alert(error.message);
@@ -127,20 +130,22 @@ export default function Palette(props) {
     }
   }
 
-  async function updateMeTreeInDb({
+  async function updateMeTreeInDb(
     background,
     treeLocation,
     whoAround,
-    growing,
-  }) {
+    growing
+  ) {
     try {
       setLoading(true);
-      setTreeData({
+      setTreeData(
         background,
         treeLocation,
         whoAround,
-        growing,
-      });
+        growing
+      );
+
+    
     } catch (error) {
       console.log("Error: ", error.message);
     } finally {
