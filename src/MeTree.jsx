@@ -9,6 +9,8 @@ import {
   Toolkit,
   ToolkitButton,
   MeTreeImage,
+  MeTreeBackground,
+  MeTreeContainer,
   BtnImage,
   ToolkitText,
 } from "./Layout/MeTree.styled";
@@ -32,15 +34,11 @@ export default function MeTree() {
   const [child_name, setChildName] = useState(null);
   const [visible, setVisible] = useState(false);
 
-
   const [paletteOption, setPaletteOption] = useState("no option");
   const [treeLocation, setTreeLocation] = useState(null);
   const [background, setBackground] = useState(null);
   const [growing, setGrowing] = useState(null);
   const [whoAround, setWhoAround] = useState(null);
-
-
-
 
   // Get current user and signOut function from context
   const { user, signOut } = useAuth();
@@ -125,7 +123,7 @@ export default function MeTree() {
 
   return (
     <>
-      <div className="flex space-between">
+      <div className="flex space-between padding-sides">
         <Link to="/adult-profile">
           <img src={arrow} alt="back-arrow" />
         </Link>
@@ -140,21 +138,8 @@ export default function MeTree() {
         </button>
       </div>
 
-      <div className="form-widget">
-        {/* <p>
-          Go to <Link to="/me-tree">MeTree</Link>
-          <Link to="/whose-playing"> whose </Link>
-          <Link to="/child-profile">child </Link>
-          <Link to="/login">login </Link>
-          <Link to="/adult-profile">adult </Link>
-        </p> */}
-      </div>
-
       <div className="flex">
         <Toolkit>
-          <ToolkitButton>
-            <ToolkitText>Add photo</ToolkitText>
-          </ToolkitButton>
           <ToolkitButton onClick={() => handleClick("WhatColour")}>
             <BtnImage src={WhatColour} alt="" />
             <ToolkitText>Change background</ToolkitText>
@@ -172,7 +157,7 @@ export default function MeTree() {
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
           <ToolkitButton>
-            <ToolkitText>Print</ToolkitText>
+            <ToolkitText>Save to Gallery</ToolkitText>
           </ToolkitButton>
         </Toolkit>
 
@@ -187,11 +172,27 @@ export default function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </p>
-
-          <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
+          <MeTreeContainer className="relative">
+            <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
+            <MeTreeBackground src={background} alt="" />
+          </MeTreeContainer>
         </div>
 
-        {visible ? <Palette type={paletteOption} treeLocation={treeLocation} setTreeLocation={setTreeLocation} background={background} setBackground={setBackground} growing={growing} setGrowing={setGrowing}whoAround={whoAround} setWhoAround={setWhoAround}/> : ""}
+        {visible ? (
+          <Palette
+            type={paletteOption}
+            treeLocation={treeLocation}
+            setTreeLocation={setTreeLocation}
+            background={background}
+            setBackground={setBackground}
+            growing={growing}
+            setGrowing={setGrowing}
+            whoAround={whoAround}
+            setWhoAround={setWhoAround}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

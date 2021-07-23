@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Toolkit = styled.div`
   display: flex;
   flex-direction: column;
-  padding:1rem;
-
+  padding: 1rem;
 `;
 
 export const ToolkitButton = styled.button`
@@ -39,7 +38,25 @@ export const ToolkitText = styled.p`
 
 export const MeTreeImage = styled.img`
   height: 60vh;
-  padding:2rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+`;
+
+export const MeTreeBackground = styled.img`
+  height: 80%;
+  width: 90%;
+  padding: 2rem;
+  position: absolute;
+  z-index: 1;
+  background-size: cover;
+  left: 5%;
+`;
+
+export const MeTreeContainer = styled.div`
+  background-color: white;
+  border-radius: 20px;
+  width: 30rem;
 `;
 
 export const BtnImage = styled.img`

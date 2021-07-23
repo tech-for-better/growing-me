@@ -64,6 +64,12 @@ body,
   width: 100%;
 }
 
+.padding-sides {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+}
+
 .narrow {
   width: 65%;
   max-width: 1000px;
@@ -209,7 +215,6 @@ input {
   font-size: 0.9rem;
   background-color: #b1bd7a;
   color: var(--custom-bg-color);
-
 }
 
 input[disabled] {
@@ -258,6 +263,11 @@ input[disabled] {
   font-size: 0.8rem;
   font-weight: 300;
 }
+
+.relative {
+  position: relative;
+}
+
 .text-right {
   text-align: right;
 }
