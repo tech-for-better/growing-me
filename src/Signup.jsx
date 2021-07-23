@@ -30,7 +30,7 @@ export default function Signup() {
   }
 
   return (
-    <>
+    <div className="flex column">
       <form onSubmit={handleSubmit}>
         {/* <div>{error && JSON.stringify(error)}</div> */}
         <label htmlFor="input-email">Email</label>
@@ -47,6 +47,9 @@ export default function Signup() {
       <p>
         Already have an account? <Link to="/login">Log In</Link>
       </p>
-    </>
+      <button>
+        <Link to="/magic-link-login">Sign up using magic link</Link>
+      </button>
+    </div>
   );
 }

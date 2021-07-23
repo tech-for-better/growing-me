@@ -30,7 +30,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className="flex column">
       <form onSubmit={handleSubmit}>
         <label htmlFor="input-email">Email</label>
         <input id="input-email" type="email" ref={emailRef} />
@@ -46,6 +46,10 @@ export default function Login() {
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>
       </p>
-    </>
+
+      <button>
+        <Link to="/magic-link-login">Sign up using magic link</Link>
+      </button>
+    </div>
   );
 }

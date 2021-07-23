@@ -52,6 +52,9 @@ export default function MagicLinkLogIn() {
             {loading ? <span>Loading</span> : <span>Send magic link</span>}
           </button>
         </div>
+        <p>
+          Want to login using email and password <Link to="/login">Log In</Link>
+        </p>
       </div>
     </div>
     // </LoginTree>

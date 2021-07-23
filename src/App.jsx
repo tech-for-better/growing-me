@@ -35,7 +35,8 @@ export default function Home() {
 
               <Route path="/signup">
                 <LoginTree>
-                  <Signup />
+                <Signup />
+
                 </LoginTree>
               </Route>
 
@@ -44,8 +45,13 @@ export default function Home() {
                 <Login />
               </LoginTree>
             </Route>
-            
-            <Route path="/magic-link-login" component={MagicLinkLogIn} />
+
+           <Route path="/magic-link-login">
+                <LoginTree>
+                  <MagicLinkLogIn/>
+              </LoginTree>
+            </Route>
+
             <PrivateRoute path="/adult-profile" component={AdultProfile} />
             <PrivateRoute path="/child-profile" component={ChildProfile} />
             <PrivateRoute path="/whose-playing" component={WhosePlaying} />
