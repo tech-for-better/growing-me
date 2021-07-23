@@ -32,7 +32,7 @@ export default function Signup() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div>{error && JSON.stringify(error)}</div>
+        {/* <div>{error && JSON.stringify(error)}</div> */}
         <label htmlFor="input-email">Email</label>
         <input id="input-email" type="email" ref={emailRef} />
 

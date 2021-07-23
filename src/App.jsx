@@ -32,8 +32,19 @@ export default function Home() {
         <AuthProvider>
           <Switch>
             <PrivateRoute exact path="/" component={MeTree} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
+
+              <Route path="/signup">
+                <LoginTree>
+                  <Signup />
+                </LoginTree>
+              </Route>
+
+              <Route path="/login">
+                <LoginTree>
+                <Login />
+              </LoginTree>
+            </Route>
+            
             <Route path="/magic-link-login" component={MagicLinkLogIn} />
             <PrivateRoute path="/adult-profile" component={AdultProfile} />
             <PrivateRoute path="/child-profile" component={ChildProfile} />

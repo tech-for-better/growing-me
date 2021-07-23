@@ -184,7 +184,7 @@ export default function MeTree() {
             like to change anything?
           </p>
 
-          <MeTreeImage src={treeLocation} alt="" />
+          <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
         </div>
 
         {visible ? <Palette type={paletteOption} /> : ""}
