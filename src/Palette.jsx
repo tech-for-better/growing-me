@@ -88,6 +88,7 @@ export default function Palette(props) {
   };
 
   async function handleClick(event, image) {
+    console.log( "event", event, "imgage", image)
     let imageFileName = getShortImagePath(image);
     console.log("mapping", imgToFunctionMapping[imageFileName]);
     let stateFunction = imgToFunctionMapping[imageFileName];
@@ -101,6 +102,8 @@ export default function Palette(props) {
   }
 
   useEffect(() => {
+
+    console.log('props.back', props.background)
     updateMeTreeInDb(
       props.background,
       props.treeLocation,
@@ -141,6 +144,8 @@ export default function Palette(props) {
         whoAround,
         growing
       );
+
+    
     } catch (error) {
       console.log("Error: ", error.message);
     } finally {
