@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Toolkit = styled.div`
   display: flex;
   flex-direction: column;
-  height: ;
+  padding:1rem;
+
 `;
 
 export const ToolkitButton = styled.button`
@@ -37,7 +38,8 @@ export const ToolkitText = styled.p`
 `;
 
 export const MeTreeImage = styled.img`
-  height: 75vh;
+  height: 60vh;
+  padding:2rem;
 `;
 
 export const BtnImage = styled.img`

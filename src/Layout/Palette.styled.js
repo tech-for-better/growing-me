@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const PaletteContainer = styled.div`
-  height: 200px;
-  width: 40vw;
+  height: 300px;
+  width: 25vw;
   border: black solid;
   border-radius: 20px;
   position: absolute;
@@ -15,15 +15,18 @@ export const PaletteContainer = styled.div`
 `;
 
 export const PaletteImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
 `;
 
 export const PaletteBtn = styled.button`
   border: solid black 1px;
-  background: none;
+  background: #fff8e2;
   height: 100%;
   width: 100%;
+  &:hover {
+    background-color: #fee79b;
+    transform: scale(1.05);
 `;
 
 // COLOURS
@@ -37,3 +40,4 @@ export const PaletteBtn = styled.button`
 // ecf0d9- palegreen
 // acabb3 - grey
 // 67bcce - turquoiseblue
+//#fff8e2;- pale yellow
