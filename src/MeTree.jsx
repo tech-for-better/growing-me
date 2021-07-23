@@ -31,11 +31,16 @@ export default function MeTree() {
   const [adult_name, setAdultName] = useState(null);
   const [child_name, setChildName] = useState(null);
   const [visible, setVisible] = useState(false);
+
+
   const [paletteOption, setPaletteOption] = useState("no option");
   const [treeLocation, setTreeLocation] = useState(null);
   const [background, setBackground] = useState(null);
   const [growing, setGrowing] = useState(null);
   const [whoAround, setWhoAround] = useState(null);
+
+
+
 
   // Get current user and signOut function from context
   const { user, signOut } = useAuth();
@@ -48,7 +53,6 @@ export default function MeTree() {
 
   useEffect(() => {
     console.log("treeLocation in useeffect", treeLocation);
-
     getMeTreeUpdates();
   }, [treeLocation]);
 
@@ -187,7 +191,7 @@ export default function MeTree() {
           <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
         </div>
 
-        {visible ? <Palette type={paletteOption} /> : ""}
+        {visible ? <Palette type={paletteOption} treeLocation={treeLocation} setTreeLocation={setTreeLocation} background={background} setBackground={setBackground} growing={growing} setGrowing={setGrowing}whoAround={whoAround} setWhoAround={setWhoAround}/> : ""}
       </div>
     </>
   );
