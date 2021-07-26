@@ -67,6 +67,11 @@ body,
 .padding-sides {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.padding-sm {
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 1rem;
 }
 
