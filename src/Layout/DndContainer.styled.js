@@ -7,7 +7,6 @@ export const DndContainer = styled.div`
   border: 1px solid pink;
   position: absolute;
   z-index: 100;
-
 `;
 
 export const DraggableImageStyle = styled.img`
@@ -15,5 +14,4 @@ export const DraggableImageStyle = styled.img`
   padding: 0.5rem 1rem;
   cursor: move;
   width: 100px;
-
 `;

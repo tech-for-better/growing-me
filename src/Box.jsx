@@ -2,9 +2,9 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
-import {DraggableImageStyle} from "./Layout/DndContainer.styled"
+import { DraggableImageStyle } from "./Layout/DndContainer.styled";
 
-export const Box = ({
+export default function Box({
   id,
   left,
   top,
@@ -12,7 +12,8 @@ export const Box = ({
   children,
   growing,
   whoAround,
-}) => {
+  isGrowing,
+}) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: ItemTypes.BOX,
@@ -26,14 +27,14 @@ export const Box = ({
   if (isDragging && hideSourceOnDrag) {
     return <div ref={drag} />;
   }
-    return (
-      <DraggableImageStyle
-        ref={drag}
-        style={{ left, top }}
-        role="Box"
-        src={growing || whoAround}
-      >
-        {children}
-      </DraggableImageStyle>
-    );
-};
+  return (
+    <DraggableImageStyle
+      ref={drag}
+      style={{ left, top }}
+      role="Box"
+      src={isGrowing ? growing : whoAround}
+    >
+      {children}
+    </DraggableImageStyle>
+  );
+}
