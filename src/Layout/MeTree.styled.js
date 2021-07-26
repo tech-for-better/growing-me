@@ -37,7 +37,7 @@ export const ToolkitText = styled.p`
 `;
 
 export const MeTreeImage = styled.img`
-  height: 60vh;
+  height: 50vh;
   padding: 2rem;
   position: relative;
   z-index: 2;

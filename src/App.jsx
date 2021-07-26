@@ -17,7 +17,7 @@ import MagicLinkLogIn from "./MagicLinkLogIn";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Signup from "./Signup";
 import Login from "./Login";
-import MeTree from "./MeTree";
+import { MeTree } from "./MeTree";
 import WhosePlaying from "./WhosePlaying";
 
 export default function Home() {
@@ -36,7 +36,6 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
-
             <PrivateRoute exact path="/">
               {/* react dnd */}
               <DndProvider backend={HTML5Backend}>

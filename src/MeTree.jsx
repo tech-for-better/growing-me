@@ -14,7 +14,7 @@ import {
   BtnImage,
   ToolkitText,
 } from "./Layout/MeTree.styled";
-import { DndContainer } from "./Layout/DndContainer.styled"
+import { DndContainer } from "./Layout/DndContainer.styled";
 import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
@@ -26,12 +26,30 @@ import WhatShape from "./../assets/what_shape_is_your_tree.svg";
 import WhereTree from "./../assets/where_is_your_tree.svg";
 import WhoAround from "./../assets/who_is_around_your_tree.svg";
 import Palette from "./Palette";
-import { getShortImagePath } from "../utils/utils";
+import cuteVisitor from "./../assets/cute_visitors.svg";
+import pricklyVisitor from "../assets/prickly_visitors.svg";
+import fluffyVisitor from "./../assets/fluffy_visitors.svg";
+import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
+import worm from "./../assets/home_for_worms.svg";
+import apple from "./../assets/growing_apples.svg";
+import banana from "./../assets/growing_bananas.svg";
+import batwings from "./../assets/growing_batwings.svg";
+import cherries from "./../assets/growing_cherries.svg";
+import chocolate from "./../assets/growing_chocolate.svg";
+import pizza from "./../assets/growing_pizza.svg";
+import mountainBlob from "./../assets/mountain_blob.svg";
+import spikeyBlob from "./../assets/spikey_blob.svg";
+import minecraftBlob from "./../assets/minecraft_blob.svg";
+import jellyBlob from "./../assets/jelly_blob.svg";
+import heartBlob from "./../assets/heart_blob.svg";
+import cloudyBlob from "./../assets/cloudy_blob.svg";
+import ovalBlob from "./../assets/oval_blob.svg";
+import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 
 //react dnd
 import { Container } from "./Container";
 
-export default function MeTree() {
+export function MeTree() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
   const [adult_name, setAdultName] = useState(null);
@@ -56,7 +74,7 @@ export default function MeTree() {
   useEffect(() => {
     console.log("treeLocation in useeffect", treeLocation);
     getMeTreeUpdates();
-  }, [treeLocation]);
+  }, [background, treeLocation, growing, whoAround]);
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -74,6 +92,24 @@ export default function MeTree() {
     "where_-_garden.svg": MeTreeGarden,
     "where_-_on_a_big_love_heart.svg": MeTreeHeart,
     "where_-_another_planet.svg": MeTreePlanet,
+    "cute_visitors.svg": cuteVisitor,
+    "prickly_visitors.svg": pricklyVisitor,
+    "fluffy_visitors.svg": fluffyVisitor,
+    "creepy_crawly_visitors.svg": creepyCrawlyVisitor,
+    "home_for_worms.svg": worm,
+    "growing_apples.svg": apple,
+    "growing_bananas.svg": banana,
+    "growing_batwings.svg": batwings,
+    "growing_cherries.svg": cherries,
+    "growing_chocolate.svg": chocolate,
+    "growing_pizza.svg": pizza,
+    "mountain_blob.svg": mountainBlob,
+    "spikey_blob.svg": spikeyBlob,
+    "minecraft_blob.svg": minecraftBlob,
+    "jelly_blob.svg": jellyBlob,
+    "heart_blob.svg": heartBlob,
+    "cloudy_blob.svg": cloudyBlob,
+    "oval_blob.svg": ovalBlob,
   };
 
   async function getMeTreeUpdates() {
@@ -85,14 +121,14 @@ export default function MeTree() {
       if (data) {
         console.log("data", data);
         let treeLocationTemp = getShortImagePath(data.tree_location);
-        // let backgroundTemp = getShortImagePath(data.background);
-        // let growingTemp = getShortImagePath(data.growing);
-        // let whoAroundTemp = getShortImagePath(data.who_around);
+        let backgroundTemp = getShortImagePath(data.background);
+        let growingTemp = getShortImagePathFromArray(data.growing);
+        let whoAroundTemp = getShortImagePathFromArray(data.who_around);
 
         setTreeLocation(ImgSrcToImportMappings[treeLocationTemp]);
-        // setBackground(ImgSrcToImportMappings[backgroundTemp]);
-        // setGrowing(ImgSrcToImportMappings[growingTemp]);
-        // setWhoAround(ImgSrcToImportMappings[whoAroundTemp]);
+        setBackground(ImgSrcToImportMappings[backgroundTemp]);
+        setGrowing(ImgSrcToImportMappings[growingTemp]);
+        setWhoAround(ImgSrcToImportMappings[whoAroundTemp]);
       }
     } catch (error) {
       console.error(error.message);
@@ -186,7 +222,11 @@ export default function MeTree() {
 
           <div>
             <MeTreeContainer className="relative">
-              <Container hideSourceOnDrag={hideSourceOnDrag} growing={growing} whoAround={whoAround}/>
+              <Container
+                hideSourceOnDrag={hideSourceOnDrag}
+                growing={growing}
+                whoAround={whoAround}
+              />
               <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
               <MeTreeBackground src={background} alt="" />
             </MeTreeContainer>
