@@ -7,18 +7,7 @@ import { Box } from "./Box";
 import update from "immutability-helper";
 import {DndContainer} from "./Layout/DndContainer.styled"
 
-const styles = {
-  width:"100%",
-  height: 500,
-  border: "1px solid black",
-position: "absolute",
-    background: "pink",
-
-
-
-};
-
-export const Container = ({ hideSourceOnDrag }) => {
+export const Container = ({ hideSourceOnDrag, growing }) => {
   const [boxes, setBoxes] = useState({
     a: { top: 20, left: 80, title: "Drag me around" },
     b: { top: 180, left: 20, title: "Drag me too" },
@@ -46,11 +35,11 @@ export const Container = ({ hideSourceOnDrag }) => {
         return undefined;
       },
     }),
-    [moveBox]
+      [moveBox]
   );
     return (
-    // <DndContainer>
-        <DndContainer ref={drop} >
+
+    <DndContainer ref={drop} >
       {Object.keys(boxes).map((key) => {
         const { left, top, title } = boxes[key];
         return (
@@ -58,14 +47,15 @@ export const Container = ({ hideSourceOnDrag }) => {
             key={key}
             id={key}
             left={left}
-            top={top}
+                top={top}
+                 growing={growing}
             hideSourceOnDrag={hideSourceOnDrag}
           >
-            {title}
+            {/* {title} */}
           </Box>
         );
       })}
             </DndContainer>
-        // </DndContainer>
+
   );
 };

@@ -183,32 +183,30 @@ export default function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </p>
-          {/* <DndContainer> */}
-        
-            <div>
-              <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
-                <MeTreeBackground src={background} alt="" />
-              </MeTreeContainer>
 
-                {visible ? (
-                  <Palette
-                    type={paletteOption}
-                    treeLocation={treeLocation}
-                    setTreeLocation={setTreeLocation}
-                    background={background}
-                    setBackground={setBackground}
-                    growing={growing}
-                    setGrowing={setGrowing}
-                    whoAround={whoAround}
-                    setWhoAround={setWhoAround}
-                  />
-                ) : (
-                  ""
-                )}
-            </div>
-          {/* </DndContainer> */}
+          <div>
+            <MeTreeContainer className="relative">
+              <Container hideSourceOnDrag={hideSourceOnDrag} growing={growing} />
+              <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
+              <MeTreeBackground src={background} alt="" />
+            </MeTreeContainer>
+
+            {visible ? (
+              <Palette
+                type={paletteOption}
+                treeLocation={treeLocation}
+                setTreeLocation={setTreeLocation}
+                background={background}
+                setBackground={setBackground}
+                growing={growing}
+                setGrowing={setGrowing}
+                whoAround={whoAround}
+                setWhoAround={setWhoAround}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </>

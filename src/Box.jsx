@@ -11,7 +11,7 @@ const style = {
   cursor: "move",
 };
 
-export const Box = ({ id, left, top, hideSourceOnDrag, children }) => {
+export const Box = ({ id, left, top, hideSourceOnDrag, children , growing}) => {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: ItemTypes.BOX,
@@ -26,8 +26,8 @@ export const Box = ({ id, left, top, hideSourceOnDrag, children }) => {
     return <div ref={drag} />;
   }
   return (
-    <div ref={drag} style={{ ...style, left, top }} role="Box">
+    <img ref={drag} style={{ ...style, left, top }} role="Box" src={growing}>
       {children}
-    </div>
+    </img>
   );
 };
