@@ -186,7 +186,7 @@ export default function MeTree() {
 
           <div>
             <MeTreeContainer className="relative">
-              <Container hideSourceOnDrag={hideSourceOnDrag} growing={growing} />
+              <Container hideSourceOnDrag={hideSourceOnDrag} growing={growing} whoAround={whoAround}/>
               <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
               <MeTreeBackground src={background} alt="" />
             </MeTreeContainer>
