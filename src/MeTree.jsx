@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabaseClient";
 import { getMeTree, getProfileData } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
@@ -14,6 +14,7 @@ import {
   BtnImage,
   ToolkitText,
 } from "./Layout/MeTree.styled";
+import { DndContainer } from "./Layout/DndContainer.styled"
 import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
@@ -26,6 +27,9 @@ import WhereTree from "./../assets/where_is_your_tree.svg";
 import WhoAround from "./../assets/who_is_around_your_tree.svg";
 import Palette from "./Palette";
 import { getShortImagePath } from "../utils/utils";
+
+//react dnd
+import { Container } from "./Container";
 
 export default function MeTree() {
   const [session, setSession] = useState(null);
@@ -121,6 +125,13 @@ export default function MeTree() {
     history.push("/");
   }
 
+  // react dnd
+  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
+  const toggle = useCallback(
+    () => setHideSourceOnDrag(!hideSourceOnDrag),
+    [hideSourceOnDrag]
+  );
+
   return (
     <>
       <div className="flex space-between padding-sides">
@@ -172,27 +183,33 @@ export default function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </p>
-          <MeTreeContainer className="relative">
-            <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
-            <MeTreeBackground src={background} alt="" />
-          </MeTreeContainer>
-        </div>
+          {/* <DndContainer> */}
+        
+            <div>
+              <MeTreeContainer className="relative">
+                <Container hideSourceOnDrag={hideSourceOnDrag} />
+                <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
+                <MeTreeBackground src={background} alt="" />
+              </MeTreeContainer>
 
-        {visible ? (
-          <Palette
-            type={paletteOption}
-            treeLocation={treeLocation}
-            setTreeLocation={setTreeLocation}
-            background={background}
-            setBackground={setBackground}
-            growing={growing}
-            setGrowing={setGrowing}
-            whoAround={whoAround}
-            setWhoAround={setWhoAround}
-          />
-        ) : (
-          ""
-        )}
+                {visible ? (
+                  <Palette
+                    type={paletteOption}
+                    treeLocation={treeLocation}
+                    setTreeLocation={setTreeLocation}
+                    background={background}
+                    setBackground={setBackground}
+                    growing={growing}
+                    setGrowing={setGrowing}
+                    whoAround={whoAround}
+                    setWhoAround={setWhoAround}
+                  />
+                ) : (
+                  ""
+                )}
+            </div>
+          {/* </DndContainer> */}
+        </div>
       </div>
     </>
   );

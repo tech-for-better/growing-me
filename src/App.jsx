@@ -6,6 +6,11 @@ import { LoginTree } from "./Layout/Login.styled";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/Auth";
 
+// react-dnd
+import { render } from "react-dom";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import AdultProfile from "./AdultProfile";
 import ChildProfile from "./ChildProfile";
 import MagicLinkLogIn from "./MagicLinkLogIn";
@@ -31,24 +36,29 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
-            <PrivateRoute exact path="/" component={MeTree} />
 
-              <Route path="/signup">
-                <LoginTree>
+            <PrivateRoute exact path="/">
+              {/* react dnd */}
+              <DndProvider backend={HTML5Backend}>
+                <MeTree />
+              </DndProvider>
+            </PrivateRoute>
+
+            <Route path="/signup">
+              <LoginTree>
                 <Signup />
+              </LoginTree>
+            </Route>
 
-                </LoginTree>
-              </Route>
-
-              <Route path="/login">
-                <LoginTree>
+            <Route path="/login">
+              <LoginTree>
                 <Login />
               </LoginTree>
             </Route>
 
-           <Route path="/magic-link-login">
-                <LoginTree>
-                  <MagicLinkLogIn/>
+            <Route path="/magic-link-login">
+              <LoginTree>
+                <MagicLinkLogIn />
               </LoginTree>
             </Route>
 
