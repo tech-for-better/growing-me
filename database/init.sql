@@ -51,6 +51,10 @@ create table me_tree (
   background text,
   tree_location text,
   growing varchar[],
+  growing_top integer,
+  growing_left integer,
   who_around varchar[],
+  who_around_top integer,
+  who_around_left integer,
   primary key (id)
 );

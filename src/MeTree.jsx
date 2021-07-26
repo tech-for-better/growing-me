@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabaseClient";
-import { getMeTree, getProfileData } from "../database/model";
+import { getMeTree, getProfileData, setTreeData } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
 // import { useHistory } from "react-router";
 import { useAuth } from "./contexts/Auth";
@@ -62,19 +62,94 @@ export function MeTree() {
   const [growing, setGrowing] = useState(null);
   const [whoAround, setWhoAround] = useState(null);
 
+  const [growing_left, setGrowingLeft] = useState(80);
+  const [growing_top, setGrowingTop] = useState(20);
+  const [who_around_top, setWhoAroundTop] = useState(100);
+  const [who_around_left, setWhoAroundLeft] = useState(80);
+  const [boxes, setBoxes] = useState({
+    a: { top: growing_top, left: growing_left, isGrowing: true },
+    b: { top: who_around_top, left: who_around_left, isGrowing: false },
+  });
+
   // Get current user and signOut function from context
   const { user, signOut } = useAuth();
   const history = useHistory();
 
   useEffect(() => {
-    // getMeTreeUpdates();
     getNames();
   }, []);
 
   useEffect(() => {
-    console.log("treeLocation in useeffect", treeLocation);
+    setGrowingLeft(boxes.a.left);
+    setGrowingTop(boxes.a.top);
+    setWhoAroundTop(boxes.b.top);
+    setWhoAroundLeft(boxes.b.left);
+    console.log("growing left in use effect", growing_left, who_around_left);
+  }, [boxes]);
+
+  // useEffect(() => {
+  //   updateMeTreeInDb(
+  //     background,
+  //     treeLocation,
+  //     whoAround,
+  //     growing,
+  //     growing_left,
+  //     growing_top,
+  //     who_around_top,
+  //     who_around_left
+  //   );
+  // }, [growing_left, growing_top, who_around_top, who_around_left]);
+
+  useEffect(() => {
+    console.log("who_around_left in useeffect", who_around_left);
+    console.log("boxes in useeffect", boxes);
     getMeTreeUpdates();
-  }, [background, treeLocation, growing, whoAround]);
+  }, [
+    background,
+    treeLocation,
+    growing,
+    whoAround,
+    who_around_left,
+    who_around_top,
+    growing_left,
+    growing_top,
+  ]);
+
+  // useEffect(() => {
+  //   setBoxes({
+  //     a: { top: growing_top, left: growing_left, isGrowing: true },
+  //     b: { top: who_around_top, left: who_around_left, isGrowing: false },
+  //   });
+  // }, [growing_top, growing_left, who_around_top, who_around_left]);
+
+  // async function updateMeTreeInDb(
+  //   background,
+  //   treeLocation,
+  //   whoAround,
+  //   growing,
+  //   growing_left,
+  //   growing_top,
+  //   who_around_top,
+  //   who_around_left
+  // ) {
+  //   try {
+  //     setLoading(true);
+  //     setTreeData(
+  //       background,
+  //       treeLocation,
+  //       whoAround,
+  //       growing,
+  //       growing_left,
+  //       growing_top,
+  //       who_around_top,
+  //       who_around_left
+  //     );
+  //   } catch (error) {
+  //     console.log("Error: ", error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -129,6 +204,10 @@ export function MeTree() {
         setBackground(ImgSrcToImportMappings[backgroundTemp]);
         setGrowing(ImgSrcToImportMappings[growingTemp]);
         setWhoAround(ImgSrcToImportMappings[whoAroundTemp]);
+        setGrowingLeft(data.growing_left);
+        setGrowingTop(data.growing_top);
+        setWhoAroundLeft(data.who_around_left);
+        setWhoAroundTop(data.who_around_top);
       }
     } catch (error) {
       console.error(error.message);
@@ -226,6 +305,8 @@ export function MeTree() {
                 hideSourceOnDrag={hideSourceOnDrag}
                 growing={growing}
                 whoAround={whoAround}
+                boxes={boxes}
+                setBoxes={setBoxes}
               />
               <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
               <MeTreeBackground src={background} alt="" />
@@ -242,6 +323,10 @@ export function MeTree() {
                 setGrowing={setGrowing}
                 whoAround={whoAround}
                 setWhoAround={setWhoAround}
+                growing_left={growing_left}
+                growing_top={growing_top}
+                who_around_top={who_around_top}
+                who_around_left={who_around_left}
               />
             ) : (
               ""

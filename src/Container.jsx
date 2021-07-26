@@ -9,11 +9,17 @@ import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
 import { WhoAroundBox } from "./WhoAroundBox";
 
-export const Container = ({ hideSourceOnDrag, growing, whoAround }) => {
-  const [boxes, setBoxes] = useState({
-    a: { top: 20, left: 80, isGrowing: true },
-    b: { top: 100, left: 80, isGrowing: false },
-  });
+export const Container = ({
+  hideSourceOnDrag,
+  growing,
+  whoAround,
+  boxes,
+  setBoxes,
+}) => {
+  // const [boxes, setBoxes] = useState({
+  //   a: { top: 20, left: 80, isGrowing: true },
+  //   b: { top: 100, left: 80, isGrowing: false },
+  // });
 
   const moveBox = useCallback(
     (id, left, top) => {

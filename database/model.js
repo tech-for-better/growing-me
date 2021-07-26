@@ -5,7 +5,9 @@ export async function getMeTree() {
 
   let { data, error, status } = await supabase
     .from("me_tree")
-    .select(`background, tree_location, who_around, growing`)
+    .select(
+      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left`
+    )
     .eq("id", user.id)
     .single();
 
@@ -20,7 +22,11 @@ export async function setTreeData(
   background,
   treeLocation,
   whoAround,
-  growing
+  growing,
+  growing_left,
+  growing_top,
+  who_around_top,
+  who_around_left
 ) {
   const user = supabase.auth.user();
 
@@ -30,6 +36,10 @@ export async function setTreeData(
     tree_location: treeLocation,
     who_around: [whoAround],
     growing: [growing],
+    growing_left,
+    growing_top,
+    who_around_top,
+    who_around_left,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
