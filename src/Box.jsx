@@ -2,14 +2,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
-
-const style = {
-  position: "absolute",
-  border: "1px dashed gray",
-  backgroundColor: "white",
-  padding: "0.5rem 1rem",
-  cursor: "move",
-};
+import {DraggableImageStyle} from "./Layout/DndContainer.styled"
 
 export const Box = ({ id, left, top, hideSourceOnDrag, children , growing}) => {
   const [{ isDragging }, drag] = useDrag(
@@ -26,8 +19,10 @@ export const Box = ({ id, left, top, hideSourceOnDrag, children , growing}) => {
     return <div ref={drag} />;
   }
   return (
-    <img ref={drag} style={{ ...style, left, top }} role="Box" src={growing}>
+      <DraggableImageStyle ref={drag}
+          style={{ left, top }}
+          role="Box" src={growing}>
       {children}
-    </img>
+    </DraggableImageStyle>
   );
 };

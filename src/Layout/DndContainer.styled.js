@@ -9,3 +9,11 @@ export const DndContainer = styled.div`
   z-index: 100;
 
 `;
+
+export const DraggableImageStyle = styled.img`
+  position: absolute;
+  padding: 0.5rem 1rem;
+  cursor: move;
+  width: 100px;
+
+`;

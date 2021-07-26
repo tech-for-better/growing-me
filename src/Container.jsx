@@ -9,8 +9,8 @@ import {DndContainer} from "./Layout/DndContainer.styled"
 
 export const Container = ({ hideSourceOnDrag, growing }) => {
   const [boxes, setBoxes] = useState({
-    a: { top: 20, left: 80, title: "Drag me around" },
-    b: { top: 180, left: 20, title: "Drag me too" },
+    a: { top: 20, left: 80 },
+    // b: { top: 180, left: 20, title: "Drag me too" },
   });
   const moveBox = useCallback(
     (id, left, top) => {
