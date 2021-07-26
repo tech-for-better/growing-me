@@ -8,10 +8,14 @@ import update from "immutability-helper";
 import {DndContainer} from "./Layout/DndContainer.styled"
 
 const styles = {
-  width: 300,
-  height: 300,
+  width:"100%",
+  height: 500,
   border: "1px solid black",
-  position: "relative",
+position: "absolute",
+    background: "pink",
+
+
+
 };
 
 export const Container = ({ hideSourceOnDrag }) => {
@@ -46,7 +50,7 @@ export const Container = ({ hideSourceOnDrag }) => {
   );
     return (
     // <DndContainer>
-            <div ref={drop} style={styles}>
+        <DndContainer ref={drop} >
       {Object.keys(boxes).map((key) => {
         const { left, top, title } = boxes[key];
         return (
@@ -61,7 +65,7 @@ export const Container = ({ hideSourceOnDrag }) => {
           </Box>
         );
       })}
-            </div>
+            </DndContainer>
         // </DndContainer>
   );
 };

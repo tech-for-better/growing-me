@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const DndContainer = styled.div`
-  background-color: blue;
-    width: 100%;
-  height: 100;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
   border: 1px solid black;
+  position: absolute;
+  z-index: 100;
 
-  z-index: 10;
 `;
