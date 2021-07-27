@@ -14,7 +14,7 @@ export const Container = ({
   growing,
   whoAround,
   boxes,
-  setBoxes,
+  dispatch,
 }) => {
   // const [boxes, setBoxes] = useState({
   //   a: { top: 20, left: 80, isGrowing: true },
@@ -23,15 +23,23 @@ export const Container = ({
 
   const moveBox = useCallback(
     (id, left, top) => {
-      setBoxes(
-        update(boxes, {
+      dispatch({
+        type: "update_boxes",
+        newBoxes: update(boxes, {
           [id]: {
             $merge: { left, top },
           },
-        })
-      );
+        }),
+      });
+      // setBoxes(
+      //   update(boxes, {
+      //     [id]: {
+      //       $merge: { left, top },
+      //     },
+      //   })
+      // );
     },
-    [boxes, setBoxes]
+    [boxes, dispatch]
   );
 
   const [, drop] = useDrop(

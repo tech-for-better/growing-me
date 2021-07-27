@@ -57,8 +57,14 @@ const initialState = {
   growing_coords: { left: 80, top: 20 },
   whoAround_coords: { left: 100, top: 20 },
   boxes: {
-    a: { top: growing_top, left: growing_left, isGrowing: true },
-    b: { top: who_around_top, left: who_around_left, isGrowing: false },
+    a: { top: 0, left: 2 },
+    b: { top: 1, left: 3 },
+    // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
+    // b: {
+    //   top: whoAround_coords.top,
+    //   left: whoAround_coords.left,
+    //   isGrowing: false,
+    // },
   },
 };
 
@@ -123,12 +129,15 @@ export function MeTree() {
   }, []);
 
   useEffect(() => {
-    setGrowingLeft(boxes.a.left);
-    setGrowingTop(boxes.a.top);
-    setWhoAroundTop(boxes.b.top);
-    setWhoAroundLeft(boxes.b.left);
-    console.log("growing left in use effect", growing_left, who_around_left);
-  }, [boxes]);
+    dispatch({
+      type: "update_growing_coords",
+      newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
+    });
+    dispatch({
+      type: "update_whoAround_coords",
+      newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
+    });
+  }, [state.boxes]);
 
   // useEffect(() => {
   //   updateMeTreeInDb(
@@ -144,18 +153,16 @@ export function MeTree() {
   // }, [growing_left, growing_top, who_around_top, who_around_left]);
 
   useEffect(() => {
-    console.log("who_around_left in useeffect", who_around_left);
-    console.log("boxes in useeffect", boxes);
     getMeTreeUpdates();
   }, [
-    background,
-    treeLocation,
-    growing,
-    whoAround,
-    who_around_left,
-    who_around_top,
-    growing_left,
-    growing_top,
+    state.background,
+    state.treeLocation,
+    state.growing,
+    state.whoAround,
+    state.who_around_left,
+    state.who_around_top,
+    state.growing_left,
+    state.growing_top,
   ]);
 
   // useEffect(() => {
@@ -346,30 +353,25 @@ export function MeTree() {
             <MeTreeContainer className="relative">
               <Container
                 hideSourceOnDrag={hideSourceOnDrag}
-                growing={growing}
-                whoAround={whoAround}
-                boxes={boxes}
-                setBoxes={setBoxes}
+                growing={state.growing}
+                whoAround={state.whoAround}
+                boxes={state.boxes}
+                dispatch={dispatch}
               />
-              <MeTreeImage src={treeLocation ?? MeTreeGarden} alt="" />
-              <MeTreeBackground src={background} alt="" />
+              <MeTreeImage src={state.treeLocation ?? MeTreeGarden} alt="" />
+              <MeTreeBackground src={state.background} alt="" />
             </MeTreeContainer>
 
             {visible ? (
               <Palette
                 type={paletteOption}
-                treeLocation={treeLocation}
-                setTreeLocation={setTreeLocation}
-                background={background}
-                setBackground={setBackground}
-                growing={growing}
-                setGrowing={setGrowing}
-                whoAround={whoAround}
-                setWhoAround={setWhoAround}
-                growing_left={growing_left}
-                growing_top={growing_top}
-                who_around_top={who_around_top}
-                who_around_left={who_around_left}
+                treeLocation={state.treeLocation}
+                background={state.background}
+                growing={state.growing}
+                whoAround={state.whoAround}
+                growing_coords={state.growing_coords}
+                whoAround_coords={state.whoAround_coords}
+                dispatch={dispatch}
               />
             ) : (
               ""
