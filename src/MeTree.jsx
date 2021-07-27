@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useReducer } from "react";
 import { supabase } from "./supabaseClient";
 import { getMeTree, getProfileData, setTreeData } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
@@ -49,7 +49,50 @@ import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 //react dnd
 import { Container } from "./Container";
 
+const initialState = {
+  treeLocation: null,
+  background: null,
+  growing: null,
+  whoAround: null,
+  growing_coords: { left: 80, top: 20 },
+  whoAround_coords: { left: 100, top: 20 },
+  boxes: {
+    a: { top: growing_top, left: growing_left, isGrowing: true },
+    b: { top: who_around_top, left: who_around_left, isGrowing: false },
+  },
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "update_treeLocation":
+      const treeLocation = action.newTreeLocation;
+      return { ...state, treeLocation };
+    case "update_background":
+      const background = action.newBackground;
+      return { ...state, background };
+    case "update_growing":
+      const growing = action.newGrowingItem;
+      return { ...state, growing };
+    case "update_whoAround":
+      const whoAround = action.newWhoAround;
+      return { ...state, whoAround };
+    case "update_growing_coords":
+      const growing_coords = action.newGrowingCoords;
+      return { ...state, growing_coords };
+    case "update_whoAround_coords":
+      const whoAround_coords = action.newWhoAroundCoords;
+      return { ...state, whoAround_coords };
+    case "update_boxes":
+      const boxes = action.newBoxes;
+      return { ...state, boxes };
+    default:
+      return state;
+  }
+}
+
 export function MeTree() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
   const [adult_name, setAdultName] = useState(null);
@@ -57,19 +100,19 @@ export function MeTree() {
   const [visible, setVisible] = useState(false);
 
   const [paletteOption, setPaletteOption] = useState("no option");
-  const [treeLocation, setTreeLocation] = useState(null);
-  const [background, setBackground] = useState(null);
-  const [growing, setGrowing] = useState(null);
-  const [whoAround, setWhoAround] = useState(null);
+  // const [treeLocation, setTreeLocation] = useState(null);
+  // const [background, setBackground] = useState(null);
+  // const [growing, setGrowing] = useState(null);
+  // const [whoAround, setWhoAround] = useState(null);
 
-  const [growing_left, setGrowingLeft] = useState(80);
-  const [growing_top, setGrowingTop] = useState(20);
-  const [who_around_top, setWhoAroundTop] = useState(100);
-  const [who_around_left, setWhoAroundLeft] = useState(80);
-  const [boxes, setBoxes] = useState({
-    a: { top: growing_top, left: growing_left, isGrowing: true },
-    b: { top: who_around_top, left: who_around_left, isGrowing: false },
-  });
+  // const [growing_left, setGrowingLeft] = useState(80);
+  // const [growing_top, setGrowingTop] = useState(20);
+  // const [who_around_top, setWhoAroundTop] = useState(100);
+  // const [who_around_left, setWhoAroundLeft] = useState(80);
+  // const [boxes, setBoxes] = useState({
+  //   a: { top: growing_top, left: growing_left, isGrowing: true },
+  //   b: { top: who_around_top, left: who_around_left, isGrowing: false },
+  // });
 
   // Get current user and signOut function from context
   const { user, signOut } = useAuth();
