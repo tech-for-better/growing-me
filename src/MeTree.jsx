@@ -1,5 +1,11 @@
 import React from "react";
-import { useState, useEffect, useCallback, useReducer } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useReducer,
+  createContext,
+} from "react";
 import { supabase } from "./supabaseClient";
 import { getMeTree, getProfileData, setTreeData } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
@@ -47,7 +53,9 @@ import ovalBlob from "./../assets/oval_blob.svg";
 import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 
 //react dnd
-import { Container } from "./Container";
+import Container from "./Container";
+
+export const MeTreeContext = createContext();
 
 const initialState = {
   treeLocation: null,
@@ -69,9 +77,11 @@ const initialState = {
 };
 
 function reducer(state, action) {
+  console.log("f1", action);
   switch (action.type) {
     case "update_treeLocation":
       const treeLocation = action.newTreeLocation;
+      console.log("f2", action.newTreeLocation);
       return { ...state, treeLocation };
     case "update_background":
       const background = action.newBackground;
@@ -104,21 +114,7 @@ export function MeTree() {
   const [adult_name, setAdultName] = useState(null);
   const [child_name, setChildName] = useState(null);
   const [visible, setVisible] = useState(false);
-
   const [paletteOption, setPaletteOption] = useState("no option");
-  // const [treeLocation, setTreeLocation] = useState(null);
-  // const [background, setBackground] = useState(null);
-  // const [growing, setGrowing] = useState(null);
-  // const [whoAround, setWhoAround] = useState(null);
-
-  // const [growing_left, setGrowingLeft] = useState(80);
-  // const [growing_top, setGrowingTop] = useState(20);
-  // const [who_around_top, setWhoAroundTop] = useState(100);
-  // const [who_around_left, setWhoAroundLeft] = useState(80);
-  // const [boxes, setBoxes] = useState({
-  //   a: { top: growing_top, left: growing_left, isGrowing: true },
-  //   b: { top: who_around_top, left: who_around_left, isGrowing: false },
-  // });
 
   // Get current user and signOut function from context
   const { user, signOut } = useAuth();
@@ -128,42 +124,113 @@ export function MeTree() {
     getNames();
   }, []);
 
-  useEffect(() => {
-    dispatch({
-      type: "update_growing_coords",
-      newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
-    });
-    dispatch({
-      type: "update_whoAround_coords",
-      newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
-    });
-  }, [state.boxes]);
-
+  // this was uncommented
   // useEffect(() => {
-  //   updateMeTreeInDb(
-  //     background,
-  //     treeLocation,
-  //     whoAround,
-  //     growing,
-  //     growing_left,
-  //     growing_top,
-  //     who_around_top,
-  //     who_around_left
-  //   );
-  // }, [growing_left, growing_top, who_around_top, who_around_left]);
+  //   dispatch({
+  //     type: "update_growing_coords",
+  //     newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
+  //   });
+  //   dispatch({
+  //     type: "update_whoAround_coords",
+  //     newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
+  //   });
+  // }, [state.boxes]);
 
   useEffect(() => {
-    getMeTreeUpdates();
+    async function updateMeTreeInDb(
+      background,
+      treeLocation,
+      whoAround,
+      growing,
+      growing_coords,
+      whoAround_coords
+    ) {
+      try {
+        setLoading(true);
+        setTreeData(
+          background,
+          treeLocation,
+          whoAround,
+          growing,
+          growing_coords,
+          whoAround_coords
+        );
+      } catch (error) {
+        console.log("Error: ", error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    updateMeTreeInDb(
+      state.background,
+      state.treeLocation,
+      state.whoAround,
+      state.growing,
+      state.growing_coords,
+      state.whoAround_coords
+    );
   }, [
     state.background,
     state.treeLocation,
-    state.growing,
     state.whoAround,
-    state.who_around_left,
-    state.who_around_top,
-    state.growing_left,
-    state.growing_top,
+    state.growing,
+    state.growing_coords,
+    state.whoAround_coords,
   ]);
+
+  async function getMeTreeUpdates() {
+    try {
+      setLoading(true);
+      let data = await getMeTree();
+      if (data) {
+        console.log("getMeTreeUpdates data", data);
+        let treeLocationTemp = getShortImagePath(data.tree_location);
+        let backgroundTemp = getShortImagePath(data.background);
+        let growingTemp = getShortImagePathFromArray(data.growing);
+        let whoAroundTemp = getShortImagePathFromArray(data.who_around);
+
+        dispatch({
+          type: "update_treeLocation",
+          newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
+        });
+        dispatch({
+          type: "update_background",
+          newBackground: ImgSrcToImportMappings[backgroundTemp],
+        });
+        dispatch({
+          type: "update_growing",
+          newGrowingItem: ImgSrcToImportMappings[growingTemp],
+        });
+        dispatch({
+          type: "update_whoAround",
+          newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
+        });
+        dispatch({
+          type: "update_whoAround_coords",
+          newWhoAroundCoords: {
+            left: data.who_around_left,
+            top: data.who_around_top,
+          },
+        });
+        dispatch({
+          type: "update_growing_coords",
+          newGrowingCoords: {
+            left: data.growing_left,
+            top: data.growing_top,
+          },
+        });
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // this was uncommented
+  useEffect(() => {
+    // getMeTreeUpdates();
+  }, [state]);
 
   // useEffect(() => {
   //   setBoxes({
@@ -171,35 +238,6 @@ export function MeTree() {
   //     b: { top: who_around_top, left: who_around_left, isGrowing: false },
   //   });
   // }, [growing_top, growing_left, who_around_top, who_around_left]);
-
-  // async function updateMeTreeInDb(
-  //   background,
-  //   treeLocation,
-  //   whoAround,
-  //   growing,
-  //   growing_left,
-  //   growing_top,
-  //   who_around_top,
-  //   who_around_left
-  // ) {
-  //   try {
-  //     setLoading(true);
-  //     setTreeData(
-  //       background,
-  //       treeLocation,
-  //       whoAround,
-  //       growing,
-  //       growing_left,
-  //       growing_top,
-  //       who_around_top,
-  //       who_around_left
-  //     );
-  //   } catch (error) {
-  //     console.log("Error: ", error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -237,42 +275,13 @@ export function MeTree() {
     "oval_blob.svg": ovalBlob,
   };
 
-  async function getMeTreeUpdates() {
-    try {
-      setLoading(true);
-      const user = supabase.auth.user();
-
-      let data = await getMeTree();
-      if (data) {
-        console.log("data", data);
-        let treeLocationTemp = getShortImagePath(data.tree_location);
-        let backgroundTemp = getShortImagePath(data.background);
-        let growingTemp = getShortImagePathFromArray(data.growing);
-        let whoAroundTemp = getShortImagePathFromArray(data.who_around);
-
-        setTreeLocation(ImgSrcToImportMappings[treeLocationTemp]);
-        setBackground(ImgSrcToImportMappings[backgroundTemp]);
-        setGrowing(ImgSrcToImportMappings[growingTemp]);
-        setWhoAround(ImgSrcToImportMappings[whoAroundTemp]);
-        setGrowingLeft(data.growing_left);
-        setGrowingTop(data.growing_top);
-        setWhoAroundLeft(data.who_around_left);
-        setWhoAroundTop(data.who_around_top);
-      }
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   async function getNames() {
     try {
       setLoading(true);
       let data = await getProfileData();
 
       if (data) {
-        console.log("profiledata", data);
+        // console.log("profiledata", data);
         setAdultName(data.adult_name);
         setChildName(data.child_name);
       }
@@ -350,32 +359,15 @@ export function MeTree() {
           </p>
 
           <div>
-            <MeTreeContainer className="relative">
-              <Container
-                hideSourceOnDrag={hideSourceOnDrag}
-                growing={state.growing}
-                whoAround={state.whoAround}
-                boxes={state.boxes}
-                dispatch={dispatch}
-              />
-              <MeTreeImage src={state.treeLocation ?? MeTreeGarden} alt="" />
-              <MeTreeBackground src={state.background} alt="" />
-            </MeTreeContainer>
+            <MeTreeContext.Provider value={{ state, dispatch }}>
+              <MeTreeContainer className="relative">
+                <Container hideSourceOnDrag={hideSourceOnDrag} />
+                <MeTreeImage src={state.treeLocation ?? MeTreeGarden} alt="" />
+                <MeTreeBackground src={state.background} alt="" />
+              </MeTreeContainer>
 
-            {visible ? (
-              <Palette
-                type={paletteOption}
-                treeLocation={state.treeLocation}
-                background={state.background}
-                growing={state.growing}
-                whoAround={state.whoAround}
-                growing_coords={state.growing_coords}
-                whoAround_coords={state.whoAround_coords}
-                dispatch={dispatch}
-              />
-            ) : (
-              ""
-            )}
+              {visible ? <Palette type={paletteOption} /> : ""}
+            </MeTreeContext.Provider>
           </div>
         </div>
       </div>

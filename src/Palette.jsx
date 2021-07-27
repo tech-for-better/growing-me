@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
 import {
@@ -32,22 +32,11 @@ import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 
-export default function Palette({
-  type,
-  treeLocation,
-  background,
-  growing,
-  whoAround,
-  growing_coords,
-  whoAround_coords,
-  dispatch,
-}) {
-  // @TODO these variables should call getTreeData and update according to what is in DB
+import { MeTreeContext } from "./MeTree";
+
+export default function Palette({ type }) {
+  const { state, dispatch } = useContext(MeTreeContext);
   const [loading, setLoading] = useState(true);
-  // const [treeLocation, props.setTreeLocation] = useState(null);
-  // const [background, props.setBackground] = useState(null);
-  // const [growing, props.setGrowing] = useState(null);
-  // const [whoAround, props.setWhoAround] = useState(null);
 
   let option = type;
   let paletteOptions = {
@@ -97,53 +86,66 @@ export default function Palette({
   };
 
   async function handleClick(event, image) {
-    // console.log("event", event, "image", image);
+    console.log("handle click");
     let imageFileName = getShortImagePath(image);
-    // console.log("mapping", imgToDispatchTypeMapping[imageFileName]);
     let dispatchType = imgToDispatchTypeMapping[imageFileName];
+    console.log("dispatch type", dispatchType);
     switch (dispatchType) {
       case "update_treeLocation":
+        console.log("tree location dispatch sent");
         await dispatch({
           type: dispatchType,
           newTreeLocation: event.target.src,
         });
+        break;
       case "update_background":
+        console.log("background dispatch sent");
         await dispatch({
           type: dispatchType,
           newBackground: event.target.src,
         });
+        break;
       case "update_growing":
         await dispatch({
           type: dispatchType,
           newGrowingItem: event.target.src,
         });
+        break;
       case "update_whoAround":
         await dispatch({
           type: dispatchType,
           newWhoAround: event.target.src,
         });
+        break;
     }
-    // await stateFunction(event.target.src);
-
-    // @TODO these console logs are one click behind, but the database updates accurately - use async/await? Or getTreeData
-    console.log("treeLocation", treeLocation);
-    console.log("background", background);
-    console.log("growing", growing);
-    console.log("whoAround", whoAround);
+    // console.log(
+    //   "state in palette.handleClick",
+    //   state.treeLocation,
+    //   state.background,
+    //   state.whoAround,
+    //   state.growing,
+    //   state.growing_coords,
+    //   state.whoAround_coords
+    // );
   }
 
-  useEffect(() => {
-    console.log("background", background);
-    updateMeTreeInDb(
-      background,
-      treeLocation,
-      whoAround,
-      growing,
-      growing_coords,
-      whoAround_coords
-    );
-    // getTreeData();
-  }, [background, treeLocation, whoAround, growing_coords, whoAround_coords]);
+  // useEffect(() => {
+  //   updateMeTreeInDb(
+  //     state.background,
+  //     state.treeLocation,
+  //     state.whoAround,
+  //     state.growing,
+  //     state.growing_coords,
+  //     state.whoAround_coords
+  //   );
+  //   // getTreeData();
+  // }, [
+  //   state.background,
+  //   state.treeLocation,
+  //   state.whoAround,
+  //   state.growing_coords,
+  //   state.whoAround_coords,
+  // ]);
 
   async function getTreeData() {
     try {

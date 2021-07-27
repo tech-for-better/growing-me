@@ -1,6 +1,6 @@
 //react dnd
 import React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useContext } from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 // import { Box } from "./Box";
@@ -8,14 +8,10 @@ import Box from "./Box";
 import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
 import { WhoAroundBox } from "./WhoAroundBox";
+import { MeTreeContext } from "./MeTree";
 
-export const Container = ({
-  hideSourceOnDrag,
-  growing,
-  whoAround,
-  boxes,
-  dispatch,
-}) => {
+export default function Container({ hideSourceOnDrag }) {
+  const { state, dispatch } = useContext(MeTreeContext);
   // const [boxes, setBoxes] = useState({
   //   a: { top: 20, left: 80, isGrowing: true },
   //   b: { top: 100, left: 80, isGrowing: false },
@@ -39,7 +35,7 @@ export const Container = ({
       //   })
       // );
     },
-    [boxes, dispatch]
+    [state.boxes, dispatch]
   );
 
   const [, drop] = useDrop(
@@ -58,9 +54,9 @@ export const Container = ({
 
   return (
     <DndContainer ref={drop}>
-      {Object.keys(boxes).map((key) => {
-        console.log("in object.key for growing", boxes);
-        const { left, top, isGrowing } = boxes[key];
+      {Object.keys(state.boxes).map((key) => {
+        // console.log("in object.key", state.boxes); WHY SIX TIMES?
+        const { left, top, isGrowing } = state.boxes[key];
         return (
           <Box
             key={key}
@@ -68,12 +64,12 @@ export const Container = ({
             left={left}
             top={top}
             isGrowing={isGrowing}
-            growing={growing}
-            whoAround={whoAround}
+            growing={state.growing}
+            whoAround={state.whoAround}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );
       })}
     </DndContainer>
   );
-};
+}

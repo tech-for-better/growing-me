@@ -1,4 +1,7 @@
 export function getShortImagePath(imagePath) {
+  if (imagePath === null) {
+    return null;
+  }
   let imageNameArray = imagePath.split("/");
   let imageFileName = imageNameArray[imageNameArray.length - 1];
   return imageFileName;
