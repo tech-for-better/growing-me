@@ -37,6 +37,7 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
+            
             <PrivateRoute exact path="/">
               {/* react dnd */}
               <DndProvider backend={HTML5Backend}>
@@ -49,23 +50,37 @@ export default function Home() {
                 <Signup />
               </LoginTree>
             </Route>
-
             <Route path="/login">
               <LoginTree>
                 <Login />
               </LoginTree>
             </Route>
-
             <Route path="/magic-link-login">
               <LoginTree>
                 <MagicLinkLogIn />
               </LoginTree>
             </Route>
 
-            <PrivateRoute path="/adult-profile" component={AdultProfile} />
-            <PrivateRoute path="/child-profile" component={ChildProfile} />
-            <PrivateRoute path="/whose-playing" component={WhosePlaying} />
-            <PrivateRoute exact path="/content" component={Content} />
+            <PrivateRoute
+              path="/adult-profile"
+              render={() => <AdultProfile />}
+              // comp={AdultProfile}/>
+            />
+            <PrivateRoute
+              path="/child-profile"
+              render={() => <ChildProfile />}
+              // comp={ChildProfile} />
+            />
+            <PrivateRoute
+              path="/whose-playing"
+              // comp={WhosePlaying} />
+              render={() => <WhosePlaying />}
+            />
+            <PrivateRoute
+              path="/content"
+              render={() => <Content />}
+              // comp={Content}/>
+            />
 
             {/* {!session ? (
               <LoginTree>

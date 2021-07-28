@@ -145,7 +145,7 @@ export default function Palette({ type }) {
   //   state.whoAround_coords,
   // ]);
 
-  //TODO: these functions get called in 
+  //TODO: these functions get called in
   async function getTreeData() {
     try {
       setLoading(true);
@@ -207,11 +207,12 @@ export default function Palette({ type }) {
           return (
             <>
               <PaletteBtn
+                key={image} 
                 image={image}
                 onClick={(event) => handleClick(event, image)}
               >
                 <PaletteImg key={image} src={image} alt={image} />
-              </PaletteBtn>
+              </PaletteBtn >
             </>
           );
         })}

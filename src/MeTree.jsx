@@ -290,7 +290,7 @@ export function MeTree() {
           "dispatch treeLocation",
           ImgSrcToImportMappings[treeLocationTemp]
         );
-        
+
         dispatch({
           type: "update_treeLocation",
           newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
@@ -385,10 +385,11 @@ export function MeTree() {
   }
 
   async function handleSignOut() {
+    console.log('this fn gets called when clicking logout')
     // Ends user session
     await signOut();
     // Redirects the user to Login page
-    history.push("/");
+    history.push("/login");
   }
 
   // react dnd
