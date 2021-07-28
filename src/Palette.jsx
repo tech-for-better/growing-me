@@ -76,7 +76,7 @@ export default function Palette({ type }) {
     "growing_chocolate.svg": "update_growing",
     "growing_cherries.svg": "update_growing",
     "growing_pizza.svg": "update_growing",
-    "mountain_blob.svg": "update_growing",
+    "mountain_blob.svg": "update_background",
     "spikey_blob.svg": "update_background",
     "minecraft_blob.svg": "update_background",
     "jelly_blob.svg": "update_background",

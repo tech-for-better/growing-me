@@ -12,28 +12,17 @@ import { MeTreeContext } from "./MeTree";
 
 export default function Container({ hideSourceOnDrag }) {
   const { state, dispatch } = useContext(MeTreeContext);
-  // const [boxes, setBoxes] = useState({
-  //   a: { top: 20, left: 80, isGrowing: true },
-  //   b: { top: 100, left: 80, isGrowing: false },
-  // });
 
   const moveBox = useCallback(
     (id, left, top) => {
       dispatch({
         type: "update_boxes",
-        newBoxes: update(boxes, {
+        newBoxes: update(state.boxes, {
           [id]: {
             $merge: { left, top },
           },
         }),
       });
-      // setBoxes(
-      //   update(boxes, {
-      //     [id]: {
-      //       $merge: { left, top },
-      //     },
-      //   })
-      // );
     },
     [state.boxes, dispatch]
   );

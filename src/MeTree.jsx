@@ -65,8 +65,8 @@ const initialState = {
   growing_coords: { left: 80, top: 20 },
   whoAround_coords: { left: 100, top: 20 },
   boxes: {
-    a: { top: 0, left: 2 },
-    b: { top: 1, left: 3 },
+    a: { top: 0, left: 2, isGrowing: true },
+    b: { top: 1, left: 3, isGrowing: false },
     // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
     // b: {
     //   top: whoAround_coords.top,
