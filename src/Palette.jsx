@@ -145,6 +145,7 @@ export default function Palette({ type }) {
   //   state.whoAround_coords,
   // ]);
 
+  //TODO: these functions get called in 
   async function getTreeData() {
     try {
       setLoading(true);

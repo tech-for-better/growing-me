@@ -165,16 +165,16 @@ export function MeTree() {
   }, []); // only runs on first render
 
   // this was uncommented
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "update_growing_coords",
-  //     newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
-  //   });
-  //   dispatch({
-  //     type: "update_whoAround_coords",
-  //     newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
-  //   });
-  // }, [state.boxes]);
+  useEffect(() => {
+    dispatch({
+      type: "update_growing_coords",
+      newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
+    });
+    dispatch({
+      type: "update_whoAround_coords",
+      newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
+    });
+  }, [state.boxes]);
 
   // this was uncommented
   // useEffect(() => {
@@ -245,6 +245,7 @@ export function MeTree() {
           growing_coords,
           whoAround_coords
         );
+        console.log('growing_coordsin db', growing_coords )
       } catch (error) {
         console.log("Error: ", error.message);
       } finally {
@@ -289,6 +290,7 @@ export function MeTree() {
           "dispatch treeLocation",
           ImgSrcToImportMappings[treeLocationTemp]
         );
+        
         dispatch({
           type: "update_treeLocation",
           newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
@@ -310,6 +312,7 @@ export function MeTree() {
           newWhoAroundCoords: {
             left: data.who_around_left,
             top: data.who_around_top,
+
           },
         });
         dispatch({
@@ -326,7 +329,6 @@ export function MeTree() {
       setLoading(false);
     }
   }
-
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {

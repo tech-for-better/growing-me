@@ -9,6 +9,7 @@ import { DndContainer } from "./Layout/DndContainer.styled";
 import { MeTreeContext } from "./MeTree";
 
 export default function Container({ hideSourceOnDrag }) {
+
   const { state, dispatch } = useContext(MeTreeContext);
 
   // when you move box the coords update
