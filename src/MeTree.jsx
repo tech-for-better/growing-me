@@ -20,7 +20,7 @@ import {
 } from "../database/model";
 import { Link, useHistory } from "react-router-dom";
 // import { useHistory } from "react-router";
-import { useAuth } from "./contexts/Auth";
+// import { useAuth } from "./contexts/Auth";
 import {
   Toolkit,
   ToolkitButton,
@@ -31,7 +31,8 @@ import {
   ToolkitText,
 } from "./Layout/MeTree.styled";
 import { DndContainer } from "./Layout/DndContainer.styled";
-import { slide as Menu } from 'react-burger-menu'
+// import Menu from "react-burger-menu/lib/menus/slide";
+import NavMenu from "./components/NavMenu";
 import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
@@ -144,7 +145,7 @@ function reducer(state, action) {
 export function MeTree() {
   //TODO: when you refresh page the initalState var resets the state?
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log('METREE: state', state);
+  console.log("METREE: state", state);
 
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -155,9 +156,9 @@ export function MeTree() {
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
-  // Get current user and signOut function from context
-  const { user, signOut } = useAuth();
-  const history = useHistory();
+  // // Get current user and signOut function from context
+  // const { user, signOut } = useAuth();
+  // const history = useHistory();
 
   // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
   useEffect(() => {
@@ -246,7 +247,7 @@ export function MeTree() {
           growing_coords,
           whoAround_coords
         );
-        console.log('growing_coordsin db', growing_coords )
+        console.log("growing_coordsin db", growing_coords);
       } catch (error) {
         console.log("Error: ", error.message);
       } finally {
@@ -313,7 +314,6 @@ export function MeTree() {
           newWhoAroundCoords: {
             left: data.who_around_left,
             top: data.who_around_top,
-
           },
         });
         dispatch({
@@ -385,13 +385,13 @@ export function MeTree() {
     }
   }
 
-  async function handleSignOut() {
-    console.log('this fn gets called when clicking logout')
-    // Ends user session
-    await signOut();
-    // Redirects the user to Login page
-    history.push("/login");
-  }
+  // async function handleSignOut() {
+  //   console.log("this fn gets called when clicking logout");
+  //   // Ends user session
+  //   await signOut();
+  //   // Redirects the user to Login page
+  //   history.push("/login");
+  // }
 
   // react dnd
   const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
@@ -402,11 +402,11 @@ export function MeTree() {
 
   return (
     <>
-      <div className="flex space-between padding-sm">
+      <div className="flex space-between padding-sides">
         <Link to="/adult-profile">
           <img src={arrow} alt="back-arrow" />
         </Link>
-        <button
+        {/* <button
           onClick={(e) => {
             e.preventDefault();
             handleSignOut();
@@ -414,13 +414,8 @@ export function MeTree() {
           disabled={loading}
         >
           {loading ? <span>Loading</span> : <span>Logout</span>}
-        </button>
-         <Menu>
-        <a id="home" className="menu-item" href="/">Home</a>
-        <a id="adult-profile" className="menu-item" href="/adult-profile">Profile</a>
-        <a id="contact" className="menu-item" href="/contact">Logout</a>
-
-      </Menu>
+        </button> */}
+        <NavMenu />
       </div>
 
       <div className="flex">
