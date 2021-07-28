@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
 import {
@@ -32,15 +32,13 @@ import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 
-export default function Palette(props) {
-  // @TODO these variables should call getTreeData and update according to what is in DB
-  const [loading, setLoading] = useState(true);
-  // const [treeLocation, props.setTreeLocation] = useState(null);
-  // const [background, props.setBackground] = useState(null);
-  // const [growing, props.setGrowing] = useState(null);
-  // const [whoAround, props.setWhoAround] = useState(null);
+import { MeTreeContext } from "./MeTree";
 
-  let option = props.type;
+export default function Palette({ type }) {
+  const { state, dispatch } = useContext(MeTreeContext);
+  const [loading, setLoading] = useState(true);
+
+  let option = type;
   let paletteOptions = {
     WhatColour: [
       mountainBlob,
@@ -62,66 +60,113 @@ export default function Palette(props) {
     WhereTree: [MeTreeGarden, MeTreeCloud, MeTreeHeart, MeTreePlanet],
   };
 
-  const imgToFunctionMapping = {
-    "where_-_cloud.svg": props.setTreeLocation,
-    "where_-_garden.svg": props.setTreeLocation,
-    "where_-_on_a_big_love_heart.svg": props.setTreeLocation,
-    "where_-_another_planet.svg": props.setTreeLocation,
-    "cute_visitors.svg": props.setWhoAround,
-    "prickly_visitors.svg": props.setWhoAround,
-    "fluffy_visitors.svg": props.setWhoAround,
-    "creepy_crawly_visitors.svg": props.setWhoAround,
-    "home_for_worms.svg": props.setWhoAround,
-    "growing_apples.svg": props.setGrowing,
-    "growing_bananas.svg": props.setGrowing,
-    "growing_batwings.svg": props.setGrowing,
-    "growing_chocolate.svg": props.setGrowing,
-    "growing_cherries.svg": props.setGrowing,
-    "growing_pizza.svg": props.setGrowing,
-    "mountain_blob.svg": props.setBackground,
-    "spikey_blob.svg": props.setBackground,
-    "minecraft_blob.svg": props.setBackground,
-    "jelly_blob.svg": props.setBackground,
-    "heart_blob.svg": props.setBackground,
-    "cloudy_blob.svg": props.setBackground,
-    "oval_blob.svg": props.setBackground,
+  const imgToDispatchTypeMapping = {
+    "where_-_cloud.svg": "update_treeLocation",
+    "where_-_garden.svg": "update_treeLocation",
+    "where_-_on_a_big_love_heart.svg": "update_treeLocation",
+    "where_-_another_planet.svg": "update_treeLocation",
+    "cute_visitors.svg": "update_whoAround",
+    "prickly_visitors.svg": "update_whoAround",
+    "fluffy_visitors.svg": "update_whoAround",
+    "creepy_crawly_visitors.svg": "update_whoAround",
+    "home_for_worms.svg": "update_whoAround",
+    "growing_apples.svg": "update_growing",
+    "growing_bananas.svg": "update_growing",
+    "growing_batwings.svg": "update_growing",
+    "growing_chocolate.svg": "update_growing",
+    "growing_cherries.svg": "update_growing",
+    "growing_pizza.svg": "update_growing",
+    "mountain_blob.svg": "update_background",
+    "spikey_blob.svg": "update_background",
+    "minecraft_blob.svg": "update_background",
+    "jelly_blob.svg": "update_background",
+    "heart_blob.svg": "update_background",
+    "cloudy_blob.svg": "update_background",
+    "oval_blob.svg": "update_background",
   };
 
   async function handleClick(event, image) {
-    console.log( "event", event, "imgage", image)
+    console.log("handle click");
     let imageFileName = getShortImagePath(image);
-    console.log("mapping", imgToFunctionMapping[imageFileName]);
-    let stateFunction = imgToFunctionMapping[imageFileName];
-    await stateFunction(event.target.src);
-
-    // @TODO these console logs are one click behind, but the database updates accurately - use async/await? Or getTreeData
-    console.log("treeLocation", props.treeLocation);
-    console.log("background", props.background);
-    console.log("growing", props.growing);
-    console.log("whoAround", props.whoAround);
+    let dispatchType = imgToDispatchTypeMapping[imageFileName];
+    console.log("dispatch type", dispatchType);
+    switch (dispatchType) {
+      case "update_treeLocation":
+        await dispatch({
+          type: dispatchType,
+          newTreeLocation: event.target.src,
+        });
+        break;
+      case "update_background":
+        await dispatch({
+          type: dispatchType,
+          newBackground: event.target.src,
+        });
+        break;
+      case "update_growing":
+        await dispatch({
+          type: dispatchType,
+          newGrowingItem: event.target.src,
+        });
+        break;
+      case "update_whoAround":
+        await dispatch({
+          type: dispatchType,
+          newWhoAround: event.target.src,
+        });
+        break;
+    }
+    // console.log(
+    //   "state in palette.handleClick",
+    //   state.treeLocation,
+    //   state.background,
+    //   state.whoAround,
+    //   state.growing,
+    //   state.growing_coords,
+    //   state.whoAround_coords
+    // );
   }
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   updateMeTreeInDb(
+  //     state.background,
+  //     state.treeLocation,
+  //     state.whoAround,
+  //     state.growing,
+  //     state.growing_coords,
+  //     state.whoAround_coords
+  //   );
+  //   // getTreeData();
+  // }, [
+  //   state.background,
+  //   state.treeLocation,
+  //   state.whoAround,
+  //   state.growing_coords,
+  //   state.whoAround_coords,
+  // ]);
 
-    console.log('props.back', props.background)
-    updateMeTreeInDb(
-      props.background,
-      props.treeLocation,
-      props.whoAround,
-      props.growing
-    );
-    // getTreeData();
-  }, [props.background, props.treeLocation, props.whoAround, props.growing]);
-
+  //TODO: these functions get called in 
   async function getTreeData() {
     try {
       setLoading(true);
       let data = await getMeTree();
       if (data) {
-        props.setTreeLocation(data.tree_location);
-        props.setBackground(data.background);
-        props.setGrowing(data.growing);
-        props.setWhoAround(data.who_around);
+        dispatch({
+          type: "update_treeLocation",
+          newTreeLocation: data.tree_location,
+        });
+        dispatch({
+          type: "update_background",
+          newBackground: data.background,
+        });
+        dispatch({
+          type: "update_growing",
+          newGrowingItem: data.growing,
+        });
+        dispatch({
+          type: "update_whoAround",
+          newWhoAround: data.who_around,
+        });
       }
     } catch (error) {
       alert(error.message);
@@ -134,7 +179,9 @@ export default function Palette(props) {
     background,
     treeLocation,
     whoAround,
-    growing
+    growing,
+    growing_coords,
+    who_around_coords
   ) {
     try {
       setLoading(true);
@@ -142,10 +189,10 @@ export default function Palette(props) {
         background,
         treeLocation,
         whoAround,
-        growing
+        growing,
+        growing_coords,
+        who_around_coords
       );
-
-    
     } catch (error) {
       console.log("Error: ", error.message);
     } finally {
