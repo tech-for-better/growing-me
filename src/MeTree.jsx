@@ -67,6 +67,7 @@ import Container from "./Container";
 
 export const MeTreeContext = createContext();
 
+//set initial state of pallette options
 const initialState = {
   treeLocation: null,
   background: null,
@@ -77,6 +78,7 @@ const initialState = {
   boxes: {
     a: { top: 0, left: 2, isGrowing: true },
     b: { top: 1, left: 3, isGrowing: false },
+    // Below not working: Uncaught ReferenceError: growing_coords is not defined
     // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
     // b: {
     //   top: whoAround_coords.top,
@@ -86,6 +88,7 @@ const initialState = {
   },
 };
 
+// update state of pallette options
 function reducer(state, action) {
   console.log("f1", action);
   switch (action.type) {
@@ -116,13 +119,16 @@ function reducer(state, action) {
   }
 }
 
+// MeTree Component
 export function MeTree() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const [adult_name, setAdultName] = useState(null);
   const [child_name, setChildName] = useState(null);
+
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
@@ -130,6 +136,7 @@ export function MeTree() {
   const { user, signOut } = useAuth();
   const history = useHistory();
 
+  // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
   useEffect(() => {
     getNames();
     getMeTreeUpdates();
@@ -147,7 +154,19 @@ export function MeTree() {
   //   });
   // }, [state.boxes]);
 
-  // this seeems to work! DB is updated with the four main variables (NOT COORDS)
+  // this was uncommented
+  // useEffect(() => {
+  //    getMeTreeUpdates();
+  // }, [state]);
+
+  // useEffect(() => {
+  //   setBoxes({
+  //     a: { top: growing_top, left: growing_left, isGrowing: true },
+  //     b: { top: who_around_top, left: who_around_left, isGrowing: false },
+  //   });
+  // }, [growing_top, growing_left, who_around_top, who_around_left]);
+
+  // this seems to work! DB is updated with the four main variables (NOT COORDS)
   useEffect(() => {
     async function updateMeTreeInDb(
       background,
@@ -286,17 +305,6 @@ export function MeTree() {
     }
   }
 
-  // this was uncommented
-  useEffect(() => {
-    // getMeTreeUpdates();
-  }, [state]);
-
-  // useEffect(() => {
-  //   setBoxes({
-  //     a: { top: growing_top, left: growing_left, isGrowing: true },
-  //     b: { top: who_around_top, left: who_around_left, isGrowing: false },
-  //   });
-  // }, [growing_top, growing_left, who_around_top, who_around_left]);
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
