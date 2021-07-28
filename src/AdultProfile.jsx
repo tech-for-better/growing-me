@@ -6,12 +6,14 @@ import Avatar from "./components/Avatar";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
 // import ChildProfile from "./ChildProfile";
+import "./Layout/adultProfile.css";
 import cuteVisitor from "./../assets/cute_visitors.svg";
 import pricklyVisitor from "../assets/prickly_visitors.svg";
 import fluffyVisitor from "./../assets/fluffy_visitors.svg";
 import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
 import { getProfileData, setProfileData } from "../database/model";
+import NavMenu from "./components/NavMenu";
 
 export default function AdultProfile() {
   const [loading, setLoading] = useState(true);
@@ -68,7 +70,7 @@ export default function AdultProfile() {
   }
 
   return (
-    <div className="form-widget">
+    <div className="form-widget text-center adult-profile center">
       <div>
         <img src={logo} className="App-logo" alt="logo" />
       </div>
@@ -76,13 +78,13 @@ export default function AdultProfile() {
         <h1 className="header">Create your Growing Me profile</h1>
       </div>
 
-      <p>
+      {/* <p>
         Go to <Link to="/me-tree">MeTree</Link>
         <Link to="/whose-playing"> whose </Link>
         <Link to="/child-profile">child </Link>
         <Link to="/magic-link-login">login </Link>
         <Link to="/adult-profile">Profile</Link>
-      </p>
+      </p> */}
       <Avatar
         url={avatar_url}
         size={150}
@@ -129,49 +131,57 @@ export default function AdultProfile() {
       </div>
 
       <p>Choose your avatar:</p>
-      <div>
-        <input
-          type="radio"
-          id="child_avatar1"
-          name="child_avatar"
-          value="./../assets/cute_visitors.svg"
-          onChange={(e) => setChildAvatarUrl(e.target.value)}
-        />
-        <label htmlFor="child_avatar1">
-          <ChildAvatar src={cuteVisitor} alt="" />
-        </label>
+      <div className="grid avatar-selection">
+        <div className="flex center">
+          <input
+            type="radio"
+            id="child_avatar1"
+            name="child_avatar"
+            value="./../assets/cute_visitors.svg"
+            onChange={(e) => setChildAvatarUrl(e.target.value)}
+          />
+          <label htmlFor="child_avatar1">
+            <ChildAvatar src={cuteVisitor} alt="" />
+          </label>
+        </div>
 
-        <input
-          type="radio"
-          id="child_avatar2"
-          name="child_avatar"
-          value="./../assets/fluffy_visitors.svg"
-          onChange={(e) => setChildAvatarUrl(e.target.value)}
-        />
-        <label htmlFor="child_avatar2">
-          <ChildAvatar src={fluffyVisitor} alt="" />
-        </label>
+        <div className="flex center">
+          <input
+            type="radio"
+            id="child_avatar2"
+            name="child_avatar"
+            value="./../assets/fluffy_visitors.svg"
+            onChange={(e) => setChildAvatarUrl(e.target.value)}
+          />
+          <label htmlFor="child_avatar2">
+            <ChildAvatar src={fluffyVisitor} alt="" />
+          </label>
+        </div>
 
-        <input
-          type="radio"
-          id="child_avatar3"
-          name="child_avatar"
-          value="./../assets/prickly_visitors.svg"
-          onChange={(e) => setChildAvatarUrl(e.target.value)}
-        />
-        <label htmlFor="child_avatar4">
-          <ChildAvatar src={pricklyVisitor} alt="" />
-        </label>
-        <input
-          type="radio"
-          id="child_avatar4"
-          name="child_avatar"
-          value="./../assets/creepy_crawly_visitors.svg"
-          onChange={(e) => setChildAvatarUrl(e.target.value)}
-        />
-        <label htmlFor="child_avatar3">
-          <ChildAvatar src={creepyCrawlyVisitor} alt="" />
-        </label>
+        <div className="flex center">
+          <input
+            type="radio"
+            id="child_avatar3"
+            name="child_avatar"
+            value="./../assets/prickly_visitors.svg"
+            onChange={(e) => setChildAvatarUrl(e.target.value)}
+          />
+          <label htmlFor="child_avatar4">
+            <ChildAvatar src={pricklyVisitor} alt="" />
+          </label>
+        </div>
+        <div className="flex center">
+          <input
+            type="radio"
+            id="child_avatar4"
+            name="child_avatar"
+            value="./../assets/creepy_crawly_visitors.svg"
+            onChange={(e) => setChildAvatarUrl(e.target.value)}
+          />
+          <label htmlFor="child_avatar3">
+            <ChildAvatar src={creepyCrawlyVisitor} alt="" />
+          </label>
+        </div>
       </div>
       <div>
         <button
