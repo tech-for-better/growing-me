@@ -31,6 +31,7 @@ import {
   ToolkitText,
 } from "./Layout/MeTree.styled";
 import { DndContainer } from "./Layout/DndContainer.styled";
+import { slide as Menu } from 'react-burger-menu'
 import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
@@ -414,6 +415,12 @@ export function MeTree() {
         >
           {loading ? <span>Loading</span> : <span>Logout</span>}
         </button>
+         <Menu>
+        <a id="home" className="menu-item" href="/">Home</a>
+        <a id="adult-profile" className="menu-item" href="/adult-profile">Profile</a>
+        <a id="contact" className="menu-item" href="/contact">Logout</a>
+
+      </Menu>
       </div>
 
       <div className="flex">
