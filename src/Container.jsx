@@ -3,16 +3,15 @@ import React from "react";
 import { useCallback, useState, useContext } from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
-// import { Box } from "./Box";
 import Box from "./Box";
 import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
-import { WhoAroundBox } from "./WhoAroundBox";
 import { MeTreeContext } from "./MeTree";
 
 export default function Container({ hideSourceOnDrag }) {
   const { state, dispatch } = useContext(MeTreeContext);
 
+  // when you move box the coords update
   const moveBox = useCallback(
     (id, left, top) => {
       dispatch({
@@ -27,6 +26,9 @@ export default function Container({ hideSourceOnDrag }) {
     [state.boxes, dispatch]
   );
 
+  console.log("CONTAINER: state.boxes ", state.boxes);
+
+  // TODO: what is happening here ?
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.BOX,
@@ -42,9 +44,10 @@ export default function Container({ hideSourceOnDrag }) {
   );
 
   return (
+
     <DndContainer ref={drop}>
       {Object.keys(state.boxes).map((key) => {
-        // console.log("in object.key", state.boxes); WHY SIX TIMES?
+        console.log("CONTAINER: in object.key", state.boxes); //WHY SIX TIMES? - NOW TWICE
         const { left, top, isGrowing } = state.boxes[key];
         return (
           <Box

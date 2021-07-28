@@ -87,32 +87,52 @@ const initialState = {
     // },
   },
 };
+console.log("METREE: initialState variable", initialState);
 
 // update state of pallette options
 function reducer(state, action) {
-  console.log("f1", action);
+  console.log("METREE: reducer fn action", action);
+  console.log("METREE: reducer fn state", state);
   switch (action.type) {
     case "update_treeLocation":
       const treeLocation = action.newTreeLocation;
-      console.log("f2", action.newTreeLocation);
+      console.log(
+        "METREE: reducer fn switch action.newTreeLocation",
+        action.newTreeLocation
+      );
       return { ...state, treeLocation };
     case "update_background":
       const background = action.newBackground;
       return { ...state, background };
     case "update_growing":
       const growing = action.newGrowingItem;
+      // console.log(
+      //   "METREE: reducer fn switch action.newGrowingItem",
+      //   action.newGrowingItem
+      // );
       return { ...state, growing };
     case "update_whoAround":
       const whoAround = action.newWhoAround;
       return { ...state, whoAround };
     case "update_growing_coords":
       const growing_coords = action.newGrowingCoords;
+      // TODO: THIS CONSOLE.LOG NOT SHOWING
+      console.log(
+        "METREE: reducer fn switch action.newGrowingCoords",
+        action.newGrowingCoords
+      );
       return { ...state, growing_coords };
     case "update_whoAround_coords":
       const whoAround_coords = action.newWhoAroundCoords;
+      // TODO: THIS CONSOLE.LOG NOT SHOWING
+      console.log(
+        "METREE: reducer fn switch action.newWhoAroundCoords",
+        action.newWhoAroundCoords
+      );
       return { ...state, whoAround_coords };
     case "update_boxes":
       const boxes = action.newBoxes;
+      console.log("METREE: reducer fn switch action.newBoxes", action.newBoxes);
       return { ...state, boxes };
     default:
       return state;
@@ -121,7 +141,9 @@ function reducer(state, action) {
 
 // MeTree Component
 export function MeTree() {
+  //TODO: when you refresh page the initalState var resets the state?
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log('METREE: state', state);
 
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
