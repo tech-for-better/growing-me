@@ -7,7 +7,17 @@ import {
   createContext,
 } from "react";
 import { supabase } from "./supabaseClient";
-import { getMeTree, getProfileData, setTreeData } from "../database/model";
+import {
+  getMeTree,
+  getProfileData,
+  setTreeData,
+  setBackgroundData,
+  setGrowingCoordsData,
+  setGrowingData,
+  setTreeLocationData,
+  setWhoAroundCoordsData,
+  setWhoAroundData,
+} from "../database/model";
 import { Link, useHistory } from "react-router-dom";
 // import { useHistory } from "react-router";
 import { useAuth } from "./contexts/Auth";
@@ -122,7 +132,8 @@ export function MeTree() {
 
   useEffect(() => {
     getNames();
-  }, []);
+    getMeTreeUpdates();
+  }, []); // only runs on first render
 
   // this was uncommented
   // useEffect(() => {
@@ -136,6 +147,7 @@ export function MeTree() {
   //   });
   // }, [state.boxes]);
 
+  // this seeems to work! DB is updated with the four main variables (NOT COORDS)
   useEffect(() => {
     async function updateMeTreeInDb(
       background,
@@ -147,7 +159,44 @@ export function MeTree() {
     ) {
       try {
         setLoading(true);
-        setTreeData(
+        // check if there are differences with db
+        // let data = await getMeTree();
+        // console.log("data from get data to check differences", data);
+        // if (data) {
+        //   // if the background is unchanged
+        //   if (data.background !== background) {
+        //     await setBackgroundData(background);
+        //   }
+        //   if (data.tree_location !== treeLocation) {
+        //     await setTreeLocationData(treeLocation);
+        //     return;
+        //   }
+        //   if (data.who_around !== whoAround) {
+        //     await setWhoAroundData(whoAround);
+        //     return;
+        //   }
+        //   if (data.growing !== growing) {
+        //     await setGrowingData(growing);
+        //     return;
+        //   }
+        //   if (data.growing_left !== growing_coords.left) {
+        //     await setGrowingCoordsData(growing_coords);
+        //     return;
+        //   }
+        //   if (data.growing_top !== growing_coords.top) {
+        //     await setGrowingCoordsData(growing_coords);
+        //     return;
+        //   }
+        //   if (data.who_around_left !== whoAround_coords.left) {
+        //     await setWhoAroundCoordsData(whoAround_coords);
+        //     return;
+        //   }
+        //   if (data.who_around_top !== whoAround_coords.top) {
+        //     await setWhoAroundCoordsData(whoAround_coords);
+        //     return;
+        //   }
+        // }
+        await setTreeData(
           background,
           treeLocation,
           whoAround,
@@ -188,7 +237,17 @@ export function MeTree() {
         let backgroundTemp = getShortImagePath(data.background);
         let growingTemp = getShortImagePathFromArray(data.growing);
         let whoAroundTemp = getShortImagePathFromArray(data.who_around);
-
+        console.log(
+          "temps",
+          treeLocationTemp,
+          backgroundTemp,
+          growingTemp,
+          whoAroundTemp
+        );
+        console.log(
+          "dispatch treeLocation",
+          ImgSrcToImportMappings[treeLocationTemp]
+        );
         dispatch({
           type: "update_treeLocation",
           newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
@@ -279,6 +338,7 @@ export function MeTree() {
     try {
       setLoading(true);
       let data = await getProfileData();
+      console.log("data from getName: ", data);
 
       if (data) {
         // console.log("profiledata", data);

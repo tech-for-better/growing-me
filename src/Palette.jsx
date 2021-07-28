@@ -92,14 +92,12 @@ export default function Palette({ type }) {
     console.log("dispatch type", dispatchType);
     switch (dispatchType) {
       case "update_treeLocation":
-        console.log("tree location dispatch sent");
         await dispatch({
           type: dispatchType,
           newTreeLocation: event.target.src,
         });
         break;
       case "update_background":
-        console.log("background dispatch sent");
         await dispatch({
           type: dispatchType,
           newBackground: event.target.src,
