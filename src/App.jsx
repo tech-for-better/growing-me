@@ -37,29 +37,34 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
-            
-            <PrivateRoute exact path="/">
-              {/* react dnd */}
-              <DndProvider backend={HTML5Backend}>
-                <MeTree />
-              </DndProvider>
-            </PrivateRoute>
 
             <Route path="/signup">
               <LoginTree>
                 <Signup />
               </LoginTree>
             </Route>
+
             <Route path="/login">
               <LoginTree>
                 <Login />
               </LoginTree>
             </Route>
+
             <Route path="/magic-link-login">
               <LoginTree>
                 <MagicLinkLogIn />
               </LoginTree>
             </Route>
+
+             <PrivateRoute
+              exact path="/"
+              render={() => {
+                return (
+                  <DndProvider backend={HTML5Backend}>
+                  <MeTree />
+                </DndProvider>
+                )}
+              } />
 
             <PrivateRoute
               path="/adult-profile"
