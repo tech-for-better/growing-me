@@ -14,6 +14,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import MeTree from "./MeTree";
 import WhosePlaying from "./WhosePlaying";
+import Content from "./Content";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -33,28 +34,28 @@ export default function Home() {
           <Switch>
             <PrivateRoute exact path="/" component={MeTree} />
 
-              <Route path="/signup">
-                <LoginTree>
+            <Route path="/signup">
+              <LoginTree>
                 <Signup />
+              </LoginTree>
+            </Route>
 
-                </LoginTree>
-              </Route>
-
-              <Route path="/login">
-                <LoginTree>
+            <Route path="/login">
+              <LoginTree>
                 <Login />
               </LoginTree>
             </Route>
 
-           <Route path="/magic-link-login">
-                <LoginTree>
-                  <MagicLinkLogIn/>
+            <Route path="/magic-link-login">
+              <LoginTree>
+                <MagicLinkLogIn />
               </LoginTree>
             </Route>
 
             <PrivateRoute path="/adult-profile" component={AdultProfile} />
             <PrivateRoute path="/child-profile" component={ChildProfile} />
             <PrivateRoute path="/whose-playing" component={WhosePlaying} />
+            <PrivateRoute exact path="/content" component={Content} />
 
             {/* {!session ? (
               <LoginTree>

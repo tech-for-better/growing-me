@@ -123,7 +123,7 @@ export default function MeTree() {
 
   return (
     <>
-      <div className="flex space-between padding-sides">
+      <div className="flex space-between padding-sm">
         <Link to="/adult-profile">
           <img src={arrow} alt="back-arrow" />
         </Link>
@@ -194,6 +194,11 @@ export default function MeTree() {
           ""
         )}
       </div>
+      <footer className="flex flex-end padding-sides">
+        <Link to="/content">
+          <button>Ready to play?</button>
+        </Link>
+      </footer>
     </>
   );
 }
