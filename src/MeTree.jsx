@@ -440,8 +440,9 @@ export function MeTree() {
             <ToolkitText>Save to Gallery</ToolkitText>
           </ToolkitButton>
         </Toolkit>
-
-        <div className="flex column center text-center items-center">
+        {/* <div> */}
+        <div className="flex column center text-center items-center flex-grow">
+          {" "}
           <h2>
             {adult_name
               ? "Welcome back " + adult_name + " and "
@@ -452,7 +453,6 @@ export function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </p>
-
           <div>
             <MeTreeContext.Provider value={{ state, dispatch }}>
               <MeTreeContainer className="relative">
@@ -466,6 +466,7 @@ export function MeTree() {
           </div>
         </div>
       </div>
+      {/* </div> */}
       <footer className="flex flex-end padding-sides">
         <Link to="/content">
           <button>Ready to play?</button>
