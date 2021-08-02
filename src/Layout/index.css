@@ -442,3 +442,8 @@ button.primary,
 .adult-profile {
   max-width: 600px;
 }
+
+.top-bar-btn {
+  width: 100px;
+  height: 100px;
+}
