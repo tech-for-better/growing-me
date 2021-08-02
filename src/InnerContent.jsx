@@ -8,6 +8,7 @@ export default function InnerContent() {
   return (
     <div className="flex flex-center space-between narrow center">
       <h1>{state.current_section}</h1>
+      {/* <BrainAmazing></BrainAmazing> */}
     </div>
   );
 }
