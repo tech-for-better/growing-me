@@ -23,6 +23,9 @@ export default function NavMenu() {
       <a id="adult-profile" className="menu-item" href="/adult-profile">
         Profile
       </a>
+      <a id="activities" className="menu-item" href="/content">
+        Activities
+      </a>
       <a
         onClick={(e) => {
           e.preventDefault();
