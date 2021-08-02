@@ -14,7 +14,7 @@ import ContentTopBar from "./components/ContentTopBar";
 import InnerContent from "./InnerContent";
 
 const initialState = {
-  current_section: "your brain is amazing",
+  current_section: "Your Brain is Amazing",
   current_subsection: "play",
   unlocked: ["great to meet you", "your brain is amazing"],
 };
