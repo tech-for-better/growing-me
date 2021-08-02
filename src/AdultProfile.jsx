@@ -70,8 +70,10 @@ export default function AdultProfile() {
   }
 
   return (
+    <>
+    <NavMenu />
     <div className="form-widget text-center adult-profile center">
-      <NavMenu />
+
       <div>
         <img src={logo} className="App-logo" alt="logo" />
       </div>
@@ -205,5 +207,6 @@ export default function AdultProfile() {
         </button>
       </div> */}
     </div>
+    </>
   );
 }

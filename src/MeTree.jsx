@@ -168,6 +168,7 @@ export function MeTree() {
 
   // this was uncommented
   useEffect(() => {
+    console.log('this useEffect fn is working and dispatch the coords')
     dispatch({
       type: "update_growing_coords",
       newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
