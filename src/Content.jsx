@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import ContentNav from "./components/ContentNav";
 import ContentTopBar from "./components/ContentTopBar";
+import InnerContent from "./InnerContent";
 
 const initialState = {
   current_section: "your brain is amazing",
@@ -60,7 +61,10 @@ export default function Content() {
           <ContentNav />
           <NavMenu />
         </div>
-        <div>{/* <p>Content here</p> */}</div>
+        <InnerContent
+        // section={state.current_section}
+        // sub_section={state.current_subsection}
+        />
       </ContentContext.Provider>
     </>
   );
