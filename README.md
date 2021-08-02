@@ -25,7 +25,7 @@ To use this project,
 - clone this repo on your device using the command `git clone`
 - `cd` into the `growing-me` folder
 - Run `npm install` to install dependencies
-- Run `npm start` to run the app
+- Run `npm run dev` to run the app
 
 # Footer
 
