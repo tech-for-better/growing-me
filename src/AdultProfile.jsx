@@ -70,7 +70,10 @@ export default function AdultProfile() {
   }
 
   return (
+    <>
+    <NavMenu />
     <div className="form-widget text-center adult-profile center">
+
       <div>
         <img src={logo} className="App-logo" alt="logo" />
       </div>
@@ -195,14 +198,15 @@ export default function AdultProfile() {
         </button>
       </div>
 
-      <div>
+      {/* <div>
         <button
           className="button block"
           onClick={() => supabase.auth.signOut()}
         >
           Sign Out
         </button>
-      </div>
+      </div> */}
     </div>
+    </>
   );
 }
