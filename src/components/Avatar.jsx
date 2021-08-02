@@ -55,7 +55,7 @@ export default function Avatar({ url, size, onUpload }) {
   }
 
   return (
-    <div>
+    <div className="center">
       {avatarUrl ? (
         <img
           src={avatarUrl}
