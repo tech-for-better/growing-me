@@ -35,36 +35,44 @@ export const ContentData = {
     },
     think: {
       1: {
-        img: "",
-        txt: "",
+        img: "assets/simple_think.svg",
+        txt: "ADDDDDDDD",
       },
       2: {
-        img: "",
-        txt: "",
+        img: "assets/simple_think.svg",
+        txt: "ADDDD",
       },
       3: {
-        img: "",
-        txt: "",
+        img: "assets/simple_think.svg",
+        txt: "ADDD",
       },
     },
     make: {
       1: {
-        img: "",
-        txt: "",
+        img: "assets/simple_make.svg",
+        txt: "ADDD",
       },
       2: {
-        img: "",
-        txt: "",
+        img: "assets/simple_make.svg",
+        txt: "ADDD",
       },
       3: {
-        img: "",
-        txt: "",
+        img: "assets/simple_make.svg",
+        txt: "ADDD",
       },
     },
     wonder: {
       1: {
-        img: "",
-        txt: "",
+        img: "assets/simple_wonder.svg",
+        txt: "ADDD",
+      },
+      2: {
+        img: "assets/simple_wonder.svg",
+        txt: "ADDD",
+      },
+      3: {
+        img: "assets/simple_wonder.svg",
+        txt: "ADDD",
       },
     },
   },

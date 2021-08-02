@@ -30,15 +30,14 @@ export default function InnerContent() {
               }
             />
             <div className="txt-background">
- <p>
-              {
-                ContentData[state.current_section][state.current_subsection][1][
-                  "txt"
-                ]
-              }
-            </p>
+              <p>
+                {
+                  ContentData[state.current_section][
+                    state.current_subsection
+                  ][1]["txt"]
+                }
+              </p>
             </div>
-
           </div>
           <div>
             <img
@@ -48,13 +47,15 @@ export default function InnerContent() {
                 ]
               }
             />
-            <p>
-              {
-                ContentData[state.current_section][state.current_subsection][2][
-                  "txt"
-                ]
-              }
-            </p>
+            <div>
+              <p>
+                {
+                  ContentData[state.current_section][
+                    state.current_subsection
+                  ][2]["txt"]
+                }
+              </p>
+            </div>
           </div>
           <div>
             <img
