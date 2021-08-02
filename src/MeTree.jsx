@@ -404,9 +404,9 @@ export function MeTree() {
   return (
     <>
       <div className="flex space-between padding-sides">
-        <Link to="/adult-profile">
+        {/* <Link to="/adult-profile">
           <img src={arrow} alt="back-arrow" />
-        </Link>
+        </Link> */}
         {/* <button
           onClick={(e) => {
             e.preventDefault();
@@ -470,7 +470,7 @@ export function MeTree() {
       {/* </div> */}
       <footer className="flex flex-end padding-sides">
         <Link to="/content">
-          <button>Ready to play?</button>
+          <button className="button primary block"  >Ready to play?</button>
         </Link>
       </footer>
     </>

@@ -18,7 +18,7 @@ export default function NavMenu() {
   return (
     <Menu right>
       <a id="home" className="menu-item" href="/">
-        Home
+        Me Tree
       </a>
       <a id="adult-profile" className="menu-item" href="/adult-profile">
         Profile
