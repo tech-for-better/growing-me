@@ -158,58 +158,58 @@ export default function ContentNav() {
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
       <Collapsible trigger="You're not alone">
@@ -219,62 +219,62 @@ export default function ContentNav() {
             console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're not alone",
+              new_section: "You're Not Alone",
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
       <Collapsible trigger="You're safe">
@@ -284,62 +284,62 @@ export default function ContentNav() {
             console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're safe ",
+              new_section: "You're Safe",
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
       <Collapsible trigger="You're unique">
@@ -349,62 +349,62 @@ export default function ContentNav() {
             console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're unique",
+              new_section: "You're Unique",
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
       <Collapsible trigger="You're brave">
@@ -418,58 +418,58 @@ export default function ContentNav() {
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
       <Collapsible trigger="You belong here">
@@ -483,188 +483,188 @@ export default function ContentNav() {
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
-      <Collapsible trigger="The future is bright">
+      <Collapsible trigger="The Future Is Bright">
         <a
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "The Future is Bright",
+              new_section: "The Future Is Bright",
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
-      <Collapsible trigger="You are a wonder">
+      <Collapsible trigger="You Are A Wonder">
         <a
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You are a wonder",
+              new_section: "You Are A Wonder",
             });
           }}
         >
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "play",
-            })
-          }
-        >
-          Play Den
-        </a>
-        <a
-          id="home"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "think",
-            })
-          }
-        >
-          Think Bank
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "make",
-            })
-          }
-        >
-          Make Station
-        </a>
-        <a
-          id="adult-profile"
-          className="menu-item"
-          href="#"
-          onClick={() =>
-            dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-              new_sub_section: "wonder",
-            })
-          }
-        >
-          Wonder Tree
-        </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "play",
+              })
+            }
+          >
+            Play Den
+          </a>
+          <a
+            id="home"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "think",
+              })
+            }
+          >
+            Think Bank
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "make",
+              })
+            }
+          >
+            Make Station
+          </a>
+          <a
+            id="adult-profile"
+            className="menu-item"
+            href="#"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+                new_sub_section: "wonder",
+              })
+            }
+          >
+            Wonder Tree
+          </a>
         </a>
       </Collapsible>
     </Menu>
