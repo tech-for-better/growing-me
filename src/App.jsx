@@ -24,7 +24,7 @@ import Content from "./Content";
 export default function Home() {
   const [session, setSession] = useState(null);
   const [galleryImage, setGalleryImage] = useState([]);
-  console.log('galleryImage in app' , galleryImage);
+  console.log("galleryImage in app", galleryImage);
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -85,7 +85,12 @@ export default function Home() {
             <PrivateRoute
               path="/gallery"
               // comp={WhosePlaying} />
-              render={() => <Gallery galleryImage={galleryImage} />}
+              render={() => (
+                <Gallery
+                  galleryImage={galleryImage}
+                  setGalleryImage={setGalleryImage}
+                />
+              )}
             />
             <PrivateRoute
               path="/content"

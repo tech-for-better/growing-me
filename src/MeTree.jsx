@@ -69,6 +69,7 @@ import Container from "./Container";
 import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
+import { setGalleryData } from "../database/model";
 
 export const MeTreeContext = createContext();
 
@@ -136,8 +137,6 @@ function reducer(state, action) {
 
 // MeTree Component
 export function MeTree({ setGalleryImage, galleryImage }) {
-
-
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("METREE: state", state);
 
@@ -162,7 +161,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
 
   // this was uncommented
   useEffect(() => {
-    console.log('this useEffect fn is working and dispatch the coords')
+    console.log("this useEffect fn is working and dispatch the coords");
     dispatch({
       type: "update_growing_coords",
       newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
@@ -396,26 +395,30 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   );
 
   // html2img
-  const ref = useRef(null)
+  const ref = useRef(null);
 
-  const onButtonClick = useCallback(() => {
+  const saveToGallery = useCallback(() => {
     if (ref.current === null) {
-      return
+      return;
     }
 
-    toPng(ref.current, { cacheBust: true, })
+    toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
-        const link = document.createElement('a')
-        link.download = 'my-me-tree.png'
-        link.href = dataUrl
-        link.click()
-        await setGalleryImage(dataUrl);
+        console.log("galleryImage in metree ", galleryImage);
+        const link = document.createElement("a");
+        link.download = "my-me-tree.png";
+        link.href = dataUrl;
+        link.click();
+        await setGalleryData([dataUrl]);
+
+        setGalleryImage((prevState) => [...prevState, dataUrl]);
+        console.log("data url", typeof dataUrl, dataUrl);
         console.log("galleryImage in metree ", galleryImage);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, [ref])
+        console.log(err);
+      });
+  }, [ref]);
 
   return (
     <>
@@ -441,7 +444,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
             <BtnImage src={WhereTree} alt="" />
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
-          <ToolkitButton onClick={onButtonClick}>
+          <ToolkitButton onClick={() => saveToGallery()}>
             <ToolkitText> Save to Gallery</ToolkitText>
           </ToolkitButton>
         </Toolkit>
@@ -472,7 +475,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
           </div>
         </div>
       </div>
-   
+
       <footer className="flex flex-end padding-sides">
         <Link to="/content">
           <button className="button primary block">Ready to play?</button>
