@@ -197,7 +197,7 @@ export async function setGalleryData(images) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    images: [images],
+    images,
   };
 
   let { error } = await supabase.from("gallery").upsert(updates, {

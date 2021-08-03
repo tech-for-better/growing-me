@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import Menu from "react-burger-menu/lib/menus/slide";
 import "./../Layout/NavMenu.css";
 import { useAuth } from "./../contexts/Auth";
+import { Link } from "react-router-dom";
 
 export default function NavMenu() {
   // Get current user and signOut function from context
@@ -17,29 +18,28 @@ export default function NavMenu() {
   }
   return (
     <Menu right>
-      <a id="home" className="menu-item" href="/">
+      <Link className="menu-item" to={"/"}>
         Me Tree
-      </a>
-      <a id="adult-profile" className="menu-item" href="/adult-profile">
+      </Link>
+      <Link className="menu-item" to="/adult-profile">
         Profile
-      </a>
-      <a id="activities" className="menu-item" href="/content">
+      </Link>
+      <Link className="menu-item" to="/content">
         Activities
-      </a>
-      <a id="gallery" className="menu-item" href="/gallery">
+      </Link>
+      <Link className="menu-item" to="/gallery">
         Gallery
-      </a>
-      <a
+      </Link>
+      <Link
         onClick={(e) => {
           e.preventDefault();
           handleSignOut();
         }}
-        id="contact"
         className="menu-item"
-        href="/contact"
+        to="/contact"
       >
         Logout
-      </a>
+      </Link>
     </Menu>
   );
 }

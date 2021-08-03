@@ -12,7 +12,7 @@ export default function Gallery({ setGalleryImage, galleryImage }) {
 
       if (data) {
         console.log("gallerydata", data);
-        setGalleryImage(data.images);
+        setGalleryImage((prevState) => [...prevState, ...data.images]);
       }
     } catch (error) {
       console.error(error.message);
@@ -25,20 +25,31 @@ export default function Gallery({ setGalleryImage, galleryImage }) {
   }, []); // only runs on first render
 
   console.log("in gallery ", galleryImage);
+  // return (
+  //   <div>
+  //     <NavMenu />
+  //     <div>
+  if (!galleryImage) return <div>Loading images...</div>;
   return (
-    <div>
+    <>
       <NavMenu />
-      <div>
-        {galleryImage && (
-          <div className="imageContainer">
-            <img
-              style={{ width: "500px" }}
-              src={galleryImage[0]}
-              alt={"Screenshot"}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+      <ul>
+        {galleryImage.map((image) => (
+          <li>
+            <img src={image} alt="images" />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
+//         {galleryImage &&
+//           galleryImage.map((image) => {
+//             <div className="imageContainer">
+//               <img style={{ width: "500px" }} src={image} alt={"Screenshot"} />
+//             </div>;
+//           })}
+//       </div>
+//     </div>
+//   );
+// }

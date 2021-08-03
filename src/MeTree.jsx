@@ -404,16 +404,16 @@ export function MeTree({ setGalleryImage, galleryImage }) {
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
-        console.log("galleryImage in metree ", galleryImage);
+        console.log("galleryImage in metree bwfore ", galleryImage);
         const link = document.createElement("a");
         link.download = "my-me-tree.png";
         link.href = dataUrl;
         link.click();
-        await setGalleryData([dataUrl]);
+        await setGalleryData([...galleryImage, dataUrl]);
 
         setGalleryImage((prevState) => [...prevState, dataUrl]);
         console.log("data url", typeof dataUrl, dataUrl);
-        console.log("galleryImage in metree ", galleryImage);
+        console.log("galleryImage in metree after ", galleryImage);
       })
       .catch((err) => {
         console.log(err);

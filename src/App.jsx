@@ -20,11 +20,31 @@ import Login from "./Login";
 import { MeTree } from "./MeTree";
 import Gallery from "./Gallery";
 import Content from "./Content";
+import { getGalleryData } from "../database/model";
 
 export default function Home() {
   const [session, setSession] = useState(null);
   const [galleryImage, setGalleryImage] = useState([]);
   console.log("galleryImage in app", galleryImage);
+
+  // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
+  // useEffect(() => {
+  //   async function getImages() {
+  //     try {
+  //       let data = await getGalleryData();
+  //       console.log("data from getName: ", data);
+
+  //       if (data) {
+  //         console.log("gallery data in app", data);
+  //         setGalleryImage(data.images);
+  //       }
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     } finally {
+  //     }
+  //   }
+  //   getImages();
+  // }, []); // only runs on first render
 
   useEffect(() => {
     setSession(supabase.auth.session());
