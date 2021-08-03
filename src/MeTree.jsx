@@ -194,59 +194,24 @@ export function MeTree({ setGalleryImage, galleryImage }) {
       growing_coords,
       whoAround_coords
     ) {
-      try {
-        setLoading(true);
-        // check if there are differences with db
-        // let data = await getMeTree();
-        // console.log("data from get data to check differences", data);
-        // if (data) {
-        //   // if the background is unchanged
-        //   if (data.background !== background) {
-        //     await setBackgroundData(background);
-        //   }
-        //   if (data.tree_location !== treeLocation) {
-        //     await setTreeLocationData(treeLocation);
-        //     return;
-        //   }
-        //   if (data.who_around !== whoAround) {
-        //     await setWhoAroundData(whoAround);
-        //     return;
-        //   }
-        //   if (data.growing !== growing) {
-        //     await setGrowingData(growing);
-        //     return;
-        //   }
-        //   if (data.growing_left !== growing_coords.left) {
-        //     await setGrowingCoordsData(growing_coords);
-        //     return;
-        //   }
-        //   if (data.growing_top !== growing_coords.top) {
-        //     await setGrowingCoordsData(growing_coords);
-        //     return;
-        //   }
-        //   if (data.who_around_left !== whoAround_coords.left) {
-        //     await setWhoAroundCoordsData(whoAround_coords);
-        //     return;
-        //   }
-        //   if (data.who_around_top !== whoAround_coords.top) {
-        //     await setWhoAroundCoordsData(whoAround_coords);
-        //     return;
-        //   }
-        // }
-        await setTreeData(
-          background,
-          treeLocation,
-          whoAround,
-          growing,
-          growing_coords,
-          whoAround_coords
-        );
-        console.log("growing_coordsin db", growing_coords);
-      } catch (error) {
-        console.log("Error: ", error.message);
-      } finally {
-        setLoading(false);
-      }
+      if (!loading) {
+        try {
+          setLoading(true);
+          await setTreeData(
+            background,
+            treeLocation,
+            whoAround,
+            growing,
+            growing_coords,
+            whoAround_coords
+          );
+          console.log("growing_coordsin db", growing_coords);
+        } catch (error) {
+          console.log("Error: ", error.message);
+        } finally {
+          setLoading(false);
+        }
+      } else return;
     }
     updateMeTreeInDb(
       state.background,
@@ -266,63 +231,65 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   ]);
 
   async function getMeTreeUpdates() {
-    try {
-      setLoading(true);
-      let data = await getMeTree();
-      if (data) {
-        console.log("getMeTreeUpdates data", data);
-        let treeLocationTemp = getShortImagePath(data.tree_location);
-        let backgroundTemp = getShortImagePath(data.background);
-        let growingTemp = getShortImagePathFromArray(data.growing);
-        let whoAroundTemp = getShortImagePathFromArray(data.who_around);
-        console.log(
-          "temps",
-          treeLocationTemp,
-          backgroundTemp,
-          growingTemp,
-          whoAroundTemp
-        );
-        console.log(
-          "dispatch treeLocation",
-          ImgSrcToImportMappings[treeLocationTemp]
-        );
+    if (!loading) {
+      try {
+        setLoading(true);
+        let data = await getMeTree();
+        if (data) {
+          console.log("getMeTreeUpdates data", data);
+          let treeLocationTemp = getShortImagePath(data.tree_location);
+          let backgroundTemp = getShortImagePath(data.background);
+          let growingTemp = getShortImagePathFromArray(data.growing);
+          let whoAroundTemp = getShortImagePathFromArray(data.who_around);
+          console.log(
+            "temps",
+            treeLocationTemp,
+            backgroundTemp,
+            growingTemp,
+            whoAroundTemp
+          );
+          console.log(
+            "dispatch treeLocation",
+            ImgSrcToImportMappings[treeLocationTemp]
+          );
 
-        dispatch({
-          type: "update_treeLocation",
-          newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
-        });
-        dispatch({
-          type: "update_background",
-          newBackground: ImgSrcToImportMappings[backgroundTemp],
-        });
-        dispatch({
-          type: "update_growing",
-          newGrowingItem: ImgSrcToImportMappings[growingTemp],
-        });
-        dispatch({
-          type: "update_whoAround",
-          newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
-        });
-        dispatch({
-          type: "update_whoAround_coords",
-          newWhoAroundCoords: {
-            left: data.who_around_left,
-            top: data.who_around_top,
-          },
-        });
-        dispatch({
-          type: "update_growing_coords",
-          newGrowingCoords: {
-            left: data.growing_left,
-            top: data.growing_top,
-          },
-        });
+          dispatch({
+            type: "update_treeLocation",
+            newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
+          });
+          dispatch({
+            type: "update_background",
+            newBackground: ImgSrcToImportMappings[backgroundTemp],
+          });
+          dispatch({
+            type: "update_growing",
+            newGrowingItem: ImgSrcToImportMappings[growingTemp],
+          });
+          dispatch({
+            type: "update_whoAround",
+            newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
+          });
+          dispatch({
+            type: "update_whoAround_coords",
+            newWhoAroundCoords: {
+              left: data.who_around_left,
+              top: data.who_around_top,
+            },
+          });
+          dispatch({
+            type: "update_growing_coords",
+            newGrowingCoords: {
+              left: data.growing_left,
+              top: data.growing_top,
+            },
+          });
+        }
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoading(false);
-    }
+    } else return;
   }
 
   function handleClick(paletteType) {

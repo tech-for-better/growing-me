@@ -75,6 +75,10 @@ body,
   padding-top: 1rem;
 }
 
+.pad-bottom {
+  padding-bottom: 2rem;
+}
+
 .narrow {
   width: 65%;
   max-width: 1000px;
@@ -446,4 +450,8 @@ button.primary,
 .top-bar-btn {
   width: 100px;
   height: 100px;
+}
+
+.full-height {
+  height: 100%;
 }
