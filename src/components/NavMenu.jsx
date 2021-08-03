@@ -26,6 +26,9 @@ export default function NavMenu() {
       <a id="activities" className="menu-item" href="/content">
         Activities
       </a>
+      <a id="gallery" className="menu-item" href="/gallery">
+        Gallery
+      </a>
       <a
         onClick={(e) => {
           e.preventDefault();

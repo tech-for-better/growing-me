@@ -18,7 +18,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import Signup from "./Signup";
 import Login from "./Login";
 import { MeTree } from "./MeTree";
-import WhosePlaying from "./WhosePlaying";
+import Gallery from "./Gallery";
 import Content from "./Content";
 
 export default function Home() {
@@ -77,9 +77,9 @@ export default function Home() {
               // comp={ChildProfile} />
             />
             <PrivateRoute
-              path="/whose-playing"
+              path="/gallery"
               // comp={WhosePlaying} />
-              render={() => <WhosePlaying />}
+              render={() => <Gallery />}
             />
             <PrivateRoute
               path="/content"

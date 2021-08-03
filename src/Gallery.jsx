@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
 
-export default function WhosePlaying({ session }) {
+export default function Gallery({ session }) {
   return (
     <div className="form-widget">
       <p>
