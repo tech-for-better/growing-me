@@ -5,7 +5,8 @@ import {
   useCallback,
   useReducer,
   createContext,
-  createRef
+  createRef,
+  useRef,
 } from "react";
 import { supabase } from "./supabaseClient";
 import {
@@ -64,11 +65,10 @@ import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
-import { useScreenshot } from "use-react-screenshot";
-import Gallery from "./Gallery"
-
-//react dnd
 import Container from "./Container";
+import Gallery from "./Gallery";
+//html-t-image
+import { toPng } from "html-to-image";
 
 export const MeTreeContext = createContext();
 
@@ -395,26 +395,31 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     [hideSourceOnDrag]
   );
 
-  // screenshot
-  const ref = createRef(null)
-  const [image, takeScreenshot] = useScreenshot()
-  // const getImage = () => takeScreenshot(ref.current)
+  // html2img
+  const ref = useRef(null)
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return
+    }
+
+    toPng(ref.current, { cacheBust: true, })
+      .then(async (dataUrl) => {
+        const link = document.createElement('a')
+        link.download = 'my-me-tree.png'
+        link.href = dataUrl
+        link.click()
+        await setGalleryImage(dataUrl);
+        console.log("galleryImage in metree ", galleryImage);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [ref])
 
   return (
     <>
       <div className="flex space-between padding-sides">
-        {/* <Link to="/adult-profile">
-          <img src={arrow} alt="back-arrow" />
-        </Link> */}
-        {/* <button
-          onClick={(e) => {
-            e.preventDefault();
-            handleSignOut();
-          }}
-          disabled={loading}
-        >
-          {loading ? <span>Loading</span> : <span>Logout</span>}
-        </button> */}
         <NavMenu />
       </div>
 
@@ -436,26 +441,12 @@ export function MeTree({ setGalleryImage, galleryImage }) {
             <BtnImage src={WhereTree} alt="" />
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
-          <ToolkitButton>
-            <ToolkitText
-              onClick={() => {
-                takeScreenshot(ref.current);
-                setGalleryImage([image]);
-                console.log(
-                  "***this screenshots",
-                  image,
-                  "galleryImnage",
-                  galleryImage
-                );
-              }}
-            >
-              Save to Gallery
-            </ToolkitText>
+          <ToolkitButton onClick={onButtonClick}>
+            <ToolkitText> Save to Gallery</ToolkitText>
           </ToolkitButton>
         </Toolkit>
-        <Gallery galleryImage={galleryImage} />
+        {/* <Gallery galleryImage={galleryImage} /> */}
 
-        {/* <div> */}
         <div className="flex column center text-center items-center flex-grow">
           {" "}
           <h2>
@@ -481,7 +472,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
           </div>
         </div>
       </div>
-      {/* </div> */}
+   
       <footer className="flex flex-end padding-sides">
         <Link to="/content">
           <button className="button primary block">Ready to play?</button>

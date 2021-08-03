@@ -24,6 +24,7 @@ import Content from "./Content";
 export default function Home() {
   const [session, setSession] = useState(null);
   const [galleryImage, setGalleryImage] = useState([]);
+  console.log('galleryImage in app' , galleryImage);
 
   useEffect(() => {
     setSession(supabase.auth.session());
