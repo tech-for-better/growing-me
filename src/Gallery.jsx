@@ -2,17 +2,27 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
+import NavMenu from "./components/NavMenu";
+import { useScreenshot } from "use-react-screenshot";
 
-export default function Gallery({ session }) {
+
+export default function Gallery({ galleryImage }) {
+  console.log('in gallery ', galleryImage)
   return (
-    <div className="form-widget">
-      <p>
-        Go to <Link to="/me-tree">MeTree</Link>
-        <Link to="/whose-playing"> whose </Link>
-        <Link to="/child-profile">child </Link>
-        <Link to="/login">login </Link>
-        <Link to="/">adult </Link>
-      </p>
+    <div>
+      <NavMenu />
+      <div>
+        {galleryImage && (
+          <div className="imageContainer">
+            <img
+              style={{ width: "100%" }}
+              src={galleryImage}
+              alt={"Screenshot"}
+            />
+           
+          </div>
+        )}
+
     </div>
   );
 }

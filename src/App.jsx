@@ -23,6 +23,7 @@ import Content from "./Content";
 
 export default function Home() {
   const [session, setSession] = useState(null);
+  const [galleryImage, setGalleryImage] = useState([]);
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -37,7 +38,6 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
-
             <Route path="/signup">
               <LoginTree>
                 <Signup />
@@ -56,15 +56,20 @@ export default function Home() {
               </LoginTree>
             </Route>
 
-             <PrivateRoute
-              exact path="/"
+            <PrivateRoute
+              exact
+              path="/"
               render={() => {
                 return (
                   <DndProvider backend={HTML5Backend}>
-                  <MeTree />
-                </DndProvider>
-                )}
-              } />
+                    <MeTree
+                      setGalleryImage={setGalleryImage}
+                      galleryImage={galleryImage}
+                    />
+                  </DndProvider>
+                );
+              }}
+            />
 
             <PrivateRoute
               path="/adult-profile"
@@ -79,7 +84,7 @@ export default function Home() {
             <PrivateRoute
               path="/gallery"
               // comp={WhosePlaying} />
-              render={() => <Gallery />}
+              render={() => <Gallery galleryImage={galleryImage} />}
             />
             <PrivateRoute
               path="/content"

@@ -5,6 +5,7 @@ import {
   useCallback,
   useReducer,
   createContext,
+  createRef
 } from "react";
 import { supabase } from "./supabaseClient";
 import {
@@ -63,6 +64,8 @@ import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
+import { useScreenshot } from "use-react-screenshot";
+import Gallery from "./Gallery"
 
 //react dnd
 import Container from "./Container";
@@ -118,19 +121,9 @@ function reducer(state, action) {
       return { ...state, whoAround };
     case "update_growing_coords":
       const growing_coords = action.newGrowingCoords;
-      // TODO: THIS CONSOLE.LOG NOT SHOWING
-      console.log(
-        "METREE: reducer fn switch action.newGrowingCoords",
-        action.newGrowingCoords
-      );
       return { ...state, growing_coords };
     case "update_whoAround_coords":
       const whoAround_coords = action.newWhoAroundCoords;
-      // TODO: THIS CONSOLE.LOG NOT SHOWING
-      console.log(
-        "METREE: reducer fn switch action.newWhoAroundCoords",
-        action.newWhoAroundCoords
-      );
       return { ...state, whoAround_coords };
     case "update_boxes":
       const boxes = action.newBoxes;
@@ -142,8 +135,9 @@ function reducer(state, action) {
 }
 
 // MeTree Component
-export function MeTree() {
-  //TODO: when you refresh page the initalState var resets the state?
+export function MeTree({ setGalleryImage, galleryImage }) {
+
+
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("METREE: state", state);
 
@@ -401,6 +395,11 @@ export function MeTree() {
     [hideSourceOnDrag]
   );
 
+  // screenshot
+  const ref = createRef(null)
+  const [image, takeScreenshot] = useScreenshot()
+  // const getImage = () => takeScreenshot(ref.current)
+
   return (
     <>
       <div className="flex space-between padding-sides">
@@ -438,9 +437,24 @@ export function MeTree() {
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
           <ToolkitButton>
-            <ToolkitText>Save to Gallery</ToolkitText>
+            <ToolkitText
+              onClick={() => {
+                takeScreenshot(ref.current);
+                setGalleryImage([image]);
+                console.log(
+                  "***this screenshots",
+                  image,
+                  "galleryImnage",
+                  galleryImage
+                );
+              }}
+            >
+              Save to Gallery
+            </ToolkitText>
           </ToolkitButton>
         </Toolkit>
+        <Gallery galleryImage={galleryImage} />
+
         {/* <div> */}
         <div className="flex column center text-center items-center flex-grow">
           {" "}
@@ -454,7 +468,7 @@ export function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </p>
-          <div>
+          <div ref={ref}>
             <MeTreeContext.Provider value={{ state, dispatch }}>
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
@@ -470,7 +484,7 @@ export function MeTree() {
       {/* </div> */}
       <footer className="flex flex-end padding-sides">
         <Link to="/content">
-          <button className="button primary block"  >Ready to play?</button>
+          <button className="button primary block">Ready to play?</button>
         </Link>
       </footer>
     </>
