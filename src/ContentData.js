@@ -76,7 +76,7 @@ export const ContentData = {
       },
       4: {
         img: "assets/funny_faces.svg",
-        txt: "Make some funny faces! Lorem ipsum quid pro quo lorem lorem lorem lorem lorem and more lorem and even more lorem dammit",
+        txt: "Pulling silly faces is actually really good for your body and brain - it stretches out muscles, and if you end up giggling, that pumps happy juices in your brain!",
       },
     },
     think: {
