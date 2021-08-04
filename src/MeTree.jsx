@@ -136,106 +136,106 @@ export const MeTreeContext = createContext();
 //   }
 // }
 
-function reducer(state, event) {
-  switch (event.type) {
-    case "LOAD":
-      {
-        const data = {
-          ...action.data,
-          growing_coords: {
-            left: data.growing_left,
-            top: data.growing_top,
-          },
-          whoAround_coords: {
-            left: data.who_around_left,
-            top: data.who_around_top,
-          },
-          tree_location:
-            ImgSrcToImportMappings[getShortImagePath(data.tree_location)],
-          backround: ImgSrcToImportMappings[getShortImagePath(data.background)],
-          growing:
-            ImgSrcToImportMappings[getShortImagePathFromArray(data.growing)],
-          who_around:
-            ImgSrcToImportMappings[getShortImagePathFromArray(data.who_around)],
-        };
-        return {
-          ...state,
-          ...data,
-          status: "loading",
-        };
-      }
-      break;
-    case "RESOLVE":
-      return {
-        ...state,
-        status: "success",
-        tree: event.data,
-      };
-      break;
-    case "UPDATE_DB":
-      return {
-        ...state,
-        status: "updating database",
-      };
-      break;
-    case "CLICK":
-      if (event.newBackground) {
-        const background = event.newBackground;
-        return {
-          ...state,
-          background,
-          status: "updating state",
-        };
-      }
-      if (event.newTreeLocation) {
-        const treeLocation = event.newTreeLocation;
-        return {
-          ...state,
-          treeLocation,
-          status: "updating state",
-        };
-      }
-      break;
-    case "DROP":
-      return {
-        ...state,
-        status: "drop",
-      };
-      break;
-    case "REJECT":
-      return {
-        ...state,
-        status: "failure",
-        error: event.error,
-      };
-      break;
-    case "CANCEL":
-      return {
-        ...state,
-        status: "idle",
-      };
-      break;
-    default:
-      return state;
-  }
-}
+// function reducer(state, event) {
+//   switch (event.type) {
+//     case "LOAD":
+//       {
+//         const data = {
+//           ...action.data,
+//           growing_coords: {
+//             left: data.growing_left,
+//             top: data.growing_top,
+//           },
+//           whoAround_coords: {
+//             left: data.who_around_left,
+//             top: data.who_around_top,
+//           },
+//           tree_location:
+//             ImgSrcToImportMappings[getShortImagePath(data.tree_location)],
+//           backround: ImgSrcToImportMappings[getShortImagePath(data.background)],
+//           growing:
+//             ImgSrcToImportMappings[getShortImagePathFromArray(data.growing)],
+//           who_around:
+//             ImgSrcToImportMappings[getShortImagePathFromArray(data.who_around)],
+//         };
+//         return {
+//           ...state,
+//           ...data,
+//           status: "loading",
+//         };
+//       }
+//       break;
+//     case "RESOLVE":
+//       return {
+//         ...state,
+//         status: "success",
+//         tree: event.data,
+//       };
+//       break;
+//     case "UPDATE_DB":
+//       return {
+//         ...state,
+//         status: "updating database",
+//       };
+//       break;
+//     case "CLICK":
+//       if (event.newBackground) {
+//         const background = event.newBackground;
+//         return {
+//           ...state,
+//           background,
+//           status: "updating state",
+//         };
+//       }
+//       if (event.newTreeLocation) {
+//         const treeLocation = event.newTreeLocation;
+//         return {
+//           ...state,
+//           treeLocation,
+//           status: "updating state",
+//         };
+//       }
+//       break;
+//     case "DROP":
+//       return {
+//         ...state,
+//         status: "drop",
+//       };
+//       break;
+//     case "REJECT":
+//       return {
+//         ...state,
+//         status: "failure",
+//         error: event.error,
+//       };
+//       break;
+//     case "CANCEL":
+//       return {
+//         ...state,
+//         status: "idle",
+//       };
+//       break;
+//     default:
+//       return state;
+//   }
+// }
 
-const initialState = {
-  status: "idle",
-  tree: {
-    treeLocation: null,
-    background: null,
-    growing: null,
-    whoAround: null,
-    growing_coords: { left: 80, top: 20 },
-    whoAround_coords: { left: 100, top: 20 },
-    boxes: {
-      a: { top: 0, left: 2, isGrowing: true },
-      b: { top: 1, left: 3, isGrowing: false },
-    },
-  },
-  error: null,
-};
+// const initialState = {
+//   status: "idle",
+//   tree: {
+//     treeLocation: null,
+//     background: null,
+//     growing: null,
+//     whoAround: null,
+//     growing_coords: { left: 80, top: 20 },
+//     whoAround_coords: { left: 100, top: 20 },
+//     boxes: {
+//       a: { top: 0, left: 2, isGrowing: true },
+//       b: { top: 1, left: 3, isGrowing: false },
+//     },
+//   },
+//   error: null,
+// };
 
 // MeTree Component
 export function MeTree({ setGalleryImage, galleryImage }) {
@@ -244,11 +244,8 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   // const { error, tree, status } = state;
   console.log("METREE: state", state);
 
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const [adult_name, setAdultName] = useState(null);
-  const [child_name, setChildName] = useState(null);
+  // const [adult_name, setAdultName] = useState(null);
+  // const [child_name, setChildName] = useState(null);
 
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
@@ -256,12 +253,11 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   if (state.status === "loading") return <div>Initialising...</div>;
   if (state.status === "error") return <div>Something went wrong!</div>;
 
-  function load() {
+  async function load() {
     console.log("load - about to get all data");
-    getAllData();
-    // TODO: actually fetch data from DB
-    // has to return a promise resolving with the initial data
-    // e.g. supabase.table("thing").select("blah");
+    const data = await getAllData();
+    console.log("load get all data", data);
+    return data;
   }
 
   function update(changedData) {
@@ -269,69 +265,69 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     // just has to return a promise (resolved value isn't used)
   }
   // refactor
-  useEffect(async () => {
-    if (state.status === "updating state") {
-      let canceled = false;
-      dispatch({ type: "UPDATE_DB" });
-    }
+  // useEffect(async () => {
+  //   if (state.status === "updating state") {
+  //     let canceled = false;
+  //     dispatch({ type: "UPDATE_DB" });
+  //   }
 
-    if (state.status === "updating database") {
-      let canceled = false;
+  //   if (state.status === "updating database") {
+  //     let canceled = false;
 
-      await setTreeData(
-        state.tree.background,
-        state.tree.treeLocation,
-        state.tree.whoAround,
-        state.tree.growing,
-        state.tree.growing_coords,
-        state.tree.who_around_coords
-      );
-      dispatch({ type: "LOAD", error });
+  //     await setTreeData(
+  //       state.tree.background,
+  //       state.tree.treeLocation,
+  //       state.tree.whoAround,
+  //       state.tree.growing,
+  //       state.tree.growing_coords,
+  //       state.tree.who_around_coords
+  //     );
+  //     dispatch({ type: "LOAD", error });
 
-      if (state.status === "loading") {
-        let canceled = false;
+  //     if (state.status === "loading") {
+  //       let canceled = false;
 
-        await getMeTree()
-          .then((data) => {
-            if (canceled) return;
-            dispatch({ type: "RESOLVE", data });
-          })
-          .catch((error) => {
-            console.log("Error: ", error.message);
-            if (canceled) return;
-            dispatch({ type: "REJECT", error });
-          });
-        return () => {
-          canceled = true;
-        };
-      }
-    }
-  }, [state.status]);
+  //       await getMeTree()
+  //         .then((data) => {
+  //           if (canceled) return;
+  //           dispatch({ type: "RESOLVE", data });
+  //         })
+  //         .catch((error) => {
+  //           console.log("Error: ", error.message);
+  //           if (canceled) return;
+  //           dispatch({ type: "REJECT", error });
+  //         });
+  //       return () => {
+  //         canceled = true;
+  //       };
+  //     }
+  //   }
+  // }, [state.status]);
 
   // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
-  useEffect(() => {
-    getNames();
-    // getMeTreeUpdates();
-  }, []); // only runs on first render
+  // useEffect(() => {
+  //   getNames();
+  // getMeTreeUpdates();
+  // }, []); // only runs on first render
 
   // this was uncommented
-  useEffect(() => {
-    console.log("this useEffect fn is working and dispatch the coords");
-    dispatch({
-      type: "update_growing_coords",
-      newGrowingCoords: {
-        left: state.tree.boxes.a.left,
-        top: state.tree.boxes.a.top,
-      },
-    });
-    dispatch({
-      type: "update_whoAround_coords",
-      newWhoAroundCoords: {
-        left: state.tree.boxes.b.left,
-        top: state.tree.boxes.b.top,
-      },
-    });
-  }, [state.tree.boxes]);
+  // useEffect(() => {
+  //   console.log("this useEffect fn is working and dispatch the coords");
+  //   dispatch({
+  //     type: "update_growing_coords",
+  //     newGrowingCoords: {
+  //       left: state.tree.boxes.a.left,
+  //       top: state.tree.boxes.a.top,
+  //     },
+  //   });
+  //   dispatch({
+  //     type: "update_whoAround_coords",
+  //     newWhoAroundCoords: {
+  //       left: state.tree.boxes.b.left,
+  //       top: state.tree.boxes.b.top,
+  //     },
+  //   });
+  // }, [state.tree.boxes]);
 
   // this was uncommented
   // useEffect(() => {
@@ -489,55 +485,55 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     "oval_blob.svg": ovalBlob,
   };
 
-  async function getNames() {
-    try {
-      setLoading(true);
-      let data = await getProfileData();
-      console.log("data from getName: ", data);
+  // async function getNames() {
+  //   try {
+  //     setLoading(true);
+  //     let data = await getProfileData();
+  //     console.log("data from getName: ", data);
 
-      if (data) {
-        // console.log("profiledata", data);
-        setAdultName(data.adult_name);
-        setChildName(data.child_name);
-      }
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  //     if (data) {
+  //       // console.log("profiledata", data);
+  //       setAdultName(data.adult_name);
+  //       setChildName(data.child_name);
+  //     }
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   // react dnd
-  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
-  const toggle = useCallback(
-    () => setHideSourceOnDrag(!hideSourceOnDrag),
-    [hideSourceOnDrag]
-  );
+  // const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
+  // const toggle = useCallback(
+  //   () => setHideSourceOnDrag(!hideSourceOnDrag),
+  //   [hideSourceOnDrag]
+  // );
 
   // html2img
-  const ref = useRef(null);
-  const saveToGallery = useCallback(() => {
-    if (ref.current === null) {
-      return;
-    }
+  // const ref = useRef(null);
+  // const saveToGallery = useCallback(() => {
+  //   if (ref.current === null) {
+  //     return;
+  //   }
 
-    toPng(ref.current, { cacheBust: true })
-      .then(async (dataUrl) => {
-        console.log("galleryImage in metree bwfore ", galleryImage);
-        const link = document.createElement("a");
-        link.download = "my-me-tree.png";
-        link.href = dataUrl;
-        link.click();
-        await setGalleryData([...galleryImage, dataUrl]);
+  //   toPng(ref.current, { cacheBust: true })
+  //     .then(async (dataUrl) => {
+  //       console.log("galleryImage in metree bwfore ", galleryImage);
+  //       const link = document.createElement("a");
+  //       link.download = "my-me-tree.png";
+  //       link.href = dataUrl;
+  //       link.click();
+  //       await setGalleryData([...galleryImage, dataUrl]);
 
-        setGalleryImage((prevState) => [...prevState, dataUrl]);
-        console.log("data url", typeof dataUrl, dataUrl);
-        console.log("galleryImage in metree after ", galleryImage);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [ref]);
+  //       setGalleryImage((prevState) => [...prevState, dataUrl]);
+  //       console.log("data url", typeof dataUrl, dataUrl);
+  //       console.log("galleryImage in metree after ", galleryImage);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [ref]);
 
   return (
     <>
@@ -572,29 +568,31 @@ export function MeTree({ setGalleryImage, galleryImage }) {
         <div className="flex column center text-center items-center flex-grow">
           {" "}
           <h1 className="margin-none">
-            {adult_name
-              ? "Welcome back " + adult_name + " and "
+            {state.data.profile.adult_name
+              ? "Welcome back " + state.data.profile.adult_name + " and "
               : "Welcome back "}
-            {child_name ?? "friend"}!
+            {state.data.profile.child_name ?? "friend"}!
           </h1>
           <h2 className="narrow">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>
-          <div ref={ref}>
-            <MeTreeContext.Provider value={{ state, dispatch }}>
-              <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage
-                  src={state.tree.treeLocation ?? MeTreeGarden}
-                  alt=""
-                />
-                <MeTreeBackground src={state.tree.background} alt="" />
-              </MeTreeContainer>
+          {/* <div ref={ref}> */}
+          {/* <MeTreeContext.Provider value={{ state, dispatch }}> */}
+          <MeTreeContext.Provider value={{ state }}>
+            <MeTreeContainer className="relative">
+              {/* <Container hideSourceOnDrag={hideSourceOnDrag} /> */}
+              <Container />
+              <MeTreeImage
+                src={state.data.tree.treeLocation ?? MeTreeGarden}
+                alt=""
+              />
+              <MeTreeBackground src={state.data.tree.background} alt="" />
+            </MeTreeContainer>
 
-              {visible ? <Palette type={paletteOption} /> : ""}
-            </MeTreeContext.Provider>
-          </div>
+            {visible ? <Palette type={paletteOption} /> : ""}
+          </MeTreeContext.Provider>
+          {/* </div> */}
         </div>
       </div>
 

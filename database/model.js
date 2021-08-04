@@ -229,25 +229,18 @@ export async function getAllData() {
   const galleryData = getGalleryData();
   const profileData = getProfileData();
 
-  await Promise.all([treeData, galleryData, profileData])
-    .then((allData) => {
-      console.log("alldata", allData);
+  return await Promise.all([treeData, galleryData, profileData])
+    .then((dataArray) => {
+      const treeData = { tree: dataArray[0] };
+      const galleryData = { gallery: dataArray[1] };
+      const profileData = { profile: dataArray[2] };
+      console.log("dataArray", dataArray);
+      // this is an array of objects
+      let allData = Object.assign(treeData, galleryData, profileData);
+      console.log("allData", allData);
+      return allData;
     })
     .catch((error) => {
-      console.error("error!!", error);
-      // response.send(`<h1>Something has gone wrong! :(</h1>`);
+      console.error("error!!", error, error.message);
     });
-
-  // const user = supabase.auth.user();
-
-  // let { data, error, status } = await supabase
-  //   .from("gallery")
-  //   .select(`images`)
-  //   .eq("id", user.id)
-  //   .single();
-
-  // if (error && status !== 406) {
-  //   throw error;
-  // }
-  // return data;
 }

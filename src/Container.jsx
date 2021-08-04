@@ -9,7 +9,6 @@ import { DndContainer } from "./Layout/DndContainer.styled";
 import { MeTreeContext } from "./MeTree";
 
 export default function Container({ hideSourceOnDrag }) {
-
   const { state, dispatch } = useContext(MeTreeContext);
 
   // when you move box the coords update
@@ -17,17 +16,17 @@ export default function Container({ hideSourceOnDrag }) {
     (id, left, top) => {
       dispatch({
         type: "update_boxes",
-        newBoxes: update(state.tree.boxes, {
+        newBoxes: update(state.data.tree.boxes, {
           [id]: {
             $merge: { left, top },
           },
         }),
       });
     },
-    [state.tree.boxes, dispatch]
+    [state.data.tree.boxes, dispatch]
   );
 
-  console.log("CONTAINER: state.boxes ", state.tree.boxes);
+  console.log("CONTAINER: state.data.tree.boxes ", state.data.tree.boxes);
 
   // TODO: what is happening here ?
   const [, drop] = useDrop(
@@ -45,11 +44,10 @@ export default function Container({ hideSourceOnDrag }) {
   );
 
   return (
-
     <DndContainer ref={drop}>
-      {Object.keys(state.tree.boxes).map((key) => {
-        console.log("CONTAINER: in object.key", state.tree.boxes); //WHY SIX TIMES? - NOW TWICE
-        const { left, top, isGrowing } = state.tree.boxes[key];
+      {/* {Object.keys(state.data.tree.boxes).map((key) => {
+        console.log("CONTAINER: in object.key", state.data.tree.boxes); //WHY SIX TIMES? - NOW TWICE
+        const { left, top, isGrowing } = state.data.tree.boxes[key];
         return (
           <Box
             key={key}
@@ -57,12 +55,12 @@ export default function Container({ hideSourceOnDrag }) {
             left={left}
             top={top}
             isGrowing={isGrowing}
-            growing={state.tree.growing}
-            whoAround={state.tree.whoAround}
+            growing={state.data.tree.growing}
+            whoAround={state.data.tree.whoAround}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );
-      })}
+      })} */}
     </DndContainer>
   );
 }

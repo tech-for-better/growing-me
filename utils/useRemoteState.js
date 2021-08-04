@@ -62,12 +62,19 @@ const initialState = {
     gallery: {
       images: [],
     },
+    profile: {
+      adult_name: null,
+      avatar_url: null,
+      child_name: null,
+      child_avatar: null,
+    },
   },
   error: null,
 };
 
 export default function useRemoteState({ load, update }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("state in useRemotestate", state);
   const tempData = useRef(null);
 
   useEffect(() => {
@@ -79,6 +86,7 @@ export default function useRemoteState({ load, update }) {
           // when hook first runs (load initial data)
           case "loading": {
             const data = await load();
+            console.log("data in runeffects await load", data);
             if (!cancel) dispatch({ type: "RESOLVE_LOAD", data });
             break;
           }
