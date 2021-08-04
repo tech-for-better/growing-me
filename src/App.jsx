@@ -20,7 +20,8 @@ import Login from "./Login";
 import { MeTree } from "./MeTree";
 import Gallery from "./Gallery";
 import Content from "./Content";
-import { getGalleryData } from "../database/model";
+import { getGalleryData, getAllData } from "../database/model";
+import useRemoteState from "../utils/useRemoteState";
 
 export default function Home() {
   const [session, setSession] = useState(null);

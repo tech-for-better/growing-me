@@ -69,7 +69,8 @@ import Container from "./Container";
 import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
-import { setGalleryData } from "../database/model";
+import { getGalleryData, getAllData } from "../database/model";
+import useRemoteState from "../utils/useRemoteState";
 
 export const MeTreeContext = createContext();
 
@@ -137,31 +138,32 @@ export const MeTreeContext = createContext();
 
 function reducer(state, event) {
   switch (event.type) {
-    case "LOAD": {
-      const data = {
-        ...action.data,
-        growing_coords: {
-          left: data.growing_left,
-          top: data.growing_top,
-        },
-        whoAround_coords: {
-          left: data.who_around_left,
-          top: data.who_around_top,
-        },
-        tree_location:
-          ImgSrcToImportMappings[getShortImagePath(data.tree_location)],
-        backround: ImgSrcToImportMappings[getShortImagePath(data.background)],
-        growing:
-          ImgSrcToImportMappings[getShortImagePathFromArray(data.growing)],
-        who_around:
-          ImgSrcToImportMappings[getShortImagePathFromArray(data.who_around)],
+    case "LOAD":
+      {
+        const data = {
+          ...action.data,
+          growing_coords: {
+            left: data.growing_left,
+            top: data.growing_top,
+          },
+          whoAround_coords: {
+            left: data.who_around_left,
+            top: data.who_around_top,
+          },
+          tree_location:
+            ImgSrcToImportMappings[getShortImagePath(data.tree_location)],
+          backround: ImgSrcToImportMappings[getShortImagePath(data.background)],
+          growing:
+            ImgSrcToImportMappings[getShortImagePathFromArray(data.growing)],
+          who_around:
+            ImgSrcToImportMappings[getShortImagePathFromArray(data.who_around)],
+        };
+        return {
+          ...state,
+          ...data,
+          status: "loading",
+        };
       }
-      return {
-        ...state,
-        ...data,
-        status: "loading",
-      };
-    };
       break;
     case "RESOLVE":
       return {
@@ -180,23 +182,24 @@ function reducer(state, event) {
       if (event.newBackground) {
         const background = event.newBackground;
         return {
-          ...state, background,
-          status: 'updating state'
-        }
+          ...state,
+          background,
+          status: "updating state",
+        };
       }
       if (event.newTreeLocation) {
         const treeLocation = event.newTreeLocation;
         return {
-          ...state, treeLocation,
-          status: 'updating state'
-        }
-      };
+          ...state,
+          treeLocation,
+          status: "updating state",
+        };
+      }
       break;
     case "DROP":
       return {
         ...state,
         status: "drop",
-
       };
       break;
     case "REJECT":
@@ -236,8 +239,9 @@ const initialState = {
 
 // MeTree Component
 export function MeTree({ setGalleryImage, galleryImage }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { error, tree, status } = state;
+  const [state, setState] = useRemoteState({ load, update });
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  // const { error, tree, status } = state;
   console.log("METREE: state", state);
 
   const [session, setSession] = useState(null);
@@ -249,13 +253,26 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
+  if (state.status === "loading") return <div>Initialising...</div>;
+  if (state.status === "error") return <div>Something went wrong!</div>;
+
+  function load() {
+    console.log("load - about to get all data");
+    getAllData();
+    // TODO: actually fetch data from DB
+    // has to return a promise resolving with the initial data
+    // e.g. supabase.table("thing").select("blah");
+  }
+
+  function update(changedData) {
+    // TODO: update the right bit of the DB using the `changedData` object
+    // just has to return a promise (resolved value isn't used)
+  }
   // refactor
   useEffect(async () => {
-
     if (state.status === "updating state") {
       let canceled = false;
       dispatch({ type: "UPDATE_DB" });
-
     }
 
     if (state.status === "updating database") {
@@ -302,11 +319,17 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     console.log("this useEffect fn is working and dispatch the coords");
     dispatch({
       type: "update_growing_coords",
-      newGrowingCoords: { left: state.tree.boxes.a.left, top: state.tree.boxes.a.top },
+      newGrowingCoords: {
+        left: state.tree.boxes.a.left,
+        top: state.tree.boxes.a.top,
+      },
     });
     dispatch({
       type: "update_whoAround_coords",
-      newWhoAroundCoords: { left: state.tree.boxes.b.left, top: state.tree.boxes.b.top },
+      newWhoAroundCoords: {
+        left: state.tree.boxes.b.left,
+        top: state.tree.boxes.b.top,
+      },
     });
   }, [state.tree.boxes]);
 

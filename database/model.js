@@ -223,3 +223,31 @@ export async function getGalleryData() {
   }
   return data;
 }
+
+export async function getAllData() {
+  const treeData = getMeTree();
+  const galleryData = getGalleryData();
+  const profileData = getProfileData();
+
+  await Promise.all([treeData, galleryData, profileData])
+    .then((allData) => {
+      console.log("alldata", allData);
+    })
+    .catch((error) => {
+      console.error("error!!", error);
+      // response.send(`<h1>Something has gone wrong! :(</h1>`);
+    });
+
+  // const user = supabase.auth.user();
+
+  // let { data, error, status } = await supabase
+  //   .from("gallery")
+  //   .select(`images`)
+  //   .eq("id", user.id)
+  //   .single();
+
+  // if (error && status !== 406) {
+  //   throw error;
+  // }
+  // return data;
+}
