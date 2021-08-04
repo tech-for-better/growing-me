@@ -60,7 +60,7 @@ export default function Content() {
           <ContentTopBar />
           <ContentNav />
           <NavMenu />
-        </div>
+        </div >
         <InnerContent
         // section={state.current_section}
         // sub_section={state.current_subsection}

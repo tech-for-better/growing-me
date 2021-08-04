@@ -33,13 +33,19 @@ export default function Gallery({ setGalleryImage, galleryImage }) {
   return (
     <>
       <NavMenu />
-      <ul>
-        {galleryImage.map((image) => (
-          <li>
-            <img src={image} alt="images" />
-          </li>
-        ))}
-      </ul>
+      <div className="flex column center text-center items-center margin-top">
+        <h1 className="margin-none">Gallery</h1>
+        <h2>Here you can see all your saved MeTree's!</h2>
+      </div>
+      <div className="flex ">
+        <ul className="li-none">
+          {galleryImage.map((image) => (
+            <li>
+              <img src={image} alt="images" />
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

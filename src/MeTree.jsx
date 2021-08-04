@@ -522,7 +522,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
         <NavMenu />
       </div>
 
-      <div className="flex">
+      <div className="flex margin-top">
         <Toolkit>
           <ToolkitButton onClick={() => handleClick("WhatColour")}>
             <BtnImage src={WhatColour} alt="" />
@@ -548,21 +548,24 @@ export function MeTree({ setGalleryImage, galleryImage }) {
 
         <div className="flex column center text-center items-center flex-grow">
           {" "}
-          <h2>
+          <h1 className="margin-none">
             {adult_name
               ? "Welcome back " + adult_name + " and "
               : "Welcome back "}
             {child_name ?? "friend"}!
-          </h2>
-          <p className="narrow">
+          </h1>
+          <h2 className="narrow">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
-          </p>
+          </h2>
           <div ref={ref}>
             <MeTreeContext.Provider value={{ state, dispatch }}>
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage src={state.tree.treeLocation ?? MeTreeGarden} alt="" />
+                <MeTreeImage
+                  src={state.tree.treeLocation ?? MeTreeGarden}
+                  alt=""
+                />
                 <MeTreeBackground src={state.tree.background} alt="" />
               </MeTreeContainer>
 
