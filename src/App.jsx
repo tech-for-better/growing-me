@@ -18,11 +18,33 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import Signup from "./Signup";
 import Login from "./Login";
 import { MeTree } from "./MeTree";
-import WhosePlaying from "./WhosePlaying";
+import Gallery from "./Gallery";
 import Content from "./Content";
+import { getGalleryData } from "../database/model";
 
 export default function Home() {
   const [session, setSession] = useState(null);
+  const [galleryImage, setGalleryImage] = useState([]);
+  console.log("galleryImage in app", galleryImage);
+
+  // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
+  // useEffect(() => {
+  //   async function getImages() {
+  //     try {
+  //       let data = await getGalleryData();
+  //       console.log("data from getName: ", data);
+
+  //       if (data) {
+  //         console.log("gallery data in app", data);
+  //         setGalleryImage(data.images);
+  //       }
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     } finally {
+  //     }
+  //   }
+  //   getImages();
+  // }, []); // only runs on first render
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -37,7 +59,6 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
-
             <Route path="/signup">
               <LoginTree>
                 <Signup />
@@ -56,15 +77,20 @@ export default function Home() {
               </LoginTree>
             </Route>
 
-             <PrivateRoute
-              exact path="/"
+            <PrivateRoute
+              exact
+              path="/"
               render={() => {
                 return (
                   <DndProvider backend={HTML5Backend}>
-                  <MeTree />
-                </DndProvider>
-                )}
-              } />
+                    <MeTree
+                      setGalleryImage={setGalleryImage}
+                      galleryImage={galleryImage}
+                    />
+                  </DndProvider>
+                );
+              }}
+            />
 
             <PrivateRoute
               path="/adult-profile"
@@ -77,9 +103,14 @@ export default function Home() {
               // comp={ChildProfile} />
             />
             <PrivateRoute
-              path="/whose-playing"
+              path="/gallery"
               // comp={WhosePlaying} />
-              render={() => <WhosePlaying />}
+              render={() => (
+                <Gallery
+                  galleryImage={galleryImage}
+                  setGalleryImage={setGalleryImage}
+                />
+              )}
             />
             <PrivateRoute
               path="/content"

@@ -6,6 +6,7 @@ import "./../Layout/ContentNav.css";
 import Collapsible from "react-collapsible";
 import { ContentContext } from "../Content";
 import { ACTIONS } from "../Content";
+import { Link } from "react-router-dom";
 
 export default function ContentNav() {
   const { state, dispatch } = useContext(ContentContext);
@@ -18,7 +19,7 @@ export default function ContentNav() {
       itemClassName={"content-item"}
     >
       <Collapsible trigger="Great to meet you">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -28,10 +29,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -40,11 +41,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -53,11 +54,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -66,11 +67,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -79,11 +80,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="Your brain is amazing">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -93,10 +94,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -105,11 +106,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -118,11 +119,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -131,11 +132,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -144,11 +145,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="Your feelings matter">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -158,10 +159,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -170,11 +171,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -183,11 +184,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -196,11 +197,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -209,11 +210,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="You're not alone">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -223,10 +224,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -235,11 +236,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -248,11 +249,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -261,11 +262,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -274,11 +275,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="You're safe">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -288,10 +289,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -300,11 +301,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -313,11 +314,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -326,11 +327,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -339,11 +340,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="You're unique">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -353,10 +354,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -365,11 +366,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -378,11 +379,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -391,11 +392,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -404,11 +405,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="You're brave">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -418,10 +419,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -430,11 +431,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -443,11 +444,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -456,11 +457,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -469,11 +470,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="You belong here">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -483,10 +484,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -495,11 +496,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -508,11 +509,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -521,11 +522,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -534,11 +535,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="The Future Is Bright">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -548,10 +549,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -560,11 +561,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -573,11 +574,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -586,11 +587,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -599,11 +600,11 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
       <Collapsible trigger="You Are A Wonder">
-        <a
+        <Link
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
@@ -613,10 +614,10 @@ export default function ContentNav() {
             });
           }}
         >
-          <a
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -625,11 +626,11 @@ export default function ContentNav() {
             }
           >
             Play Den
-          </a>
-          <a
+          </Link>
+          <Link
             id="home"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -638,11 +639,11 @@ export default function ContentNav() {
             }
           >
             Think Bank
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -651,11 +652,11 @@ export default function ContentNav() {
             }
           >
             Make Station
-          </a>
-          <a
+          </Link>
+          <Link
             id="adult-profile"
             className="menu-item"
-            href="#"
+            to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
@@ -664,8 +665,8 @@ export default function ContentNav() {
             }
           >
             Wonder Tree
-          </a>
-        </a>
+          </Link>
+        </Link>
       </Collapsible>
     </Menu>
   );

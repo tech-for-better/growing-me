@@ -58,3 +58,11 @@ create table me_tree (
   who_around_left integer,
   primary key (id)
 );
+
+--- gallery table
+
+CREATE TABLE gallery (
+  id uuid references auth.users not null,
+  images varchar[],
+  primary key (id)
+);

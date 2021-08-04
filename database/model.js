@@ -192,3 +192,34 @@ export async function setWhoAroundCoordsData(whoAround_coords) {
     throw error;
   }
 }
+
+export async function setGalleryData(images) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    images,
+  };
+
+  let { error } = await supabase.from("gallery").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function getGalleryData() {
+  const user = supabase.auth.user();
+
+  let { data, error, status } = await supabase
+    .from("gallery")
+    .select(`images`)
+    .eq("id", user.id)
+    .single();
+
+  if (error && status !== 406) {
+    throw error;
+  }
+  return data;
+}
