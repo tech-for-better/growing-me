@@ -137,11 +137,31 @@ export const MeTreeContext = createContext();
 
 function reducer(state, event) {
   switch (event.type) {
-    case "LOAD":
+    case "LOAD": {
+      const data = {
+        ...action.data,
+        growing_coords: {
+          left: data.growing_left,
+          top: data.growing_top,
+        },
+        whoAround_coords: {
+          left: data.who_around_left,
+          top: data.who_around_top,
+        },
+        tree_location:
+          ImgSrcToImportMappings[getShortImagePath(data.tree_location)],
+        backround: ImgSrcToImportMappings[getShortImagePath(data.background)],
+        growing:
+          ImgSrcToImportMappings[getShortImagePathFromArray(data.growing)],
+        who_around:
+          ImgSrcToImportMappings[getShortImagePathFromArray(data.who_around)],
+      }
       return {
         ...state,
+        ...data,
         status: "loading",
       };
+    };
       break;
     case "RESOLVE":
       return {
