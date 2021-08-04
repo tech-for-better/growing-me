@@ -12,17 +12,20 @@ export default function InnerContent() {
   if (text === "PLAY") {
     return className = "play-color";
   }
-  if (text === "THINK") {
-    return className = "think-color";
-  }
+  let textColorToSubSectionMap = {
+    play: "#abc961",
+    think: "#337d8e",
+    make: "#fed436",
+    wonder: "#28424c",
+  };
 
   return (
     <div className="flex flex-center space-between narrow center column ">
       <h1 className="text-center margin-top">{state.current_section}</h1>
       <h2
         className="text-center"
-        style={{ color: "PLAY" ? "#abc961" : "THINK" ? "#337d8e" : "MAKE"? "#fed436": "WONDER"? "#28424c" : "000"}}
-        // className={"PLAY" ? 'play-color' : 'think-color'}
+        style={{ color: `${textColorToSubSectionMap[state.current_subsection]}`}}
+
       >
         These are the {`${state.current_subsection}`.toUpperCase()} activities.{" "}
       </h2>
@@ -43,8 +46,16 @@ export default function InnerContent() {
                     }
                   />
                 </div>
-                <div className="txt-background">
-                  <p>
+                <div
+                  className="txt-background"
+                  style={{
+
+                    backgroundColor: `${
+                      textColorToSubSectionMap[state.current_subsection]
+                    }`
+                  }}
+                >
+                  <p className="white">
                     {
                       ContentData[state.current_section][
                         state.current_subsection
