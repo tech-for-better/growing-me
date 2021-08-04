@@ -207,12 +207,14 @@ export default function Palette({ type }) {
           return (
             <>
               <PaletteBtn
-                key={image} 
+                key={image}
                 image={image}
-                onClick={(event) => handleClick(event, image)}
+                onClick={() => dispatch({ type: "UPDATE" })}
               >
+                {" "}
+                {status === "updating" ? "Updating your tree..." : "Update tree!"}
                 <PaletteImg key={image} src={image} alt={image} />
-              </PaletteBtn >
+              </PaletteBtn>
             </>
           );
         })}

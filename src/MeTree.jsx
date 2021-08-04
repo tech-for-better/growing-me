@@ -74,70 +74,122 @@ import { setGalleryData } from "../database/model";
 export const MeTreeContext = createContext();
 
 //set initial state of pallette options
-const initialState = {
-  treeLocation: null,
-  background: null,
-  growing: null,
-  whoAround: null,
-  growing_coords: { left: 80, top: 20 },
-  whoAround_coords: { left: 100, top: 20 },
-  boxes: {
-    a: { top: 0, left: 2, isGrowing: true },
-    b: { top: 1, left: 3, isGrowing: false },
-    // Below not working: Uncaught ReferenceError: growing_coords is not defined
-    // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
-    // b: {
-    //   top: whoAround_coords.top,
-    //   left: whoAround_coords.left,
-    //   isGrowing: false,
-    // },
-  },
-};
-console.log("METREE: initialState variable", initialState);
+// const initialState = {
+//   treeLocation: null,
+//   background: null,
+//   growing: null,
+//   whoAround: null,
+//   growing_coords: { left: 80, top: 20 },
+//   whoAround_coords: { left: 100, top: 20 },
+//   boxes: {
+//     a: { top: 0, left: 2, isGrowing: true },
+//     b: { top: 1, left: 3, isGrowing: false },
+//     // Below not working: Uncaught ReferenceError: growing_coords is not defined
+//     // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
+//     // b: {
+//     //   top: whoAround_coords.top,
+//     //   left: whoAround_coords.left,
+//     //   isGrowing: false,
+//     // },
+//   },
+// };
+// console.log("METREE: initialState variable", initialState);
 
 // update state of pallette options
-function reducer(state, action) {
-  console.log("METREE: reducer fn action", action);
-  console.log("METREE: reducer fn state", state);
-  switch (action.type) {
-    case "update_treeLocation":
-      const treeLocation = action.newTreeLocation;
-      console.log(
-        "METREE: reducer fn switch action.newTreeLocation",
-        action.newTreeLocation
-      );
-      return { ...state, treeLocation };
-    case "update_background":
-      const background = action.newBackground;
-      return { ...state, background };
-    case "update_growing":
-      const growing = action.newGrowingItem;
-      // console.log(
-      //   "METREE: reducer fn switch action.newGrowingItem",
-      //   action.newGrowingItem
-      // );
-      return { ...state, growing };
-    case "update_whoAround":
-      const whoAround = action.newWhoAround;
-      return { ...state, whoAround };
-    case "update_growing_coords":
-      const growing_coords = action.newGrowingCoords;
-      return { ...state, growing_coords };
-    case "update_whoAround_coords":
-      const whoAround_coords = action.newWhoAroundCoords;
-      return { ...state, whoAround_coords };
-    case "update_boxes":
-      const boxes = action.newBoxes;
-      console.log("METREE: reducer fn switch action.newBoxes", action.newBoxes);
-      return { ...state, boxes };
+// function reducer(state, action) {
+//   console.log("METREE: reducer fn action", action);
+//   console.log("METREE: reducer fn state", state);
+//   switch (action.type) {
+//     case "update_treeLocation":
+//       const treeLocation = action.newTreeLocation;
+//       console.log(
+//         "METREE: reducer fn switch action.newTreeLocation",
+//         action.newTreeLocation
+//       );
+//       return { ...state, treeLocation };
+//     case "update_background":
+//       const background = action.newBackground;
+//       return { ...state, background };
+//     case "update_growing":
+//       const growing = action.newGrowingItem;
+//       // console.log(
+//       //   "METREE: reducer fn switch action.newGrowingItem",
+//       //   action.newGrowingItem
+//       // );
+//       return { ...state, growing };
+//     case "update_whoAround":
+//       const whoAround = action.newWhoAround;
+//       return { ...state, whoAround };
+//     case "update_growing_coords":
+//       const growing_coords = action.newGrowingCoords;
+//       return { ...state, growing_coords };
+//     case "update_whoAround_coords":
+//       const whoAround_coords = action.newWhoAroundCoords;
+//       return { ...state, whoAround_coords };
+//     case "update_boxes":
+//       const boxes = action.newBoxes;
+//       console.log("METREE: reducer fn switch action.newBoxes", action.newBoxes);
+//       return { ...state, boxes };
+//     default:
+//       return state;
+//   }
+// }
+
+function reducer(state, event) {
+  switch (event.type) {
+    case "LOAD":
+      return {
+        ...state,
+        status: "loading"
+      };
+    case "RESOLVE":
+      return {
+        ...state,
+        status: "success",
+        tree: event.data
+      };
+      case "UPDATE":
+      return {
+        ...state,
+        status: "updating"
+      };
+    case "REJECT":
+      return {
+        ...state,
+        status: "failure",
+        error: event.error
+      };
+    case "CANCEL":
+      return {
+        ...state,
+        status: "idle"
+      };
     default:
       return state;
   }
 }
 
+const initialState = {
+  status: "idle",
+  tree: {
+    treeLocation: null,
+    background: null,
+    growing: null,
+    whoAround: null,
+    growing_coords: { left: 80, top: 20 },
+    whoAround_coords: { left: 100, top: 20 },
+    boxes: {
+      a: { top: 0, left: 2, isGrowing: true },
+      b: { top: 1, left: 3, isGrowing: false },
+    }
+  },
+  error: null
+};
+
 // MeTree Component
 export function MeTree({ setGalleryImage, galleryImage }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+    const { error, tree, status } = state;
   console.log("METREE: state", state);
 
   const [session, setSession] = useState(null);
@@ -149,9 +201,39 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
-  // // Get current user and signOut function from context
-  // const { user, signOut } = useAuth();
-  // const history = useHistory();
+  // refactor
+  useEffect(() => {
+    if (state.status === "updating") {
+      let canceled = false;
+
+      await setTreeData(
+        background,
+        treeLocation,
+        whoAround,
+        growing,
+        growing_coords,
+        who_around_coords
+      )
+      dispatch({ type: "LOAD", error });
+
+      if (state.status === "updating") {
+        let canceled = false;
+
+        await getMeTree().then((data) => {
+          if (canceled) return;
+          dispatch({ type: "RESOLVE", data });
+        }).catch((error) => {
+          console.log("Error: ", error.message);
+          if (canceled) return;
+          dispatch({ type: "REJECT", error });
+        });
+         return () => {
+           canceled = true;
+         };
+  }
+    }
+  }, [state.status]);
+
 
   // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
   useEffect(() => {
@@ -346,14 +428,6 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     }
   }
 
-  // async function handleSignOut() {
-  //   console.log("this fn gets called when clicking logout");
-  //   // Ends user session
-  //   await signOut();
-  //   // Redirects the user to Login page
-  //   history.push("/login");
-  // }
-
   // react dnd
   const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
   const toggle = useCallback(
@@ -363,7 +437,6 @@ export function MeTree({ setGalleryImage, galleryImage }) {
 
   // html2img
   const ref = useRef(null);
-
   const saveToGallery = useCallback(() => {
     if (ref.current === null) {
       return;
