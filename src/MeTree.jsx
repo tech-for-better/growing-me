@@ -140,30 +140,58 @@ function reducer(state, event) {
     case "LOAD":
       return {
         ...state,
-        status: "loading"
+        status: "loading",
       };
+      break;
     case "RESOLVE":
       return {
         ...state,
         status: "success",
-        tree: event.data
+        tree: event.data,
       };
-      case "UPDATE":
+      break;
+    case "UPDATE_DB":
       return {
         ...state,
-        status: "updating"
+        status: "updating database",
       };
+      break;
+    case "CLICK":
+      if (event.newBackground) {
+        const background = event.newBackground;
+        return {
+          ...state, background,
+          status: 'updating state'
+        }
+      }
+      if (event.newTreeLocation) {
+        const treeLocation = event.newTreeLocation;
+        return {
+          ...state, treeLocation,
+          status: 'updating state'
+        }
+      };
+      break;
+    case "DROP":
+      return {
+        ...state,
+        status: "drop",
+
+      };
+      break;
     case "REJECT":
       return {
         ...state,
         status: "failure",
-        error: event.error
+        error: event.error,
       };
+      break;
     case "CANCEL":
       return {
         ...state,
-        status: "idle"
+        status: "idle",
       };
+      break;
     default:
       return state;
   }
@@ -181,15 +209,15 @@ const initialState = {
     boxes: {
       a: { top: 0, left: 2, isGrowing: true },
       b: { top: 1, left: 3, isGrowing: false },
-    }
+    },
   },
-  error: null
+  error: null,
 };
 
 // MeTree Component
 export function MeTree({ setGalleryImage, galleryImage }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-    const { error, tree, status } = state;
+  const { error, tree, status } = state;
   console.log("METREE: state", state);
 
   const [session, setSession] = useState(null);
@@ -202,43 +230,51 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   const [paletteOption, setPaletteOption] = useState("no option");
 
   // refactor
-  useEffect(() => {
-    if (state.status === "updating") {
+  useEffect(async () => {
+
+    if (state.status === "updating state") {
+      let canceled = false;
+      dispatch({ type: "UPDATE_DB" });
+
+    }
+
+    if (state.status === "updating database") {
       let canceled = false;
 
       await setTreeData(
-        background,
-        treeLocation,
-        whoAround,
-        growing,
-        growing_coords,
-        who_around_coords
-      )
+        state.tree.background,
+        state.tree.treeLocation,
+        state.tree.whoAround,
+        state.tree.growing,
+        state.tree.growing_coords,
+        state.tree.who_around_coords
+      );
       dispatch({ type: "LOAD", error });
 
-      if (state.status === "updating") {
+      if (state.status === "loading") {
         let canceled = false;
 
-        await getMeTree().then((data) => {
-          if (canceled) return;
-          dispatch({ type: "RESOLVE", data });
-        }).catch((error) => {
-          console.log("Error: ", error.message);
-          if (canceled) return;
-          dispatch({ type: "REJECT", error });
-        });
-         return () => {
-           canceled = true;
-         };
-  }
+        await getMeTree()
+          .then((data) => {
+            if (canceled) return;
+            dispatch({ type: "RESOLVE", data });
+          })
+          .catch((error) => {
+            console.log("Error: ", error.message);
+            if (canceled) return;
+            dispatch({ type: "REJECT", error });
+          });
+        return () => {
+          canceled = true;
+        };
+      }
     }
   }, [state.status]);
-
 
   // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
   useEffect(() => {
     getNames();
-    getMeTreeUpdates();
+    // getMeTreeUpdates();
   }, []); // only runs on first render
 
   // this was uncommented
@@ -246,13 +282,13 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     console.log("this useEffect fn is working and dispatch the coords");
     dispatch({
       type: "update_growing_coords",
-      newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
+      newGrowingCoords: { left: state.tree.boxes.a.left, top: state.tree.boxes.a.top },
     });
     dispatch({
       type: "update_whoAround_coords",
-      newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
+      newWhoAroundCoords: { left: state.tree.boxes.b.left, top: state.tree.boxes.b.top },
     });
-  }, [state.boxes]);
+  }, [state.tree.boxes]);
 
   // this was uncommented
   // useEffect(() => {
@@ -267,112 +303,112 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   // }, [growing_top, growing_left, who_around_top, who_around_left]);
 
   // this seems to work! DB is updated with the four main variables (NOT COORDS)
-  useEffect(() => {
-    async function updateMeTreeInDb(
-      background,
-      treeLocation,
-      whoAround,
-      growing,
-      growing_coords,
-      whoAround_coords
-    ) {
-      if (!loading) {
-        try {
-          setLoading(true);
-          await setTreeData(
-            background,
-            treeLocation,
-            whoAround,
-            growing,
-            growing_coords,
-            whoAround_coords
-          );
-          console.log("growing_coordsin db", growing_coords);
-        } catch (error) {
-          console.log("Error: ", error.message);
-        } finally {
-          setLoading(false);
-        }
-      } else return;
-    }
-    updateMeTreeInDb(
-      state.background,
-      state.treeLocation,
-      state.whoAround,
-      state.growing,
-      state.growing_coords,
-      state.whoAround_coords
-    );
-  }, [
-    state.background,
-    state.treeLocation,
-    state.whoAround,
-    state.growing,
-    state.growing_coords,
-    state.whoAround_coords,
-  ]);
+  // useEffect(() => {
+  //   async function updateMeTreeInDb(
+  //     background,
+  //     treeLocation,
+  //     whoAround,
+  //     growing,
+  //     growing_coords,
+  //     whoAround_coords
+  //   ) {
+  //     if (!loading) {
+  //       try {
+  //         setLoading(true);
+  //         await setTreeData(
+  //           background,
+  //           treeLocation,
+  //           whoAround,
+  //           growing,
+  //           growing_coords,
+  //           whoAround_coords
+  //         );
+  //         console.log("growing_coordsin db", growing_coords);
+  //       } catch (error) {
+  //         console.log("Error: ", error.message);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     } else return;
+  //   }
+  //   updateMeTreeInDb(
+  //     state.background,
+  //     state.treeLocation,
+  //     state.whoAround,
+  //     state.growing,
+  //     state.growing_coords,
+  //     state.whoAround_coords
+  //   );
+  // }, [
+  //   state.background,
+  //   state.treeLocation,
+  //   state.whoAround,
+  //   state.growing,
+  //   state.growing_coords,
+  //   state.whoAround_coords,
+  // ]);
 
-  async function getMeTreeUpdates() {
-    if (!loading) {
-      try {
-        setLoading(true);
-        let data = await getMeTree();
-        if (data) {
-          console.log("getMeTreeUpdates data", data);
-          let treeLocationTemp = getShortImagePath(data.tree_location);
-          let backgroundTemp = getShortImagePath(data.background);
-          let growingTemp = getShortImagePathFromArray(data.growing);
-          let whoAroundTemp = getShortImagePathFromArray(data.who_around);
-          console.log(
-            "temps",
-            treeLocationTemp,
-            backgroundTemp,
-            growingTemp,
-            whoAroundTemp
-          );
-          console.log(
-            "dispatch treeLocation",
-            ImgSrcToImportMappings[treeLocationTemp]
-          );
+  // async function getMeTreeUpdates() {
+  //   if (!loading) {
+  //     try {
+  //       setLoading(true);
+  //       let data = await getMeTree();
+  //       if (data) {
+  //         console.log("getMeTreeUpdates data", data);
+  //         let treeLocationTemp = getShortImagePath(data.tree_location);
+  //         let backgroundTemp = getShortImagePath(data.background);
+  //         let growingTemp = getShortImagePathFromArray(data.growing);
+  //         let whoAroundTemp = getShortImagePathFromArray(data.who_around);
+  //         console.log(
+  //           "temps",
+  //           treeLocationTemp,
+  //           backgroundTemp,
+  //           growingTemp,
+  //           whoAroundTemp
+  //         );
+  //         console.log(
+  //           "dispatch treeLocation",
+  //           ImgSrcToImportMappings[treeLocationTemp]
+  //         );
 
-          dispatch({
-            type: "update_treeLocation",
-            newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
-          });
-          dispatch({
-            type: "update_background",
-            newBackground: ImgSrcToImportMappings[backgroundTemp],
-          });
-          dispatch({
-            type: "update_growing",
-            newGrowingItem: ImgSrcToImportMappings[growingTemp],
-          });
-          dispatch({
-            type: "update_whoAround",
-            newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
-          });
-          dispatch({
-            type: "update_whoAround_coords",
-            newWhoAroundCoords: {
-              left: data.who_around_left,
-              top: data.who_around_top,
-            },
-          });
-          dispatch({
-            type: "update_growing_coords",
-            newGrowingCoords: {
-              left: data.growing_left,
-              top: data.growing_top,
-            },
-          });
-        }
-      } catch (error) {
-        console.error(error.message);
-      } finally {
-        setLoading(false);
-      }
-    } else return;
-  }
+  //         dispatch({
+  //           type: "update_treeLocation",
+  //           newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
+  //         });
+  //         dispatch({
+  //           type: "update_background",
+  //           newBackground: ImgSrcToImportMappings[backgroundTemp],
+  //         });
+  //         dispatch({
+  //           type: "update_growing",
+  //           newGrowingItem: ImgSrcToImportMappings[growingTemp],
+  //         });
+  //         dispatch({
+  //           type: "update_whoAround",
+  //           newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
+  //         });
+  //         dispatch({
+  //           type: "update_whoAround_coords",
+  //           newWhoAroundCoords: {
+  //             left: data.who_around_left,
+  //             top: data.who_around_top,
+  //           },
+  //         });
+  //         dispatch({
+  //           type: "update_growing_coords",
+  //           newGrowingCoords: {
+  //             left: data.growing_left,
+  //             top: data.growing_top,
+  //           },
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   } else return;
+  // }
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -506,8 +542,8 @@ export function MeTree({ setGalleryImage, galleryImage }) {
             <MeTreeContext.Provider value={{ state, dispatch }}>
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage src={state.treeLocation ?? MeTreeGarden} alt="" />
-                <MeTreeBackground src={state.background} alt="" />
+                <MeTreeImage src={state.tree.treeLocation ?? MeTreeGarden} alt="" />
+                <MeTreeBackground src={state.tree.background} alt="" />
               </MeTreeContainer>
 
               {visible ? <Palette type={paletteOption} /> : ""}

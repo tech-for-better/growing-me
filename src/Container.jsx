@@ -17,17 +17,17 @@ export default function Container({ hideSourceOnDrag }) {
     (id, left, top) => {
       dispatch({
         type: "update_boxes",
-        newBoxes: update(state.boxes, {
+        newBoxes: update(state.tree.boxes, {
           [id]: {
             $merge: { left, top },
           },
         }),
       });
     },
-    [state.boxes, dispatch]
+    [state.tree.boxes, dispatch]
   );
 
-  console.log("CONTAINER: state.boxes ", state.boxes);
+  console.log("CONTAINER: state.boxes ", state.tree.boxes);
 
   // TODO: what is happening here ?
   const [, drop] = useDrop(
@@ -47,9 +47,9 @@ export default function Container({ hideSourceOnDrag }) {
   return (
 
     <DndContainer ref={drop}>
-      {Object.keys(state.boxes).map((key) => {
-        console.log("CONTAINER: in object.key", state.boxes); //WHY SIX TIMES? - NOW TWICE
-        const { left, top, isGrowing } = state.boxes[key];
+      {Object.keys(state.tree.boxes).map((key) => {
+        console.log("CONTAINER: in object.key", state.tree.boxes); //WHY SIX TIMES? - NOW TWICE
+        const { left, top, isGrowing } = state.tree.boxes[key];
         return (
           <Box
             key={key}
@@ -57,8 +57,8 @@ export default function Container({ hideSourceOnDrag }) {
             left={left}
             top={top}
             isGrowing={isGrowing}
-            growing={state.growing}
-            whoAround={state.whoAround}
+            growing={state.tree.growing}
+            whoAround={state.tree.whoAround}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );

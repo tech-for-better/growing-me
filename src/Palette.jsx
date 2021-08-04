@@ -86,45 +86,35 @@ export default function Palette({ type }) {
   };
 
   async function handleClick(event, image) {
-    console.log("handle click");
     let imageFileName = getShortImagePath(image);
     let dispatchType = imgToDispatchTypeMapping[imageFileName];
-    console.log("dispatch type", dispatchType);
     switch (dispatchType) {
       case "update_treeLocation":
         await dispatch({
-          type: dispatchType,
+          type: "CLICK",
           newTreeLocation: event.target.src,
         });
         break;
       case "update_background":
         await dispatch({
-          type: dispatchType,
+          type: "CLICK",
           newBackground: event.target.src,
         });
         break;
       case "update_growing":
         await dispatch({
-          type: dispatchType,
+          type: "DROP",
           newGrowingItem: event.target.src,
         });
         break;
       case "update_whoAround":
         await dispatch({
-          type: dispatchType,
+          type: "DROP",
           newWhoAround: event.target.src,
         });
         break;
     }
-    // console.log(
-    //   "state in palette.handleClick",
-    //   state.treeLocation,
-    //   state.background,
-    //   state.whoAround,
-    //   state.growing,
-    //   state.growing_coords,
-    //   state.whoAround_coords
-    // );
+
   }
 
   // useEffect(() => {
@@ -146,59 +136,59 @@ export default function Palette({ type }) {
   // ]);
 
   //TODO: these functions get called in
-  async function getTreeData() {
-    try {
-      setLoading(true);
-      let data = await getMeTree();
-      if (data) {
-        dispatch({
-          type: "update_treeLocation",
-          newTreeLocation: data.tree_location,
-        });
-        dispatch({
-          type: "update_background",
-          newBackground: data.background,
-        });
-        dispatch({
-          type: "update_growing",
-          newGrowingItem: data.growing,
-        });
-        dispatch({
-          type: "update_whoAround",
-          newWhoAround: data.who_around,
-        });
-      }
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function getTreeData() {
+  //   try {
+  //     setLoading(true);
+  //     let data = await getMeTree();
+  //     if (data) {
+  //       dispatch({
+  //         type: "update_treeLocation",
+  //         newTreeLocation: data.tree_location,
+  //       });
+  //       dispatch({
+  //         type: "update_background",
+  //         newBackground: data.background,
+  //       });
+  //       dispatch({
+  //         type: "update_growing",
+  //         newGrowingItem: data.growing,
+  //       });
+  //       dispatch({
+  //         type: "update_whoAround",
+  //         newWhoAround: data.who_around,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
-  async function updateMeTreeInDb(
-    background,
-    treeLocation,
-    whoAround,
-    growing,
-    growing_coords,
-    who_around_coords
-  ) {
-    try {
-      setLoading(true);
-      setTreeData(
-        background,
-        treeLocation,
-        whoAround,
-        growing,
-        growing_coords,
-        who_around_coords
-      );
-    } catch (error) {
-      console.log("Error: ", error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function updateMeTreeInDb(
+  //   background,
+  //   treeLocation,
+  //   whoAround,
+  //   growing,
+  //   growing_coords,
+  //   who_around_coords
+  // ) {
+  //   try {
+  //     setLoading(true);
+  //     setTreeData(
+  //       background,
+  //       treeLocation,
+  //       whoAround,
+  //       growing,
+  //       growing_coords,
+  //       who_around_coords
+  //     );
+  //   } catch (error) {
+  //     console.log("Error: ", error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   return (
     <>
@@ -209,10 +199,10 @@ export default function Palette({ type }) {
               <PaletteBtn
                 key={image}
                 image={image}
-                onClick={() => dispatch({ type: "UPDATE" })}
+                onClick={(event) => handleClick(event, image)}
               >
                 {" "}
-                {status === "updating" ? "Updating your tree..." : "Update tree!"}
+                {status === "updating database" ? "Updating your tree..." : "Click to update!"}
                 <PaletteImg key={image} src={image} alt={image} />
               </PaletteBtn>
             </>
