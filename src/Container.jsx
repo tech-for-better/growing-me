@@ -6,30 +6,31 @@ import { ItemTypes } from "./ItemTypes";
 import Box from "./Box";
 import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
-import { MeTreeContext } from "./MeTree";
+// import { MeTreeContext } from "./MeTree";
+import { MeTreeContext } from "./App";
 
 export default function Container({ hideSourceOnDrag }) {
+  const { state, setState } = useContext(MeTreeContext);
+  console.log("STATE in container", state);
 
-  const { state, dispatch } = useContext(MeTreeContext);
-
-  // when you move box the coords update
   const moveBox = useCallback(
     (id, left, top) => {
-      dispatch({
-        type: "update_boxes",
-        newBoxes: update(state.boxes, {
-          [id]: {
-            $merge: { left, top },
-          },
-        }),
+      console.log("move box :state.data.tree.boxes", state.data.tree.boxes);
+      setState({
+        tree: {
+          boxes: update(state.data.tree.boxes, {
+            [id]: {
+              $merge: { left, top },
+            },
+          }),
+        },
       });
     },
-    [state.boxes, dispatch]
+    [(state.data.tree.boxes, setState)]
   );
 
-  console.log("CONTAINER: state.boxes ", state.boxes);
+  console.log("CONTAINER: state.data.tree.boxes ", state.data.tree.boxes);
 
-  // TODO: what is happening here ?
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.BOX,
@@ -45,11 +46,10 @@ export default function Container({ hideSourceOnDrag }) {
   );
 
   return (
-
     <DndContainer ref={drop}>
-      {Object.keys(state.boxes).map((key) => {
-        console.log("CONTAINER: in object.key", state.boxes); //WHY SIX TIMES? - NOW TWICE
-        const { left, top, isGrowing } = state.boxes[key];
+      {Object.keys(state.data.tree.boxes).map((key) => {
+        console.log("CONTAINER: in object.key", state.data.tree.boxes); //WHY SIX TIMES? - NOW TWICE
+        const { left, top, isGrowing } = state.data.tree.boxes[key];
         return (
           <Box
             key={key}
@@ -57,8 +57,8 @@ export default function Container({ hideSourceOnDrag }) {
             left={left}
             top={top}
             isGrowing={isGrowing}
-            growing={state.growing}
-            whoAround={state.whoAround}
+            growing={state.data.tree.growing}
+            whoAround={state.data.tree.whoAround}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );

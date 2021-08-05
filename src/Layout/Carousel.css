@@ -289,9 +289,4 @@
 .carousel:hover .slide .legend {
   opacity: 1;
 }
-.txt-background {
-  background-color: #abc961;
-  width: 100%;
-  height: 100%;
-  /* margin: 0 2rem; */
-}
+

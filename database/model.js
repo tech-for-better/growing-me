@@ -7,7 +7,7 @@ export async function getMeTree() {
   let { data, error, status } = await supabase
     .from("me_tree")
     .select(
-      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left`
+      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left,boxes`
     )
     .eq("id", user.id)
     .single();
@@ -25,7 +25,8 @@ export async function setTreeData(
   whoAround,
   growing,
   growing_coords,
-  whoAround_coords
+  whoAround_coords,
+  boxes
 ) {
   const user = supabase.auth.user();
   console.log("model.setTreeData");
@@ -66,7 +67,7 @@ export async function getProfileData() {
   return data;
 }
 
-export async function setProfileData({
+export async function setAllProfileData({
   adult_name,
   avatar_url,
   child_name,
@@ -92,6 +93,23 @@ export async function setProfileData({
   }
 }
 
+export async function setProfileData({ single_data }) {
+  const user = supabase.auth.user();
+
+  const updates = {
+    id: user.id,
+    single_data,
+    updated_at: new Date(),
+  };
+
+  let { error } = await supabase.from("profiles").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
 // set individual fields in data
 
 export async function setBackgroundData(background) {
@@ -110,11 +128,11 @@ export async function setBackgroundData(background) {
   }
 }
 
-export async function setTreeLocationData(treeLocation) {
+export async function setTreeLocationData(tree_location) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    tree_location: treeLocation,
+    tree_location,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -126,11 +144,11 @@ export async function setTreeLocationData(treeLocation) {
   }
 }
 
-export async function setWhoAroundData(whoAround) {
+export async function setWhoAroundData(who_around) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    who_around: [whoAround],
+    who_around: [who_around],
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -159,12 +177,12 @@ export async function setGrowingData(growing) {
   }
 }
 
-export async function setGrowingCoordsData(growing_coords) {
+export async function setGrowingLeftData(growing_left) {
+  console.log("set growing left data", growing_left);
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    growing_left: growing_coords.left,
-    growing_top: growing_coords.top,
+    growing_left,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -176,12 +194,77 @@ export async function setGrowingCoordsData(growing_coords) {
   }
 }
 
-export async function setWhoAroundCoordsData(whoAround_coords) {
+export async function setGrowingTopData(growing_top) {
+  console.log("set growing top data", growing_top);
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    who_around_top: whoAround_coords.top,
-    who_around_left: whoAround_coords.left,
+    growing_top,
+  };
+
+  let { error } = await supabase.from("me_tree").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function setBoxesData(boxes) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    boxes,
+  };
+
+  let { error } = await supabase.from("me_tree").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+// export async function setWhoAroundCoordsData(whoAround_coords) {
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     who_around_top: whoAround_coords.top,
+//     who_around_left: whoAround_coords.left,
+//   };
+
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
+
+//   if (error) {
+//     throw error;
+//   }
+// }
+
+export async function setWhoAroundLeftData(who_around_left) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    who_around_left,
+  };
+
+  let { error } = await supabase.from("me_tree").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function setWhoAroundTopData(who_around_top) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    who_around_top,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -223,3 +306,153 @@ export async function getGalleryData() {
   }
   return data;
 }
+
+export async function getAllData() {
+  const treeData = getMeTree();
+  const galleryData = getGalleryData();
+  const profileData = getProfileData();
+
+  return await Promise.all([treeData, galleryData, profileData])
+    .then((dataArray) => {
+      const treeData = { tree: dataArray[0] };
+      const galleryData = { gallery: dataArray[1] };
+      const profileData = { profile: dataArray[2] };
+      console.log("dataArray", dataArray);
+      // this is an array of objects
+      let allData = Object.assign(treeData, galleryData, profileData);
+      console.log("allData", allData);
+      return allData;
+    })
+    .catch((error) => {
+      console.error("error!!", error, error.message);
+    });
+}
+
+// export async function setAllData(data) {
+//   console.log("setAllData - data", data);
+//   const treeDataSaved = setTreeData(
+//     data.tree.background,
+//     data.tree.treeLocation,
+//     data.tree.whoAround,
+//     data.tree.growing,
+//     data.tree.growing_coords,
+//     data.tree.whoAround_coords
+//   );
+//   const galleryDataSaved = setGalleryData(data.gallery.images);
+//   const profileDataSaved = setProfileData(
+//     data.profile.adult_name,
+//     data.profile.avatar_url,
+//     data.profile.child_name,
+//     data.profile.child_avatar
+//   );
+
+//   return;
+//   await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved])
+//   .catch((error) => {
+//     console.error("error!!", error, error.message);
+//   });
+// }
+
+export async function setData(data) {
+  console.log("setData - data", data);
+
+  let dataArray = Object.values(data);
+  console.log("dataArray", dataArray);
+
+  let newArr = dataArray.map((optionChange) => {
+    console.log(optionChange);
+    console.log("optionChange", Object.keys(optionChange));
+    let changingValue = Object.keys(optionChange)[0];
+    if (changingValue === "images") {
+      return setGalleryData(data.gallery.images);
+    } else if (changingValue === "tree_location") {
+      return setTreeLocationData(data.tree.tree_location);
+    } else if (changingValue === "growing") {
+      return setGrowingData(data.tree.growing);
+    } else if (changingValue === "who_around") {
+      return setWhoAroundData(data.tree.who_around);
+    } else if (changingValue === "background") {
+      return setBackgroundData(data.tree.background);
+    } else if (changingValue === "growing_left") {
+      return setGrowingLeftData(data.tree.growing_left);
+    } else if (changingValue === "growing_top") {
+      return setGrowingTopData(data.tree.growing_top);
+    } else if (changingValue === "who_around_left") {
+      return setWhoAroundLeftData(data.tree.who_around_left);
+    } else if (changingValue === "who_around_top") {
+      return setWhoAroundTopData(data.tree.who_around_top);
+    } else if (changingValue === "boxes") {
+      return setBoxesData(data.tree.boxes);
+    } else if (changingValue === "adult_name") {
+      return setProfileData(data.profile.adult_name);
+    } else if (changingValue === "avatar_url") {
+      return setProfileData(data.profile.avatar_url);
+    } else if (changingValue === "child_name") {
+      return setProfileData(data.profile.child_name);
+    } else if (changingValue === "child_avatar") {
+      return setProfileData(data.profile.child_avatar);
+    }
+  });
+}
+// console.log("HIIIII", newArr);
+
+// [{ background: df, treeLocations: sfdsd }, { adult_name: sdfsd }]
+
+// if (data.gallery.images) {
+//   console.log("if statemenmt for images in model");
+//   setGalleryData(data.gallery.images);
+//   return;
+// }
+// if (data.tree.treeLocation) {
+//   setTreeLocationData(data.tree.treeLocation);
+//   return;
+// }
+// if (data.tree.growing) {
+//   setGrowingData(data.tree.growing);
+//   return;
+// }
+// if (data.tree.who_around) {
+//   setWhoAroundData(data.tree.who_around);
+//   return;
+// }
+// if (data.tree.background) {
+//   console.log("if statemenmt for background in model");
+//   setBackgroundData(data.tree.background);
+//   return;
+// }
+// if (data.tree.growing_left) {
+//   setGrowingLeftData(data.tree.growing_left);
+//   return;
+// }
+// if (data.tree.growing_top) {
+//   setGrowingTopData(data.tree.growing_top);
+//   return;
+// }
+// if (data.tree.who_around_left) {
+//   setWhoAroundLeftData(data.tree.who_around_left);
+//   return;
+// }
+// if (data.tree.who_around_top) {
+//   setWhoAroundTopData(data.tree.who_around_top);
+//   return;
+// }
+// if (data.tree.boxes) {
+//   setBoxesData(data.tree.boxes);
+//   return;
+// }
+// if (data.profile.adult_name) {
+//   setProfileData(data.profile.adult_name);
+//   return;
+// }
+// if (data.profile.avatar_url) {
+//   setProfileData(data.profile.avatar_url);
+//   return;
+// }
+// if (data.profile.child_name) {
+//   setProfileData(data.profile.child_name);
+//   return;
+// }
+// if (data.profile.child_avatar) {
+//   setProfileData(data.profile.child_avatar);
+//   return;
+// }

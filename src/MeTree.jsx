@@ -7,22 +7,9 @@ import {
   createContext,
   createRef,
   useRef,
+  useContext,
 } from "react";
-import { supabase } from "./supabaseClient";
-import {
-  getMeTree,
-  getProfileData,
-  setTreeData,
-  setBackgroundData,
-  setGrowingCoordsData,
-  setGrowingData,
-  setTreeLocationData,
-  setWhoAroundCoordsData,
-  setWhoAroundData,
-} from "../database/model";
 import { Link, useHistory } from "react-router-dom";
-// import { useHistory } from "react-router";
-// import { useAuth } from "./contexts/Auth";
 import {
   Toolkit,
   ToolkitButton,
@@ -33,7 +20,6 @@ import {
   ToolkitText,
 } from "./Layout/MeTree.styled";
 import { DndContainer } from "./Layout/DndContainer.styled";
-// import Menu from "react-burger-menu/lib/menus/slide";
 import NavMenu from "./components/NavMenu";
 import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
@@ -69,228 +55,107 @@ import Container from "./Container";
 import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
-import { setGalleryData } from "../database/model";
+import { getGalleryData, getAllData, setData } from "../database/model";
+import useRemoteState from "../utils/useRemoteState";
+import { MeTreeContext } from "./App";
 
-export const MeTreeContext = createContext();
+// export const MeTreeContext = createContext();
 
-//set initial state of pallette options
-const initialState = {
-  treeLocation: null,
-  background: null,
-  growing: null,
-  whoAround: null,
-  growing_coords: { left: 80, top: 20 },
-  whoAround_coords: { left: 100, top: 20 },
-  boxes: {
-    a: { top: 0, left: 2, isGrowing: true },
-    b: { top: 1, left: 3, isGrowing: false },
-    // Below not working: Uncaught ReferenceError: growing_coords is not defined
-    // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
-    // b: {
-    //   top: whoAround_coords.top,
-    //   left: whoAround_coords.left,
-    //   isGrowing: false,
-    // },
-  },
-};
-console.log("METREE: initialState variable", initialState);
+// export async function load() {
+//   console.log("load - about to get all data");
+//   const data = await getAllData();
+//   console.log("load get all data", data);
+//   return data;
+// }
 
-// update state of pallette options
-function reducer(state, action) {
-  console.log("METREE: reducer fn action", action);
-  console.log("METREE: reducer fn state", state);
-  switch (action.type) {
-    case "update_treeLocation":
-      const treeLocation = action.newTreeLocation;
-      console.log(
-        "METREE: reducer fn switch action.newTreeLocation",
-        action.newTreeLocation
-      );
-      return { ...state, treeLocation };
-    case "update_background":
-      const background = action.newBackground;
-      return { ...state, background };
-    case "update_growing":
-      const growing = action.newGrowingItem;
-      // console.log(
-      //   "METREE: reducer fn switch action.newGrowingItem",
-      //   action.newGrowingItem
-      // );
-      return { ...state, growing };
-    case "update_whoAround":
-      const whoAround = action.newWhoAround;
-      return { ...state, whoAround };
-    case "update_growing_coords":
-      const growing_coords = action.newGrowingCoords;
-      return { ...state, growing_coords };
-    case "update_whoAround_coords":
-      const whoAround_coords = action.newWhoAroundCoords;
-      return { ...state, whoAround_coords };
-    case "update_boxes":
-      const boxes = action.newBoxes;
-      console.log("METREE: reducer fn switch action.newBoxes", action.newBoxes);
-      return { ...state, boxes };
-    default:
-      return state;
-  }
-}
+// export async function update(changedData) {
+//   // TODO: update the right bit of the DB using the `changedData` object
+//   // just has to return a promise (resolved value isn't used)
+
+//   console.log("changedData in update fn in MeTree comp:", changedData);
+//   return await setData(changedData);
+// }
 
 // MeTree Component
-export function MeTree({ setGalleryImage, galleryImage }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export function MeTree() {
+  // const [state, setState] = useRemoteState({ load, update });
+  const { state, setState } = useContext(MeTreeContext);
   console.log("METREE: state", state);
-
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const [adult_name, setAdultName] = useState(null);
-  const [child_name, setChildName] = useState(null);
 
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
-  // // Get current user and signOut function from context
-  // const { user, signOut } = useAuth();
-  // const history = useHistory();
+  // react dnd
+  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
+  const toggle = useCallback(
+    () => setHideSourceOnDrag(!hideSourceOnDrag),
+    [hideSourceOnDrag]
+  );
 
-  // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
-  useEffect(() => {
-    getNames();
-    getMeTreeUpdates();
-  }, []); // only runs on first render
+  //html2img
+  const ref = useRef(null);
+  console.log("ref variable", ref);
 
-  // this was uncommented
-  useEffect(() => {
-    console.log("this useEffect fn is working and dispatch the coords");
-    dispatch({
-      type: "update_growing_coords",
-      newGrowingCoords: { left: state.boxes.a.left, top: state.boxes.a.top },
-    });
-    dispatch({
-      type: "update_whoAround_coords",
-      newWhoAroundCoords: { left: state.boxes.b.left, top: state.boxes.b.top },
-    });
-  }, [state.boxes]);
-
-  // this was uncommented
-  // useEffect(() => {
-  //    getMeTreeUpdates();
-  // }, [state]);
-
-  // useEffect(() => {
-  //   setBoxes({
-  //     a: { top: growing_top, left: growing_left, isGrowing: true },
-  //     b: { top: who_around_top, left: who_around_left, isGrowing: false },
-  //   });
-  // }, [growing_top, growing_left, who_around_top, who_around_left]);
-
-  // this seems to work! DB is updated with the four main variables (NOT COORDS)
-  useEffect(() => {
-    async function updateMeTreeInDb(
-      background,
-      treeLocation,
-      whoAround,
-      growing,
-      growing_coords,
-      whoAround_coords
-    ) {
-      if (!loading) {
-        try {
-          setLoading(true);
-          await setTreeData(
-            background,
-            treeLocation,
-            whoAround,
-            growing,
-            growing_coords,
-            whoAround_coords
-          );
-          console.log("growing_coordsin db", growing_coords);
-        } catch (error) {
-          console.log("Error: ", error.message);
-        } finally {
-          setLoading(false);
-        }
-      } else return;
+  const saveToGallery = () => {
+    if (ref.current === null) {
+      console.log("ref variable inside if statement", ref.current);
+      return;
     }
-    updateMeTreeInDb(
-      state.background,
-      state.treeLocation,
-      state.whoAround,
-      state.growing,
-      state.growing_coords,
-      state.whoAround_coords
-    );
-  }, [
-    state.background,
-    state.treeLocation,
-    state.whoAround,
-    state.growing,
-    state.growing_coords,
-    state.whoAround_coords,
-  ]);
+    console.log("ref variable after if statement", ref);
 
-  async function getMeTreeUpdates() {
-    if (!loading) {
-      try {
-        setLoading(true);
-        let data = await getMeTree();
-        if (data) {
-          console.log("getMeTreeUpdates data", data);
-          let treeLocationTemp = getShortImagePath(data.tree_location);
-          let backgroundTemp = getShortImagePath(data.background);
-          let growingTemp = getShortImagePathFromArray(data.growing);
-          let whoAroundTemp = getShortImagePathFromArray(data.who_around);
-          console.log(
-            "temps",
-            treeLocationTemp,
-            backgroundTemp,
-            growingTemp,
-            whoAroundTemp
-          );
-          console.log(
-            "dispatch treeLocation",
-            ImgSrcToImportMappings[treeLocationTemp]
-          );
+    toPng(ref.current, { cacheBust: true })
+      .then(async (dataUrl) => {
+        console.log("dataUrl in saveToGallery ", dataUrl);
+        const link = document.createElement("a");
+        link.download = "my-me-tree.png";
+        link.href = dataUrl;
+        link.click();
+        // await setGalleryData([...galleryImage, dataUrl]);
 
-          dispatch({
-            type: "update_treeLocation",
-            newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
-          });
-          dispatch({
-            type: "update_background",
-            newBackground: ImgSrcToImportMappings[backgroundTemp],
-          });
-          dispatch({
-            type: "update_growing",
-            newGrowingItem: ImgSrcToImportMappings[growingTemp],
-          });
-          dispatch({
-            type: "update_whoAround",
-            newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
-          });
-          dispatch({
-            type: "update_whoAround_coords",
-            newWhoAroundCoords: {
-              left: data.who_around_left,
-              top: data.who_around_top,
-            },
-          });
-          dispatch({
-            type: "update_growing_coords",
-            newGrowingCoords: {
-              left: data.growing_left,
-              top: data.growing_top,
-            },
-          });
-        }
-      } catch (error) {
-        console.error(error.message);
-      } finally {
-        setLoading(false);
-      }
-    } else return;
-  }
+        setState({
+          gallery: {
+            images: [...state.data.gallery.images, dataUrl],
+          },
+        });
+        // setGalleryImage((prevState) => [...prevState, dataUrl]);
+
+        console.log(
+          "state.gallery.images after setState ",
+          state.data.gallery.images
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (state.status === "loading") return <div>Initialising...</div>;
+  if (state.status === "error") return <div>Something went wrong!</div>;
+
+  // export async function load() {
+  //   console.log("load - about to get all data");
+  //   const data = await getAllData();
+  //   console.log("load get all data", data);
+  //   return data;
+  // }
+
+  // export async function update(changedData) {
+  //   // TODO: update the right bit of the DB using the `changedData` object
+  //   // just has to return a promise (resolved value isn't used)
+
+  //   console.log("changedData in update fn in MeTree comp:", changedData);
+  //   await setData(changedData);
+  //   console.log('it worked' )
+
+  // }
+
+  // useEffect(() => {
+  //   if (state.status === "updating") {
+  //     updateDataSomehow().then((data) => dispatch({ type: "success", data }));
+  //   }
+  //   }, [status]);
+
+  // <button onClick={() = dispatch({ type: "load" })}>Submit</button>
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -328,72 +193,13 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     "oval_blob.svg": ovalBlob,
   };
 
-  async function getNames() {
-    try {
-      setLoading(true);
-      let data = await getProfileData();
-      console.log("data from getName: ", data);
-
-      if (data) {
-        // console.log("profiledata", data);
-        setAdultName(data.adult_name);
-        setChildName(data.child_name);
-      }
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // async function handleSignOut() {
-  //   console.log("this fn gets called when clicking logout");
-  //   // Ends user session
-  //   await signOut();
-  //   // Redirects the user to Login page
-  //   history.push("/login");
-  // }
-
-  // react dnd
-  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
-  const toggle = useCallback(
-    () => setHideSourceOnDrag(!hideSourceOnDrag),
-    [hideSourceOnDrag]
-  );
-
-  // html2img
-  const ref = useRef(null);
-
-  const saveToGallery = useCallback(() => {
-    if (ref.current === null) {
-      return;
-    }
-
-    toPng(ref.current, { cacheBust: true })
-      .then(async (dataUrl) => {
-        console.log("galleryImage in metree bwfore ", galleryImage);
-        const link = document.createElement("a");
-        link.download = "my-me-tree.png";
-        link.href = dataUrl;
-        link.click();
-        await setGalleryData([...galleryImage, dataUrl]);
-
-        setGalleryImage((prevState) => [...prevState, dataUrl]);
-        console.log("data url", typeof dataUrl, dataUrl);
-        console.log("galleryImage in metree after ", galleryImage);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [ref]);
-
   return (
     <>
       <div className="flex space-between padding-sides">
         <NavMenu />
       </div>
 
-      <div className="flex">
+      <div className="flex margin-top">
         <Toolkit>
           <ToolkitButton onClick={() => handleClick("WhatColour")}>
             <BtnImage src={WhatColour} alt="" />
@@ -419,26 +225,29 @@ export function MeTree({ setGalleryImage, galleryImage }) {
 
         <div className="flex column center text-center items-center flex-grow">
           {" "}
-          <h2>
-            {adult_name
-              ? "Welcome back " + adult_name + " and "
+          <h1 className="margin-none">
+            {state.data.profile.adult_name
+              ? "Welcome back " + state.data.profile.adult_name + " and "
               : "Welcome back "}
-            {child_name ?? "friend"}!
-          </h2>
-          <p className="narrow">
+            {state.data.profile.child_name ?? "friend"}!
+          </h1>
+          <h2 className="narrow">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
-          </p>
+          </h2>
           <div ref={ref}>
-            <MeTreeContext.Provider value={{ state, dispatch }}>
-              <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage src={state.treeLocation ?? MeTreeGarden} alt="" />
-                <MeTreeBackground src={state.background} alt="" />
-              </MeTreeContainer>
+            {/* <MeTreeContext.Provider value={{ state, setState }}> */}
+            <MeTreeContainer className="relative">
+              <Container hideSourceOnDrag={hideSourceOnDrag} />
+              <MeTreeImage
+                src={state.data.tree.treeLocation ?? MeTreeGarden}
+                alt=""
+              />
+              <MeTreeBackground src={state.data.tree.background} alt="" />
+            </MeTreeContainer>
 
-              {visible ? <Palette type={paletteOption} /> : ""}
-            </MeTreeContext.Provider>
+            {visible ? <Palette type={paletteOption} /> : ""}
+            {/* </MeTreeContext.Provider> */}
           </div>
         </div>
       </div>

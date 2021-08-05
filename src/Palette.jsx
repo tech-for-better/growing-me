@@ -32,11 +32,11 @@ import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 
-import { MeTreeContext } from "./MeTree";
+// import { MeTreeContext } from "./MeTree";
+import { MeTreeContext } from "./App";
 
 export default function Palette({ type }) {
-  const { state, dispatch } = useContext(MeTreeContext);
-  const [loading, setLoading] = useState(true);
+  const { state, setState } = useContext(MeTreeContext);
 
   let option = type;
   let paletteOptions = {
@@ -86,45 +86,38 @@ export default function Palette({ type }) {
   };
 
   async function handleClick(event, image) {
-    console.log("handle click");
     let imageFileName = getShortImagePath(image);
     let dispatchType = imgToDispatchTypeMapping[imageFileName];
-    console.log("dispatch type", dispatchType);
     switch (dispatchType) {
       case "update_treeLocation":
-        await dispatch({
-          type: dispatchType,
-          newTreeLocation: event.target.src,
+        setState({
+          tree: {
+            treeLocation: event.target.src,
+          },
         });
         break;
       case "update_background":
-        await dispatch({
-          type: dispatchType,
-          newBackground: event.target.src,
+        setState({
+          tree: {
+            background: event.target.src,
+          },
         });
         break;
       case "update_growing":
-        await dispatch({
-          type: dispatchType,
-          newGrowingItem: event.target.src,
+        setState({
+          tree: {
+            growing: event.target.src,
+          },
         });
         break;
       case "update_whoAround":
-        await dispatch({
-          type: dispatchType,
-          newWhoAround: event.target.src,
+        setState({
+          tree: {
+            whoAround: event.target.src,
+          },
         });
         break;
     }
-    // console.log(
-    //   "state in palette.handleClick",
-    //   state.treeLocation,
-    //   state.background,
-    //   state.whoAround,
-    //   state.growing,
-    //   state.growing_coords,
-    //   state.whoAround_coords
-    // );
   }
 
   // useEffect(() => {
@@ -146,59 +139,59 @@ export default function Palette({ type }) {
   // ]);
 
   //TODO: these functions get called in
-  async function getTreeData() {
-    try {
-      setLoading(true);
-      let data = await getMeTree();
-      if (data) {
-        dispatch({
-          type: "update_treeLocation",
-          newTreeLocation: data.tree_location,
-        });
-        dispatch({
-          type: "update_background",
-          newBackground: data.background,
-        });
-        dispatch({
-          type: "update_growing",
-          newGrowingItem: data.growing,
-        });
-        dispatch({
-          type: "update_whoAround",
-          newWhoAround: data.who_around,
-        });
-      }
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function getTreeData() {
+  //   try {
+  //     setLoading(true);
+  //     let data = await getMeTree();
+  //     if (data) {
+  //       dispatch({
+  //         type: "update_treeLocation",
+  //         newTreeLocation: data.tree_location,
+  //       });
+  //       dispatch({
+  //         type: "update_background",
+  //         newBackground: data.background,
+  //       });
+  //       dispatch({
+  //         type: "update_growing",
+  //         newGrowingItem: data.growing,
+  //       });
+  //       dispatch({
+  //         type: "update_whoAround",
+  //         newWhoAround: data.who_around,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
-  async function updateMeTreeInDb(
-    background,
-    treeLocation,
-    whoAround,
-    growing,
-    growing_coords,
-    who_around_coords
-  ) {
-    try {
-      setLoading(true);
-      setTreeData(
-        background,
-        treeLocation,
-        whoAround,
-        growing,
-        growing_coords,
-        who_around_coords
-      );
-    } catch (error) {
-      console.log("Error: ", error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function updateMeTreeInDb(
+  //   background,
+  //   treeLocation,
+  //   whoAround,
+  //   growing,
+  //   growing_coords,
+  //   who_around_coords
+  // ) {
+  //   try {
+  //     setLoading(true);
+  //     setTreeData(
+  //       background,
+  //       treeLocation,
+  //       whoAround,
+  //       growing,
+  //       growing_coords,
+  //       who_around_coords
+  //     );
+  //   } catch (error) {
+  //     console.log("Error: ", error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   return (
     <>
@@ -207,12 +200,16 @@ export default function Palette({ type }) {
           return (
             <>
               <PaletteBtn
-                key={image} 
+                key={image}
                 image={image}
                 onClick={(event) => handleClick(event, image)}
               >
+                {" "}
+                {state.status === "updating"
+                  ? "Updating your tree..."
+                  : "Click to update!"}
                 <PaletteImg key={image} src={image} alt={image} />
-              </PaletteBtn >
+              </PaletteBtn>
             </>
           );
         })}

@@ -455,3 +455,39 @@ button.primary,
 .full-height {
   height: 100%;
 }
+
+.margin-top{
+  margin-top: 4rem;
+  margin-bottom: 0;
+
+}
+.li-none{
+  list-style-type: none;
+}
+.margin-none{
+  margin:0;
+}
+.play-color{
+  color:#abc961;
+}
+.think-color{
+  color:#337d8e;
+}
+.make-color{
+  color: #fed436;
+}
+.wonder-color{
+  color:#28424c;
+}
+.txt-background {
+  background-color: #abc961;
+  width: 100%;
+  height: 100%;
+  color: white !important;
+
+
+  /* margin: 0 2rem; */
+}
+.white{
+  color:white;
+}
