@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Rokkitt:wght@400;500&display=swap');
+
 html,
 body {
   --custom-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -32,7 +34,9 @@ acabb3 - grey
 
   padding: 0;
   margin: 0;
-  font-family: var(--custom-font-family);
+  /* font-family: var(--custom-font-family); */
+  /* font-family: 'Nanum Pen Script', cursive; */
+  /* font-family: 'Rokkitt', serif; */
   /* background-color: var(--custom-bg-color); */
   background-color: #ecf0d9;
 }
@@ -40,7 +44,10 @@ acabb3 - grey
 * {
   color: var(--custom-color); /* text colour - palegreen */
   color: #384b4a; /* text colour - dark olive green */
-  font-family: var(--custom-font-family);
+  /* font-family: var(--custom-font-family); */
+    font-family: 'Nanum Pen Script', cursive;
+  /* font-family: 'Rokkitt', serif; */
+  /* font-size: 1.3rem; */
   box-sizing: border-box;
 }
 
@@ -210,9 +217,9 @@ body,
 
 label {
   display: block;
-  margin: 5px 0;
+  margin: 5px 10px;
   color: var(--custom-color-secondary);
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
 }
 
@@ -221,7 +228,7 @@ input {
   border-radius: 5px;
   border: var(--custom-border);
   padding: 8px;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   background-color: #b1bd7a;
   color: var(--custom-bg-color);
 }
@@ -275,7 +282,18 @@ input[disabled] {
   font-size: 0.8rem;
   font-weight: 300;
 }
-
+.txt-sm{
+font-size: 1rem;
+}
+.txt-md{
+font-size: 1.5rem;
+}
+.txt-lg{
+font-size: 2rem;
+}
+.txt-xlg{
+font-size: 3rem;
+}
 .relative {
   position: relative;
 }
@@ -317,7 +335,7 @@ input[disabled] {
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 2rem;
   text-transform: uppercase;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
@@ -402,7 +420,7 @@ button.primary,
 
 .mainHeader {
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
@@ -490,4 +508,19 @@ button.primary,
 }
 .white{
   color:white;
+}
+
+p{
+  font-size: 2rem;
+}
+.pad-1{
+  padding: 1rem;
+}
+
+.App-logo{
+  margin:2rem;
+  width:100px;
+}
+.height{
+  height:75px;
 }
