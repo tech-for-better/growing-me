@@ -66,7 +66,7 @@ export async function getProfileData() {
   return data;
 }
 
-export async function setProfileData({
+export async function setAllProfileData({
   adult_name,
   avatar_url,
   child_name,
@@ -92,6 +92,26 @@ export async function setProfileData({
   }
 }
 
+export async function setProfileData({
+  single_data,
+
+}) {
+  const user = supabase.auth.user();
+
+  const updates = {
+    id: user.id,
+    single_data,
+    updated_at: new Date(),
+  };
+
+  let { error } = await supabase.from("profiles").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
 // set individual fields in data
 
 export async function setBackgroundData(background) {
@@ -245,45 +265,88 @@ export async function getAllData() {
     });
 }
 
-export async function setAllData(
-  data
-) {
-  console.log('setAllData - data', data);
-  // if (data.gallery.images === undefined){
+// export async function setAllData(data) {
+//   console.log("setAllData - data", data);
+//   const treeDataSaved = setTreeData(
+//     data.tree.background,
+//     data.tree.treeLocation,
+//     data.tree.whoAround,
+//     data.tree.growing,
+//     data.tree.growing_coords,
+//     data.tree.whoAround_coords
+//   );
+//   const galleryDataSaved = setGalleryData(data.gallery.images);
+//   const profileDataSaved = setProfileData(
+//     data.profile.adult_name,
+//     data.profile.avatar_url,
+//     data.profile.child_name,
+//     data.profile.child_avatar
+//   );
 
-  // })
-  const treeDataSaved = setTreeData(
-    data.tree.background,
-    data.tree.treeLocation,
-    data.tree.whoAround,
-    data.tree.growing,
-    data.tree.growing_coords,
-    data.tree.whoAround_coords
-  );
-  const galleryDataSaved = setGalleryData(data.gallery.images);
-  const profileDataSaved = setProfileData(
-    data.profile.adult_name,
-    data.profile.avatar_url,
-    data.profile.child_name,
-    data.profile.child_avatar
-  );
+//   return;
+//   await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved])
+//   .catch((error) => {
+//     console.error("error!!", error, error.message);
+//   });
+// }
 
-  return await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved])
-    // .then((updatedDataArray) => {
-    //   const updatedTreeData = { tree: updatedDataArray[0] };
-    //   const updatedGalleryData = { gallery: updatedDataArray[1] };
-    //   const updatedProfileData = { profile: updatedDataArray[2] };
-    //   console.log("updatedDataArray", updatedDataArray);
-    //   // this is an array of objects
-    //   let allUpatedData = Object.assign(
-    //     updatedTreeData,
-    //     updatedGalleryData,
-    //     updatedProfileData
-    //   );
-    //   console.log("allData", allData);
-    //   return allData;
-    //})
-    .catch((error) => {
-      console.error("error!!", error, error.message);
-    });
+export async function setData(data) {
+  console.log("setData - data", data);
+
+  if (data.tree.treeLocation) {
+    setTreeLocationData(data.tree.treeLocation);
+  }
+  if (data.tree.growing) {
+    setGrowingData(data.tree.growing);
+  }
+  if (data.tree.whoAround) {
+    setWhoAroundData(data.tree.whoAround);
+  }
+  if (data.tree.background) {
+    setBackgroundData(data.tree.background);
+  }
+  if (data.tree.growing_coords) {
+    setGrowingCoordsData(data.tree.growing_coords);
+  }
+  if (data.tree.whoAround_coords) {
+    setWhoAroundCoordsData(data.tree.whoAround_coords);
+  }
+  if (data.gallery.images) {
+    setGalleryData(images);
+  }
+  if (data.profile.adult_name) {
+    setProfileData(data.profile.adult_name);
+  }
+  if (data.profile.avatar_url) {
+    setProfileData(data.profile.avatar_url);
+  }
+  if (data.profile.child_name) {
+    setProfileData(data.profile.child_name);
+  }
+  if (data.profile.child_avatar) {
+    setProfileData(data.profile.child_avatar);
+  }
+
+  // const treeDataSaved = setTreeData(
+  //   data.tree.background,
+  //   data.tree.treeLocation,
+  //   data.tree.whoAround,
+  //   data.tree.growing,
+  //   data.tree.growing_coords,
+  //   data.tree.whoAround_coords
+  // );
+  // const galleryDataSaved = setGalleryData(data.gallery.images);
+  // const profileDataSaved = setProfileData(
+  //   data.profile.adult_name,
+  //   data.profile.avatar_url,
+  //   data.profile.child_name,
+  //   data.profile.child_avatar
+  // );
+
+  // return
+  // await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved]).catch(
+  //   (error) => {
+  //     console.error("error!!", error, error.message);
+  //   }
+  // );
 }

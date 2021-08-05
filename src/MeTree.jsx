@@ -54,7 +54,7 @@ import Container from "./Container";
 import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
-import { getGalleryData, getAllData , setAllData} from "../database/model";
+import { getGalleryData, getAllData , setData} from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
 
 export const MeTreeContext = createContext();
@@ -83,7 +83,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     // just has to return a promise (resolved value isn't used)
 
     console.log("update fn changedData in MeTree comp", changedData);
-    const updatedData = await setAllData(changedData);
+    const updatedData = await setData(changedData);
     console.log('update fn updatedDara', updatedData)
     return updatedData;
   }
