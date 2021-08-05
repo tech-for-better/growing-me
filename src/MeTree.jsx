@@ -8,21 +8,7 @@ import {
   createRef,
   useRef,
 } from "react";
-import { supabase } from "./supabaseClient";
-import {
-  getMeTree,
-  getProfileData,
-  setTreeData,
-  setBackgroundData,
-  setGrowingCoordsData,
-  setGrowingData,
-  setTreeLocationData,
-  setWhoAroundCoordsData,
-  setWhoAroundData,
-} from "../database/model";
 import { Link, useHistory } from "react-router-dom";
-// import { useHistory } from "react-router";
-// import { useAuth } from "./contexts/Auth";
 import {
   Toolkit,
   ToolkitButton,
@@ -33,7 +19,6 @@ import {
   ToolkitText,
 } from "./Layout/MeTree.styled";
 import { DndContainer } from "./Layout/DndContainer.styled";
-// import Menu from "react-burger-menu/lib/menus/slide";
 import NavMenu from "./components/NavMenu";
 import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
@@ -69,183 +54,16 @@ import Container from "./Container";
 import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
-import { getGalleryData, getAllData } from "../database/model";
+import { getGalleryData, getAllData , setAllData} from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
 
 export const MeTreeContext = createContext();
 
-//set initial state of pallette options
-// const initialState = {
-//   treeLocation: null,
-//   background: null,
-//   growing: null,
-//   whoAround: null,
-//   growing_coords: { left: 80, top: 20 },
-//   whoAround_coords: { left: 100, top: 20 },
-//   boxes: {
-//     a: { top: 0, left: 2, isGrowing: true },
-//     b: { top: 1, left: 3, isGrowing: false },
-//     // Below not working: Uncaught ReferenceError: growing_coords is not defined
-//     // a: { top: growing_coords.top, left: growing_coords.left, isGrowing: true },
-//     // b: {
-//     //   top: whoAround_coords.top,
-//     //   left: whoAround_coords.left,
-//     //   isGrowing: false,
-//     // },
-//   },
-// };
-// console.log("METREE: initialState variable", initialState);
-
-// update state of pallette options
-// function reducer(state, action) {
-//   console.log("METREE: reducer fn action", action);
-//   console.log("METREE: reducer fn state", state);
-//   switch (action.type) {
-//     case "update_treeLocation":
-//       const treeLocation = action.newTreeLocation;
-//       console.log(
-//         "METREE: reducer fn switch action.newTreeLocation",
-//         action.newTreeLocation
-//       );
-//       return { ...state, treeLocation };
-//     case "update_background":
-//       const background = action.newBackground;
-//       return { ...state, background };
-//     case "update_growing":
-//       const growing = action.newGrowingItem;
-//       // console.log(
-//       //   "METREE: reducer fn switch action.newGrowingItem",
-//       //   action.newGrowingItem
-//       // );
-//       return { ...state, growing };
-//     case "update_whoAround":
-//       const whoAround = action.newWhoAround;
-//       return { ...state, whoAround };
-//     case "update_growing_coords":
-//       const growing_coords = action.newGrowingCoords;
-//       return { ...state, growing_coords };
-//     case "update_whoAround_coords":
-//       const whoAround_coords = action.newWhoAroundCoords;
-//       return { ...state, whoAround_coords };
-//     case "update_boxes":
-//       const boxes = action.newBoxes;
-//       console.log("METREE: reducer fn switch action.newBoxes", action.newBoxes);
-//       return { ...state, boxes };
-//     default:
-//       return state;
-//   }
-// }
-
-// function reducer(state, event) {
-//   switch (event.type) {
-//     case "LOAD":
-//       {
-//         const data = {
-//           ...action.data,
-//           growing_coords: {
-//             left: data.growing_left,
-//             top: data.growing_top,
-//           },
-//           whoAround_coords: {
-//             left: data.who_around_left,
-//             top: data.who_around_top,
-//           },
-//           tree_location:
-//             ImgSrcToImportMappings[getShortImagePath(data.tree_location)],
-//           backround: ImgSrcToImportMappings[getShortImagePath(data.background)],
-//           growing:
-//             ImgSrcToImportMappings[getShortImagePathFromArray(data.growing)],
-//           who_around:
-//             ImgSrcToImportMappings[getShortImagePathFromArray(data.who_around)],
-//         };
-//         return {
-//           ...state,
-//           ...data,
-//           status: "loading",
-//         };
-//       }
-//       break;
-//     case "RESOLVE":
-//       return {
-//         ...state,
-//         status: "success",
-//         tree: event.data,
-//       };
-//       break;
-//     case "UPDATE_DB":
-//       return {
-//         ...state,
-//         status: "updating database",
-//       };
-//       break;
-//     case "CLICK":
-//       if (event.newBackground) {
-//         const background = event.newBackground;
-//         return {
-//           ...state,
-//           background,
-//           status: "updating state",
-//         };
-//       }
-//       if (event.newTreeLocation) {
-//         const treeLocation = event.newTreeLocation;
-//         return {
-//           ...state,
-//           treeLocation,
-//           status: "updating state",
-//         };
-//       }
-//       break;
-//     case "DROP":
-//       return {
-//         ...state,
-//         status: "drop",
-//       };
-//       break;
-//     case "REJECT":
-//       return {
-//         ...state,
-//         status: "failure",
-//         error: event.error,
-//       };
-//       break;
-//     case "CANCEL":
-//       return {
-//         ...state,
-//         status: "idle",
-//       };
-//       break;
-//     default:
-//       return state;
-//   }
-// }
-
-// const initialState = {
-//   status: "idle",
-//   tree: {
-//     treeLocation: null,
-//     background: null,
-//     growing: null,
-//     whoAround: null,
-//     growing_coords: { left: 80, top: 20 },
-//     whoAround_coords: { left: 100, top: 20 },
-//     boxes: {
-//       a: { top: 0, left: 2, isGrowing: true },
-//       b: { top: 1, left: 3, isGrowing: false },
-//     },
-//   },
-//   error: null,
-// };
-
 // MeTree Component
 export function MeTree({ setGalleryImage, galleryImage }) {
-  const [state, setState] = useRemoteState({ load, update });
-  // const [state, dispatch] = useReducer(reducer, initialState);
-  // const { error, tree, status } = state;
-  console.log("METREE: state", state);
 
-  // const [adult_name, setAdultName] = useState(null);
-  // const [child_name, setChildName] = useState(null);
+  const [state, setState] = useRemoteState({ load, update });
+  console.log("METREE: state", state);
 
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
@@ -260,194 +78,15 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     return data;
   }
 
-  function update(changedData) {
+  async function update(changedData) {
     // TODO: update the right bit of the DB using the `changedData` object
     // just has to return a promise (resolved value isn't used)
+
+    console.log("update fn changedData in MeTree comp", changedData);
+    const updatedData = await setAllData(changedData);
+    console.log('update fn updatedDara', updatedData)
+    return updatedData;
   }
-  // refactor
-  // useEffect(async () => {
-  //   if (state.status === "updating state") {
-  //     let canceled = false;
-  //     dispatch({ type: "UPDATE_DB" });
-  //   }
-
-  //   if (state.status === "updating database") {
-  //     let canceled = false;
-
-  //     await setTreeData(
-  //       state.tree.background,
-  //       state.tree.treeLocation,
-  //       state.tree.whoAround,
-  //       state.tree.growing,
-  //       state.tree.growing_coords,
-  //       state.tree.who_around_coords
-  //     );
-  //     dispatch({ type: "LOAD", error });
-
-  //     if (state.status === "loading") {
-  //       let canceled = false;
-
-  //       await getMeTree()
-  //         .then((data) => {
-  //           if (canceled) return;
-  //           dispatch({ type: "RESOLVE", data });
-  //         })
-  //         .catch((error) => {
-  //           console.log("Error: ", error.message);
-  //           if (canceled) return;
-  //           dispatch({ type: "REJECT", error });
-  //         });
-  //       return () => {
-  //         canceled = true;
-  //       };
-  //     }
-  //   }
-  // }, [state.status]);
-
-  // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
-  // useEffect(() => {
-  //   getNames();
-  // getMeTreeUpdates();
-  // }, []); // only runs on first render
-
-  // this was uncommented
-  // useEffect(() => {
-  //   console.log("this useEffect fn is working and dispatch the coords");
-  //   dispatch({
-  //     type: "update_growing_coords",
-  //     newGrowingCoords: {
-  //       left: state.tree.boxes.a.left,
-  //       top: state.tree.boxes.a.top,
-  //     },
-  //   });
-  //   dispatch({
-  //     type: "update_whoAround_coords",
-  //     newWhoAroundCoords: {
-  //       left: state.tree.boxes.b.left,
-  //       top: state.tree.boxes.b.top,
-  //     },
-  //   });
-  // }, [state.tree.boxes]);
-
-  // this was uncommented
-  // useEffect(() => {
-  //    getMeTreeUpdates();
-  // }, [state]);
-
-  // useEffect(() => {
-  //   setBoxes({
-  //     a: { top: growing_top, left: growing_left, isGrowing: true },
-  //     b: { top: who_around_top, left: who_around_left, isGrowing: false },
-  //   });
-  // }, [growing_top, growing_left, who_around_top, who_around_left]);
-
-  // this seems to work! DB is updated with the four main variables (NOT COORDS)
-  // useEffect(() => {
-  //   async function updateMeTreeInDb(
-  //     background,
-  //     treeLocation,
-  //     whoAround,
-  //     growing,
-  //     growing_coords,
-  //     whoAround_coords
-  //   ) {
-  //     if (!loading) {
-  //       try {
-  //         setLoading(true);
-  //         await setTreeData(
-  //           background,
-  //           treeLocation,
-  //           whoAround,
-  //           growing,
-  //           growing_coords,
-  //           whoAround_coords
-  //         );
-  //         console.log("growing_coordsin db", growing_coords);
-  //       } catch (error) {
-  //         console.log("Error: ", error.message);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     } else return;
-  //   }
-  //   updateMeTreeInDb(
-  //     state.background,
-  //     state.treeLocation,
-  //     state.whoAround,
-  //     state.growing,
-  //     state.growing_coords,
-  //     state.whoAround_coords
-  //   );
-  // }, [
-  //   state.background,
-  //   state.treeLocation,
-  //   state.whoAround,
-  //   state.growing,
-  //   state.growing_coords,
-  //   state.whoAround_coords,
-  // ]);
-
-  // async function getMeTreeUpdates() {
-  //   if (!loading) {
-  //     try {
-  //       setLoading(true);
-  //       let data = await getMeTree();
-  //       if (data) {
-  //         console.log("getMeTreeUpdates data", data);
-  //         let treeLocationTemp = getShortImagePath(data.tree_location);
-  //         let backgroundTemp = getShortImagePath(data.background);
-  //         let growingTemp = getShortImagePathFromArray(data.growing);
-  //         let whoAroundTemp = getShortImagePathFromArray(data.who_around);
-  //         console.log(
-  //           "temps",
-  //           treeLocationTemp,
-  //           backgroundTemp,
-  //           growingTemp,
-  //           whoAroundTemp
-  //         );
-  //         console.log(
-  //           "dispatch treeLocation",
-  //           ImgSrcToImportMappings[treeLocationTemp]
-  //         );
-
-  //         dispatch({
-  //           type: "update_treeLocation",
-  //           newTreeLocation: ImgSrcToImportMappings[treeLocationTemp],
-  //         });
-  //         dispatch({
-  //           type: "update_background",
-  //           newBackground: ImgSrcToImportMappings[backgroundTemp],
-  //         });
-  //         dispatch({
-  //           type: "update_growing",
-  //           newGrowingItem: ImgSrcToImportMappings[growingTemp],
-  //         });
-  //         dispatch({
-  //           type: "update_whoAround",
-  //           newWhoAround: ImgSrcToImportMappings[whoAroundTemp],
-  //         });
-  //         dispatch({
-  //           type: "update_whoAround_coords",
-  //           newWhoAroundCoords: {
-  //             left: data.who_around_left,
-  //             top: data.who_around_top,
-  //           },
-  //         });
-  //         dispatch({
-  //           type: "update_growing_coords",
-  //           newGrowingCoords: {
-  //             left: data.growing_left,
-  //             top: data.growing_top,
-  //           },
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   } else return;
-  // }
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -484,24 +123,6 @@ export function MeTree({ setGalleryImage, galleryImage }) {
     "cloudy_blob.svg": cloudyBlob,
     "oval_blob.svg": ovalBlob,
   };
-
-  // async function getNames() {
-  //   try {
-  //     setLoading(true);
-  //     let data = await getProfileData();
-  //     console.log("data from getName: ", data);
-
-  //     if (data) {
-  //       // console.log("profiledata", data);
-  //       setAdultName(data.adult_name);
-  //       setChildName(data.child_name);
-  //     }
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
 
   // react dnd
   // const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
@@ -578,8 +199,8 @@ export function MeTree({ setGalleryImage, galleryImage }) {
             like to change anything?
           </h2>
           {/* <div ref={ref}> */}
-          {/* <MeTreeContext.Provider value={{ state, dispatch }}> */}
-          <MeTreeContext.Provider value={{ state }}>
+
+          <MeTreeContext.Provider value={{ state, setState }}>
             <MeTreeContainer className="relative">
               {/* <Container hideSourceOnDrag={hideSourceOnDrag} /> */}
               <Container />

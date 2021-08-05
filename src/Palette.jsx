@@ -35,8 +35,8 @@ import ovalBlob from "./../assets/oval_blob.svg";
 import { MeTreeContext } from "./MeTree";
 
 export default function Palette({ type }) {
-  const { state, dispatch } = useContext(MeTreeContext);
-  const [loading, setLoading] = useState(true);
+
+  const { state, setState } = useContext(MeTreeContext);
 
   let option = type;
   let paletteOptions = {
@@ -90,28 +90,32 @@ export default function Palette({ type }) {
     let dispatchType = imgToDispatchTypeMapping[imageFileName];
     switch (dispatchType) {
       case "update_treeLocation":
-        await dispatch({
-          type: "CLICK",
-          newTreeLocation: event.target.src,
-        });
+         setState({
+           tree: {
+             treeLocation: event.target.src,
+           },
+         });
         break;
       case "update_background":
-        await dispatch({
-          type: "CLICK",
-          newBackground: event.target.src,
+        setState({
+          tree: {
+            background: event.target.src,
+          },
         });
         break;
       case "update_growing":
-        await dispatch({
-          type: "DROP",
-          newGrowingItem: event.target.src,
+        setState({
+          tree: {
+            growing: event.target.src,
+          },
         });
         break;
       case "update_whoAround":
-        await dispatch({
-          type: "DROP",
-          newWhoAround: event.target.src,
-        });
+        setState({
+          tree: {
+            whoAround: event.target.src,
+          },
+          });
         break;
     }
 
@@ -202,7 +206,7 @@ export default function Palette({ type }) {
                 onClick={(event) => handleClick(event, image)}
               >
                 {" "}
-                {status === "updating database" ? "Updating your tree..." : "Click to update!"}
+                {state.status === "updating" ? "Updating your tree..." : "Click to update!"}
                 <PaletteImg key={image} src={image} alt={image} />
               </PaletteBtn>
             </>

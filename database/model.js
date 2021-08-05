@@ -244,3 +244,46 @@ export async function getAllData() {
       console.error("error!!", error, error.message);
     });
 }
+
+export async function setAllData(
+  data
+) {
+  console.log('setAllData - data', data);
+  // if (data.gallery.images === undefined){
+
+  // })
+  const treeDataSaved = setTreeData(
+    data.tree.background,
+    data.tree.treeLocation,
+    data.tree.whoAround,
+    data.tree.growing,
+    data.tree.growing_coords,
+    data.tree.whoAround_coords
+  );
+  const galleryDataSaved = setGalleryData(data.gallery.images);
+  const profileDataSaved = setProfileData(
+    data.profile.adult_name,
+    data.profile.avatar_url,
+    data.profile.child_name,
+    data.profile.child_avatar
+  );
+
+  return await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved])
+    // .then((updatedDataArray) => {
+    //   const updatedTreeData = { tree: updatedDataArray[0] };
+    //   const updatedGalleryData = { gallery: updatedDataArray[1] };
+    //   const updatedProfileData = { profile: updatedDataArray[2] };
+    //   console.log("updatedDataArray", updatedDataArray);
+    //   // this is an array of objects
+    //   let allUpatedData = Object.assign(
+    //     updatedTreeData,
+    //     updatedGalleryData,
+    //     updatedProfileData
+    //   );
+    //   console.log("allData", allData);
+    //   return allData;
+    //})
+    .catch((error) => {
+      console.error("error!!", error, error.message);
+    });
+}
