@@ -19,8 +19,7 @@ Tech For Better project by FAC21
 
 # Tech Stack
 
-![tech stack: react, node, supabase, postgreSQL, styled-components, vite](https://user-images.githubusercontent.com/31373245/128335828-2acb94c3-7dc7-49f9-b0aa-26a0cebddfdf.png)
-
+![tech stack: react, node, supabase, postgreSQL, styled-components, vite](https://user-images.githubusercontent.com/31373245/128341773-be90b999-1fd9-4a62-ab7f-02313c29fc6b.png)
 
 # Installation
 
