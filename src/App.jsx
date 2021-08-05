@@ -22,34 +22,12 @@ import Gallery from "./Gallery";
 import Content from "./Content";
 import { getGalleryData, getAllData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
-import { load, update } from './MeTree'
+import { load, update } from "./MeTree";
 
 export default function Home() {
   const [session, setSession] = useState(null);
   const [state, setState] = useRemoteState({ load, update });
-  console.log('STATE in app', state)
-
-  // const [galleryImage, setGalleryImage] = useState([]);
-  // console.log("galleryImage in app", galleryImage);
-
-  // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
-  // useEffect(() => {
-  //   async function getImages() {
-  //     try {
-  //       let data = await getGalleryData();
-  //       console.log("data from getName: ", data);
-
-  //       if (data) {
-  //         console.log("gallery data in app", data);
-  //         setGalleryImage(data.images);
-  //       }
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     } finally {
-  //     }
-  //   }
-  //   getImages();
-  // }, []); // only runs on first render
+  console.log("STATE in app", state);
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -89,8 +67,8 @@ export default function Home() {
                 return (
                   <DndProvider backend={HTML5Backend}>
                     <MeTree
-                      // setGalleryImage={setGalleryImage}
-                      // galleryImage={galleryImage}
+                    // setGalleryImage={setGalleryImage}
+                    // galleryImage={galleryImage}
                     />
                   </DndProvider>
                 );

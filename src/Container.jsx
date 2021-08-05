@@ -11,33 +11,22 @@ import { MeTreeContext } from "./MeTree";
 export default function Container({ hideSourceOnDrag }) {
   const { state, setState } = useContext(MeTreeContext);
   console.log("STATE in container", state);
-  // when you move box the coords update
-  // const moveBox = useCallback(
-  //   (id, left, top) => {
-  //     dispatch({
-  //       type: "update_boxes",
-  //       newBoxes: update(state.data.tree.boxes, {
-  //         [id]: {
-  //           $merge: { left, top },
-  //         },
-  //       }),
-  //     });
-  //   },
-  //   [state.data.tree.boxes, dispatch]
-  // );
 
-  const moveBox = useCallback((id, left, top) => {
-    console.log("BEFORE :state.data.tree.boxes", state.data.tree.boxes);
-    setState({
-      tree: {
-        boxes: update(state.data.tree.boxes, {
-          [id]: {
-            $merge: { left, top },
-          },
-        }),
-      },
-    });
-  },[(state.data.tree.boxes, setState)]);
+  const moveBox = useCallback(
+    (id, left, top) => {
+      console.log("move box :state.data.tree.boxes", state.data.tree.boxes);
+      setState({
+        tree: {
+          boxes: update(state.data.tree.boxes, {
+            [id]: {
+              $merge: { left, top },
+            },
+          }),
+        },
+      });
+    },
+    [(state.data.tree.boxes, setState)]
+  );
 
   console.log("CONTAINER: state.data.tree.boxes ", state.data.tree.boxes);
 

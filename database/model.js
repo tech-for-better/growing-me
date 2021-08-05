@@ -160,22 +160,22 @@ export async function setWhoAroundData(whoAround) {
   }
 }
 
-// export async function setGrowingData(growing) {
-//   console.log("set growing data", growing);
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     growing: [growing],
-//   };
+export async function setGrowingData(growing) {
+  console.log("set growing data", growing);
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    growing: [growing],
+  };
 
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
+  let { error } = await supabase.from("me_tree").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
 
-//   if (error) {
-//     throw error;
-//   }
-// }
+  if (error) {
+    throw error;
+  }
+}
 
 export async function setGrowingLeftData(growing_left) {
   console.log("set growing left data", growing_left);
@@ -199,7 +199,7 @@ export async function setGrowingTopData(growing_top) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    growing_top
+    growing_top,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -215,7 +215,7 @@ export async function setBoxesData(boxes) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-   boxes
+    boxes,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -248,7 +248,7 @@ export async function setWhoAroundLeftData(who_around_left) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    who_around_left
+    who_around_left,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -264,8 +264,7 @@ export async function setWhoAroundTopData(who_around_top) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    who_around_top
-
+    who_around_top,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -391,9 +390,9 @@ export async function setData(data) {
   if (data.tree.boxes) {
     setBoxesData(data.tree.boxes);
   }
-  if (data.gallery.images) {
-    console.log("if statemenmt for background in model");
-    setGalleryData(images);
+  if (data.gallery.images.length > 0) {
+    console.log("if statemenmt for images in model");
+    setGalleryData(data.gallery.images);
   }
   if (data.profile.adult_name) {
     setProfileData(data.profile.adult_name);

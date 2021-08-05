@@ -71,7 +71,7 @@ export async function update(changedData) {
   // just has to return a promise (resolved value isn't used)
 
   console.log("changedData in update fn in MeTree comp:", changedData);
-  await setData(changedData);
+  return await setData(changedData);
   console.log("it worked");
 }
 

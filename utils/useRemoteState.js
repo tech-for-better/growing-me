@@ -1,4 +1,5 @@
 import { useReducer, useRef, useEffect } from "react";
+import _ from "lodash";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -8,7 +9,7 @@ function reducer(state, action) {
     }
     // When LOAD finishes fetching initial remote data
     case "RESOLVE_LOAD": {
-      console.log('RESOLVE_LOAD data:action.data',action.data)
+      console.log("RESOLVE_LOAD data:action.data", action.data);
       return { status: "success", data: action.data, error: null };
     }
     // When `setState` is called
@@ -21,7 +22,12 @@ function reducer(state, action) {
       }
 
       // merge new key/val into data
-      const data = { ...state.data, ...action.data };
+      // const data = { ...state.data, ...action.data };
+      // const data = Object.assign(state.data, action.data);
+      const data = _.merge(state.data, action.data);
+      console.log("USE_REMOTE UPDATE data", data);
+      console.log("USE_REMOTE UPDATE state", state);
+      console.log("USE_REMOTE UPDATE action", action);
       return {
         status: "updating",
         data, // update data immediately
@@ -58,7 +64,7 @@ const initialState = {
       growing_left: 800,
       growing_top: 20,
       who_around_left: 100,
-      who_around_top:20,
+      who_around_top: 20,
       boxes: {
         a: { top: 0, left: 2, isGrowing: true },
         b: { top: 1, left: 3, isGrowing: false },
@@ -111,10 +117,9 @@ export default function useRemoteState({ load, update }) {
     }
     console.log("STATE in end runEffects", state);
     runEffects();
-    console.log("STATE in end runEffects", state);// state changes here
+    console.log("STATE in end runEffects", state); // state changes here
     // stop any further state updates if this effect is cleaned up
     return () => (cancel = true);
-
   }, [state.status, load, update]);
 
   const setState = (updater) => {
@@ -123,6 +128,6 @@ export default function useRemoteState({ load, update }) {
     dispatch({ type: "UPDATE", data });
   };
 
-  console.log('STATE end of useRemoteState fn', state);
+  console.log("STATE end of useRemoteState fn", state);
   return [state, setState];
 }
