@@ -13,8 +13,14 @@ Tech For Better project by FAC21
 
 - [Growing Me](#growing-me)
 - [Table of contents](#table-of-contents)
+- [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Footer](#footer)
+
+# Tech Stack
+
+![tech stack: react, node, supabase, postgreSQL, styled-components, vite](https://user-images.githubusercontent.com/31373245/128335828-2acb94c3-7dc7-49f9-b0aa-26a0cebddfdf.png)
+
 
 # Installation
 
