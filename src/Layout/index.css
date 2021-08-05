@@ -8,7 +8,8 @@ body {
   --custom-panel-color: #222;
   --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
   --custom-color: #ecf0d9;
-  --custom-color-brand: #24b47e;
+  /* --custom-color-brand: #96bc39; */
+  --custom-color-brand: #779321;
   --custom-color-secondary: #384b4a;
   --custom-color-tertiary: #153138;
   --custom-border: 1px solid #333;
@@ -231,7 +232,9 @@ input {
   border: var(--custom-border);
   padding: 8px;
   font-size: 1.5rem;
-  background-color: #b1bd7a;
+  /* background-color: #b1bd7a; */
+  /* background-color: #c0d788; */
+  background-color: #d5e4b0;
   color: var(--custom-bg-color);
 }
 
@@ -337,10 +340,10 @@ font-size: 3rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
+  transition: all 0.6s ease 0s;
 }
 
 button.primary,
@@ -532,4 +535,20 @@ font-family: var(--main-font);
 }
 .rokkitt-font{
   font-family: var(--secondary-font);
+}
+
+.max-width{
+  max-width: 150px;
+}
+
+.margin-left{
+  margin-left:2rem;
+}
+
+/* .width{
+  max-width: ;
+} */
+.magic-link{
+    background-color: #d19f00 !important;
+    border: none!important;
 }

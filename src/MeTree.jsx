@@ -257,16 +257,26 @@ export function MeTree() {
             </MeTreeContainer>
 
             {visible ? <Palette type={paletteOption} /> : ""}
+
+            <div className="flex row flex-end margin-top">
+              <div>
+                <Link to="/content">
+                  <button className="button primary block">
+                    Ready to play?
+                  </button>
+                </Link>
+              </div>
+            </div>
             {/* </MeTreeContext.Provider> */}
           </div>
         </div>
       </div>
 
-      <footer className="flex flex-end padding-sides">
+      {/* <footer className="flex flex-end padding-sides">
         <Link to="/content">
           <button className="button primary block">Ready to play?</button>
         </Link>
-      </footer>
+      </footer> */}
     </>
   );
 }

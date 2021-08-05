@@ -208,9 +208,9 @@ export default function AdultProfile() {
             </label>
           </div>
         </div>
-        <div>
+        <div className="flex flex.row flex-center">
           <button
-            className="button block primary"
+            className="button block primary max-width"
             onClick={() =>
               updateProfile({
                 adult_name,
