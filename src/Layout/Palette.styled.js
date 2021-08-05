@@ -24,6 +24,7 @@ export const PaletteBtn = styled.button`
   background: #fff8e2;
   height: 100%;
   width: 100%;
+  
   &:hover {
     background-color: #fee79b;
     transform: scale(1.05);

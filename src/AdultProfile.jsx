@@ -155,7 +155,7 @@ export default function AdultProfile() {
             </div>
           </div>
         </div>
-        <p>Choose your avatar</p>
+        <h2>Choose your avatar</h2>
         <div className="grid avatar-selection">
           <div className="flex center">
             <input

@@ -14,6 +14,8 @@ body {
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
   --custom-spacing: 5px;
+  --main-font:'Nanum Pen Script', cursive;
+  --secondary-font:'Rokkitt', serif;
 
   /* COLOURS
 d6f7d - darkblue
@@ -45,8 +47,8 @@ acabb3 - grey
   color: var(--custom-color); /* text colour - palegreen */
   color: #384b4a; /* text colour - dark olive green */
   /* font-family: var(--custom-font-family); */
-    font-family: 'Nanum Pen Script', cursive;
-  /* font-family: 'Rokkitt', serif; */
+  font-family: var(--main-font);
+  /* font-family: var(--secondary-font); */
   /* font-size: 1.3rem; */
   box-sizing: border-box;
 }
@@ -511,7 +513,7 @@ button.primary,
 }
 
 p{
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .pad-1{
   padding: 1rem;
@@ -523,4 +525,11 @@ p{
 }
 .height{
   height:75px;
+}
+
+.nanum-font{
+font-family: var(--main-font);
+}
+.rokkitt-font{
+  font-family: var(--secondary-font);
 }

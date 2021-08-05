@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const LoginTree = styled.div`
-  background-image: url("/login.svg");
+  // background-image: url("/login.svg");
+  background-image: url("/login_without_logo.svg");
   background-size: cover;
   background-position: center;
   height: 100vh;

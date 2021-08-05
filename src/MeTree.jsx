@@ -235,13 +235,13 @@ export function MeTree() {
 
         <div className="flex column center text-center items-center flex-grow">
           {" "}
-          <h1 className="margin-none">
+          <h1 className="margin-none txt-xlg">
             {state.data.profile.adult_name
               ? "Welcome back " + state.data.profile.adult_name + " and "
               : "Welcome back "}
             {state.data.profile.child_name ?? "friend"}!
           </h1>
-          <h2 className="narrow">
+          <h2 className="narrow rokkitt-font">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>

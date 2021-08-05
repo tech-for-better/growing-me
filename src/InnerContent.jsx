@@ -21,13 +21,16 @@ export default function InnerContent() {
 
   return (
     <div className="flex flex-center space-between narrow center column ">
-      <h1 className="text-center margin-top">{state.current_section}</h1>
+      <h1 className="text-center margin-top txt-xlg">
+        {state.current_section}
+      </h1>
       <h2
-        className="text-center"
-        style={{ color: `${textColorToSubSectionMap[state.current_subsection]}`}}
-
+        className="text-center txt-lg rokkitt-font"
+        style={{
+          color: `${textColorToSubSectionMap[state.current_subsection]}`,
+        }}
       >
-        Welcome to the {`${state.current_subsection}`.toUpperCase()} Section {" "}
+        Welcome to the {`${state.current_subsection}`.toUpperCase()} Section{" "}
       </h2>
       {/* <div> */}
       <Carousel showThumbs={false}>
@@ -47,15 +50,14 @@ export default function InnerContent() {
                   />
                 </div>
                 <div
-                  className="txt-background"
+                  className="txt-background "
                   style={{
-
                     backgroundColor: `${
                       textColorToSubSectionMap[state.current_subsection]
-                    }`
+                    }`,
                   }}
                 >
-                  <p className="white">
+                  <p className="white txt-lg rokkitt-font">
                     {
                       ContentData[state.current_section][
                         state.current_subsection
