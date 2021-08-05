@@ -7,6 +7,7 @@ import {
   createContext,
   createRef,
   useRef,
+  useContext,
 } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -56,28 +57,29 @@ import Gallery from "./Gallery";
 import { toPng } from "html-to-image";
 import { getGalleryData, getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
+import { MeTreeContext } from "./App";
 
-export const MeTreeContext = createContext();
+// export const MeTreeContext = createContext();
 
-export async function load() {
-  console.log("load - about to get all data");
-  const data = await getAllData();
-  console.log("load get all data", data);
-  return data;
-}
+// export async function load() {
+//   console.log("load - about to get all data");
+//   const data = await getAllData();
+//   console.log("load get all data", data);
+//   return data;
+// }
 
-export async function update(changedData) {
-  // TODO: update the right bit of the DB using the `changedData` object
-  // just has to return a promise (resolved value isn't used)
+// export async function update(changedData) {
+//   // TODO: update the right bit of the DB using the `changedData` object
+//   // just has to return a promise (resolved value isn't used)
 
-  console.log("changedData in update fn in MeTree comp:", changedData);
-  return await setData(changedData);
-  console.log("it worked");
-}
+//   console.log("changedData in update fn in MeTree comp:", changedData);
+//   return await setData(changedData);
+// }
 
 // MeTree Component
 export function MeTree() {
-  const [state, setState] = useRemoteState({ load, update });
+  // const [state, setState] = useRemoteState({ load, update });
+  const { state, setState } = useContext(MeTreeContext);
   console.log("METREE: state", state);
 
   const [visible, setVisible] = useState(false);
@@ -234,18 +236,18 @@ export function MeTree() {
             like to change anything?
           </h2>
           <div ref={ref}>
-            <MeTreeContext.Provider value={{ state, setState }}>
-              <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage
-                  src={state.data.tree.treeLocation ?? MeTreeGarden}
-                  alt=""
-                />
-                <MeTreeBackground src={state.data.tree.background} alt="" />
-              </MeTreeContainer>
+            {/* <MeTreeContext.Provider value={{ state, setState }}> */}
+            <MeTreeContainer className="relative">
+              <Container hideSourceOnDrag={hideSourceOnDrag} />
+              <MeTreeImage
+                src={state.data.tree.treeLocation ?? MeTreeGarden}
+                alt=""
+              />
+              <MeTreeBackground src={state.data.tree.background} alt="" />
+            </MeTreeContainer>
 
-              {visible ? <Palette type={paletteOption} /> : ""}
-            </MeTreeContext.Provider>
+            {visible ? <Palette type={paletteOption} /> : ""}
+            {/* </MeTreeContext.Provider> */}
           </div>
         </div>
       </div>

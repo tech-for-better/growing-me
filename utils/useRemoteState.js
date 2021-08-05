@@ -36,6 +36,7 @@ function reducer(state, action) {
     }
     // When UPDATE finishes updating remote data
     case "RESOLVE_UPDATE": {
+      console.log("RESOLVE_UPDATE", state);
       return {
         status: "success",
         data: state.data, // keep data from before
@@ -55,10 +56,10 @@ const initialState = {
   status: "loading",
   data: {
     tree: {
-      treeLocation: null,
+      tree_location: null,
       background: null,
       growing: null,
-      whoAround: null,
+      who_around: null,
       // growing_coords: { left: 80, top: 20 },
       // whoAround_coords: { left: 100, top: 20 },
       growing_left: 800,

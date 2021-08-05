@@ -32,10 +32,10 @@ import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 
-import { MeTreeContext } from "./MeTree";
+// import { MeTreeContext } from "./MeTree";
+import { MeTreeContext } from "./App";
 
 export default function Palette({ type }) {
-
   const { state, setState } = useContext(MeTreeContext);
 
   let option = type;
@@ -90,11 +90,11 @@ export default function Palette({ type }) {
     let dispatchType = imgToDispatchTypeMapping[imageFileName];
     switch (dispatchType) {
       case "update_treeLocation":
-         setState({
-           tree: {
-             treeLocation: event.target.src,
-           },
-         });
+        setState({
+          tree: {
+            treeLocation: event.target.src,
+          },
+        });
         break;
       case "update_background":
         setState({
@@ -115,10 +115,9 @@ export default function Palette({ type }) {
           tree: {
             whoAround: event.target.src,
           },
-          });
+        });
         break;
     }
-
   }
 
   // useEffect(() => {
@@ -206,7 +205,9 @@ export default function Palette({ type }) {
                 onClick={(event) => handleClick(event, image)}
               >
                 {" "}
-                {state.status === "updating" ? "Updating your tree..." : "Click to update!"}
+                {state.status === "updating"
+                  ? "Updating your tree..."
+                  : "Click to update!"}
                 <PaletteImg key={image} src={image} alt={image} />
               </PaletteBtn>
             </>

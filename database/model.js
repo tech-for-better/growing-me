@@ -128,11 +128,11 @@ export async function setBackgroundData(background) {
   }
 }
 
-export async function setTreeLocationData(treeLocation) {
+export async function setTreeLocationData(tree_location) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    tree_location: treeLocation,
+    tree_location,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -144,11 +144,11 @@ export async function setTreeLocationData(treeLocation) {
   }
 }
 
-export async function setWhoAroundData(whoAround) {
+export async function setWhoAroundData(who_around) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    who_around: [whoAround],
+    who_around: [who_around],
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -356,77 +356,103 @@ export async function getAllData() {
 export async function setData(data) {
   console.log("setData - data", data);
 
-  if (data.tree.treeLocation) {
-    setTreeLocationData(data.tree.treeLocation);
-  }
-  if (data.tree.growing) {
-    setGrowingData(data.tree.growing);
-  }
-  if (data.tree.whoAround) {
-    setWhoAroundData(data.tree.whoAround);
-  }
-  if (data.tree.background) {
-    console.log("if statemenmt for background in model");
-    setBackgroundData(data.tree.background);
-  }
-  // if (data.tree.growing_coords) {
-  //   setGrowingCoordsData(data.tree.growing_coords);
-  // }
-  if (data.tree.growing_left) {
-    setGrowingLeftData(data.tree.growing_left);
-  }
-  if (data.tree.growing_top) {
-    setGrowingTopData(data.tree.growing_top);
-  }
-  // if (data.tree.whoAround_coords) {
-  //   setWhoAroundCoordsData(data.tree.whoAround_coords);
-  // }
-  if (data.tree.who_around_left) {
-    setWhoAroundLeftData(data.tree.who_around_left);
-  }
-  if (data.tree.who_around_top) {
-    setWhoAroundTopData(data.tree.who_around_top);
-  }
-  if (data.tree.boxes) {
-    setBoxesData(data.tree.boxes);
-  }
-  if (data.gallery.images.length > 0) {
-    console.log("if statemenmt for images in model");
-    setGalleryData(data.gallery.images);
-  }
-  if (data.profile.adult_name) {
-    setProfileData(data.profile.adult_name);
-  }
-  if (data.profile.avatar_url) {
-    setProfileData(data.profile.avatar_url);
-  }
-  if (data.profile.child_name) {
-    setProfileData(data.profile.child_name);
-  }
-  if (data.profile.child_avatar) {
-    setProfileData(data.profile.child_avatar);
-  }
+  let dataArray = Object.values(data);
+  console.log("dataArray", dataArray);
 
-  // const treeDataSaved = setTreeData(
-  //   data.tree.background,
-  //   data.tree.treeLocation,
-  //   data.tree.whoAround,
-  //   data.tree.growing,
-  //   data.tree.growing_coords,
-  //   data.tree.whoAround_coords
-  // );
-  // const galleryDataSaved = setGalleryData(data.gallery.images);
-  // const profileDataSaved = setProfileData(
-  //   data.profile.adult_name,
-  //   data.profile.avatar_url,
-  //   data.profile.child_name,
-  //   data.profile.child_avatar
-  // );
-
-  // return
-  // await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved]).catch(
-  //   (error) => {
-  //     console.error("error!!", error, error.message);
-  //   }
-  // );
+  let newArr = dataArray.map((optionChange) => {
+    console.log(optionChange);
+    console.log("optionChange", Object.keys(optionChange));
+    let changingValue = Object.keys(optionChange)[0];
+    if (changingValue === "images") {
+      return setGalleryData(data.gallery.images);
+    } else if (changingValue === "tree_location") {
+      return setTreeLocationData(data.tree.tree_location);
+    } else if (changingValue === "growing") {
+      return setGrowingData(data.tree.growing);
+    } else if (changingValue === "who_around") {
+      return setWhoAroundData(data.tree.who_around);
+    } else if (changingValue === "background") {
+      return setBackgroundData(data.tree.background);
+    } else if (changingValue === "growing_left") {
+      return setGrowingLeftData(data.tree.growing_left);
+    } else if (changingValue === "growing_top") {
+      return setGrowingTopData(data.tree.growing_top);
+    } else if (changingValue === "who_around_left") {
+      return setWhoAroundLeftData(data.tree.who_around_left);
+    } else if (changingValue === "who_around_top") {
+      return setWhoAroundTopData(data.tree.who_around_top);
+    } else if (changingValue === "boxes") {
+      return setBoxesData(data.tree.boxes);
+    } else if (changingValue === "adult_name") {
+      return setProfileData(data.profile.adult_name);
+    } else if (changingValue === "avatar_url") {
+      return setProfileData(data.profile.avatar_url);
+    } else if (changingValue === "child_name") {
+      return setProfileData(data.profile.child_name);
+    } else if (changingValue === "child_avatar") {
+      return setProfileData(data.profile.child_avatar);
+    }
+  });
 }
+// console.log("HIIIII", newArr);
+
+// [{ background: df, treeLocations: sfdsd }, { adult_name: sdfsd }]
+
+// if (data.gallery.images) {
+//   console.log("if statemenmt for images in model");
+//   setGalleryData(data.gallery.images);
+//   return;
+// }
+// if (data.tree.treeLocation) {
+//   setTreeLocationData(data.tree.treeLocation);
+//   return;
+// }
+// if (data.tree.growing) {
+//   setGrowingData(data.tree.growing);
+//   return;
+// }
+// if (data.tree.who_around) {
+//   setWhoAroundData(data.tree.who_around);
+//   return;
+// }
+// if (data.tree.background) {
+//   console.log("if statemenmt for background in model");
+//   setBackgroundData(data.tree.background);
+//   return;
+// }
+// if (data.tree.growing_left) {
+//   setGrowingLeftData(data.tree.growing_left);
+//   return;
+// }
+// if (data.tree.growing_top) {
+//   setGrowingTopData(data.tree.growing_top);
+//   return;
+// }
+// if (data.tree.who_around_left) {
+//   setWhoAroundLeftData(data.tree.who_around_left);
+//   return;
+// }
+// if (data.tree.who_around_top) {
+//   setWhoAroundTopData(data.tree.who_around_top);
+//   return;
+// }
+// if (data.tree.boxes) {
+//   setBoxesData(data.tree.boxes);
+//   return;
+// }
+// if (data.profile.adult_name) {
+//   setProfileData(data.profile.adult_name);
+//   return;
+// }
+// if (data.profile.avatar_url) {
+//   setProfileData(data.profile.avatar_url);
+//   return;
+// }
+// if (data.profile.child_name) {
+//   setProfileData(data.profile.child_name);
+//   return;
+// }
+// if (data.profile.child_avatar) {
+//   setProfileData(data.profile.child_avatar);
+//   return;
+// }

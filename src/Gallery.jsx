@@ -6,31 +6,10 @@ import NavMenu from "./components/NavMenu";
 import { getGalleryData } from "../database/model";
 
 export default function Gallery({ state, setState }) {
-
-  // async function getImages() {
-  //   try {
-  //     let data = await getGalleryData();
-
-  //     if (data) {
-  //       console.log("gallerydata", data);
-  //       setGalleryImage((prevState) => [...prevState, ...data.images]);
-  //     }
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   } finally {
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getImages();
-  // }, []); // only runs on first render
-
   console.log("in gallery ", state.data.gallery.images);
-  // return (
-  //   <div>
-  //     <NavMenu />
-  //     <div>
-  if (state.data.gallery.images.length === 0) return <div>Loading images...</div>;
+
+  if (state.data.gallery.images.length === 0)
+    return <div>Loading images...</div>;
   return (
     <>
       <NavMenu />

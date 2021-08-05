@@ -6,7 +6,8 @@ import { ItemTypes } from "./ItemTypes";
 import Box from "./Box";
 import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
-import { MeTreeContext } from "./MeTree";
+// import { MeTreeContext } from "./MeTree";
+import { MeTreeContext } from "./App";
 
 export default function Container({ hideSourceOnDrag }) {
   const { state, setState } = useContext(MeTreeContext);
