@@ -27,7 +27,7 @@ export default function InnerContent() {
         style={{ color: `${textColorToSubSectionMap[state.current_subsection]}`}}
 
       >
-        These are the {`${state.current_subsection}`.toUpperCase()} activities.{" "}
+        Welcome to the {`${state.current_subsection}`.toUpperCase()} Section {" "}
       </h2>
       {/* <div> */}
       <Carousel showThumbs={false}>
