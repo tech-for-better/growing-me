@@ -54,7 +54,7 @@ import Container from "./Container";
 import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
-import { getGalleryData, getAllData , setData} from "../database/model";
+import { getGalleryData, getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
 
 export const MeTreeContext = createContext();
@@ -77,27 +77,33 @@ export async function update(changedData) {
 
 // MeTree Component
 export function MeTree() {
-
   const [state, setState] = useRemoteState({ load, update });
   console.log("METREE: state", state);
 
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
-  if (state.status === "loading") return <div>Initialising...</div>;
-  if (state.status === "error") return <div>Something went wrong!</div>;
+  // react dnd
+  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
+  const toggle = useCallback(
+    () => setHideSourceOnDrag(!hideSourceOnDrag),
+    [hideSourceOnDrag]
+  );
 
-    //html2img
-  const ref = useRef<HTMLDivElement>(null);
+  //html2img
+  const ref = useRef(null);
+  console.log("ref variable", ref);
 
-  const saveToGallery = useCallback(() => {
+  const saveToGallery = () => {
     if (ref.current === null) {
+      console.log("ref variable inside if statement", ref.current);
       return;
     }
+    console.log("ref variable after if statement", ref);
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
-        console.log("galleryImage in metree before ", galleryImage);
+        console.log("dataUrl in saveToGallery ", dataUrl);
         const link = document.createElement("a");
         link.download = "my-me-tree.png";
         link.href = dataUrl;
@@ -106,17 +112,23 @@ export function MeTree() {
 
         setState({
           gallery: {
-            images: [...state.gallery.images, dataUrl],
-          }
-         });
+            images: [...state.data.gallery.images, dataUrl],
+          },
+        });
         // setGalleryImage((prevState) => [...prevState, dataUrl]);
-        console.log("data url", typeof dataUrl, dataUrl);
-        console.log("galleryImage in metree after ", galleryImage);
+
+        console.log(
+          "state.gallery.images after setState ",
+          state.data.gallery.images
+        );
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [ref]);
+  };
+
+  if (state.status === "loading") return <div>Initialising...</div>;
+  if (state.status === "error") return <div>Something went wrong!</div>;
 
   // export async function load() {
   //   console.log("load - about to get all data");
@@ -179,15 +191,6 @@ export function MeTree() {
     "oval_blob.svg": ovalBlob,
   };
 
-  // react dnd
-  // const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
-  // const toggle = useCallback(
-  //   () => setHideSourceOnDrag(!hideSourceOnDrag),
-  //   [hideSourceOnDrag]
-  // );
-
-
-
   return (
     <>
       <div className="flex space-between padding-sides">
@@ -230,22 +233,20 @@ export function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>
-          {/* <div ref={ref}> */}
+          <div ref={ref}>
+            <MeTreeContext.Provider value={{ state, setState }}>
+              <MeTreeContainer className="relative">
+                <Container hideSourceOnDrag={hideSourceOnDrag} />
+                <MeTreeImage
+                  src={state.data.tree.treeLocation ?? MeTreeGarden}
+                  alt=""
+                />
+                <MeTreeBackground src={state.data.tree.background} alt="" />
+              </MeTreeContainer>
 
-          <MeTreeContext.Provider value={{ state, setState }}>
-            <MeTreeContainer className="relative">
-              {/* <Container hideSourceOnDrag={hideSourceOnDrag} /> */}
-              <Container />
-              <MeTreeImage
-                src={state.data.tree.treeLocation ?? MeTreeGarden}
-                alt=""
-              />
-              <MeTreeBackground src={state.data.tree.background} alt="" />
-            </MeTreeContainer>
-
-            {visible ? <Palette type={paletteOption} /> : ""}
-          </MeTreeContext.Provider>
-          {/* </div> */}
+              {visible ? <Palette type={paletteOption} /> : ""}
+            </MeTreeContext.Provider>
+          </div>
         </div>
       </div>
 

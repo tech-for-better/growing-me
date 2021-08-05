@@ -25,12 +25,12 @@ export default function Gallery({ state, setState }) {
   //   getImages();
   // }, []); // only runs on first render
 
-  console.log("in gallery ", state.gallery.images);
+  console.log("in gallery ", state.data.gallery.images);
   // return (
   //   <div>
   //     <NavMenu />
   //     <div>
-  if (state.gallery.images.length === 0) return <div>Loading images...</div>;
+  if (state.data.gallery.images.length === 0) return <div>Loading images...</div>;
   return (
     <>
       <NavMenu />
@@ -40,7 +40,7 @@ export default function Gallery({ state, setState }) {
       </div>
       <div className="flex ">
         <ul className="li-none">
-          {state.gallery.images.map((image) => (
+          {state.data.gallery.images.map((image) => (
             <li>
               <img src={image} alt="images" />
             </li>

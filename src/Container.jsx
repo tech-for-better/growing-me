@@ -9,26 +9,38 @@ import { DndContainer } from "./Layout/DndContainer.styled";
 import { MeTreeContext } from "./MeTree";
 
 export default function Container({ hideSourceOnDrag }) {
-  const { state, dispatch } = useContext(MeTreeContext);
-
+  const { state, setState } = useContext(MeTreeContext);
+  console.log("STATE in container", state);
   // when you move box the coords update
-  const moveBox = useCallback(
-    (id, left, top) => {
-      dispatch({
-        type: "update_boxes",
-        newBoxes: update(state.data.tree.boxes, {
+  // const moveBox = useCallback(
+  //   (id, left, top) => {
+  //     dispatch({
+  //       type: "update_boxes",
+  //       newBoxes: update(state.data.tree.boxes, {
+  //         [id]: {
+  //           $merge: { left, top },
+  //         },
+  //       }),
+  //     });
+  //   },
+  //   [state.data.tree.boxes, dispatch]
+  // );
+
+  const moveBox = useCallback((id, left, top) => {
+    console.log("BEFORE :state.data.tree.boxes", state.data.tree.boxes);
+    setState({
+      tree: {
+        boxes: update(state.data.tree.boxes, {
           [id]: {
             $merge: { left, top },
           },
         }),
-      });
-    },
-    [state.data.tree.boxes, dispatch]
-  );
+      },
+    });
+  },[(state.data.tree.boxes, setState)]);
 
   console.log("CONTAINER: state.data.tree.boxes ", state.data.tree.boxes);
 
-  // TODO: what is happening here ?
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.BOX,
@@ -45,7 +57,7 @@ export default function Container({ hideSourceOnDrag }) {
 
   return (
     <DndContainer ref={drop}>
-      {/* {Object.keys(state.data.tree.boxes).map((key) => {
+      {Object.keys(state.data.tree.boxes).map((key) => {
         console.log("CONTAINER: in object.key", state.data.tree.boxes); //WHY SIX TIMES? - NOW TWICE
         const { left, top, isGrowing } = state.data.tree.boxes[key];
         return (
@@ -60,7 +72,7 @@ export default function Container({ hideSourceOnDrag }) {
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );
-      })} */}
+      })}
     </DndContainer>
   );
 }

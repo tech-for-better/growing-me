@@ -7,7 +7,7 @@ export async function getMeTree() {
   let { data, error, status } = await supabase
     .from("me_tree")
     .select(
-      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left`
+      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left,boxes`
     )
     .eq("id", user.id)
     .single();
@@ -25,7 +25,8 @@ export async function setTreeData(
   whoAround,
   growing,
   growing_coords,
-  whoAround_coords
+  whoAround_coords,
+  boxes
 ) {
   const user = supabase.auth.user();
   console.log("model.setTreeData");
@@ -92,10 +93,7 @@ export async function setAllProfileData({
   }
 }
 
-export async function setProfileData({
-  single_data,
-
-}) {
+export async function setProfileData({ single_data }) {
   const user = supabase.auth.user();
 
   const updates = {
@@ -162,12 +160,29 @@ export async function setWhoAroundData(whoAround) {
   }
 }
 
-export async function setGrowingData(growing) {
-  console.log("set growing data", growing);
+// export async function setGrowingData(growing) {
+//   console.log("set growing data", growing);
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     growing: [growing],
+//   };
+
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
+
+//   if (error) {
+//     throw error;
+//   }
+// }
+
+export async function setGrowingLeftData(growing_left) {
+  console.log("set growing left data", growing_left);
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    growing: [growing],
+    growing_left,
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -179,12 +194,12 @@ export async function setGrowingData(growing) {
   }
 }
 
-export async function setGrowingCoordsData(growing_coords) {
+export async function setGrowingTopData(growing_top) {
+  console.log("set growing top data", growing_top);
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    growing_left: growing_coords.left,
-    growing_top: growing_coords.top,
+    growing_top
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -196,12 +211,61 @@ export async function setGrowingCoordsData(growing_coords) {
   }
 }
 
-export async function setWhoAroundCoordsData(whoAround_coords) {
+export async function setBoxesData(boxes) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    who_around_top: whoAround_coords.top,
-    who_around_left: whoAround_coords.left,
+   boxes
+  };
+
+  let { error } = await supabase.from("me_tree").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+// export async function setWhoAroundCoordsData(whoAround_coords) {
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     who_around_top: whoAround_coords.top,
+//     who_around_left: whoAround_coords.left,
+//   };
+
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
+
+//   if (error) {
+//     throw error;
+//   }
+// }
+
+export async function setWhoAroundLeftData(who_around_left) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    who_around_left
+  };
+
+  let { error } = await supabase.from("me_tree").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function setWhoAroundTopData(who_around_top) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    who_around_top
+
   };
 
   let { error } = await supabase.from("me_tree").upsert(updates, {
@@ -303,14 +367,29 @@ export async function setData(data) {
     setWhoAroundData(data.tree.whoAround);
   }
   if (data.tree.background) {
-    console.log('if statemenmt for background in model')
+    console.log("if statemenmt for background in model");
     setBackgroundData(data.tree.background);
   }
-  if (data.tree.growing_coords) {
-    setGrowingCoordsData(data.tree.growing_coords);
+  // if (data.tree.growing_coords) {
+  //   setGrowingCoordsData(data.tree.growing_coords);
+  // }
+  if (data.tree.growing_left) {
+    setGrowingLeftData(data.tree.growing_left);
   }
-  if (data.tree.whoAround_coords) {
-    setWhoAroundCoordsData(data.tree.whoAround_coords);
+  if (data.tree.growing_top) {
+    setGrowingTopData(data.tree.growing_top);
+  }
+  // if (data.tree.whoAround_coords) {
+  //   setWhoAroundCoordsData(data.tree.whoAround_coords);
+  // }
+  if (data.tree.who_around_left) {
+    setWhoAroundLeftData(data.tree.who_around_left);
+  }
+  if (data.tree.who_around_top) {
+    setWhoAroundTopData(data.tree.who_around_top);
+  }
+  if (data.tree.boxes) {
+    setBoxesData(data.tree.boxes);
   }
   if (data.gallery.images) {
     console.log("if statemenmt for background in model");

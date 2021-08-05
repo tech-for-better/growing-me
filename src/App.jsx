@@ -27,6 +27,7 @@ import { load, update } from './MeTree'
 export default function Home() {
   const [session, setSession] = useState(null);
   const [state, setState] = useRemoteState({ load, update });
+  console.log('STATE in app', state)
 
   // const [galleryImage, setGalleryImage] = useState([]);
   // console.log("galleryImage in app", galleryImage);
