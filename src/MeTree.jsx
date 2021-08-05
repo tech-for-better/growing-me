@@ -59,8 +59,24 @@ import useRemoteState from "../utils/useRemoteState";
 
 export const MeTreeContext = createContext();
 
+export async function load() {
+  console.log("load - about to get all data");
+  const data = await getAllData();
+  console.log("load get all data", data);
+  return data;
+}
+
+export async function update(changedData) {
+  // TODO: update the right bit of the DB using the `changedData` object
+  // just has to return a promise (resolved value isn't used)
+
+  console.log("changedData in update fn in MeTree comp:", changedData);
+  await setData(changedData);
+  console.log("it worked");
+}
+
 // MeTree Component
-export function MeTree({ setGalleryImage, galleryImage }) {
+export function MeTree() {
 
   const [state, setState] = useRemoteState({ load, update });
   console.log("METREE: state", state);
@@ -71,22 +87,61 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   if (state.status === "loading") return <div>Initialising...</div>;
   if (state.status === "error") return <div>Something went wrong!</div>;
 
-  async function load() {
-    console.log("load - about to get all data");
-    const data = await getAllData();
-    console.log("load get all data", data);
-    return data;
-  }
+    //html2img
+  const ref = useRef<HTMLDivElement>(null);
 
-  async function update(changedData) {
-    // TODO: update the right bit of the DB using the `changedData` object
-    // just has to return a promise (resolved value isn't used)
+  const saveToGallery = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
 
-    console.log("update fn changedData in MeTree comp", changedData);
-    const updatedData = await setData(changedData);
-    console.log('update fn updatedDara', updatedData)
-    return updatedData;
-  }
+    toPng(ref.current, { cacheBust: true })
+      .then(async (dataUrl) => {
+        console.log("galleryImage in metree before ", galleryImage);
+        const link = document.createElement("a");
+        link.download = "my-me-tree.png";
+        link.href = dataUrl;
+        link.click();
+        // await setGalleryData([...galleryImage, dataUrl]);
+
+        setState({
+          gallery: {
+            images: [...state.gallery.images, dataUrl],
+          }
+         });
+        // setGalleryImage((prevState) => [...prevState, dataUrl]);
+        console.log("data url", typeof dataUrl, dataUrl);
+        console.log("galleryImage in metree after ", galleryImage);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ref]);
+
+  // export async function load() {
+  //   console.log("load - about to get all data");
+  //   const data = await getAllData();
+  //   console.log("load get all data", data);
+  //   return data;
+  // }
+
+  // export async function update(changedData) {
+  //   // TODO: update the right bit of the DB using the `changedData` object
+  //   // just has to return a promise (resolved value isn't used)
+
+  //   console.log("changedData in update fn in MeTree comp:", changedData);
+  //   await setData(changedData);
+  //   console.log('it worked' )
+
+  // }
+
+  // useEffect(() => {
+  //   if (state.status === "updating") {
+  //     updateDataSomehow().then((data) => dispatch({ type: "success", data }));
+  //   }
+  //   }, [status]);
+
+  // <button onClick={() = dispatch({ type: "load" })}>Submit</button>
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -131,30 +186,7 @@ export function MeTree({ setGalleryImage, galleryImage }) {
   //   [hideSourceOnDrag]
   // );
 
-  // html2img
-  // const ref = useRef(null);
-  // const saveToGallery = useCallback(() => {
-  //   if (ref.current === null) {
-  //     return;
-  //   }
 
-  //   toPng(ref.current, { cacheBust: true })
-  //     .then(async (dataUrl) => {
-  //       console.log("galleryImage in metree bwfore ", galleryImage);
-  //       const link = document.createElement("a");
-  //       link.download = "my-me-tree.png";
-  //       link.href = dataUrl;
-  //       link.click();
-  //       await setGalleryData([...galleryImage, dataUrl]);
-
-  //       setGalleryImage((prevState) => [...prevState, dataUrl]);
-  //       console.log("data url", typeof dataUrl, dataUrl);
-  //       console.log("galleryImage in metree after ", galleryImage);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [ref]);
 
   return (
     <>

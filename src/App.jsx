@@ -22,11 +22,14 @@ import Gallery from "./Gallery";
 import Content from "./Content";
 import { getGalleryData, getAllData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
+import { load, update } from './MeTree'
 
 export default function Home() {
   const [session, setSession] = useState(null);
-  const [galleryImage, setGalleryImage] = useState([]);
-  console.log("galleryImage in app", galleryImage);
+  const [state, setState] = useRemoteState({ load, update });
+
+  // const [galleryImage, setGalleryImage] = useState([]);
+  // console.log("galleryImage in app", galleryImage);
 
   // get adult/child names + meTree data from db and render to page once on firstRender/re-load?
   // useEffect(() => {
@@ -85,8 +88,8 @@ export default function Home() {
                 return (
                   <DndProvider backend={HTML5Backend}>
                     <MeTree
-                      setGalleryImage={setGalleryImage}
-                      galleryImage={galleryImage}
+                      // setGalleryImage={setGalleryImage}
+                      // galleryImage={galleryImage}
                     />
                   </DndProvider>
                 );
@@ -108,8 +111,10 @@ export default function Home() {
               // comp={WhosePlaying} />
               render={() => (
                 <Gallery
-                  galleryImage={galleryImage}
-                  setGalleryImage={setGalleryImage}
+                  state={state}
+                  setState={setState}
+                  // galleryImage={galleryImage}
+                  // setGalleryImage={setGalleryImage}
                 />
               )}
             />

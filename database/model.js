@@ -303,6 +303,7 @@ export async function setData(data) {
     setWhoAroundData(data.tree.whoAround);
   }
   if (data.tree.background) {
+    console.log('if statemenmt for background in model')
     setBackgroundData(data.tree.background);
   }
   if (data.tree.growing_coords) {
@@ -312,6 +313,7 @@ export async function setData(data) {
     setWhoAroundCoordsData(data.tree.whoAround_coords);
   }
   if (data.gallery.images) {
+    console.log("if statemenmt for background in model");
     setGalleryData(images);
   }
   if (data.profile.adult_name) {

@@ -5,31 +5,32 @@ import { Link } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import { getGalleryData } from "../database/model";
 
-export default function Gallery({ setGalleryImage, galleryImage }) {
-  async function getImages() {
-    try {
-      let data = await getGalleryData();
+export default function Gallery({ state, setState }) {
 
-      if (data) {
-        console.log("gallerydata", data);
-        setGalleryImage((prevState) => [...prevState, ...data.images]);
-      }
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-    }
-  }
+  // async function getImages() {
+  //   try {
+  //     let data = await getGalleryData();
 
-  useEffect(() => {
-    getImages();
-  }, []); // only runs on first render
+  //     if (data) {
+  //       console.log("gallerydata", data);
+  //       setGalleryImage((prevState) => [...prevState, ...data.images]);
+  //     }
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   } finally {
+  //   }
+  // }
 
-  console.log("in gallery ", galleryImage);
+  // useEffect(() => {
+  //   getImages();
+  // }, []); // only runs on first render
+
+  console.log("in gallery ", state.gallery.images);
   // return (
   //   <div>
   //     <NavMenu />
   //     <div>
-  if (!galleryImage) return <div>Loading images...</div>;
+  if (state.gallery.images.length === 0) return <div>Loading images...</div>;
   return (
     <>
       <NavMenu />
@@ -39,7 +40,7 @@ export default function Gallery({ setGalleryImage, galleryImage }) {
       </div>
       <div className="flex ">
         <ul className="li-none">
-          {galleryImage.map((image) => (
+          {state.gallery.images.map((image) => (
             <li>
               <img src={image} alt="images" />
             </li>
