@@ -53,7 +53,6 @@ import ovalBlob from "./../assets/oval_blob.svg";
 import logo from "./../assets/Logo.svg";
 import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 import Container from "./Container";
-import Gallery from "./Gallery";
 //html-t-image
 import { toPng } from "html-to-image";
 import { getGalleryData, getAllData, setData } from "../database/model";
@@ -83,6 +82,8 @@ export function MeTree() {
   const { state, setState } = useContext(MeTreeContext);
   console.log("METREE: state", state);
 
+  const history = useHistory();
+
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
@@ -98,6 +99,7 @@ export function MeTree() {
   console.log("ref variable", ref);
 
   const saveToGallery = () => {
+    console.log("STATE in SAVETOGALLERY", state.status);
     if (ref.current === null) {
       console.log("ref variable inside if statement", ref.current);
       return;
@@ -106,11 +108,11 @@ export function MeTree() {
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
-        console.log("dataUrl in saveToGallery ", dataUrl);
-        const link = document.createElement("a");
-        link.download = "my-me-tree.png";
-        link.href = dataUrl;
-        link.click();
+        // console.log("dataUrl in saveToGallery ", dataUrl);
+        // const link = document.createElement("a");
+        // link.download = "my-me-tree.png";
+        // link.href = dataUrl;
+        // link.click();
         // await setGalleryData([...galleryImage, dataUrl]);
 
         setState({
@@ -127,6 +129,9 @@ export function MeTree() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        history.push("/gallery");
       });
   };
 

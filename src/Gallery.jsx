@@ -9,8 +9,20 @@ import logo from "./../assets/Logo.svg";
 export default function Gallery({ state, setState }) {
   console.log("in gallery ", state.data.gallery.images);
 
-  if (state.data.gallery.images.length === 0)
-    return <div>Loading images...</div>;
+  // if (state.data.gallery.images.length === 0)
+  //   return <div>Loading images...</div>;
+
+  async function deleteImage(image) {
+    let imagesArray = state.data.gallery.images;
+    let imageIndex = imagesArray.indexOf(image);
+    imagesArray[imageIndex] = undefined;
+    setState({
+      gallery: {
+        images: [`${imagesArray}`],
+      },
+    });
+  }
+
   return (
     <>
       <div className="height">
@@ -31,13 +43,35 @@ export default function Gallery({ state, setState }) {
       </div>
       <div className="flex flex-center ">
         <ul className="li-none gap grid">
-          {state.data.gallery.images.map((image) => (
-            <li className="relative">
-              {/* <div className="delete absolute top-right txt-lg">X</div> */}
-              <button className="delete absolute top-right txt-lg">X</button>
-              <img src={image} alt="images" />
-            </li>
-          ))}
+          {state.data.gallery.images
+            // .filter((image) => image !== "undefined")
+            .map((image) =>
+              image == undefined ? (
+                <li className="relative invisible">
+                  <button
+                    onClick={() => deleteImage(image)}
+                    className="delete invisible absolute top-right txt-lg"
+                  >
+                    X
+                  </button>
+                  <img
+                    className="invisible"
+                    src={image}
+                    alt="A snapshot of your Me Tree"
+                  />
+                </li>
+              ) : (
+                <li className="relative">
+                  <button
+                    onClick={() => deleteImage(image)}
+                    className="delete absolute top-right txt-lg"
+                  >
+                    X
+                  </button>
+                  <img src={image} alt="A snapshot of your Me Tree" />
+                </li>
+              )
+            )}
         </ul>
       </div>
     </>

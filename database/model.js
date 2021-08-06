@@ -470,68 +470,6 @@ export async function setData(data) {
     }
   });
 }
-// console.log("HIIIII", newArr);
-
-// [{ background: df, treeLocations: sfdsd }, { adult_name: sdfsd }]
-
-// if (data.gallery.images) {
-//   console.log("if statemenmt for images in model");
-//   setGalleryData(data.gallery.images);
-//   return;
-// }
-// if (data.tree.treeLocation) {
-//   setTreeLocationData(data.tree.treeLocation);
-//   return;
-// }
-// if (data.tree.growing) {
-//   setGrowingData(data.tree.growing);
-//   return;
-// }
-// if (data.tree.who_around) {
-//   setWhoAroundData(data.tree.who_around);
-//   return;
-// }
-// if (data.tree.background) {
-//   console.log("if statemenmt for background in model");
-//   setBackgroundData(data.tree.background);
-//   return;
-// }
-// if (data.tree.growing_left) {
-//   setGrowingLeftData(data.tree.growing_left);
-//   return;
-// }
-// if (data.tree.growing_top) {
-//   setGrowingTopData(data.tree.growing_top);
-//   return;
-// }
-// if (data.tree.who_around_left) {
-//   setWhoAroundLeftData(data.tree.who_around_left);
-//   return;
-// }
-// if (data.tree.who_around_top) {
-//   setWhoAroundTopData(data.tree.who_around_top);
-//   return;
-// }
-// if (data.tree.boxes) {
-//   setBoxesData(data.tree.boxes);
-//   return;
-// }
-// if (data.profile.adult_name) {
-//   setProfileData(data.profile.adult_name);
-//   return;
-// }
-// if (data.profile.avatar_url) {
-//   setProfileData(data.profile.avatar_url);
-//   return;
-// }
-// if (data.profile.child_name) {
-//   setProfileData(data.profile.child_name);
-//   return;
-// }
-// if (data.profile.child_avatar) {
-//   setProfileData(data.profile.child_avatar);
-//   return;
-// }
 
 // function deleteImageFromGallery(image) {
 //   const { data, error } = await supabase
