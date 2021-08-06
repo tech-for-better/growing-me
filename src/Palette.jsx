@@ -113,85 +113,12 @@ export default function Palette({ type }) {
       case "update_whoAround":
         setState({
           tree: {
-            whoAround: event.target.src,
+            who_around: event.target.src,
           },
         });
         break;
     }
   }
-
-  // useEffect(() => {
-  //   updateMeTreeInDb(
-  //     state.background,
-  //     state.treeLocation,
-  //     state.whoAround,
-  //     state.growing,
-  //     state.growing_coords,
-  //     state.whoAround_coords
-  //   );
-  //   // getTreeData();
-  // }, [
-  //   state.background,
-  //   state.treeLocation,
-  //   state.whoAround,
-  //   state.growing_coords,
-  //   state.whoAround_coords,
-  // ]);
-
-  //TODO: these functions get called in
-  // async function getTreeData() {
-  //   try {
-  //     setLoading(true);
-  //     let data = await getMeTree();
-  //     if (data) {
-  //       dispatch({
-  //         type: "update_treeLocation",
-  //         newTreeLocation: data.tree_location,
-  //       });
-  //       dispatch({
-  //         type: "update_background",
-  //         newBackground: data.background,
-  //       });
-  //       dispatch({
-  //         type: "update_growing",
-  //         newGrowingItem: data.growing,
-  //       });
-  //       dispatch({
-  //         type: "update_whoAround",
-  //         newWhoAround: data.who_around,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  // async function updateMeTreeInDb(
-  //   background,
-  //   treeLocation,
-  //   whoAround,
-  //   growing,
-  //   growing_coords,
-  //   who_around_coords
-  // ) {
-  //   try {
-  //     setLoading(true);
-  //     setTreeData(
-  //       background,
-  //       treeLocation,
-  //       whoAround,
-  //       growing,
-  //       growing_coords,
-  //       who_around_coords
-  //     );
-  //   } catch (error) {
-  //     console.log("Error: ", error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
 
   return (
     <>

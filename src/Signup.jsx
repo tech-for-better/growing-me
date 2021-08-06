@@ -30,26 +30,34 @@ export default function Signup() {
   }
 
   return (
-    <div className="flex column">
-      <form onSubmit={handleSubmit}>
-        {/* <div>{error && JSON.stringify(error)}</div> */}
-        <label htmlFor="input-email">Email</label>
-        <input id="input-email" type="email" ref={emailRef} />
-
-        <label htmlFor="input-password">Password</label>
-        <input id="input-password" type="password" ref={passwordRef} />
-
+    <div className="flex column margin-left items-center">
+      <form onSubmit={handleSubmit} className="x-narrow">
+        <div>
+          <label htmlFor="input-email">Email</label>
+          <input id="input-email" type="email" ref={emailRef} />
+        </div>
+        <div>
+          <label htmlFor="input-password">Password</label>
+          <input id="input-password" type="password" ref={passwordRef} />
+        </div>
         <br />
-
-        <button type="submit">Sign up</button>
+        <div className="flex flex-center">
+          <button className="button block primary max-width" type="submit">
+            Sign up
+          </button>
+        </div>
       </form>
 
       <p>
         Already have an account? <Link to="/login">Log In</Link>
       </p>
-      <button>
-        <Link to="/magic-link-login">Sign up using magic link</Link>
-      </button>
+      <div className="flex center width">
+        <button className="button block primary magic-link ">
+          <Link className="txt-sm-ish" to="/magic-link-login">
+            Sign up using magic link
+          </Link>
+        </button>
+      </div>
     </div>
   );
 }

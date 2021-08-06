@@ -28,12 +28,14 @@ export default function MagicLinkLogIn() {
       <div className="col-6 form-widget">
         {/* <h1 className="header">Growing Me</h1> */}
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p className="description">
-          Sign in via magic link with your email below
-        </p>
+        {/* <p className="description text-center">
+          Sign in via magic link with your email below:
+        </p> */}
         <div>
+          {/* <label htmlFor="input-email">Email</label> */}
           <input
             className="inputField"
+            id="input-email"
             type="email"
             placeholder="Your email"
             value={email}
@@ -41,20 +43,24 @@ export default function MagicLinkLogIn() {
           />
         </div>
         <div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleLogin(email);
-            }}
-            className={"button block"}
-            disabled={loading}
-          >
-            {loading ? <span>Loading</span> : <span>Send magic link</span>}
-          </button>
+          <div className="flex center width">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleLogin(email);
+              }}
+              className={"button block primary magic-link"}
+              disabled={loading}
+            >
+              {loading ? <span>Loading</span> : <span>Send magic link</span>}
+            </button>
+          </div>
         </div>
-        <p>
-          Want to login using email and password <Link to="/login">Log In</Link>
-        </p>
+        <div className="flex center width">
+          <p className="text-center">
+            Already have an account? <Link to="/login">Log In</Link>
+          </p>
+        </div>
       </div>
     </div>
     // </LoginTree>

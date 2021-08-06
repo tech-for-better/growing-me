@@ -50,7 +50,7 @@ export default function Login() {
         </div>
       </form>
 
-      <div className="flex center">
+      <div className="flex center text-center">
         <p>
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </p>

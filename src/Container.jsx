@@ -58,7 +58,7 @@ export default function Container({ hideSourceOnDrag }) {
             top={top}
             isGrowing={isGrowing}
             growing={state.data.tree.growing}
-            whoAround={state.data.tree.whoAround}
+            whoAround={state.data.tree.who_around}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );

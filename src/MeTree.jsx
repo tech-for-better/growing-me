@@ -245,19 +245,20 @@ export function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>
-          <div ref={ref}>
-            {/* <MeTreeContext.Provider value={{ state, setState }}> */}
-            <MeTreeContainer className="relative">
-              <Container hideSourceOnDrag={hideSourceOnDrag} />
-              <MeTreeImage
-                src={state.data.tree.treeLocation ?? MeTreeGarden}
-                alt=""
-              />
-              <MeTreeBackground src={state.data.tree.background} alt="" />
-            </MeTreeContainer>
+          <div>
+            <div ref={ref}>
+              {/* <MeTreeContext.Provider value={{ state, setState }}> */}
+              <MeTreeContainer className="relative">
+                <Container hideSourceOnDrag={hideSourceOnDrag} />
+                <MeTreeImage
+                  src={state.data.tree.treeLocation ?? MeTreeGarden}
+                  alt=""
+                />
+                <MeTreeBackground src={state.data.tree.background} alt="" />
+              </MeTreeContainer>
 
-            {visible ? <Palette type={paletteOption} /> : ""}
-
+              {visible ? <Palette type={paletteOption} /> : ""}
+            </div>
             <div className="flex row flex-end margin-top">
               <div>
                 <Link to="/content">
