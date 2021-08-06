@@ -64,6 +64,7 @@ export async function getProfileData() {
   if (error && status !== 406) {
     throw error;
   }
+  console.log("PROFILE DATA: ", data);
   return data;
 }
 
@@ -93,12 +94,31 @@ export async function setAllProfileData({
   }
 }
 
-export async function setProfileData({ single_data }) {
+// export async function setProfileData(single_data) {
+//   console.log("Entered setProfileData", single_data);
+//   const user = supabase.auth.user();
+
+//   const updates = {
+//     id: user.id,
+//     single_data,
+//     updated_at: new Date(),
+//   };
+
+//   let { error } = await supabase.from("profiles").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
+
+//   if (error) {
+//     throw error;
+//   }
+// }
+
+export async function setChildAvatarData(child_avatar) {
   const user = supabase.auth.user();
 
   const updates = {
     id: user.id,
-    single_data,
+    child_avatar,
     updated_at: new Date(),
   };
 
@@ -110,6 +130,61 @@ export async function setProfileData({ single_data }) {
     throw error;
   }
 }
+
+export async function setChildNameData(child_name) {
+  const user = supabase.auth.user();
+
+  const updates = {
+    id: user.id,
+    child_name,
+    updated_at: new Date(),
+  };
+
+  let { error } = await supabase.from("profiles").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function setAdultNameData(adult_name) {
+  const user = supabase.auth.user();
+
+  const updates = {
+    id: user.id,
+    adult_name,
+    updated_at: new Date(),
+  };
+
+  let { error } = await supabase.from("profiles").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function setAvatarUrlData(avatar_url) {
+  const user = supabase.auth.user();
+
+  const updates = {
+    id: user.id,
+    avatar_url,
+    updated_at: new Date(),
+  };
+
+  let { error } = await supabase.from("profiles").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
 // set individual fields in data
 
 export async function setBackgroundData(background) {
@@ -384,13 +459,14 @@ export async function setData(data) {
     } else if (changingValue === "boxes") {
       return setBoxesData(data.tree.boxes);
     } else if (changingValue === "adult_name") {
-      return setProfileData(data.profile.adult_name);
+      return setAdultNameData(data.profile.adult_name);
     } else if (changingValue === "avatar_url") {
-      return setProfileData(data.profile.avatar_url);
+      return setAvatarUrlData(data.profile.avatar_url);
     } else if (changingValue === "child_name") {
-      return setProfileData(data.profile.child_name);
+      console.log("about to run setProfileData with child_name", data);
+      return setChildNameData(data.profile.child_name);
     } else if (changingValue === "child_avatar") {
-      return setProfileData(data.profile.child_avatar);
+      return setChildAvatarData(data.profile.child_avatar);
     }
   });
 }

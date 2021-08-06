@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Rokkitt:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Rokkitt:wght@400;500&display=swap");
 
 html,
 body {
@@ -15,8 +15,9 @@ body {
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
   --custom-spacing: 5px;
-  --main-font:'Nanum Pen Script', cursive;
-  --secondary-font:'Rokkitt', serif;
+  --main-font: "Nanum Pen Script", Helvetica, sans-serif;
+  --secondary-font: apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
   /* COLOURS
 d6f7d - darkblue
@@ -92,6 +93,10 @@ body,
 .narrow {
   width: 65%;
   max-width: 1000px;
+}
+
+.x-narrow {
+  width: 20vw;
 }
 
 .row [class^="col"] {
@@ -231,11 +236,12 @@ input {
   border-radius: 5px;
   border: var(--custom-border);
   padding: 8px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   /* background-color: #b1bd7a; */
   /* background-color: #c0d788; */
   background-color: #d5e4b0;
   color: var(--custom-bg-color);
+  font-family: var(--secondary-font);
 }
 
 input[disabled] {
@@ -287,17 +293,22 @@ input[disabled] {
   font-size: 0.8rem;
   font-weight: 300;
 }
-.txt-sm{
-font-size: 1rem;
+.txt-sm {
+  font-size: 1rem;
 }
-.txt-md{
-font-size: 1.5rem;
+
+.txt-sm-ish {
+  font-size: 1.2rem;
 }
-.txt-lg{
-font-size: 2rem;
+
+.txt-md {
+  font-size: 1.5rem;
 }
-.txt-xlg{
-font-size: 3rem;
+.txt-lg {
+  font-size: 2rem;
+}
+.txt-xlg {
+  font-size: 3rem;
 }
 .relative {
   position: relative;
@@ -479,28 +490,27 @@ button.primary,
   height: 100%;
 }
 
-.margin-top{
+.margin-top {
   margin-top: 4rem;
   margin-bottom: 0;
-
 }
-.li-none{
+.li-none {
   list-style-type: none;
 }
-.margin-none{
-  margin:0;
+.margin-none {
+  margin: 0;
 }
-.play-color{
-  color:#abc961;
+.play-color {
+  color: #abc961;
 }
-.think-color{
-  color:#337d8e;
+.think-color {
+  color: #337d8e;
 }
-.make-color{
+.make-color {
   color: #fed436;
 }
-.wonder-color{
-  color:#28424c;
+.wonder-color {
+  color: #28424c;
 }
 .txt-background {
   background-color: #abc961;
@@ -508,47 +518,46 @@ button.primary,
   height: 100%;
   color: white !important;
 
-
   /* margin: 0 2rem; */
 }
-.white{
-  color:white;
+.white {
+  color: white;
 }
 
-p{
+p {
   font-size: 1.5rem;
 }
-.pad-1{
+.pad-1 {
   padding: 1rem;
 }
 
-.App-logo{
-  margin:2rem;
-  width:100px;
+.App-logo {
+  margin: 2rem;
+  width: 100px;
 }
-.height{
-  height:75px;
+.height {
+  height: 75px;
 }
 
-.nanum-font{
-font-family: var(--main-font);
+.nanum-font {
+  font-family: var(--main-font);
 }
-.rokkitt-font{
+.rokkitt-font {
   font-family: var(--secondary-font);
 }
 
-.max-width{
+.max-width {
   max-width: 150px;
 }
 
-.margin-left{
-  margin-left:2rem;
+.margin-left {
+  margin-left: 2rem;
 }
 
 /* .width{
   max-width: ;
 } */
-.magic-link{
-    background-color: #d19f00 !important;
-    border: none!important;
+.magic-link {
+  background-color: #d19f00 !important;
+  border: none !important;
 }

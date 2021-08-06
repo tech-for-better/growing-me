@@ -30,8 +30,8 @@ export default function Login() {
   }
 
   return (
-    <div className="flex column margin-left">
-      <form onSubmit={handleSubmit}>
+    <div className="flex column margin-left items-center">
+      <form onSubmit={handleSubmit} className="x-narrow">
         <div>
           <label htmlFor="input-email">Email</label>
           <input id="input-email" type="email" ref={emailRef} />
@@ -43,7 +43,7 @@ export default function Login() {
         </div>
         <br />
 
-        <div className="flex flex-end">
+        <div className="flex flex-center">
           <button className="button block primary max-width" type="submit">
             Login
           </button>
@@ -56,8 +56,10 @@ export default function Login() {
         </p>
       </div>
       <div className="flex center width">
-        <button className="button block primary txt-md magic-link ">
-          <Link to="/magic-link-login">Sign up using magic link</Link>
+        <button className="button block primary magic-link ">
+          <Link className="txt-sm-ish" to="/magic-link-login">
+            Sign up using magic link
+          </Link>
         </button>
       </div>
     </div>
