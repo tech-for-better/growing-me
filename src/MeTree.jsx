@@ -99,29 +99,29 @@ export function MeTree() {
   console.log("ref variable", ref);
 
   const saveToGallery = () => {
+
     console.log("STATE in SAVETOGALLERY", state.status);
     if (ref.current === null) {
       console.log("ref variable inside if statement", ref.current);
       return;
     }
+
     console.log("ref variable after if statement", ref);
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
-        // console.log("dataUrl in saveToGallery ", dataUrl);
+        console.log("dataUrl in saveToGallery ", dataUrl);
+        // logic which downloads pic - MAKE NEED LATER
         // const link = document.createElement("a");
         // link.download = "my-me-tree.png";
         // link.href = dataUrl;
         // link.click();
-        // await setGalleryData([...galleryImage, dataUrl]);
 
         setState({
           gallery: {
             images: [...state.data.gallery.images, dataUrl],
           },
         });
-        // setGalleryImage((prevState) => [...prevState, dataUrl]);
-
         console.log(
           "state.gallery.images after setState ",
           state.data.gallery.images
@@ -208,7 +208,10 @@ export function MeTree() {
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => saveToGallery()}>
-            <ToolkitText> Save to Gallery</ToolkitText>
+              {state.status === "updating" ?
+              <ToolkitText> Saving...</ToolkitText>
+              :
+              <ToolkitText> Save to Gallery</ToolkitText>}
           </ToolkitButton>
         </Toolkit>
         {/* <Gallery galleryImage={galleryImage} /> */}

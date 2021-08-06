@@ -15,10 +15,10 @@ export default function Gallery({ state, setState }) {
   async function deleteImage(image) {
     let imagesArray = state.data.gallery.images;
     let imageIndex = imagesArray.indexOf(image);
-    imagesArray[imageIndex] = undefined;
+    imagesArray[imageIndex] = null;
     setState({
       gallery: {
-        images: [`${imagesArray}`],
+        images: imagesArray
       },
     });
   }
@@ -44,23 +44,23 @@ export default function Gallery({ state, setState }) {
       <div className="flex flex-center ">
         <ul className="li-none gap grid">
           {state.data.gallery.images
-            // .filter((image) => image !== "undefined")
+            .filter((image) => image !== null )
             .map((image) =>
-              image == undefined ? (
-                <li className="relative invisible">
-                  <button
-                    onClick={() => deleteImage(image)}
-                    className="delete invisible absolute top-right txt-lg"
-                  >
-                    X
-                  </button>
-                  <img
-                    className="invisible"
-                    src={image}
-                    alt="A snapshot of your Me Tree"
-                  />
-                </li>
-              ) : (
+              // image == undefined ? (
+              //   <li className="relative invisible">
+              //     <button
+              //       onClick={() => deleteImage(image)}
+              //       className="delete invisible absolute top-right txt-lg"
+              //     >
+              //       X
+              //     </button>
+              //     <img
+              //       className="invisible"
+              //       src={image}
+              //       alt="A snapshot of your Me Tree"
+              //     />
+              //   </li>
+              // ) : (
                 <li className="relative">
                   <button
                     onClick={() => deleteImage(image)}
@@ -70,7 +70,7 @@ export default function Gallery({ state, setState }) {
                   </button>
                   <img src={image} alt="A snapshot of your Me Tree" />
                 </li>
-              )
+              //)
             )}
         </ul>
       </div>
