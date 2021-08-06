@@ -30,26 +30,36 @@ export default function Login() {
   }
 
   return (
-    <div className="flex column">
+    <div className="flex column margin-left">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="input-email">Email</label>
-        <input id="input-email" type="email" ref={emailRef} />
+        <div>
+          <label htmlFor="input-email">Email</label>
+          <input id="input-email" type="email" ref={emailRef} />
+        </div>
 
-        <label htmlFor="input-password">Password</label>
-        <input id="input-password" type="password" ref={passwordRef} />
-
+        <div>
+          <label htmlFor="input-password">Password</label>
+          <input id="input-password" type="password" ref={passwordRef} />
+        </div>
         <br />
 
-        <button type="submit">Login</button>
+        <div className="flex flex-end">
+          <button className="button block primary max-width" type="submit">
+            Login
+          </button>
+        </div>
       </form>
 
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
-
-      <button>
-        <Link to="/magic-link-login">Sign up using magic link</Link>
-      </button>
+      <div className="flex center">
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
+      <div className="flex center width">
+        <button className="button block primary txt-md magic-link ">
+          <Link to="/magic-link-login">Sign up using magic link</Link>
+        </button>
+      </div>
     </div>
   );
 }

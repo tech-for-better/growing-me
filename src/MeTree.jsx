@@ -50,6 +50,7 @@ import jellyBlob from "./../assets/jelly_blob.svg";
 import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
+import logo from "./../assets/Logo.svg";
 import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 import Container from "./Container";
 import Gallery from "./Gallery";
@@ -195,10 +196,19 @@ export function MeTree() {
 
   return (
     <>
-      <div className="flex space-between padding-sides">
+      {/* <div className="flex space-between padding-sides">
         <NavMenu />
+      </div> */}
+      <div className="height">
+        <div>
+          <NavMenu />
+        </div>
+        <div className="center">
+          <Link to={"/content"}>
+            <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+        </div>
       </div>
-
       <div className="flex margin-top">
         <Toolkit>
           <ToolkitButton onClick={() => handleClick("WhatColour")}>
@@ -225,13 +235,13 @@ export function MeTree() {
 
         <div className="flex column center text-center items-center flex-grow">
           {" "}
-          <h1 className="margin-none">
+          <h1 className="margin-none txt-xlg">
             {state.data.profile.adult_name
               ? "Welcome back " + state.data.profile.adult_name + " and "
               : "Welcome back "}
             {state.data.profile.child_name ?? "friend"}!
           </h1>
-          <h2 className="narrow">
+          <h2 className="narrow rokkitt-font">
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>
@@ -247,16 +257,26 @@ export function MeTree() {
             </MeTreeContainer>
 
             {visible ? <Palette type={paletteOption} /> : ""}
+
+            <div className="flex row flex-end margin-top">
+              <div>
+                <Link to="/content">
+                  <button className="button primary block">
+                    Ready to play?
+                  </button>
+                </Link>
+              </div>
+            </div>
             {/* </MeTreeContext.Provider> */}
           </div>
         </div>
       </div>
 
-      <footer className="flex flex-end padding-sides">
+      {/* <footer className="flex flex-end padding-sides">
         <Link to="/content">
           <button className="button primary block">Ready to play?</button>
         </Link>
-      </footer>
+      </footer> */}
     </>
   );
 }

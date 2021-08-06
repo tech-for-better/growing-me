@@ -71,134 +71,161 @@ export default function AdultProfile() {
 
   return (
     <>
-    <NavMenu />
-    <div className="form-widget text-center adult-profile center">
-
       <div>
-        <img src={logo} className="App-logo" alt="logo" />
-      </div>
-      <div>
-        <h1 className="header">Create your Growing Me profile</h1>
+        <NavMenu />
       </div>
 
-      {/* <p>
-        Go to <Link to="/me-tree">MeTree</Link>
-        <Link to="/whose-playing"> whose </Link>
-        <Link to="/child-profile">child </Link>
-        <Link to="/magic-link-login">login </Link>
-        <Link to="/adult-profile">Profile</Link>
-      </p> */}
-      <Avatar
-        url={avatar_url}
-        size={150}
-        onUpload={(url) => {
-          setAvatarUrl(url);
-          updateProfile({
-            adult_name,
-            avatar_url: url,
-            child_name,
-            child_avatar,
-          });
-        }}
-      />
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="text"
-          placeholder="Your email"
-          value={user.email}
-          disabled
-        />
+      <div className="center">
+        <Link to={"/content"}>
+          <img src={logo} className="App-logo" alt="logo" />
+        </Link>
       </div>
-      <div>
-        <label htmlFor="adult_name">Adult's Name</label>
-        <input
-          id="adult_name"
-          type="text"
-          placeholder="The name your child calls you"
-          value={adult_name || ""}
-          onChange={(e) => setAdultName(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="child_username">Child's Name</label>
-        <input
-          id="child_username"
-          type="text"
-          placeholder="What's your name?"
-          value={child_name || ""}
-          onChange={(e) => setChildName(e.target.value)}
-        />
-      </div>
-
-      <p>Choose your avatar:</p>
-      <div className="grid avatar-selection">
-        <div className="flex center">
-          <input
-            type="radio"
-            id="child_avatar1"
-            name="child_avatar"
-            value="./../assets/cute_visitors.svg"
-            onChange={(e) => setChildAvatarUrl(e.target.value)}
-          />
-          <label htmlFor="child_avatar1">
-            <ChildAvatar src={cuteVisitor} alt="" />
-          </label>
+      <div className="form-widget text-center adult-profile center txt-md">
+        <div>
+          <h1 className="header">Create your growing me profile</h1>
         </div>
 
-        <div className="flex center">
-          <input
-            type="radio"
-            id="child_avatar2"
-            name="child_avatar"
-            value="./../assets/fluffy_visitors.svg"
-            onChange={(e) => setChildAvatarUrl(e.target.value)}
-          />
-          <label htmlFor="child_avatar2">
-            <ChildAvatar src={fluffyVisitor} alt="" />
-          </label>
+        <div className="flex row space-between">
+          <div>
+            <Avatar
+              url={avatar_url}
+              size={150}
+              onUpload={(url) => {
+                setAvatarUrl(url);
+                updateProfile({
+                  adult_name,
+                  avatar_url: url,
+                  child_name,
+                  child_avatar,
+                });
+              }}
+            />
+          </div>
+
+          <div>
+            <div>
+              <div className="flex row pad-1">
+                <div>
+                  <label htmlFor="adult_name">Adult's Name</label>
+                </div>
+                <div>
+                  <input
+                    id="adult_name"
+                    type="text"
+                    placeholder="The name your child calls you"
+                    value={adult_name || ""}
+                    onChange={(e) => setAdultName(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex row pad-1">
+                <div>
+                  <label htmlFor="child_username">Child's Name</label>
+                </div>
+                <div>
+                  <input
+                    id="child_username"
+                    type="text"
+                    placeholder="What's your name?"
+                    value={child_name || ""}
+                    onChange={(e) => setChildName(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex row pad-1">
+                <div>
+                  <label htmlFor="email">Email</label>
+                </div>
+                <div>
+                  <input
+                    id="email"
+                    type="text"
+                    placeholder="Your email"
+                    value={user.email}
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2>Choose your avatar</h2>
+        <div className="grid avatar-selection">
+          <div className="flex center">
+            <input
+              type="radio"
+              id="child_avatar1"
+              name="child_avatar"
+              value="./../assets/cute_visitors.svg"
+              onChange={(e) => setChildAvatarUrl(e.target.value)}
+            />
+            <label htmlFor="child_avatar1">
+              <ChildAvatar src={cuteVisitor} alt="" />
+            </label>
+          </div>
+
+          <div className="flex center">
+            <input
+              type="radio"
+              id="child_avatar2"
+              name="child_avatar"
+              value="./../assets/fluffy_visitors.svg"
+              onChange={(e) => setChildAvatarUrl(e.target.value)}
+            />
+            <label htmlFor="child_avatar2">
+              <ChildAvatar src={fluffyVisitor} alt="" />
+            </label>
+          </div>
+
+          <div className="flex center">
+            <input
+              type="radio"
+              id="child_avatar3"
+              name="child_avatar"
+              value="./../assets/prickly_visitors.svg"
+              onChange={(e) => setChildAvatarUrl(e.target.value)}
+            />
+            <label htmlFor="child_avatar4">
+              <ChildAvatar src={pricklyVisitor} alt="" />
+            </label>
+          </div>
+          <div className="flex center">
+            <input
+              type="radio"
+              id="child_avatar4"
+              name="child_avatar"
+              value="./../assets/creepy_crawly_visitors.svg"
+              onChange={(e) => setChildAvatarUrl(e.target.value)}
+            />
+            <label htmlFor="child_avatar3">
+              <ChildAvatar src={creepyCrawlyVisitor} alt="" />
+            </label>
+          </div>
+        </div>
+        <div className="flex flex.row flex-center">
+          <button
+            className="button block primary max-width"
+            onClick={() =>
+              updateProfile({
+                adult_name,
+                avatar_url,
+                child_name,
+                child_avatar,
+              })
+            }
+            disabled={loading}
+          >
+            {loading ? "Loading ..." : "Update"}
+          </button>
         </div>
 
-        <div className="flex center">
-          <input
-            type="radio"
-            id="child_avatar3"
-            name="child_avatar"
-            value="./../assets/prickly_visitors.svg"
-            onChange={(e) => setChildAvatarUrl(e.target.value)}
-          />
-          <label htmlFor="child_avatar4">
-            <ChildAvatar src={pricklyVisitor} alt="" />
-          </label>
-        </div>
-        <div className="flex center">
-          <input
-            type="radio"
-            id="child_avatar4"
-            name="child_avatar"
-            value="./../assets/creepy_crawly_visitors.svg"
-            onChange={(e) => setChildAvatarUrl(e.target.value)}
-          />
-          <label htmlFor="child_avatar3">
-            <ChildAvatar src={creepyCrawlyVisitor} alt="" />
-          </label>
-        </div>
-      </div>
-      <div>
-        <button
-          className="button block primary"
-          onClick={() =>
-            updateProfile({ adult_name, avatar_url, child_name, child_avatar })
-          }
-          disabled={loading}
-        >
-          {loading ? "Loading ..." : "Update"}
-        </button>
-      </div>
-
-      {/* <div>
+        {/* <div>
         <button
           className="button block"
           onClick={() => supabase.auth.signOut()}
@@ -206,7 +233,7 @@ export default function AdultProfile() {
           Sign Out
         </button>
       </div> */}
-    </div>
+      </div>
     </>
   );
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Rokkitt:wght@400;500&display=swap');
+
 html,
 body {
   --custom-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -6,12 +8,15 @@ body {
   --custom-panel-color: #222;
   --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
   --custom-color: #ecf0d9;
-  --custom-color-brand: #24b47e;
+  /* --custom-color-brand: #96bc39; */
+  --custom-color-brand: #779321;
   --custom-color-secondary: #384b4a;
   --custom-color-tertiary: #153138;
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
   --custom-spacing: 5px;
+  --main-font:'Nanum Pen Script', cursive;
+  --secondary-font:'Rokkitt', serif;
 
   /* COLOURS
 d6f7d - darkblue
@@ -32,7 +37,9 @@ acabb3 - grey
 
   padding: 0;
   margin: 0;
-  font-family: var(--custom-font-family);
+  /* font-family: var(--custom-font-family); */
+  /* font-family: 'Nanum Pen Script', cursive; */
+  /* font-family: 'Rokkitt', serif; */
   /* background-color: var(--custom-bg-color); */
   background-color: #ecf0d9;
 }
@@ -40,7 +47,10 @@ acabb3 - grey
 * {
   color: var(--custom-color); /* text colour - palegreen */
   color: #384b4a; /* text colour - dark olive green */
-  font-family: var(--custom-font-family);
+  /* font-family: var(--custom-font-family); */
+  font-family: var(--main-font);
+  /* font-family: var(--secondary-font); */
+  /* font-size: 1.3rem; */
   box-sizing: border-box;
 }
 
@@ -210,9 +220,9 @@ body,
 
 label {
   display: block;
-  margin: 5px 0;
+  margin: 5px 10px;
   color: var(--custom-color-secondary);
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
 }
 
@@ -221,8 +231,10 @@ input {
   border-radius: 5px;
   border: var(--custom-border);
   padding: 8px;
-  font-size: 0.9rem;
-  background-color: #b1bd7a;
+  font-size: 1.5rem;
+  /* background-color: #b1bd7a; */
+  /* background-color: #c0d788; */
+  background-color: #d5e4b0;
   color: var(--custom-bg-color);
 }
 
@@ -275,7 +287,18 @@ input[disabled] {
   font-size: 0.8rem;
   font-weight: 300;
 }
-
+.txt-sm{
+font-size: 1rem;
+}
+.txt-md{
+font-size: 1.5rem;
+}
+.txt-lg{
+font-size: 2rem;
+}
+.txt-xlg{
+font-size: 3rem;
+}
 .relative {
   position: relative;
 }
@@ -317,10 +340,10 @@ input[disabled] {
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
+  transition: all 0.6s ease 0s;
 }
 
 button.primary,
@@ -402,7 +425,7 @@ button.primary,
 
 .mainHeader {
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
@@ -490,4 +513,42 @@ button.primary,
 }
 .white{
   color:white;
+}
+
+p{
+  font-size: 1.5rem;
+}
+.pad-1{
+  padding: 1rem;
+}
+
+.App-logo{
+  margin:2rem;
+  width:100px;
+}
+.height{
+  height:75px;
+}
+
+.nanum-font{
+font-family: var(--main-font);
+}
+.rokkitt-font{
+  font-family: var(--secondary-font);
+}
+
+.max-width{
+  max-width: 150px;
+}
+
+.margin-left{
+  margin-left:2rem;
+}
+
+/* .width{
+  max-width: ;
+} */
+.magic-link{
+    background-color: #d19f00 !important;
+    border: none!important;
 }

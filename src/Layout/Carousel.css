@@ -15,7 +15,7 @@
   -o-transition: all 0.25s ease-in;
 
   transition: all 0.25s ease-in;
-  opacity: 0.4;
+  /* opacity: 0.4; makes it pale white to start*/
   filter: alpha(opacity=40);
   position: absolute;
   z-index: 2;
@@ -24,6 +24,7 @@
   border: 0;
   font-size: 32px;
   cursor: pointer;
+  /* background-image: url('./assets/content/arrow_right'); */
 }
 .carousel .control-arrow:focus,
 .carousel .control-arrow:hover {
@@ -34,6 +35,8 @@
 .carousel.carousel-slider .control-arrow:before {
   margin: 0 5px;
   display: inline-block;
+  /* background-image:url("assets/content/arrow_right"); */
+
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   content: "";
@@ -45,7 +48,7 @@
   display: none;
 }
 .carousel .control-prev.control-arrow {
-  left: 0;
+  left: -45px; /* left arrow */
 }
 .carousel .control-prev.control-arrow:before {
   border-right: 8px solid #fff;
@@ -85,6 +88,7 @@
   top: 50%;
   margin-top: -13px;
   font-size: 18px;
+  /* background-image: url('./assets/content/arrow_right'); */
 }
 .carousel .thumbs-wrapper {
   margin: 20px;
@@ -145,6 +149,7 @@
   bottom: 0;
   margin-top: 0;
   padding: 5px;
+  right: -45px; /* right arrow */
 }
 .carousel.carousel-slider .control-arrow:hover {
   background: rgba(0, 0, 0, 0.2);
@@ -279,14 +284,13 @@
 }
 .carousel .carousel-status {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -8px;
+  right: 22px;
   padding: 5px;
-  font-size: 10px;
+  font-size: 2rem;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
-  color: #fff;
+  color: #384b4a;
 }
 .carousel:hover .slide .legend {
   opacity: 1;
 }
-
