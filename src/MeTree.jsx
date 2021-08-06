@@ -100,7 +100,6 @@ export function MeTree() {
   console.log("ref variable", ref);
 
   const saveToGallery = () => {
-
     console.log("STATE in SAVETOGALLERY", state.status);
     if (ref.current === null) {
       console.log("ref variable inside if statement", ref.current);
@@ -174,14 +173,14 @@ export function MeTree() {
     "cloudy_blob.svg": cloudyBlob,
     "oval_blob.svg": ovalBlob,
   };
-    // @TODO: avatar url not loading
-    //const url = URL.createObjectURL(state.data.profile.avatar_url);
+  // @TODO: avatar url not loading
+  //const url = URL.createObjectURL(state.data.profile.avatar_url);
   return (
     <>
       {/* <div className="flex space-between padding-sides">
         <NavMenu />
       </div> */}
-      <div className="height">
+      <div className="absolute flex metree--container">
         <div>
           <NavMenu />
         </div>
@@ -204,7 +203,7 @@ export function MeTree() {
           </Link>
         </div> */}
         <div className="center child_avatar-logo">
-          <Link to={"/profile"}>
+          <Link to={"/adult-profile"}>
             <img
               src={state.data.profile.child_avatar ?? cuteVisitor}
               className="avatar"

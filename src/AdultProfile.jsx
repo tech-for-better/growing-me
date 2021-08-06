@@ -23,64 +23,30 @@ export default function AdultProfile() {
 
   const { user } = useAuth();
 
-  // useEffect(() => {
-  //   getProfile();
-  // }, [user]);
-
-  // async function getProfile() {
-  //   try {
-  //     setLoading(true);
-  //     let data = await getProfileData();
-
-  //     if (data) {
-  //       setAdultName(data.adult_name);
-  //       setChildName(data.child_name);
-  //       setAvatarUrl(data.avatar_url);
-  //       setChildAvatarUrl(data.child_avatar);
-  //     }
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  // async function updateProfile({
-  //   adult_name,
-  //   avatar_url,
-  //   child_name,
-  //   child_avatar,
-  // }) {
-  //   try {
-  //     setLoading(true);
-  //     setProfileData({
-  //       adult_name,
-  //       avatar_url,
-  //       child_name,
-  //       child_avatar,
-  //     });
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //     history.push("/");
-  //   }
-  // }
-
   return (
     <>
-      <div>
-        <NavMenu />
-      </div>
-
-      <div className="center">
-        <Link to={"/content"}>
-          <img src={logo} className="App-logo" alt="logo" />
-        </Link>
-      </div>
-      <div className="form-widget text-center adult-profile center txt-md">
+      <div className="absolute flex metree--container">
         <div>
-          <h1 className="header">Create your growing me profile</h1>
+          <NavMenu />
+        </div>
+        <div className="center">
+          <Link to={"/content"}>
+            <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+        </div>
+        <div className="center child_avatar-logo">
+          <Link to={"/adult-profile"}>
+            <img
+              src={state.data.profile.child_avatar ?? cuteVisitor}
+              className="avatar"
+              alt="avatar"
+            />
+          </Link>
+        </div>
+      </div>
+      <div className="form-widget text-center adult-profile center margin-top txt-md">
+        <div>
+          <h1 className="header">Create your Growing Me profile</h1>
         </div>
 
         <div className="flex row space-between">
