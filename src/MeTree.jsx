@@ -50,6 +50,7 @@ import jellyBlob from "./../assets/jelly_blob.svg";
 import heartBlob from "./../assets/heart_blob.svg";
 import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
+import funnyFaces from "./../assets/funny_faces.svg";
 import logo from "./../assets/Logo.svg";
 import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 import Container from "./Container";
@@ -173,7 +174,8 @@ export function MeTree() {
     "cloudy_blob.svg": cloudyBlob,
     "oval_blob.svg": ovalBlob,
   };
-
+    // @TODO: avatar url not loading
+    //const url = URL.createObjectURL(state.data.profile.avatar_url);
   return (
     <>
       {/* <div className="flex space-between padding-sides">
@@ -186,6 +188,28 @@ export function MeTree() {
         <div className="center">
           <Link to={"/content"}>
             <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+        </div>
+
+        {/* @TODO: WIP- currently URL not loading
+        <div className="center">
+          <Link to={"/profile"}>
+            <img
+              // url={state.data.profile.avatar_url}
+              src={url ?? funnyFaces}
+              // src={state.data.profile.avatar_url ?? funnyFaces}
+              className="avatar"
+              alt="avatar"
+            />
+          </Link>
+        </div> */}
+        <div className="center child_avatar-logo">
+          <Link to={"/profile"}>
+            <img
+              src={state.data.profile.child_avatar ?? cuteVisitor}
+              className="avatar"
+              alt="avatar"
+            />
           </Link>
         </div>
       </div>
@@ -208,10 +232,11 @@ export function MeTree() {
             <ToolkitText>Where is your tree</ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => saveToGallery()}>
-              {state.status === "updating" ?
+            {state.status === "updating" ? (
               <ToolkitText> Saving...</ToolkitText>
-              :
-              <ToolkitText> Save to Gallery</ToolkitText>}
+            ) : (
+              <ToolkitText> Save to Gallery</ToolkitText>
+            )}
           </ToolkitButton>
         </Toolkit>
         {/* <Gallery galleryImage={galleryImage} /> */}
