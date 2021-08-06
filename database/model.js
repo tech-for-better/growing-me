@@ -532,3 +532,25 @@ export async function setData(data) {
 //   setProfileData(data.profile.child_avatar);
 //   return;
 // }
+
+// function deleteImageFromGallery(image) {
+//   const { data, error } = await supabase
+//     .from("gallery")
+//     .delete()
+//     .match({ id: user.id });
+
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     images,
+//   };
+
+//   let { error } = await supabase.from("gallery").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
+
+//   if (error) {
+//     throw error;
+//   }
+// }
+// }

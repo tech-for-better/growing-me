@@ -332,6 +332,16 @@ input[disabled] {
   grid-template-columns: 1fr 1fr;
 }
 
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.gap {
+  gap: 1rem;
+}
+
 .font-light {
   font-weight: 300;
 }
@@ -385,6 +395,27 @@ button.primary,
   background-color: #333;
   border: 1px solid rgb(200, 200, 200);
   border-radius: 5px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-right {
+  right: 20px;
+  top: 10px;
+}
+
+.delete {
+  padding: 5px 12px;
+  border: none;
+  background: none;
+}
+
+.delete:hover {
+  border: 2px dashed #cc492f;
+  padding: 3px 10px 3px 10px;
+  cursor: pointer;
 }
 
 .footer {

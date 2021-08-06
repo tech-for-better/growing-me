@@ -133,31 +133,6 @@ export function MeTree() {
   if (state.status === "loading") return <div>Initialising...</div>;
   if (state.status === "error") return <div>Something went wrong!</div>;
 
-  // export async function load() {
-  //   console.log("load - about to get all data");
-  //   const data = await getAllData();
-  //   console.log("load get all data", data);
-  //   return data;
-  // }
-
-  // export async function update(changedData) {
-  //   // TODO: update the right bit of the DB using the `changedData` object
-  //   // just has to return a promise (resolved value isn't used)
-
-  //   console.log("changedData in update fn in MeTree comp:", changedData);
-  //   await setData(changedData);
-  //   console.log('it worked' )
-
-  // }
-
-  // useEffect(() => {
-  //   if (state.status === "updating") {
-  //     updateDataSomehow().then((data) => dispatch({ type: "success", data }));
-  //   }
-  //   }, [status]);
-
-  // <button onClick={() = dispatch({ type: "load" })}>Submit</button>
-
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
       setVisible((visible) => !visible);

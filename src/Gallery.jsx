@@ -29,10 +29,12 @@ export default function Gallery({ state, setState }) {
           Here you can see all your saved MeTree's!
         </h2>
       </div>
-      <div className="flex ">
-        <ul className="li-none">
+      <div className="flex flex-center ">
+        <ul className="li-none gap grid">
           {state.data.gallery.images.map((image) => (
-            <li>
+            <li className="relative">
+              {/* <div className="delete absolute top-right txt-lg">X</div> */}
+              <button className="delete absolute top-right txt-lg">X</button>
               <img src={image} alt="images" />
             </li>
           ))}
@@ -41,13 +43,3 @@ export default function Gallery({ state, setState }) {
     </>
   );
 }
-//         {galleryImage &&
-//           galleryImage.map((image) => {
-//             <div className="imageContainer">
-//               <img style={{ width: "500px" }} src={image} alt={"Screenshot"} />
-//             </div>;
-//           })}
-//       </div>
-//     </div>
-//   );
-// }
