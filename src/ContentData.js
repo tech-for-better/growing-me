@@ -81,12 +81,12 @@ export const ContentData = {
     },
     think: {
       1: {
-        img: "assets/simple_think.svg",
-        txt: "ADDDDDDDD",
+        img: "assets/brain-amazing/Your_brain_is_amazing_2.svg",
+        txt: "Hello! We're your brain...",
       },
       2: {
-        img: "assets/simple_think.svg",
-        txt: "ADDDD",
+        img: "assets/brain-amazing/Your_brain_is_amazing_4.svg",
+        txt: "The thinking bit is...",
       },
       3: {
         img: "assets/simple_think.svg",

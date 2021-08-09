@@ -9,6 +9,7 @@ import MakeNav2 from "./../../assets/make_table.svg";
 import PlayNav2 from "./../../assets/play_den_button.svg";
 import WonderNav2 from "./../../assets/wonder_time.svg";
 import ThinkNav2 from "./../../assets/think_story.svg";
+import MeTreeNav from "./../../assets/me_tree.svg";
 import "./../Layout/ContentNav.css";
 import { ContentContext } from "../Content";
 import { ACTIONS } from "../Content";
@@ -17,8 +18,10 @@ export default function ContentTopBar() {
   const { state, dispatch } = useContext(ContentContext);
   return (
     <div className="flex flex-center space-between narrow center">
+      <a className="opaque" href="/">
+        <img className="top-bar-btn" src={MeTreeNav} />
+      </a>
       <a
-        id="home"
         className={`${state.current_subsection === "play" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
@@ -31,7 +34,6 @@ export default function ContentTopBar() {
         <img className="top-bar-btn" src={PlayNav2} />
       </a>
       <a
-        id="home"
         className={`${state.current_subsection === "think" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
@@ -44,7 +46,6 @@ export default function ContentTopBar() {
         <img className="top-bar-btn" src={ThinkNav2} />
       </a>
       <a
-        id="home"
         className={`${state.current_subsection === "make" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
@@ -57,7 +58,6 @@ export default function ContentTopBar() {
         <img className="top-bar-btn" src={MakeNav2} />
       </a>
       <a
-        id="home"
         className={`${state.current_subsection === "wonder" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
