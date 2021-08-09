@@ -673,6 +673,10 @@ p {
     margin-top: 1rem;
   }
 
+  .mobile-margin-lg {
+    margin-top: 6rem;
+  }
+
   .pad-1 {
     padding: 0.2rem;
   }

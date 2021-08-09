@@ -46,7 +46,7 @@ export default function Gallery({ state, setState }) {
         </div>
       </div>
       <div className="flex column center text-center items-center">
-        <h1 className="margin-top txt-xlg">Gallery</h1>
+        <h1 className="margin-top txt-xlg mobile-margin-lg">Gallery</h1>
         <h2 className="margin-none txt-lg">
           Here you can see all your saved MeTree's!
         </h2>

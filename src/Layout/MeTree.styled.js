@@ -22,11 +22,11 @@ export const ToolkitButton = styled.button`
   border: var(--custom-border);
   background-color: var(--custom-bg-color);
   display: flex;
+  padding: 0.3rem 1rem;
   flex-direction: column;
   align-items: center;
   text-align: center;
   border-radius: var(--custom-border-radius);
-  padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
   font-size: 0.9rem;
@@ -43,9 +43,12 @@ export const ToolkitButton = styled.button`
     margin-left: 0.1rem;
   }
 `;
+// padding: 0.5rem 1rem;
 
 export const ToolkitText = styled.p`
   color: #fff;
+  padding: 0;
+  margin: 0.2rem 0.1rem;
   @media (max-width: 768px) {
     margin: 0;
   }
