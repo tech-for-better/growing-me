@@ -616,6 +616,14 @@ p {
   min-width: 6rem;
 }
 
+.content-nav a:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
+.margin-1 {
+  margin: 1rem;
+}
+
 @media (max-width: 768px) {
   .me-tree-container--mobile {
     flex-direction: column-reverse;
