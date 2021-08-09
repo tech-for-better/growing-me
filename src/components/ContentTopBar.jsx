@@ -1,10 +1,14 @@
 import React from "react";
 import { useContext } from "react";
 // import "./../Layout/NavMenu.css";
-import MakeNav from "./../../assets/simple_make.svg";
-import PlayNav from "./../../assets/simple_play_1.svg";
-import WonderNav from "./../../assets/simple_wonder.svg";
-import ThinkNav from "./../../assets/simple_think.svg";
+// import MakeNav from "./../../assets/simple_make.svg";
+// import PlayNav from "./../../assets/simple_play_1.svg";
+// import WonderNav from "./../../assets/simple_wonder.svg";
+// import ThinkNav from "./../../assets/simple_think.svg";
+import MakeNav2 from "./../../assets/make_table.svg";
+import PlayNav2 from "./../../assets/play_den_button.svg";
+import WonderNav2 from "./../../assets/wonder_time.svg";
+import ThinkNav2 from "./../../assets/think_story.svg";
 import "./../Layout/ContentNav.css";
 import { ContentContext } from "../Content";
 import { ACTIONS } from "../Content";
@@ -24,7 +28,7 @@ export default function ContentTopBar() {
           })
         }
       >
-        <img className="top-bar-btn" src={PlayNav} />
+        <img className="top-bar-btn" src={PlayNav2} />
       </a>
       <a
         id="home"
@@ -36,7 +40,7 @@ export default function ContentTopBar() {
           })
         }
       >
-        <img className="top-bar-btn" src={ThinkNav} />
+        <img className="top-bar-btn" src={ThinkNav2} />
       </a>
       <a
         id="home"
@@ -48,7 +52,7 @@ export default function ContentTopBar() {
           })
         }
       >
-        <img className="top-bar-btn" src={MakeNav} />
+        <img className="top-bar-btn" src={MakeNav2} />
       </a>
       <a
         id="home"
@@ -60,7 +64,7 @@ export default function ContentTopBar() {
           })
         }
       >
-        <img className="top-bar-btn" src={WonderNav} />
+        <img className="top-bar-btn" src={WonderNav2} />
       </a>
     </div>
   );

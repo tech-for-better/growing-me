@@ -23,50 +23,6 @@ export default function AdultProfile() {
 
   const { user } = useAuth();
 
-  // useEffect(() => {
-  //   getProfile();
-  // }, [user]);
-
-  // async function getProfile() {
-  //   try {
-  //     setLoading(true);
-  //     let data = await getProfileData();
-
-  //     if (data) {
-  //       setAdultName(data.adult_name);
-  //       setChildName(data.child_name);
-  //       setAvatarUrl(data.avatar_url);
-  //       setChildAvatarUrl(data.child_avatar);
-  //     }
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  // async function updateProfile({
-  //   adult_name,
-  //   avatar_url,
-  //   child_name,
-  //   child_avatar,
-  // }) {
-  //   try {
-  //     setLoading(true);
-  //     setProfileData({
-  //       adult_name,
-  //       avatar_url,
-  //       child_name,
-  //       child_avatar,
-  //     });
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //     history.push("/");
-  //   }
-  // }
-
   return (
     <>
       <div>
