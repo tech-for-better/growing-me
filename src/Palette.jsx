@@ -111,7 +111,6 @@ export default function Palette({ type }) {
         });
         break;
       case "update_whoAround":
-        
         setState({
           tree: {
             who_around: event.target.src,
@@ -132,10 +131,6 @@ export default function Palette({ type }) {
                 image={image}
                 onClick={(event) => handleClick(event, image)}
               >
-                {" "}
-                {state.status === "updating"
-                  ? "Updating your tree..."
-                  : "Click to update!"}
                 <PaletteImg key={image} src={image} alt={image} />
               </PaletteBtn>
             </>
