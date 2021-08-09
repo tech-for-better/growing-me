@@ -100,6 +100,7 @@ export function MeTree() {
   console.log("ref variable", ref);
 
   const saveToGallery = () => {
+    // make sure the gallery row exists for this user
     if (!state.data.gallery) {
       setState({
         gallery: {
