@@ -47,7 +47,7 @@ export default function Container({ hideSourceOnDrag }) {
 
   return (
     <DndContainer ref={drop}>
-      {Object.keys(state.data.tree.boxes).map((key) => {
+      {Object.keys(state.data.tree?.boxes || {}).map((key) => {
         console.log("CONTAINER: in object.key", state.data.tree.boxes); //WHY SIX TIMES? - NOW TWICE
         const { left, top, isGrowing } = state.data.tree.boxes[key];
         return (
