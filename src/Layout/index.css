@@ -610,3 +610,38 @@ p {
 .opaque {
   opacity: 0.3;
 }
+
+@media (max-width: 768px) {
+  .me-tree-container--mobile {
+    flex-direction: column-reverse;
+  }
+
+  .mobile-hide {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+
+  .txt-xlg {
+    font-size: 2rem;
+  }
+
+  .margin-top {
+    margin-top: 3rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: unset;
+  }
+
+  .mobile-narrow {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mobile-no-margin {
+    margin-top: 0 !important;
+  }
+}

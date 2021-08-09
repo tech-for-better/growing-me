@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  useState,
-  useEffect,
-  useCallback,
-  useReducer,
-  createContext,
-  createRef,
-  useRef,
-  useContext,
-} from "react";
+import { useState, useCallback, useRef, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   Toolkit,
@@ -19,9 +10,7 @@ import {
   BtnImage,
   ToolkitText,
 } from "./Layout/MeTree.styled";
-import { DndContainer } from "./Layout/DndContainer.styled";
 import NavMenu from "./components/NavMenu";
-import arrow from "./../assets/arrow.svg";
 import MeTreeGarden from "./../assets/where_-_garden.svg";
 import MeTreeCloud from "./../assets/where_-_cloud.svg";
 import MeTreeHeart from "./../assets/where_-_on_a_big_love_heart.svg";
@@ -52,34 +41,11 @@ import cloudyBlob from "./../assets/cloudy_blob.svg";
 import ovalBlob from "./../assets/oval_blob.svg";
 import funnyFaces from "./../assets/funny_faces.svg";
 import logo from "./../assets/Logo.svg";
-import { getShortImagePath, getShortImagePathFromArray } from "../utils/utils";
 import Container from "./Container";
-//html-t-image
 import { toPng } from "html-to-image";
-import { getGalleryData, getAllData, setData } from "../database/model";
-import useRemoteState from "../utils/useRemoteState";
 import { MeTreeContext } from "./App";
 
-// export const MeTreeContext = createContext();
-
-// export async function load() {
-//   console.log("load - about to get all data");
-//   const data = await getAllData();
-//   console.log("load get all data", data);
-//   return data;
-// }
-
-// export async function update(changedData) {
-//   // TODO: update the right bit of the DB using the `changedData` object
-//   // just has to return a promise (resolved value isn't used)
-
-//   console.log("changedData in update fn in MeTree comp:", changedData);
-//   return await setData(changedData);
-// }
-
-// MeTree Component
 export function MeTree() {
-  // const [state, setState] = useRemoteState({ load, update });
   const { state, setState } = useContext(MeTreeContext);
   console.log("METREE: state", state);
 
@@ -88,17 +54,13 @@ export function MeTree() {
   const [visible, setVisible] = useState(false);
   const [paletteOption, setPaletteOption] = useState("no option");
 
-  // react dnd
   const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
   const toggle = useCallback(
     () => setHideSourceOnDrag(!hideSourceOnDrag),
     [hideSourceOnDrag]
   );
 
-  //html2img
   const ref = useRef(null);
-  console.log("ref variable", ref);
-
   const saveToGallery = () => {
     // make sure the gallery row exists for this user
     if (!state.data.gallery) {
@@ -108,13 +70,9 @@ export function MeTree() {
         },
       });
     }
-    console.log("STATE in SAVETOGALLERY", state.status);
     if (ref.current === null) {
-      console.log("ref variable inside if statement", ref.current);
       return;
     }
-
-    console.log("ref variable after if statement", ref);
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
@@ -130,10 +88,6 @@ export function MeTree() {
             images: [...state.data.gallery.images, dataUrl],
           },
         });
-        console.log(
-          "state.gallery.images after setState ",
-          state.data.gallery?.images
-        );
       })
       .catch((err) => {
         console.log(err);
@@ -143,7 +97,7 @@ export function MeTree() {
       });
   };
 
-  if (state.status === "loading") return <div>Initialising...</div>;
+  if (state.status === "loading") return <h1>Initialising...</h1>;
   if (state.status === "error") return <div>Something went wrong!</div>;
 
   function handleClick(paletteType) {
@@ -185,9 +139,6 @@ export function MeTree() {
   //const url = URL.createObjectURL(state.data.profile.avatar_url);
   return (
     <>
-      {/* <div className="flex space-between padding-sides">
-        <NavMenu />
-      </div> */}
       <div className="absolute flex metree--container">
         <div>
           <NavMenu />
@@ -220,23 +171,25 @@ export function MeTree() {
           </Link>
         </div>
       </div>
-      <div className="flex margin-top">
+      <div className="flex margin-top me-tree-container--mobile">
         <Toolkit>
           <ToolkitButton onClick={() => handleClick("WhatColour")}>
             <BtnImage src={WhatColour} alt="" />
-            <ToolkitText>Change background</ToolkitText>
+            <ToolkitText className="mobile-hide">Change background</ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => handleClick("WhatGrows")}>
             <BtnImage src={WhatGrows} alt="" />
-            <ToolkitText>What's growing</ToolkitText>
+            <ToolkitText className="mobile-hide">What's growing</ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => handleClick("WhoAround")}>
             <BtnImage src={WhoAround} alt="" />
-            <ToolkitText>Who is around</ToolkitText>
+            <ToolkitText className="mobile-hide">Who is around</ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => handleClick("WhereTree")}>
             <BtnImage src={WhereTree} alt="" />
-            <ToolkitText>Where is your tree</ToolkitText>
+            <ToolkitText className="mobile-hide">
+              Where is your tree
+            </ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => saveToGallery()}>
             {state.status === "updating" ? (
@@ -246,7 +199,6 @@ export function MeTree() {
             )}
           </ToolkitButton>
         </Toolkit>
-        {/* <Gallery galleryImage={galleryImage} /> */}
 
         <div className="flex column center text-center items-center flex-grow">
           {" "}
@@ -263,9 +215,8 @@ export function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>
-          <div>
+          <div className="mobile-narrow">
             <div ref={ref}>
-              {/* <MeTreeContext.Provider value={{ state, setState }}> */}
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
                 <MeTreeImage
@@ -277,7 +228,7 @@ export function MeTree() {
 
               {visible ? <Palette type={paletteOption} /> : ""}
             </div>
-            <div className="flex row flex-end margin-top">
+            <div className="flex row flex-end margin-top mobile-no-margin">
               <div>
                 <Link to="/content">
                   <button className="button primary block">
@@ -286,16 +237,9 @@ export function MeTree() {
                 </Link>
               </div>
             </div>
-            {/* </MeTreeContext.Provider> */}
           </div>
         </div>
       </div>
-
-      {/* <footer className="flex flex-end padding-sides">
-        <Link to="/content">
-          <button className="button primary block">Ready to play?</button>
-        </Link>
-      </footer> */}
     </>
   );
 }

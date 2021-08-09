@@ -4,6 +4,15 @@ export const Toolkit = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    z-index: 4000;
+    width: 100vw;
+    justify-content: space-around;
+    overflow: scroll;
+  }
 `;
 
 export const ToolkitButton = styled.button`
@@ -30,10 +39,16 @@ export const ToolkitButton = styled.button`
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     transform: scale(1.05);
   }
+  @media (max-width: 768px) {
+    margin-left: 0.1rem;
+  }
 `;
 
 export const ToolkitText = styled.p`
   color: #fff;
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 export const MeTreeImage = styled.img`
@@ -57,11 +72,17 @@ export const MeTreeContainer = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 30rem;
+  @media (max-width: 768px) {
+    width: auto;
+  }
 `;
 
 export const BtnImage = styled.img`
   height: 100px;
   max-width: 100px;
+  @media (max-width: 768px) {
+    height: 50px;
+  }
 `;
 
 // COLOURS
