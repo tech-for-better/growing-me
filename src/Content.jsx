@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  useState,
-  useEffect,
-  createContext,
-  useContext,
-  useReducer,
-} from "react";
-// import { supabase } from "./supabaseClient";
-import { Link } from "react-router-dom";
+import { createContext, useReducer } from "react";
 import NavMenu from "./components/NavMenu";
 import ContentNav from "./components/ContentNav";
 import ContentTopBar from "./components/ContentTopBar";
@@ -18,7 +10,6 @@ const initialState = {
   current_subsection: "play",
   unlocked: ["great to meet you", "your brain is amazing"],
 };
-console.log("initial state content", initialState);
 
 export const ACTIONS = {
   UPDATE_CURRENT_SECTION: "update_current_section",
@@ -35,9 +26,7 @@ function reducer(state, action) {
       const unlocked = [...state.unlocked, action.new_unlocked];
       return { ...state, unlocked };
     case ACTIONS.UPDATE_CURRENT_SUB_SECTION:
-      // console.log("updating subsection");
       const current_subsection = action.new_sub_section;
-      // console.log(current_subsection);
       return { ...state, current_subsection };
     default:
       return state;
@@ -48,10 +37,6 @@ export const ContentContext = createContext();
 
 export default function Content() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // useEffect(() => {
-  //   console.log("content top bar state: ", state);
-  // }, [state]);
 
   return (
     <>

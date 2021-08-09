@@ -17,7 +17,7 @@ import { ACTIONS } from "../Content";
 export default function ContentTopBar() {
   const { state, dispatch } = useContext(ContentContext);
   return (
-    <div className="flex flex-center space-between narrow center">
+    <div className="flex flex-center space-between narrow center mobile-low mobile-wide">
       <a className="opaque" href="/">
         <img className="top-bar-btn" src={MeTreeNav} />
       </a>

@@ -29,12 +29,12 @@ export default function AdultProfile() {
         <div>
           <NavMenu />
         </div>
-        <div className="center">
+        <div>
           <Link to={"/content"}>
             <img src={logo} className="App-logo" alt="logo" />
           </Link>
         </div>
-        <div className="center child_avatar-logo">
+        <div className="child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
               src={state.data.profile?.child_avatar ?? cuteVisitor}
@@ -49,7 +49,7 @@ export default function AdultProfile() {
           <h1 className="header">Create your Growing Me profile</h1>
         </div>
 
-        <div className="flex row space-between">
+        <div className="flex row space-between mobile-column">
           <div>
             <Avatar
               url={state.data.profile?.avatar_url || ""}
@@ -70,68 +70,54 @@ export default function AdultProfile() {
             />
           </div>
 
-          <div>
-            <div>
-              <div className="flex row pad-1">
-                <div>
-                  <label htmlFor="adult_name">Adult's Name</label>
-                </div>
-                <div>
-                  <input
-                    id="adult_name"
-                    type="text"
-                    placeholder="The name your child calls you"
-                    value={state.data.profile?.adult_name || ""}
-                    onChange={(e) => {
-                      setState({
-                        profile: {
-                          adult_name: e.target.value,
-                        },
-                      });
-                    }}
-                  />
-                </div>
-              </div>
+          <div className="mobile-wide">
+            <div className="flex row pad-1">
+              <label className="label-width" htmlFor="adult_name">
+                Adult's Name
+              </label>
+              <input
+                id="adult_name"
+                type="text"
+                placeholder="The name your child calls you"
+                value={state.data.profile?.adult_name || ""}
+                onChange={(e) => {
+                  setState({
+                    profile: {
+                      adult_name: e.target.value,
+                    },
+                  });
+                }}
+              />
             </div>
-
-            <div>
-              <div className="flex row pad-1">
-                <div>
-                  <label htmlFor="child_username">Child's Name</label>
-                </div>
-                <div>
-                  <input
-                    id="child_username"
-                    type="text"
-                    placeholder="What's your name?"
-                    value={state.data.profile?.child_name || ""}
-                    onChange={(e) => {
-                      setState({
-                        profile: {
-                          child_name: e.target.value,
-                        },
-                      });
-                    }}
-                  />
-                </div>
-              </div>
+            <div className="flex row pad-1">
+              <label className="label-width" htmlFor="child_username">
+                Child's Name
+              </label>
+              <input
+                id="child_username"
+                type="text"
+                placeholder="What's your name?"
+                value={state.data.profile?.child_name || ""}
+                onChange={(e) => {
+                  setState({
+                    profile: {
+                      child_name: e.target.value,
+                    },
+                  });
+                }}
+              />
             </div>
-
-            <div>
-              <div className="flex row pad-1">
-                <div>
-                  <label htmlFor="email">Email</label>
-                </div>
-                <div>
-                  <input
-                    id="email"
-                    type="text"
-                    placeholder="Your email"
-                    value={user.email}
-                    disabled
-                  />
-                </div>
-              </div>
+            <div className="flex row pad-1">
+              <label className="label-width" htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                type="text"
+                placeholder="Your email"
+                value={user.email}
+                disabled
+              />
             </div>
           </div>
         </div>

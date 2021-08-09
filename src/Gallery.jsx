@@ -30,12 +30,12 @@ export default function Gallery({ state, setState }) {
         <div>
           <NavMenu />
         </div>
-        <div className="center">
+        <div>
           <Link to={"/content"}>
             <img src={logo} className="App-logo" alt="logo" />
           </Link>
         </div>
-        <div className="center child_avatar-logo">
+        <div className="child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
               src={state.data.profile?.child_avatar ?? cuteVisitor}
@@ -46,7 +46,7 @@ export default function Gallery({ state, setState }) {
         </div>
       </div>
       <div className="flex column center text-center items-center">
-        <h1 className="margin-top txt-xlg">Gallery</h1>
+        <h1 className="margin-top txt-xlg mobile-margin-lg">Gallery</h1>
         <h2 className="margin-none txt-lg">
           Here you can see all your saved MeTree's!
         </h2>
