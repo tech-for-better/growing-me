@@ -603,6 +603,9 @@ p {
 }
 .metree--container {
   top: -20px;
+  width: 100%;
+  height: 110px;
+  background-color: #ecf0d9;
 }
 .opaque {
   opacity: 0.3;

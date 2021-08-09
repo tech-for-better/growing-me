@@ -192,7 +192,7 @@ export function MeTree() {
         <div>
           <NavMenu />
         </div>
-        <div className="center">
+        <div>
           <Link to={"/content"}>
             <img src={logo} className="App-logo" alt="logo" />
           </Link>
@@ -210,7 +210,7 @@ export function MeTree() {
             />
           </Link>
         </div> */}
-        <div className="center child_avatar-logo">
+        <div className="child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
               src={state.data?.profile?.child_avatar ?? cuteVisitor}
@@ -250,7 +250,7 @@ export function MeTree() {
 
         <div className="flex column center text-center items-center flex-grow">
           {" "}
-          <h1 className="margin-none txt-xlg">
+          <h1 className="margin-top txt-xlg">
             {state.data?.profile?.adult_name
               ? "Welcome back " + state.data.profile?.adult_name
               : "Welcome back care giver"}

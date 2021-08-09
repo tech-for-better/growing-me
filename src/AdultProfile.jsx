@@ -29,12 +29,12 @@ export default function AdultProfile() {
         <div>
           <NavMenu />
         </div>
-        <div className="center">
+        <div>
           <Link to={"/content"}>
             <img src={logo} className="App-logo" alt="logo" />
           </Link>
         </div>
-        <div className="center child_avatar-logo">
+        <div className="child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
               src={state.data.profile?.child_avatar ?? cuteVisitor}
