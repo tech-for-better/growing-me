@@ -607,3 +607,14 @@ p {
 .opaque {
   opacity: 0.3;
 }
+
+.content-nav a:hover{
+transform: scale(1.2);
+opacity: 1;
+}
+.margin-1{
+  margin:1rem;
+}
+.inner-content_background{
+  background-image: url("assets/play_background_white.svg");
+}

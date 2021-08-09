@@ -56,12 +56,14 @@ export default function Content() {
   return (
     <>
       <ContentContext.Provider value={{ state, dispatch }}>
-        <div className="content--top-nav">
+        <div className="content--top-nav margin-1">
           <ContentTopBar />
           <ContentNav />
           <NavMenu />
         </div>
-        <InnerContent />
+        <div className="inner-content_background">
+          <InnerContent />
+        </div>
       </ContentContext.Provider>
     </>
   );
