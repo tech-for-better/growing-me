@@ -206,9 +206,9 @@ export function MeTree() {
             {state.data?.profile?.adult_name
               ? "Welcome back " + state.data.profile?.adult_name
               : "Welcome back care giver"}
-            {state.data.profile?.child_name === ""
-              ? " and friend "
-              : " and " + state.data.profile?.child_name}
+            {state.data.profile?.child_name
+              ? " and " + state.data.profile?.child_name
+              : " and young person "}
             !
           </h1>
           <h2 className="narrow rokkitt-font">

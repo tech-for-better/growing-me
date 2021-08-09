@@ -26,7 +26,7 @@ export default function Container({ hideSourceOnDrag }) {
         },
       });
     },
-    [(state.data.tree.boxes, setState)]
+    [(state.data?.tree.boxes, setState)]
   );
 
 //   const moveBox = () => {

@@ -17,6 +17,14 @@ const { state, setState } = useContext(MeTreeContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    //  if (state.data.tree === undefined) {
+    //    setState({
+    //      boxes: {
+    //        a: { top: 0, left: 2, isGrowing: true },
+    //        b: { top: 1, left: 3, isGrowing: false },
+    //      },
+    //    });
+    //  }
     // Get email and password input values
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -29,14 +37,14 @@ const { state, setState } = useContext(MeTreeContext);
     } else {
       // check if adult has a child name entered? @TODO
       // Redirect user to Me Tree
-      if (state.data?.tree === undefined) {
-        setState({
-          boxes: {
-            a: { top: 0, left: 2, isGrowing: true },
-            b: { top: 1, left: 3, isGrowing: false },
-          },
-        });
-      }
+      // if (state.data?.tree === undefined) {
+      //   setState({
+      //     boxes: {
+      //       a: { top: 0, left: 2, isGrowing: true },
+      //       b: { top: 1, left: 3, isGrowing: false },
+      //     },
+      //   });
+      // }
       history.push("/");
     }
   }
