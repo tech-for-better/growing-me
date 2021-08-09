@@ -52,7 +52,7 @@ export default function AdultProfile() {
         <div className="flex row space-between">
           <div>
             <Avatar
-              url={state.data.profile.avatar_url}
+              url={state.data.profile.avatar_url || ""}
               size={150}
               onUpload={(url) => {
                 setState({

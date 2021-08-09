@@ -601,7 +601,9 @@ p {
   margin-top: 25px;
   /* width: 100px; */
 }
-
 .metree--container {
   top: -20px;
+}
+.opaque {
+  opacity: 0.3;
 }

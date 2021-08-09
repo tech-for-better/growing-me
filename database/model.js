@@ -204,6 +204,7 @@ export async function setBackgroundData(background) {
 }
 
 export async function setTreeLocationData(tree_location) {
+  console.log("set tree location data", tree_location);
   const user = supabase.auth.user();
   const updates = {
     id: user.id,

@@ -92,7 +92,7 @@ export default function Palette({ type }) {
       case "update_treeLocation":
         setState({
           tree: {
-            treeLocation: event.target.src,
+            tree_location: event.target.src,
           },
         });
         break;

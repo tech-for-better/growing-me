@@ -7,7 +7,7 @@ import { getGalleryData } from "../database/model";
 import logo from "./../assets/Logo.svg";
 
 export default function Gallery({ state, setState }) {
-  console.log("in gallery ", state.data.gallery.images);
+  console.log("in gallery ", state.data.gallery?.images);
 
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
@@ -52,7 +52,8 @@ export default function Gallery({ state, setState }) {
       </div>
       <div className="flex flex-center ">
         <ul className="li-none gap grid">
-          {state.data.gallery.images
+
+          {state.data.gallery?.images
             .filter((image) => image !== null)
             .map(
               (image) => (
