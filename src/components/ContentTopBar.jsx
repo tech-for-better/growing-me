@@ -19,7 +19,7 @@ export default function ContentTopBar() {
     <div className="flex flex-center space-between narrow center">
       <a
         id="home"
-        className="menu-item"
+        className={`${state.current_subsection === "play" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
           dispatch({
@@ -32,6 +32,7 @@ export default function ContentTopBar() {
       </a>
       <a
         id="home"
+        className={`${state.current_subsection === "think" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
           dispatch({
@@ -44,6 +45,7 @@ export default function ContentTopBar() {
       </a>
       <a
         id="home"
+        className={`${state.current_subsection === "make" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
           dispatch({
@@ -56,6 +58,7 @@ export default function ContentTopBar() {
       </a>
       <a
         id="home"
+        className={`${state.current_subsection === "wonder" ? "" : "opaque"}`}
         href="#"
         onClick={() =>
           dispatch({

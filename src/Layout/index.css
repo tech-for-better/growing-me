@@ -596,7 +596,10 @@ p {
   background-color: #d19f00 !important;
   border: none !important;
 }
-.child_avatar-logo{
-   
+.child_avatar-logo {
   width: 100px;
+}
+
+.opaque {
+  opacity: 0.3;
 }
