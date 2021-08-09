@@ -212,7 +212,7 @@ export function MeTree() {
         <div className="center child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
-              src={state.data.profile?.child_avatar ?? cuteVisitor}
+              src={state.data?.profile?.child_avatar ?? cuteVisitor}
               className="avatar"
               alt="avatar"
             />
@@ -250,12 +250,12 @@ export function MeTree() {
         <div className="flex column center text-center items-center flex-grow">
           {" "}
           <h1 className="margin-none txt-xlg">
-            {state.data.profile?.adult_name
-              ? "Welcome back " + state.data.profile?.adult_name + " and "
-              : "Welcome back "}
+            {state.data?.profile?.adult_name
+              ? "Welcome back " + state.data.profile?.adult_name
+              : "Welcome back care giver"}
             {state.data.profile?.child_name === ""
-              ? "friend"
-              : state.data.profile.child_name}
+              ? " and friend "
+              : " and " + state.data.profile?.child_name}
             !
           </h1>
           <h2 className="narrow rokkitt-font">
@@ -268,10 +268,10 @@ export function MeTree() {
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
                 <MeTreeImage
-                  src={state.data.tree.tree_location ?? MeTreeGarden}
+                  src={state.data.tree?.tree_location ?? MeTreeGarden}
                   alt=""
                 />
-                <MeTreeBackground src={state.data.tree.background} alt="" />
+                <MeTreeBackground src={state.data.tree?.background} alt="" />
               </MeTreeContainer>
 
               {visible ? <Palette type={paletteOption} /> : ""}

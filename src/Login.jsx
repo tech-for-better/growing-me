@@ -1,9 +1,13 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
+import { MeTreeContext } from "./App";
+
 
 export default function Login() {
+
+const { state, setState } = useContext(MeTreeContext);
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -25,6 +29,14 @@ export default function Login() {
     } else {
       // check if adult has a child name entered? @TODO
       // Redirect user to Me Tree
+      if (state.data?.tree === undefined) {
+        setState({
+          boxes: {
+            a: { top: 0, left: 2, isGrowing: true },
+            b: { top: 1, left: 3, isGrowing: false },
+          },
+        });
+      }
       history.push("/");
     }
   }

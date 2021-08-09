@@ -111,6 +111,7 @@ export default function Palette({ type }) {
         });
         break;
       case "update_whoAround":
+        
         setState({
           tree: {
             who_around: event.target.src,

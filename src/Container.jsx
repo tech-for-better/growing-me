@@ -29,7 +29,23 @@ export default function Container({ hideSourceOnDrag }) {
     [(state.data.tree.boxes, setState)]
   );
 
-  console.log("CONTAINER: state.data.tree.boxes ", state.data.tree.boxes);
+//   const moveBox = () => {
+//     (id, left, top) => {
+//       setState({
+//         tree: {
+//           boxes: update(state.data.tree.boxes, {
+//             [id]: {
+//               $merge: { left, top },
+//             },
+//           }),
+//         },
+//       });
+//     },
+//       [(state.data.tree.boxes, setState)];
+// }
+
+
+  // console.log("CONTAINER: state.data.tree?.boxes ", state.data.tree.boxes);
 
   const [, drop] = useDrop(
     () => ({

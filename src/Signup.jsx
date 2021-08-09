@@ -20,6 +20,7 @@ export default function Signup() {
 
     // Calls `signUp` function from the context
     const { error } = await signUp({ email, password });
+     alert("Check your email for verification");
 
     if (error) {
       alert("This account already exists. Click Log in to sign in with this email address or to make a new account enter a different email address");
