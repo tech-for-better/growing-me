@@ -134,7 +134,8 @@
   vertical-align: top;
 }
 .carousel.carousel-slider {
-  background-color: white;
+  /* background-color: white; */
+background-color: transparent;
   /* border: 3px solid #bcd38c; */
   border-radius: 1rem;
   position: relative;
@@ -157,7 +158,7 @@
 .carousel .slider-wrapper {
   overflow: hidden;
   margin: auto;
-  width: 100%;
+  width: 60%;
   -webkit-transition: height 0.15s ease-in;
   -moz-transition: height 0.15s ease-in;
   -ms-transition: height 0.15s ease-in;

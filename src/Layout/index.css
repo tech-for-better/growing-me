@@ -550,7 +550,7 @@ button.primary,
 .txt-background {
   background-color: #abc961;
   width: 100%;
-  height: 100%;
+  height: 50%;
   color: white !important;
 
   /* margin: 0 2rem; */
@@ -616,5 +616,15 @@ opacity: 1;
   margin:1rem;
 }
 .inner-content_background{
-  background-image: url("assets/play_background_white.svg");
+  /* background-image: url("assets/play_background_white.svg"); */
+  height: 100vh;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  width:100%;
+  position: relative;
+}
+.inner-content-container{
+    bottom: 400px;
+    left: 260px;
 }

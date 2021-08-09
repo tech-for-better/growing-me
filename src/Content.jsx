@@ -61,7 +61,7 @@ export default function Content() {
           <ContentNav />
           <NavMenu />
         </div>
-        <div className="inner-content_background">
+        <div>
           <InnerContent />
         </div>
       </ContentContext.Provider>
