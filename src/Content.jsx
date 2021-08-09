@@ -35,9 +35,9 @@ function reducer(state, action) {
       const unlocked = [...state.unlocked, action.new_unlocked];
       return { ...state, unlocked };
     case ACTIONS.UPDATE_CURRENT_SUB_SECTION:
-      console.log("updating subsection");
+      // console.log("updating subsection");
       const current_subsection = action.new_sub_section;
-      console.log(current_subsection);
+      // console.log(current_subsection);
       return { ...state, current_subsection };
     default:
       return state;
@@ -49,9 +49,9 @@ export const ContentContext = createContext();
 export default function Content() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    console.log("content top bar state: ", state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log("content top bar state: ", state);
+  // }, [state]);
 
   return (
     <>
@@ -60,11 +60,8 @@ export default function Content() {
           <ContentTopBar />
           <ContentNav />
           <NavMenu />
-        </div >
-        <InnerContent
-        // section={state.current_section}
-        // sub_section={state.current_subsection}
-        />
+        </div>
+        <InnerContent />
       </ContentContext.Provider>
     </>
   );
