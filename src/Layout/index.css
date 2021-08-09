@@ -635,6 +635,10 @@ p {
     font-size: 2rem;
   }
 
+  .txt-lg {
+    font-size: 1.2rem;
+  }
+
   .margin-top {
     margin-top: 3rem;
   }
@@ -665,6 +669,10 @@ p {
     margin-top: 0 !important;
   }
 
+  .mobile-margin-sm {
+    margin-top: 1rem;
+  }
+
   .pad-1 {
     padding: 0.2rem;
   }
@@ -676,5 +684,22 @@ p {
 
   .label-width {
     min-width: 5rem;
+  }
+
+  .mobile-low {
+    margin-top: 6rem;
+  }
+
+  .top-bar-btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  .carousel-status {
+    font-size: 1rem !important;
+  }
+
+  .control-dots {
+    margin: 0;
   }
 }

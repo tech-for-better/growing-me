@@ -10,7 +10,7 @@ export default function InnerContent() {
   const { state, dispatch } = useContext(ContentContext);
   let text;
   if (text === "PLAY") {
-    return className = "play-color";
+    return (className = "play-color");
   }
   let textColorToSubSectionMap = {
     play: "#abc961",
@@ -21,11 +21,11 @@ export default function InnerContent() {
 
   return (
     <div className="flex flex-center space-between narrow center column ">
-      <h1 className="text-center margin-top txt-xlg">
+      <h1 className="text-center margin-top txt-xlg mobile-margin-sm">
         {state.current_section}
       </h1>
       <h2
-        className="text-center txt-lg rokkitt-font"
+        className="text-center txt-lg rokkitt-font mobile-hide"
         style={{
           color: `${textColorToSubSectionMap[state.current_subsection]}`,
         }}
@@ -33,7 +33,7 @@ export default function InnerContent() {
         Welcome to the {`${state.current_subsection}`.toUpperCase()} Section{" "}
       </h2>
       {/* <div> */}
-      <Carousel showThumbs={false}>
+      <Carousel className="mobile-margin-sm" showThumbs={false}>
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
         ).map((slide) => {
