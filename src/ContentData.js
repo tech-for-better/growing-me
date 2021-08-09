@@ -117,15 +117,15 @@ export const ContentData = {
     },
     wonder: {
       1: {
-        img: "assets/simple_wonder.svg",
-        txt: "ADDD",
+        img: "",
+        txt: "Here, you're invited to celebrate your amazing brain. In your toolkit, there's fabric and paper and pens.",
       },
       2: {
-        img: "assets/simple_wonder.svg",
-        txt: "ADDD",
+        img: "",
+        txt: "You're invited to use these to make a wonder badge to add to your wonder tree. You can add words or pictures or just colors and textures that remind you what an amazing brain you have!",
       },
       3: {
-        img: "assets/simple_wonder.svg",
+        img: "",
         txt: "You have now finished the last section of My Brain is Amazing - well done! You are a wonder, and we are looking forward to seeing you next time!",
       },
     },
