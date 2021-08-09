@@ -22,7 +22,7 @@ export default function Signup() {
     const { error } = await signUp({ email, password });
 
     if (error) {
-      alert("error signing in");
+      alert("This account already exists. Click Log in to sign in with this email address or to make a new account enter a different email address");
     } else {
       // Redirect user to Dashboard
       history.push("/adult-profile");
