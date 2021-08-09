@@ -180,7 +180,7 @@ export function MeTree() {
       {/* <div className="flex space-between padding-sides">
         <NavMenu />
       </div> */}
-      <div className="height">
+      <div className="absolute flex metree--container">
         <div>
           <NavMenu />
         </div>
@@ -203,7 +203,7 @@ export function MeTree() {
           </Link>
         </div> */}
         <div className="center child_avatar-logo">
-          <Link to={"/profile"}>
+          <Link to={"/adult-profile"}>
             <img
               src={state.data.profile?.child_avatar ?? cuteVisitor}
               className="avatar"

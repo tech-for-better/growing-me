@@ -597,9 +597,13 @@ p {
   border: none !important;
 }
 .child_avatar-logo {
-  width: 100px;
+  width: 60px;
+  margin-top: 25px;
+  /* width: 100px; */
 }
-
+.metree--container {
+  top: -20px;
+}
 .opaque {
   opacity: 0.3;
 }
