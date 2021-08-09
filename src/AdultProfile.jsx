@@ -37,7 +37,7 @@ export default function AdultProfile() {
         <div className="center child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
-              src={state.data.profile.child_avatar ?? cuteVisitor}
+              src={state.data.profile?.child_avatar ?? cuteVisitor}
               className="avatar"
               alt="avatar"
             />
@@ -52,7 +52,7 @@ export default function AdultProfile() {
         <div className="flex row space-between">
           <div>
             <Avatar
-              url={state.data.profile.avatar_url || ""}
+              url={state.data.profile?.avatar_url || ""}
               size={150}
               onUpload={(url) => {
                 setState({
@@ -81,7 +81,7 @@ export default function AdultProfile() {
                     id="adult_name"
                     type="text"
                     placeholder="The name your child calls you"
-                    value={state.data.profile.adult_name || ""}
+                    value={state.data.profile?.adult_name || ""}
                     onChange={(e) => {
                       setState({
                         profile: {
@@ -104,7 +104,7 @@ export default function AdultProfile() {
                     id="child_username"
                     type="text"
                     placeholder="What's your name?"
-                    value={state.data.profile.child_name || ""}
+                    value={state.data.profile?.child_name || ""}
                     onChange={(e) => {
                       setState({
                         profile: {

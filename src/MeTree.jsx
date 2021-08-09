@@ -100,6 +100,13 @@ export function MeTree() {
   console.log("ref variable", ref);
 
   const saveToGallery = () => {
+    if (!state.data.gallery) {
+      setState({
+        gallery: {
+          images: [],
+        },
+      });
+    }
     console.log("STATE in SAVETOGALLERY", state.status);
     if (ref.current === null) {
       console.log("ref variable inside if statement", ref.current);
@@ -124,7 +131,7 @@ export function MeTree() {
         });
         console.log(
           "state.gallery.images after setState ",
-          state.data.gallery.images
+          state.data.gallery?.images
         );
       })
       .catch((err) => {
@@ -246,7 +253,10 @@ export function MeTree() {
             {state.data.profile?.adult_name
               ? "Welcome back " + state.data.profile?.adult_name + " and "
               : "Welcome back "}
-            {state.data.profile?.child_name ?? "friend"}!
+            {state.data.profile?.child_name === ""
+              ? "friend"
+              : state.data.profile.child_name}
+            !
           </h1>
           <h2 className="narrow rokkitt-font">
             Here’s your Me Tree from last time - it’s looking good! Would you

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import { getGalleryData } from "../database/model";
 import logo from "./../assets/Logo.svg";
+import cuteVisitor from "./../assets/cute_visitors.svg";
 
 export default function Gallery({ state, setState }) {
   console.log("in gallery ", state.data.gallery?.images);
@@ -13,7 +14,7 @@ export default function Gallery({ state, setState }) {
   //   return <div>Loading images...</div>;
 
   async function deleteImage(image) {
-    let imagesArray = state.data.gallery.images;
+    let imagesArray = state.data.gallery?.images;
     let imageIndex = imagesArray.indexOf(image);
     imagesArray[imageIndex] = null;
     setState({
@@ -37,7 +38,7 @@ export default function Gallery({ state, setState }) {
         <div className="center child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
-              src={state.data.profile.child_avatar ?? cuteVisitor}
+              src={state.data.profile?.child_avatar ?? cuteVisitor}
               className="avatar"
               alt="avatar"
             />
@@ -52,7 +53,6 @@ export default function Gallery({ state, setState }) {
       </div>
       <div className="flex flex-center ">
         <ul className="li-none gap grid">
-
           {state.data.gallery?.images
             .filter((image) => image !== null)
             .map(
