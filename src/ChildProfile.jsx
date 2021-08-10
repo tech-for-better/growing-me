@@ -2,10 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
-import cuteVisitor from "./../assets/cute_visitors.svg";
-import pricklyVisitor from "../assets/prickly_visitors.svg";
-import fluffyVisitor from "./../assets/fluffy_visitors.svg";
-import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
+import cuteVisitor from "./../public/assets/cute_visitors.svg";
+import pricklyVisitor from "../public/assets/prickly_visitors.svg";
+import fluffyVisitor from "./../public/assets/fluffy_visitors.svg";
+import creepyCrawlyVisitor from "./../public/assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
 
 export default function ChildProfile({ session }) {

@@ -1,16 +1,16 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { supabase } from "./supabaseClient";
-import logo from "./../assets/Logo.svg";
+import logo from "./../public/assets/Logo.svg";
 import Avatar from "./components/Avatar";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
 // import ChildProfile from "./ChildProfile";
 import "./Layout/adultProfile.css";
-import cuteVisitor from "./../assets/cute_visitors.svg";
-import pricklyVisitor from "../assets/prickly_visitors.svg";
-import fluffyVisitor from "./../assets/fluffy_visitors.svg";
-import creepyCrawlyVisitor from "./../assets/creepy_crawly_visitors.svg";
+import cuteVisitor from "./../public/assets/cute_visitors.svg";
+import pricklyVisitor from "../public/assets/prickly_visitors.svg";
+import fluffyVisitor from "./../public/assets/fluffy_visitors.svg";
+import creepyCrawlyVisitor from "./../public/assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
 // import { getProfileData, setProfileData } from "../database/model";
 import NavMenu from "./components/NavMenu";
@@ -128,7 +128,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar1"
               name="child_avatar"
-              value="./../assets/cute_visitors.svg"
+              value="./../public/assets/cute_visitors.svg"
               onChange={(e) => {
                 setState({
                   profile: {
@@ -147,7 +147,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar2"
               name="child_avatar"
-              value="./../assets/fluffy_visitors.svg"
+              value="./../public/assets/fluffy_visitors.svg"
               onChange={(e) => {
                 setState({
                   profile: {
@@ -166,7 +166,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar3"
               name="child_avatar"
-              value="./../assets/prickly_visitors.svg"
+              value="./../public/assets/prickly_visitors.svg"
               onChange={(e) => {
                 setState({
                   profile: {
@@ -185,7 +185,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar4"
               name="child_avatar"
-              value="./../assets/creepy_crawly_visitors.svg"
+              value="./../public/assets/creepy_crawly_visitors.svg"
               onChange={(e) => {
                 setState({
                   profile: {
