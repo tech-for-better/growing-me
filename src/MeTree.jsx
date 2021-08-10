@@ -138,17 +138,18 @@ export function MeTree() {
   //const url = URL.createObjectURL(state.data.profile.avatar_url);
   return (
     <>
-      <div className="absolute flex metree--container">
-        <div>
-          <NavMenu />
-        </div>
-        <div>
-          <Link to={"/content"}>
-            <img src={logo} className="App-logo" alt="logo" />
-          </Link>
-        </div>
+      <div className="height-100">
+        <div className="absolute flex metree--container">
+          <div>
+            <NavMenu />
+          </div>
+          <div>
+            <Link to={"/content"}>
+              <img src={logo} className="App-logo" alt="logo" />
+            </Link>
+          </div>
 
-        {/* @TODO: WIP- currently URL not loading
+          {/* @TODO: WIP- currently URL not loading
         <div className="center">
           <Link to={"/profile"}>
             <img
@@ -160,76 +161,86 @@ export function MeTree() {
             />
           </Link>
         </div> */}
-        <div className="child_avatar-logo">
-          <Link to={"/adult-profile"}>
-            <img
-              src={state.data.profile?.child_avatar ?? cuteVisitor}
-              className="avatar"
-              alt="avatar"
-            />
-          </Link>
+          <div className="child_avatar-logo">
+            <Link to={"/adult-profile"}>
+              <img
+                src={state.data.profile?.child_avatar ?? cuteVisitor}
+                className="avatar"
+                alt="avatar"
+              />
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="flex margin-top me-tree-container--mobile">
-        <Toolkit>
-          <ToolkitButton onClick={() => handleClick("WhatColour")}>
-            <BtnImage src={WhatColour} alt="" />
-            <ToolkitText className="mobile-hide">Change background</ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => handleClick("WhatGrows")}>
-            <BtnImage src={WhatGrows} alt="" />
-            <ToolkitText className="mobile-hide">What's growing</ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => handleClick("WhoAround")}>
-            <BtnImage src={WhoAround} alt="" />
-            <ToolkitText className="mobile-hide">Who is around</ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => handleClick("WhereTree")}>
-            <BtnImage src={WhereTree} alt="" />
-            <ToolkitText className="mobile-hide">
-              Where is your tree
-            </ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => saveToGallery()}>
-            <ToolkitText> Save to Gallery</ToolkitText>
-          </ToolkitButton>
-        </Toolkit>
 
-        <div className="flex column center text-center items-center flex-grow">
-          {" "}
-          <h1 className="margin-top txt-xlg">
-            {state.data.profile?.adult_name
-              ? "Welcome back " + state.data.profile?.adult_name
-              : "Welcome back care giver"}
-            {state.data.profile?.child_name
-              ? " and " + state.data.profile?.child_name
-              : " and young person "}
-            !
-          </h1>
-          <h2 className="narrow rokkitt-font">
-            Here’s your Me Tree from last time - it’s looking good! Would you
-            like to change anything?
-          </h2>
-          <div className="mobile-narrow">
-            <div ref={ref}>
-              <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
-                <MeTreeImage
-                  src={state.data.tree.tree_location ?? MeTreeGarden}
-                  alt=""
-                />
-                <MeTreeBackground src={state.data.tree.background} alt="" />
-              </MeTreeContainer>
+        <div className="flex margin-top me-tree-container--mobile me-tree-grid ">
+          <div className="toolkit-area">
+            <Toolkit>
+              <ToolkitButton onClick={() => handleClick("WhatColour")}>
+                <BtnImage src={WhatColour} alt="" />
+                <ToolkitText className="mobile-hide">
+                  Change background
+                </ToolkitText>
+              </ToolkitButton>
+              <ToolkitButton onClick={() => handleClick("WhatGrows")}>
+                <BtnImage src={WhatGrows} alt="" />
+                <ToolkitText className="mobile-hide">
+                  What's growing
+                </ToolkitText>
+              </ToolkitButton>
+              <ToolkitButton onClick={() => handleClick("WhoAround")}>
+                <BtnImage src={WhoAround} alt="" />
+                <ToolkitText className="mobile-hide">Who is around</ToolkitText>
+              </ToolkitButton>
+              <ToolkitButton onClick={() => handleClick("WhereTree")}>
+                <BtnImage src={WhereTree} alt="" />
+                <ToolkitText className="mobile-hide">
+                  Where is your tree
+                </ToolkitText>
+              </ToolkitButton>
+              <ToolkitButton onClick={() => saveToGallery()}>
+                <ToolkitText> Save to Gallery</ToolkitText>
+              </ToolkitButton>
+            </Toolkit>
+          </div>
 
-              {visible ? <Palette type={paletteOption} /> : ""}
-            </div>
-            <div className="flex row flex-end margin-top mobile-no-margin">
-              <div>
-                <Link to="/content">
-                  <button className="button primary block">
-                    Ready to play?
-                  </button>
-                </Link>
+          <div className="flex column center text-center items-center flex-grow me-tree-area">
+            {" "}
+            <h1 className="txt-xlg margin-none">
+              {state.data.profile?.adult_name
+                ? "Welcome back " + state.data.profile?.adult_name
+                : "Welcome back care giver"}
+              {state.data.profile?.child_name
+                ? " and " + state.data.profile?.child_name
+                : " and young person "}
+              !
+            </h1>
+            <h2 className="narrow rokkitt-font">
+              Here’s your Me Tree from last time - it’s looking good! Would you
+              like to change anything?
+            </h2>
+            {/* <div className="mobile-narrow">*/}
+            <div className="mobile-narrow">
+              <div ref={ref}>
+                <MeTreeContainer className="relative">
+                  <Container hideSourceOnDrag={hideSourceOnDrag} />
+                  <MeTreeImage
+                    src={state.data.tree.tree_location ?? MeTreeGarden}
+                    alt=""
+                  />
+                  <MeTreeBackground src={state.data.tree.background} alt="" />
+                </MeTreeContainer>
+
+                {visible ? <Palette type={paletteOption} /> : ""}
+              </div>
+              <div className="empty-area"></div>
+              <div className="flex row flex-end margin-btn mobile-margin-sm">
+                <div>
+                  <Link to="/content">
+                    <button className="button primary block">
+                      Ready to play?
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

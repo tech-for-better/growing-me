@@ -51,8 +51,8 @@ export default function Gallery({ state, setState }) {
           Here you can see all your saved MeTree's!
         </h2>
       </div>
-      <div className="flex flex-center ">
-        <ul className="li-none gap grid">
+      <div className="flex flex-center">
+        <ul className="li-none gap grid mobile-gap ">
           {state.data.gallery?.images
             .filter((image) => image !== null)
             .map(
@@ -79,7 +79,11 @@ export default function Gallery({ state, setState }) {
                   >
                     X
                   </button>
-                  <img src={image} alt="A snapshot of your Me Tree" />
+                  <img
+                    className="gallery-width"
+                    src={image}
+                    alt="A snapshot of your Me Tree"
+                  />
                 </li>
               )
               //)
