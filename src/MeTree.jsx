@@ -76,8 +76,7 @@ export function MeTree() {
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
-        console.log("dataUrl in saveToGallery ", dataUrl);
-        // logic which downloads pic - MAKE NEED LATER
+        // @TODO
         // const link = document.createElement("a");
         // link.download = "my-me-tree.png";
         // link.href = dataUrl;

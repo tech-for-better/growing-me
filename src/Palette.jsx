@@ -86,6 +86,7 @@ export default function Palette({ type }) {
   };
 
   async function handleClick(event, image) {
+    console.log("clicked a palette button", event, image);
     let imageFileName = getShortImagePath(image);
     let dispatchType = imgToDispatchTypeMapping[imageFileName];
     switch (dispatchType) {
