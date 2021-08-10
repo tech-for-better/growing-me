@@ -62,20 +62,20 @@ export const ContentData = {
     heading: "",
     play: {
       1: {
-        img: "public/assets/ball_bop.svg",
+        img: "assets/ball_bop.svg",
 
         txt: "Ball bop! How long can you keep a balloon or cotton ball in the air? ",
       },
       2: {
-        img: "public/assets/alphabet_stretch.svg",
+        img: "assets/alphabet_stretch.svg",
         txt: "Alphabet stretch! See if you can make your body into different letter shapes ",
       },
       3: {
-        img: "public/assets/bear_breathing.svg",
+        img: "assets/bear_breathing.svg",
         txt: "Breathe with bear! Lie on your backs, with a cuddly on your tummy. Can you make them go up and down? ",
       },
       4: {
-        img: "public/assets/funny_faces.svg",
+        img: "assets/funny_faces.svg",
         txt: "Pulling silly faces is actually really good for your body and brain - it stretches out muscles, and if you end up giggling, that pumps happy juices in your brain!",
       },
     },
