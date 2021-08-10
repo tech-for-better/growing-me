@@ -191,7 +191,11 @@ export function MeTree() {
             </ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => saveToGallery()}>
-            <ToolkitText> Save to Gallery</ToolkitText>
+            {state.status === "updating" ? (
+              <ToolkitText> Saving...</ToolkitText>
+            ) : (
+              <ToolkitText> Save to Gallery</ToolkitText>
+            )}
           </ToolkitButton>
         </Toolkit>
 
@@ -215,10 +219,10 @@ export function MeTree() {
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
                 <MeTreeImage
-                  src={state.data.tree.tree_location ?? MeTreeGarden}
+                  src={state.data.tree?.tree_location ?? MeTreeGarden}
                   alt=""
                 />
-                <MeTreeBackground src={state.data.tree.background} alt="" />
+                <MeTreeBackground src={state.data.tree?.background} alt="" />
               </MeTreeContainer>
 
               {visible ? <Palette type={paletteOption} /> : ""}
