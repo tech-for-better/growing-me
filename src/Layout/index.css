@@ -38,20 +38,12 @@ acabb3 - grey
 
   padding: 0;
   margin: 0;
-  /* font-family: var(--custom-font-family); */
-  /* font-family: 'Nanum Pen Script', cursive; */
-  /* font-family: 'Rokkitt', serif; */
-  /* background-color: var(--custom-bg-color); */
   background-color: #ecf0d9;
 }
 
 * {
-  color: var(--custom-color); /* text colour - palegreen */
   color: #384b4a; /* text colour - dark olive green */
-  /* font-family: var(--custom-font-family); */
   font-family: var(--main-font);
-  /* font-family: var(--secondary-font); */
-  /* font-size: 1.3rem; */
   box-sizing: border-box;
 }
 
@@ -235,14 +227,35 @@ label {
   text-transform: uppercase;
 }
 
+.signup-form {
+  background-color: #fff4cc;
+  border-color: #fdd333;
+}
+
+.login-form {
+  border-color: #96bc39;
+}
+
+.signup-button {
+  background-color: #fdd02c !important;
+  color: #384b4a !important;
+  border-color: #fdc801 !important;
+}
+
+.login-button:hover {
+  border-color: black !important;
+}
+
+.signup-button:hover {
+  border-color: #384b4a !important;
+}
+
 input {
   width: 100%;
   border-radius: 5px;
   border: var(--custom-border);
   padding: 8px;
   font-size: 1rem;
-  /* background-color: #b1bd7a; */
-  /* background-color: #c0d788; */
   background-color: #d5e4b0;
   color: var(--custom-bg-color);
   font-family: var(--secondary-font);
@@ -299,6 +312,10 @@ input[disabled] {
 }
 .txt-sm {
   font-size: 1rem;
+}
+
+.txt-xsm {
+  font-size: 0.9rem;
 }
 
 .txt-sm-ish {
@@ -596,6 +613,16 @@ p {
   background-color: #d19f00 !important;
   border: none !important;
 }
+
+.magic-link:hover {
+  transform: scale(1.05);
+  transition: 0.1s linear;
+}
+
+.magic-link-txt {
+  color: #1b1b1b;
+}
+
 .child_avatar-logo {
   width: 60px;
   margin-top: 25px;

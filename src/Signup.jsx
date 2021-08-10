@@ -41,17 +41,24 @@ export default function Signup() {
           <label htmlFor="input-email">
             Email<span aria-hidden="true">*</span>
           </label>
-          <input required id="input-email" type="email" ref={emailRef} />
+          <input
+            className="signup-form"
+            required
+            id="input-email"
+            type="email"
+            ref={emailRef}
+          />
         </div>
         <div>
           <label htmlFor="input-password">
             Password<span aria-hidden="true">*</span>
           </label>
-          <div id="passwordRequirements">
+          <div id="passwordRequirements" className="txt-xsm">
             Passwords must be at least 6 characters long.
           </div>
           <input
             required
+            className="signup-form"
             id="input-password"
             type="password"
             aria-describedby="passwordRequirements"
@@ -61,7 +68,10 @@ export default function Signup() {
         </div>
         <br />
         <div className="flex flex-center">
-          <button className="button block primary max-width" type="submit">
+          <button
+            className="button block  signup-button primary max-width"
+            type="submit"
+          >
             Sign up
           </button>
         </div>
@@ -72,7 +82,7 @@ export default function Signup() {
       </p>
       <div className="flex center width">
         <button className="button block primary magic-link ">
-          <Link className="txt-sm-ish" to="/magic-link-login">
+          <Link className="txt-sm-ish magic-link-txt" to="/magic-link-login">
             Sign up using magic link
           </Link>
         </button>
