@@ -81,7 +81,7 @@ export const ContentData = {
     },
     think: {
       1: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_2.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_2.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ18yLnN2ZyIsImlhdCI6MTYyODYwMTY3OSwiZXhwIjoxOTQzOTYxNjc5fQ.AmR01IfIsCXgitESXdZRm8Yjc6fBMt2aw5de7ezxORc",
         txt: "Hello! We're your brain creatures. It's great to meet you! We have a safety bit. We have a feeling bit. And we have a thinking bit!",
       },
       2: {
