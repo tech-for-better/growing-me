@@ -20,10 +20,14 @@ export default function Signup() {
 
     // Calls `signUp` function from the context
     const { error } = await signUp({ email, password });
-     alert("Check your email for verification");
+    alert(
+      "Success! Check your email for the verification link, and then log in."
+    );
 
     if (error) {
-      alert("This account already exists. Click Log in to sign in with this email address or to make a new account enter a different email address");
+      alert(
+        "This account already exists. Click login to sign in with this email address, or enter a different email."
+      );
     } else {
       // Redirect user to Dashboard
       history.push("/adult-profile");
@@ -34,12 +38,26 @@ export default function Signup() {
     <div className="flex column margin-left items-center">
       <form onSubmit={handleSubmit} className="x-narrow">
         <div>
-          <label htmlFor="input-email">Email</label>
-          <input id="input-email" type="email" ref={emailRef} />
+          <label htmlFor="input-email">
+            Email<span aria-hidden="true">*</span>
+          </label>
+          <input required id="input-email" type="email" ref={emailRef} />
         </div>
         <div>
-          <label htmlFor="input-password">Password</label>
-          <input id="input-password" type="password" ref={passwordRef} />
+          <label htmlFor="input-password">
+            Password<span aria-hidden="true">*</span>
+          </label>
+          <div id="passwordRequirements">
+            Passwords must be at least 6 characters long.
+          </div>
+          <input
+            required
+            id="input-password"
+            type="password"
+            aria-describedby="passwordRequirements"
+            ref={passwordRef}
+            minlength="6"
+          />
         </div>
         <br />
         <div className="flex flex-center">
