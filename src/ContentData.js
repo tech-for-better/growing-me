@@ -85,31 +85,31 @@ export const ContentData = {
         txt: "Hello! We're your brain creatures. It's great to meet you! We have a safety bit. We have a feeling bit. And we have a thinking bit!",
       },
       2: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_4.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_4.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ180LnN2ZyIsImlhdCI6MTYyODYwMTg1NSwiZXhwIjoxOTQzOTYxODU1fQ.WkLarDLp9kC8w7NITsm_HItlALsGNK_Ii3nDxvlMUUY",
         txt: "The thinking bit is where the thinking buds live. We help you learn and come up with new ideas. We're really clever, and interesting. When we feel safe, and calm, we can learn: music, dance, coding and more! It's so exciting when us thinking buds start to blossom!",
       },
       3: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_8.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_8.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ184LnN2ZyIsImlhdCI6MTYyODYwMTkwMSwiZXhwIjoxOTQzOTYxOTAxfQ.LiHw0Ufw-6Cm5KqEeQVnQ34Jo0NwbDXy1EpbQ171Qwc",
         txt: "I wonder what wonderful ideas the thinking buds in your brain are thinking?",
       },
       4: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_13.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_13.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ18xMy5zdmciLCJpYXQiOjE2Mjg2MDE5MTcsImV4cCI6MTk0Mzk2MTkxN30.wTTZsRTXRY2pjsclR7KuvWSKZawHihY7TtCZ0Lbftj8",
         txt: "The feeling bit of your brain helps you respond to the world around you. We are like lots of little computers sending and receiving messages to the rest of your body.",
       },
       5: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_14.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_14.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ18xNC5zdmciLCJpYXQiOjE2Mjg2MDE5NDAsImV4cCI6MTk0Mzk2MTk0MH0.kd6c34P6WkB1Ael8yNSXl2D5fN33FxFMtmWycEk8UTI",
         txt: "",
       },
       6: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_15.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_15.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ18xNS5zdmciLCJpYXQiOjE2Mjg2MDE5NDksImV4cCI6MTk0Mzk2MTk0OX0.BFK2XVbAHnOOexCaRVk3Z361ihW_jqmjAJ7Ho-a57is",
         txt: "",
       },
       7: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_19.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_19.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ18xOS5zdmciLCJpYXQiOjE2Mjg2MDE5NTgsImV4cCI6MTk0Mzk2MTk1OH0.Y8JSIhrWFbdf5QY4UziR8yY2P6ul0GcJU4ET-aIztBE",
         txt: "I’m Safety Sensor, and I live in the safety bit of your brain. I look out for signs of safety and danger.  I won’t let you think or feel if there is danger around. I have an alarm that goes off when they think you’re in danger.",
       },
       8: {
-        img: "public/assets/brain-amazing/Your_brain_is_amazing_5.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_5.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ181LnN2ZyIsImlhdCI6MTYyODYwMTk3NCwiZXhwIjoxOTQzOTYxOTc0fQ.gfuo6k1xT0ziZN5NRtVa8RYi3kGB1v6NN6rXL73a9Ro",
         txt: "",
       },
     },
