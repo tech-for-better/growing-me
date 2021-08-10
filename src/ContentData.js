@@ -62,20 +62,20 @@ export const ContentData = {
     heading: "",
     play: {
       1: {
-        img: "assets/ball_bop.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/play/ball_bop.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3BsYXkvYmFsbF9ib3Auc3ZnIiwiaWF0IjoxNjI4NjAyNDE1LCJleHAiOjE5NDM5NjI0MTV9._7vkPTGEelWfMFTJfxZt11vUK9WKEUtGYZIhn4sH65c",
 
         txt: "Ball bop! How long can you keep a balloon or cotton ball in the air? ",
       },
       2: {
-        img: "assets/alphabet_stretch.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/play/alphabet_stretch.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3BsYXkvYWxwaGFiZXRfc3RyZXRjaC5zdmciLCJpYXQiOjE2Mjg2MDI0MzEsImV4cCI6MTk0Mzk2MjQzMX0.IQz0lDV557NrLCSKSbhZssIMNVlpqx-P0wBPVOycpoQ",
         txt: "Alphabet stretch! See if you can make your body into different letter shapes ",
       },
       3: {
-        img: "assets/bear_breathing.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/play/bear_breathing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3BsYXkvYmVhcl9icmVhdGhpbmcuc3ZnIiwiaWF0IjoxNjI4NjAyNDM3LCJleHAiOjE5NDM5NjI0Mzd9.Bmd4IG6XNDhF53mRmkYXM5BMWI4OxHBzfqORvardEZM",
         txt: "Breathe with bear! Lie on your backs, with a cuddly on your tummy. Can you make them go up and down? ",
       },
       4: {
-        img: "assets/funny_faces.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/play/funny_faces.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3BsYXkvZnVubnlfZmFjZXMuc3ZnIiwiaWF0IjoxNjI4NjAyNDQ0LCJleHAiOjE5NDM5NjI0NDR9.rnicEsdPUi7pksk3kATNoKMMcw2o3_ark8NjHEf-if0",
         txt: "Pulling silly faces is actually really good for your body and brain - it stretches out muscles, and if you end up giggling, that pumps happy juices in your brain!",
       },
     },
@@ -115,45 +115,45 @@ export const ContentData = {
     },
     make: {
       1: {
-        img: "public/assets/make_4_sensory_bag.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/make/make_4_sensory_bag.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL21ha2UvbWFrZV80X3NlbnNvcnlfYmFnLnN2ZyIsImlhdCI6MTYyODYwMjEwOCwiZXhwIjoxOTQzOTYyMTA4fQ.AOXRl-3kh_BQsSmqyNtN_4Mm5_zux7TveZ59Zof0DgE",
         txt: "Today, you are invited to make a calm bag to keep your amazing brain happy!!",
       },
       2: {
-        img: "public/assets/sensory_bag_make_1.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/make/sensory_bag_make_1.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL21ha2Uvc2Vuc29yeV9iYWdfbWFrZV8xLnN2ZyIsImlhdCI6MTYyODYwMjEzMCwiZXhwIjoxOTQzOTYyMTMwfQ.Rljaz2PTBWsYluO1NzNRF3k8HW4kjl1M1I-UFJ4eg3E",
         txt: "In your toolkit, you should find a golden bag, and some cut out shapes. Click the arrow when you’ve found them…",
       },
       3: {
-        img: "public/assets/star_make_2.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/make/star_make_2.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL21ha2Uvc3Rhcl9tYWtlXzIuc3ZnIiwiaWF0IjoxNjI4NjAyMTQyLCJleHAiOjE5NDM5NjIxNDJ9.0PZOn3W6zSjeDc7o_b1OnR4lBwVCr4XroiBlFV5eaDs",
         txt: "On the star cut-out, you’re invited to write or draw your star qualities.  Some people find it really tough to see their own good bits - your grown up is there to help you see how amazing you are.",
       },
       4: {
-        img: "public/assets/make_cloud_3.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/make/make_cloud_3.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL21ha2UvbWFrZV9jbG91ZF8zLnN2ZyIsImlhdCI6MTYyODYwMjE1MSwiZXhwIjoxOTQzOTYyMTUxfQ.Ii46579c4Yoa6hxykkz_zsKxQLHS0dQrLJIBwlmnLxg",
         txt: "On the cloud, you’re invited to write or draw all the things that help you feel calm.  You might want to look through magazines and cut out pictures and words.",
       },
       5: {
-        img: "public/assets/SENSORY_BAG.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/make/make_4_sensory_bag.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL21ha2UvbWFrZV80X3NlbnNvcnlfYmFnLnN2ZyIsImlhdCI6MTYyODYwMjEwOCwiZXhwIjoxOTQzOTYyMTA4fQ.AOXRl-3kh_BQsSmqyNtN_4Mm5_zux7TveZ59Zof0DgE",
         txt: "In the bag, you are invited to put your star and cloud, as well as any fabrics, fidget toys, and other things that help you feel calm.  ",
       },
     },
     wonder: {
       1: {
-        img: "public/assets/simple_wonder.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/wonder/wonder_badge_1_my_brain_is_amazing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3dvbmRlci93b25kZXJfYmFkZ2VfMV9teV9icmFpbl9pc19hbWF6aW5nLnN2ZyIsImlhdCI6MTYyODYwMjM2MSwiZXhwIjoxOTQzOTYyMzYxfQ.100pIF98HE6iXEROOZxbLsXwELcB1emER9n88pfF33s",
         txt: "Welcome to the Wonder Tree. Here, you’re invited to celebrate your amazing brain with pictures and words.",
       },
       2: {
-        img: "public/assets/simple_wonder.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/wonder/wonder_badge_1_my_brain_is_amazing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3dvbmRlci93b25kZXJfYmFkZ2VfMV9teV9icmFpbl9pc19hbWF6aW5nLnN2ZyIsImlhdCI6MTYyODYwMjM2MSwiZXhwIjoxOTQzOTYyMzYxfQ.100pIF98HE6iXEROOZxbLsXwELcB1emER9n88pfF33s",
         txt: "Here you can see your journey so far and upload photos of your wonderful creations, to your Growing Me Gallery.",
       },
       3: {
-        img: "public/assets/simple_wonder.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/wonder/wonder_badge_1_my_brain_is_amazing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3dvbmRlci93b25kZXJfYmFkZ2VfMV9teV9icmFpbl9pc19hbWF6aW5nLnN2ZyIsImlhdCI6MTYyODYwMjM2MSwiZXhwIjoxOTQzOTYyMzYxfQ.100pIF98HE6iXEROOZxbLsXwELcB1emER9n88pfF33s",
         txt: "In your toolkit, you will find your wonder badge, and some different materials.",
       },
       4: {
-        img: "public/assets/simple_wonder.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/wonder/wonder_badge_1_my_brain_is_amazing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3dvbmRlci93b25kZXJfYmFkZ2VfMV9teV9icmFpbl9pc19hbWF6aW5nLnN2ZyIsImlhdCI6MTYyODYwMjM2MSwiZXhwIjoxOTQzOTYyMzYxfQ.100pIF98HE6iXEROOZxbLsXwELcB1emER9n88pfF33s",
         txt: "You’re invited to use these to make a wonder badge to add to your wonder tree.  You can add words or pictures or just colours and textures that remind you what an amazing brain you have!",
       },
       5: {
-        img: "public/assets/simple_wonder.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/wonder/wonder_badge_1_my_brain_is_amazing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3dvbmRlci93b25kZXJfYmFkZ2VfMV9teV9icmFpbl9pc19hbWF6aW5nLnN2ZyIsImlhdCI6MTYyODYwMjM2MSwiZXhwIjoxOTQzOTYyMzYxfQ.100pIF98HE6iXEROOZxbLsXwELcB1emER9n88pfF33s",
         txt: "You have now finished the second section of Growing Me Time - well done! You are a wonder, and we are looking forward to seeing you next time!",
       },
     },

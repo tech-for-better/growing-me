@@ -24,14 +24,14 @@ export default function InnerContent() {
       <h1 className="text-center margin-top txt-xlg mobile-margin-sm">
         {state.current_section}
       </h1>
-      <h2
+      {/* <h2
         className="text-center txt-lg rokkitt-font mobile-hide"
         style={{
           color: `${textColorToSubSectionMap[state.current_subsection]}`,
         }}
       >
         Welcome to the {`${state.current_subsection}`.toUpperCase()} Section{" "}
-      </h2>
+      </h2> */}
       {/* <div> */}
       <Carousel className="mobile-margin-sm" showThumbs={false}>
         {Object.keys(
