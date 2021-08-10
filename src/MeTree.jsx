@@ -164,7 +164,7 @@ export function MeTree() {
         <div className="child_avatar-logo">
           <Link to={"/adult-profile"}>
             <img
-              src={state.data?.profile?.child_avatar ?? cuteVisitor}
+              src={state.data.profile?.child_avatar ?? cuteVisitor}
               className="avatar"
               alt="avatar"
             />
@@ -203,7 +203,7 @@ export function MeTree() {
         <div className="flex column center text-center items-center flex-grow">
           {" "}
           <h1 className="margin-top txt-xlg">
-            {state.data?.profile?.adult_name
+            {state.data.profile?.adult_name
               ? "Welcome back " + state.data.profile?.adult_name
               : "Welcome back care giver"}
             {state.data.profile?.child_name

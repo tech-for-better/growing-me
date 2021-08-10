@@ -10,6 +10,9 @@ function reducer(state, action) {
     // When LOAD finishes fetching initial remote data
     case "RESOLVE_LOAD": {
       console.log("RESOLVE_LOAD data:action.data", action.data);
+      if (!action.data.profile || !action.data.tree) {
+        return { status: "success", data: state.data, error: null };
+      }
       return { status: "success", data: action.data, error: null };
     }
     // When `setState` is called
@@ -78,7 +81,7 @@ const initialState = {
       adult_name: null,
       avatar_url: null,
       child_name: "child", // i added
-      child_avatar: "./../assets/fluffy_visitors.svg" // i added
+      child_avatar: "./../assets/fluffy_visitors.svg", // i added
     },
   },
   error: null,
