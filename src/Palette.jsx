@@ -68,6 +68,13 @@ export default function Palette({ type }) {
     ],
   };
 
+  let paletteHeadingMap = {
+    WhatColour: "Change background:",
+    WhatGrows: "What's growing?",
+    WhoAround: "Who is around?",
+    WhereTree: "Where is your tree?",
+  };
+
   async function handleClick(event, update, src) {
     console.log("clicked a palette button", event, update, src);
     switch (src) {
@@ -122,6 +129,12 @@ export default function Palette({ type }) {
 
   return (
     <>
+      {Object.keys(paletteOptions).map((key) => {
+        return 
+          (paletteHeadingMap.key === paletteOptions[key] ? {
+          return <p>{paletteHeadingMap[key]}</p> : "";
+        })
+      })}
       <PaletteContainer>
         {paletteOptions[option].map(({ src, update }) => {
           return (
