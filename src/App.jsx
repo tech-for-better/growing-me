@@ -147,10 +147,10 @@ export default function Home() {
                 // comp={WhosePlaying} />
                 render={() => (
                   <Gallery
-                    state={state}
-                    setState={setState}
-                    // galleryImage={galleryImage}
-                    // setGalleryImage={setGalleryImage}
+                  // state={state}
+                  // setState={setState}
+                  // galleryImage={galleryImage}
+                  // setGalleryImage={setGalleryImage}
                   />
                 )}
               />

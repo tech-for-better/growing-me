@@ -7,7 +7,7 @@ import Collapsible from "react-collapsible";
 import { ContentContext } from "../Content";
 import { ACTIONS } from "../Content";
 import { Link } from "react-router-dom";
-import logo from "./../../public/assets/Logo.svg";
+import logo from "/assets/Logo.svg";
 
 export default function ContentNav() {
   const { state, dispatch } = useContext(ContentContext);
@@ -15,7 +15,7 @@ export default function ContentNav() {
     <Menu
       // noOverlay
       burgerButtonClassName={"content-burger-btn"}
-      customBurgerIcon={<img src={logo}/>}
+      customBurgerIcon={<img src={logo} />}
       itemListClassName={"content-item-list"}
       itemClassName={"content-item"}
     >

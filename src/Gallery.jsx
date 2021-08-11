@@ -1,14 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import { getGalleryData } from "../database/model";
 import logo from "/assets/Logo.svg";
 import cuteVisitor from "/assets/cute_visitors.svg";
+import { MeTreeContext } from "./App";
 
-export default function Gallery({ state, setState }) {
-  console.log("in gallery ", state.data.gallery?.images);
+export default function Gallery() {
+  const { state, setState } = useContext(MeTreeContext);
+  // console.log("in gallery ", state.data.gallery?.images);
 
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
