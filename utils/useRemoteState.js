@@ -1,4 +1,5 @@
 import { useReducer, useRef, useEffect } from "react";
+import { supabase } from "./../src/supabaseClient";
 import _ from "lodash";
 
 function reducer(state, action) {
@@ -10,7 +11,7 @@ function reducer(state, action) {
     // When LOAD finishes fetching initial remote data
     case "RESOLVE_LOAD": {
       console.log("RESOLVE_LOAD data:action.data", action.data);
-      if (!action.data.profile && !action.data.tree) {
+      if (!action.data?.profile && !action.data?.tree) {
         return { status: "success", data: state.data, error: null };
       }
       return { status: "success", data: action.data, error: null };
@@ -88,8 +89,13 @@ const initialState = {
 };
 
 export default function useRemoteState({ load, update }) {
+
+  const user = supabase.auth.user();
+  console.log("user in useRemoteState fn", user);
+
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("STATE in useRemotestate", state);
+
   const tempData = useRef(null);
 
   useEffect(() => {
@@ -124,7 +130,8 @@ export default function useRemoteState({ load, update }) {
     console.log("STATE in end runEffects", state); // state changes here
     // stop any further state updates if this effect is cleaned up
     return () => (cancel = true);
-  }, [state.status, load, update]);
+
+  }, [state.status, load, update, user]);
 
   const setState = (updater) => {
     const data = typeof updater === "function" ? updater(state.data) : updater;
@@ -133,5 +140,6 @@ export default function useRemoteState({ load, update }) {
   };
 
   console.log("STATE end of useRemoteState fn", state);
+
   return [state, setState];
 }

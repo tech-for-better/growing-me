@@ -3,7 +3,7 @@ import { supabase } from "./../src/supabaseClient";
 export async function getMeTree() {
   console.log("model.getMeTree");
   const user = supabase.auth.user();
-  if (!user) return;
+  // if (!user) return;
 
   let { data, error, status } = await supabase
     .from("me_tree")
@@ -55,7 +55,7 @@ export async function setTreeData(
 
 export async function getProfileData() {
   const user = supabase.auth.user();
-  if (!user) return;
+  // if (!user) return;
 
   let { data, error, status } = await supabase
     .from("profiles")
@@ -372,7 +372,7 @@ export async function setGalleryData(images) {
 
 export async function getGalleryData() {
   const user = supabase.auth.user();
-  if (!user) return;
+  // if (!user) return;
 
   let { data, error, status } = await supabase
     .from("gallery")
@@ -387,6 +387,11 @@ export async function getGalleryData() {
 }
 
 export async function getAllData() {
+const user = supabase.auth.user();
+console.log("user in getAllData", user);
+console.log("user id in getAllData", user.id);
+  // if (!user) return;
+  console.log('user id in getAllData', user.id)
   const treeData = getMeTree();
   const galleryData = getGalleryData();
   const profileData = getProfileData();

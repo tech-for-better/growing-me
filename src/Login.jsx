@@ -1,5 +1,6 @@
 import React from "react";
-import { useRef, useState, useContext } from "react";
+import { supabase } from "./supabaseClient";
+import { useRef, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
 import { MeTreeContext } from "./App";
@@ -22,6 +23,11 @@ export default function Login() {
 
     // Calls `signIn` function from the context
     const { error } = await signIn({ email, password });
+
+    const user = supabase.auth.user();
+    console.log("user in login handleSubmit", user);
+
+    // setState({ status: "updating" });
 
     if (error) {
       alert("error signing in");

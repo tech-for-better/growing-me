@@ -27,6 +27,8 @@ import useRemoteState from "../utils/useRemoteState";
 export const MeTreeContext = createContext();
 
 export async function load() {
+  const user = supabase.auth.user();
+  console.log('user i n load fn', user);
   console.log("load - about to get all data");
   const data = await getAllData();
   console.log("load get all data", data);
@@ -34,8 +36,6 @@ export async function load() {
 }
 
 export async function update(changedData) {
-  // TODO: update the right bit of the DB using the `changedData` object
-  // just has to return a promise (resolved value isn't used)
 
   console.log("changedData in update fn in MeTree comp:", changedData);
   return await setData(changedData);
@@ -43,8 +43,14 @@ export async function update(changedData) {
 
 export default function Home() {
   const [session, setSession] = useState(null);
+
+  const user = supabase.auth.user();
+  console.log("user in home fn", user);
+
   const [state, setState] = useRemoteState({ load, update });
   console.log("STATE in app", state);
+
+  console.log("user in home fn AFTER useRemote", user);
 
   useEffect(() => {
     setSession(supabase.auth.session());
