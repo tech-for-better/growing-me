@@ -138,6 +138,7 @@ export function MeTree() {
   //const url = URL.createObjectURL(state.data.profile.avatar_url);
   return (
     <>
+      {/* <div className="height-100"> */}
       <div className="absolute flex metree--container">
         <div>
           <NavMenu />
@@ -170,34 +171,39 @@ export function MeTree() {
           </Link>
         </div>
       </div>
-      <div className="flex margin-top me-tree-container--mobile">
-        <Toolkit>
-          <ToolkitButton onClick={() => handleClick("WhatColour")}>
-            <BtnImage src={WhatColour} alt="" />
-            <ToolkitText className="mobile-hide">Change background</ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => handleClick("WhatGrows")}>
-            <BtnImage src={WhatGrows} alt="" />
-            <ToolkitText className="mobile-hide">What's growing</ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => handleClick("WhoAround")}>
-            <BtnImage src={WhoAround} alt="" />
-            <ToolkitText className="mobile-hide">Who is around</ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => handleClick("WhereTree")}>
-            <BtnImage src={WhereTree} alt="" />
-            <ToolkitText className="mobile-hide">
-              Where is your tree
-            </ToolkitText>
-          </ToolkitButton>
-          <ToolkitButton onClick={() => saveToGallery()}>
-            <ToolkitText> Save to Gallery</ToolkitText>
-          </ToolkitButton>
-        </Toolkit>
 
-        <div className="flex column center text-center items-center flex-grow">
+      <div className="flex margin-top me-tree-container--mobile me-tree-grid me-tree-desktop">
+        <div className="toolkit-area">
+          <Toolkit>
+            <ToolkitButton onClick={() => handleClick("WhatColour")}>
+              <BtnImage src={WhatColour} alt="" />
+              <ToolkitText className="mobile-hide">
+                Change background
+              </ToolkitText>
+            </ToolkitButton>
+            <ToolkitButton onClick={() => handleClick("WhatGrows")}>
+              <BtnImage src={WhatGrows} alt="" />
+              <ToolkitText className="mobile-hide">What's growing</ToolkitText>
+            </ToolkitButton>
+            <ToolkitButton onClick={() => handleClick("WhoAround")}>
+              <BtnImage src={WhoAround} alt="" />
+              <ToolkitText className="mobile-hide">Who is around</ToolkitText>
+            </ToolkitButton>
+            <ToolkitButton onClick={() => handleClick("WhereTree")}>
+              <BtnImage src={WhereTree} alt="" />
+              <ToolkitText className="mobile-hide">
+                Where is your tree
+              </ToolkitText>
+            </ToolkitButton>
+            <ToolkitButton onClick={() => saveToGallery()}>
+              <ToolkitText> Save to Gallery</ToolkitText>
+            </ToolkitButton>
+          </Toolkit>
+        </div>
+
+        <div className="flex column center text-center items-center flex-grow me-tree-area">
           {" "}
-          <h1 className="margin-top txt-xlg">
+          <h1 className="txt-xlg margin-none">
             {state.data.profile?.adult_name
               ? "Welcome back " + state.data.profile?.adult_name
               : "Welcome back care giver"}
@@ -210,7 +216,8 @@ export function MeTree() {
             Here’s your Me Tree from last time - it’s looking good! Would you
             like to change anything?
           </h2>
-          <div className="mobile-narrow">
+          {/* <div className="mobile-narrow">*/}
+          <div>
             <div ref={ref}>
               <MeTreeContainer className="relative">
                 <Container hideSourceOnDrag={hideSourceOnDrag} />
@@ -223,7 +230,8 @@ export function MeTree() {
 
               {visible ? <Palette type={paletteOption} /> : ""}
             </div>
-            <div className="flex row flex-end margin-top mobile-no-margin">
+            <div className="empty-area"></div>
+            <div className="flex row flex-end margin-btn mobile-margin-sm">
               <div>
                 <Link to="/content">
                   <button className="button primary block">
@@ -235,6 +243,7 @@ export function MeTree() {
           </div>
         </div>
       </div>
+      {/* </div> */}
     </>
   );
 }

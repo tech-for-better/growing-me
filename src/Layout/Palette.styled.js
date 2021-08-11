@@ -3,15 +3,20 @@ import styled from "styled-components";
 export const PaletteContainer = styled.div`
   height: 300px;
   width: 25vw;
-  border: black solid;
+  border: #337d8e solid;
   border-radius: 20px;
   position: absolute;
   right: 2rem;
-  top: 12rem;
-  overflow: scroll;
+  top: 18rem;
+  overflow: auto;
   //   display: grid;
   //   grid-template-rows: 1fr;
-  //   grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: 768px) {
+    height: 150px;
+    max-width: 25vw;
+    right: 2rem;
+    top: 16rem;
+  }
 `;
 
 export const PaletteImg = styled.img`
@@ -20,15 +25,17 @@ export const PaletteImg = styled.img`
 `;
 
 export const PaletteBtn = styled.button`
-  border: solid black 1px;
+  border: solid #337d8e 1px;
   background: #fff8e2;
   height: 100%;
   width: 100%;
-  
+
   &:hover {
     background-color: #fee79b;
     transform: scale(1.05);
+
 `;
+  ;
 
 // COLOURS
 // d6f7d - darkblue
