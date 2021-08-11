@@ -1,14 +1,10 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { supabase } from "./supabaseClient";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
 import {
   PaletteContainer,
   PaletteImg,
   PaletteBtn,
 } from "./Layout/Palette.styled";
-import { getMeTree, setTreeData } from "../database/model";
-import { getShortImagePath } from "../utils/utils";
 import MeTreeGarden from "./../public/assets/where_-_garden.svg";
 import MeTreeCloud from "./../public/assets/where_-_cloud.svg";
 import MeTreeHeart from "./../public/assets/where_-_on_a_big_love_heart.svg";
@@ -32,89 +28,92 @@ import heartBlob from "./../public/assets/heart_blob.svg";
 import cloudyBlob from "./../public/assets/cloudy_blob.svg";
 import ovalBlob from "./../public/assets/oval_blob.svg";
 
-// import { MeTreeContext } from "./MeTree";
 import { MeTreeContext } from "./App";
 
 export default function Palette({ type }) {
   const { state, setState } = useContext(MeTreeContext);
 
   let option = type;
-  let paletteOptions = {
+
+  const paletteOptions = {
     WhatColour: [
-      mountainBlob,
-      spikeyBlob,
-      minecraftBlob,
-      jellyBlob,
-      heartBlob,
-      cloudyBlob,
-      ovalBlob,
+      { src: mountainBlob, update: "update_background" },
+      { src: spikeyBlob, update: "update_background" },
+      { src: minecraftBlob, update: "update_background" },
+      { src: jellyBlob, update: "update_background" },
+      { src: heartBlob, update: "update_background" },
+      { src: cloudyBlob, update: "update_background" },
+      { src: ovalBlob, update: "update_background" },
     ],
-    WhatGrows: [apple, banana, batwings, cherries, chocolate, pizza],
+    WhatGrows: [
+      { src: apple, update: "update_growing" },
+      { src: banana, update: "update_growing" },
+      { src: batwings, update: "update_growing" },
+      { src: cherries, update: "update_growing" },
+      { src: chocolate, update: "update_growing" },
+      { src: pizza, update: "update_growing" },
+    ],
     WhoAround: [
-      cuteVisitor,
-      pricklyVisitor,
-      fluffyVisitor,
-      creepyCrawlyVisitor,
-      worm,
+      { src: cuteVisitor, update: "update_whoAround" },
+      { src: pricklyVisitor, update: "update_whoAround" },
+      { src: fluffyVisitor, update: "update_whoAround" },
+      { src: creepyCrawlyVisitor, update: "update_whoAround" },
+      { src: worm, update: "update_whoAround" },
     ],
-    WhereTree: [MeTreeGarden, MeTreeCloud, MeTreeHeart, MeTreePlanet],
+    WhereTree: [
+      { src: MeTreeGarden, update: "update_treeLocation" },
+      { src: MeTreeCloud, update: "update_treeLocation" },
+      { src: MeTreeHeart, update: "update_treeLocation" },
+      { src: MeTreePlanet, update: "update_treeLocation" },
+    ],
   };
 
-  const imgToDispatchTypeMapping = {
-    "where_-_cloud.svg": "update_treeLocation",
-    "where_-_garden.svg": "update_treeLocation",
-    "where_-_on_a_big_love_heart.svg": "update_treeLocation",
-    "where_-_another_planet.svg": "update_treeLocation",
-    "cute_visitors.svg": "update_whoAround",
-    "prickly_visitors.svg": "update_whoAround",
-    "fluffy_visitors.svg": "update_whoAround",
-    "creepy_crawly_visitors.svg": "update_whoAround",
-    "home_for_worms.svg": "update_whoAround",
-    "growing_apples.svg": "update_growing",
-    "growing_bananas.svg": "update_growing",
-    "growing_batwings.svg": "update_growing",
-    "growing_chocolate.svg": "update_growing",
-    "growing_cherries.svg": "update_growing",
-    "growing_pizza.svg": "update_growing",
-    "mountain_blob.svg": "update_background",
-    "spikey_blob.svg": "update_background",
-    "minecraft_blob.svg": "update_background",
-    "jelly_blob.svg": "update_background",
-    "heart_blob.svg": "update_background",
-    "cloudy_blob.svg": "update_background",
-    "oval_blob.svg": "update_background",
-  };
-
-  async function handleClick(event, image) {
-    console.log("clicked a palette button", event, image);
-    let imageFileName = getShortImagePath(image);
-    let dispatchType = imgToDispatchTypeMapping[imageFileName];
-    switch (dispatchType) {
-      case "update_treeLocation":
+  async function handleClick(event, update, src) {
+    console.log("clicked a palette button", event, update, src);
+    switch (src) {
+      case MeTreeGarden:
+      case MeTreeCloud:
+      case MeTreeHeart:
+      case MeTreePlanet:
         setState({
           tree: {
-            tree_location: event.target.src,
+            tree_location: src,
           },
         });
         break;
-      case "update_background":
+      case mountainBlob:
+      case spikeyBlob:
+      case minecraftBlob:
+      case jellyBlob:
+      case heartBlob:
+      case cloudyBlob:
+      case ovalBlob:
         setState({
           tree: {
-            background: event.target.src,
+            background: src,
           },
         });
         break;
-      case "update_growing":
+      case apple:
+      case banana:
+      case batwings:
+      case cherries:
+      case chocolate:
+      case pizza:
         setState({
           tree: {
-            growing: event.target.src,
+            growing: src,
           },
         });
         break;
-      case "update_whoAround":
+      case cuteVisitor:
+      case pricklyVisitor:
+      case fluffyVisitor:
+      case creepyCrawlyVisitor:
+      case worm:
         setState({
           tree: {
-            who_around: event.target.src,
+            who_around: src,
           },
         });
         break;
@@ -124,15 +123,15 @@ export default function Palette({ type }) {
   return (
     <>
       <PaletteContainer>
-        {paletteOptions[option].map((image) => {
+        {paletteOptions[option].map(({ src, update }) => {
           return (
             <>
               <PaletteBtn
-                key={image}
-                image={image}
-                onClick={(event) => handleClick(event, image)}
+                key={src}
+                image={src}
+                onClick={(event) => handleClick(event, update, src)}
               >
-                <PaletteImg key={image} src={image} alt={image} />
+                <PaletteImg key={src} src={src} alt={src} />
               </PaletteBtn>
             </>
           );
