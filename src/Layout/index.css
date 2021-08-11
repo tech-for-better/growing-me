@@ -606,7 +606,7 @@ p {
   margin-left: 2rem;
 }
 
-.gallery-width{
+.gallery-width {
   width: 30vw;
 }
 .magic-link {
@@ -651,7 +651,38 @@ p {
   margin: 1rem;
 }
 
-@media (max-width: 768px) {
+.margin-btn {
+  margin-top: 2.5rem;
+}
+.me-tree-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "toolkit me-tree empty";
+  grid-gap: 0.2rem;
+  overflow: hidden;
+  /* height: auto; */
+  /* background-color: rgb(233, 220, 224);
+  color: rgb(78, 61, 64);
+  font-size: 0.9rem;
+  text-align: left;
+  margin: 0 auto;
+  padding: 1rem; */
+}
+.toolkit-area {
+  grid-area: toolkit;
+}
+.me-tree-area {
+  grid-area: me-tree;
+  width: 100vw;
+}
+.empty-area {
+  grid-area: empty;
+}
+
+/* ************ MEDIA QUERIES START HERE ******** */
+
+@media only screen and (max-width: 768px) {
   .me-tree-container--mobile {
     flex-direction: column-reverse;
   }
@@ -668,12 +699,11 @@ p {
 
   .txt-xlg {
     font-size: 2rem;
-    margin-top:2rem;
+    margin-top: 2rem;
   }
 
   .txt-lg {
     font-size: 1.2rem;
-
   }
 
   .margin-top {
@@ -683,13 +713,13 @@ p {
   h1 {
     margin-top: 2.5rem;
     font-size: 2rem;
-    z-index: 100000;
+    z-index: 100;
   }
 
   h2 {
     font-size: 1rem;
     font-weight: unset;
-    z-index: 100000;
+    z-index: 100;
   }
 
   .mobile-narrow {
@@ -745,56 +775,26 @@ p {
   .control-dots {
     margin: 0;
   }
-}
-.height-100{
 
-}
-.margin-btn{
-  margin-top: 2.5rem;
-}
-.me-tree-grid{
-  display:grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas:
-    "toolkit me-tree empty";
-  grid-gap: 0.2rem;
-  height: auto;
-  /* background-color: rgb(233, 220, 224);
-  color: rgb(78, 61, 64);
-  font-size: 0.9rem;
-  text-align: left;
-  margin: 0 auto;
-  padding: 1rem; */
-}
-.toolkit-area{
-  grid-area:toolkit;
-}
-.me-tree-area{
-  grid-area:me-tree;
-}.empty-area{
-  grid-area:empty;
-}
-@media only screen and (max-width: 768px) {
-  .me-tree-grid{
+  .me-tree-grid {
     grid-template-columns: 1fr 0.2fr;
     grid-template-rows: 2fr 1fr;
     grid-template-areas:
-    "me-tree empty"
-    "toolkit toolkit"
-    ;
+      "me-tree empty"
+      "toolkit toolkit";
   }
-  .toolkit-area{
- height:100px;
+  .toolkit-area {
+    height: 100px;
   }
 
-  .mobile-gap{
-    gap:0.5rem;
-  padding:0;}
+  .mobile-gap {
+    gap: 0.5rem;
+    padding: 0;
+  }
 }
 
-@media only screen and (min-width: 1200px) {
-  .me-tree-desktop{
+/* @media only screen and (min-width: 1200px) {
+  .me-tree-desktop {
     justify-content: center;
   }
-}
+} */
