@@ -656,8 +656,8 @@ p {
 }
 .me-tree-grid {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr;
+  /* grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr; */
   grid-template-areas: "toolkit me-tree empty";
   grid-gap: 0.2rem;
   overflow: hidden;
@@ -674,7 +674,7 @@ p {
 }
 .me-tree-area {
   grid-area: me-tree;
-  width: 100vw;
+  /* width: 100vw; */
 }
 .empty-area {
   grid-area: empty;

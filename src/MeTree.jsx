@@ -74,12 +74,11 @@ export function MeTree() {
       return;
     }
 
-    alert(
-      "You will shortly be redirected to the gallery. Please close this alert box and wait a moment..."
-    );
-
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
+        alert(
+          "You will shortly be redirected to the gallery. Please close this alert box and wait a moment..."
+        );
         // @TODO
         // const link = document.createElement("a");
         // link.download = "my-me-tree.png";

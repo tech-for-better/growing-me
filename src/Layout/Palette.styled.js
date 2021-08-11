@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const PaletteContainer = styled.div`
-  height: 300px;
-  width: 25vw;
+  height: 250px;
+  width: 20vw;
   border: #337d8e solid;
   border-radius: 20px;
   position: absolute;
@@ -35,7 +35,6 @@ export const PaletteBtn = styled.button`
     transform: scale(1.05);
 
 `;
-  ;
 
 // COLOURS
 // d6f7d - darkblue
