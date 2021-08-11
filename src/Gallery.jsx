@@ -4,8 +4,8 @@ import { supabase } from "./supabaseClient";
 import { Link } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import { getGalleryData } from "../database/model";
-import logo from "./../public/assets/Logo.svg";
-import cuteVisitor from "./../public/assets/cute_visitors.svg";
+import logo from "/assets/Logo.svg";
+import cuteVisitor from "/assets/cute_visitors.svg";
 
 export default function Gallery({ state, setState }) {
   console.log("in gallery ", state.data.gallery?.images);

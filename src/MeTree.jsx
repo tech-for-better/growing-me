@@ -22,7 +22,7 @@ import WhereTree from "/assets/where_is_your_tree.svg";
 import WhoAround from "/assets/who_is_around_your_tree.svg";
 import Palette from "./Palette";
 import cuteVisitor from "/assets/cute_visitors.svg";
-import pricklyVisitor from "../public/assets/prickly_visitors.svg";
+import pricklyVisitor from "/assets/prickly_visitors.svg";
 import fluffyVisitor from "/assets/fluffy_visitors.svg";
 import creepyCrawlyVisitor from "/assets/creepy_crawly_visitors.svg";
 import worm from "/assets/home_for_worms.svg";

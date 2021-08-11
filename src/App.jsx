@@ -52,8 +52,6 @@ export async function update(changedData) {
 
 export default function Home() {
   const [session, setSession] = useState(null);
-  const [state, setState] = useRemoteState({ load, update });
-  console.log("STATE in app", state);
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -68,15 +66,20 @@ export default function Home() {
       <Router>
         <AuthProvider>
           <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return (
+                  <LoginTree>
+                    <Login />
+                  </LoginTree>
+                );
+              }}
+            />
             <Route path="/signup">
               <LoginTree>
                 <Signup />
-              </LoginTree>
-            </Route>
-
-            <Route path="/login">
-              <LoginTree>
-                <Login />
               </LoginTree>
             </Route>
 
@@ -85,7 +88,7 @@ export default function Home() {
                 <MagicLinkLogIn />
               </LoginTree>
             </Route>
-          </Switch>{" "}
+          </Switch>
         </AuthProvider>
       </Router>
     );
