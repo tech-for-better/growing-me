@@ -163,35 +163,52 @@ export default function Palette({ type }) {
   //   }
   // }
 
-  async function handleClick(event, image) {
-    console.log("clicked a palette button", event, image);
-
-    switch (image) {
-      case "update_treeLocation":
+  async function handleClick(event, update, src) {
+    console.log("clicked a palette button", event, update, src)
+    switch (src) {
+      case MeTreeGarden:
+      case MeTreeCloud:
+      case MeTreeHeart:
+      case MeTreePlanet:
         setState({
           tree: {
-            tree_location: image,
+            tree_location: src,
           },
         });
         break;
-      case "update_background":
+      case mountainBlob:
+      case spikeyBlob:
+      case minecraftBlob:
+      case jellyBlob:
+      case heartBlob:
+      case cloudyBlob:
+      case ovalBlob:
         setState({
           tree: {
-            background: event.target.src,
+            background: src,
           },
         });
         break;
-      case "update_growing":
+      case apple:
+      case banana:
+      case batwings:
+      case cherries:
+      case chocolate:
+      case pizza:
         setState({
           tree: {
-            growing: event.target.src,
+            growing: src,
           },
         });
         break;
-      case "update_whoAround":
+        case cuteVisitor:
+        case pricklyVisitor:
+        case fluffyVisitor:
+        case creepyCrawlyVisitor:
+        case worm:
         setState({
           tree: {
-            who_around: event.target.src,
+            who_around: src,
           },
         });
         break;
@@ -222,7 +239,7 @@ export default function Palette({ type }) {
               <PaletteBtn
                 key={src}
                 image={src}
-                onClick={(event) => handleClick(event, update)}
+                onClick={(event) => handleClick(event, update, src)}
               >
                 <PaletteImg key={src} src={src} alt={src} />
               </PaletteBtn>
