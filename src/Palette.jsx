@@ -38,11 +38,6 @@ import { MeTreeContext } from "./App";
 export default function Palette({ type }) {
   const { state, setState } = useContext(MeTreeContext);
 
-  const imagesToSupabaseMapping = {
-    mountainBlob:
-      "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/palette/background/mountain_blob.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL3BhbGV0dGUvYmFja2dyb3VuZC9tb3VudGFpbl9ibG9iLnN2ZyIsImlhdCI6MTYyODYwOTEyMiwiZXhwIjoxOTQzOTY5MTIyfQ.FW7UjdWMLknH2hoUj_jSV4eP6m_Zg_0ygwMfKAjz_rc",
-  };
-
   let option = type;
   // let paletteOptions = {
   //   WhatColour: [
