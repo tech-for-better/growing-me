@@ -26,6 +26,15 @@ import useRemoteState from "../utils/useRemoteState";
 
 export const MeTreeContext = createContext();
 
+function MeTreeProvider({ children }) {
+  const [state, setState] = useRemoteState({ load, update });
+  return (
+    <MeTreeContext.Provider value={{ state, setState }}>
+      {children}
+    </MeTreeContext.Provider>
+  );
+}
+
 export async function load() {
   console.log("load - about to get all data");
   const data = await getAllData();
@@ -54,29 +63,56 @@ export default function Home() {
     });
   }, []);
 
+  if (!session)
+    return (
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <Route path="/signup">
+              <LoginTree>
+                <Signup />
+              </LoginTree>
+            </Route>
+
+            <Route path="/login">
+              <LoginTree>
+                <Login />
+              </LoginTree>
+            </Route>
+
+            <Route path="/magic-link-login">
+              <LoginTree>
+                <MagicLinkLogIn />
+              </LoginTree>
+            </Route>
+          </Switch>{" "}
+        </AuthProvider>
+      </Router>
+    );
   return (
     <>
       <Router>
         <AuthProvider>
-          <MeTreeContext.Provider value={{ state, setState }}>
+          {/* <MeTreeContext.Provider value={{ state, setState }}> */}
+          <MeTreeProvider>
             <Switch>
-              <Route path="/signup">
-                <LoginTree>
-                  <Signup />
-                </LoginTree>
-              </Route>
+              {/* <Route path="/signup">
+                  <LoginTree>
+                    <Signup />
+                  </LoginTree>
+                </Route>
 
-              <Route path="/login">
-                <LoginTree>
-                  <Login />
-                </LoginTree>
-              </Route>
+                <Route path="/login">
+                  <LoginTree>
+                    <Login />
+                  </LoginTree>
+                </Route>
 
-              <Route path="/magic-link-login">
-                <LoginTree>
-                  <MagicLinkLogIn />
-                </LoginTree>
-              </Route>
+                <Route path="/magic-link-login">
+                  <LoginTree>
+                    <MagicLinkLogIn />
+                  </LoginTree>
+                </Route> */}
 
               <PrivateRoute
                 exact
@@ -130,7 +166,8 @@ export default function Home() {
               <AdultProfile key={session.user.id} session={session} />
             )} */}
             </Switch>
-          </MeTreeContext.Provider>
+            {/* </MeTreeContext.Provider> */}
+          </MeTreeProvider>
         </AuthProvider>
       </Router>
       {/* <LoginTree>

@@ -2,10 +2,8 @@ import React from "react";
 import { useRef, useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
-import { MeTreeContext } from "./App";
 
 export default function Login() {
-  const { state, setState } = useContext(MeTreeContext);
   const emailRef = useRef();
   const passwordRef = useRef();
 
