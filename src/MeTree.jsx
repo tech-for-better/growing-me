@@ -191,11 +191,7 @@ export function MeTree() {
             </ToolkitText>
           </ToolkitButton>
           <ToolkitButton onClick={() => saveToGallery()}>
-            {state.status === "updating" ? (
-              <ToolkitText> Saving...</ToolkitText>
-            ) : (
-              <ToolkitText> Save to Gallery</ToolkitText>
-            )}
+            <ToolkitText> Save to Gallery</ToolkitText>
           </ToolkitButton>
         </Toolkit>
 

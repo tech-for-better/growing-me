@@ -128,7 +128,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar1"
               name="child_avatar"
-              value="./../public/assets/cute_visitors.svg"
+              value={cuteVisitor}
               onChange={(e) => {
                 setState({
                   profile: {
@@ -147,7 +147,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar2"
               name="child_avatar"
-              value="./../public/assets/fluffy_visitors.svg"
+              value={fluffyVisitor}
               onChange={(e) => {
                 setState({
                   profile: {
@@ -166,7 +166,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar3"
               name="child_avatar"
-              value="./../public/assets/prickly_visitors.svg"
+              value={pricklyVisitor}
               onChange={(e) => {
                 setState({
                   profile: {
@@ -185,7 +185,7 @@ export default function AdultProfile() {
               type="radio"
               id="child_avatar4"
               name="child_avatar"
-              value="./../public/assets/creepy_crawly_visitors.svg"
+              value={creepyCrawlyVisitor}
               onChange={(e) => {
                 setState({
                   profile: {
