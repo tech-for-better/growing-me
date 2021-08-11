@@ -172,7 +172,7 @@ export function MeTree() {
           </div>
         </div>
 
-        <div className="flex margin-top me-tree-container--mobile me-tree-grid ">
+        <div className="flex margin-top me-tree-container--mobile me-tree-grid me-tree-desktop">
           <div className="toolkit-area">
             <Toolkit>
               <ToolkitButton onClick={() => handleClick("WhatColour")}>
