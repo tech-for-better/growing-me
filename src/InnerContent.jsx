@@ -8,6 +8,7 @@ import "./Layout/Carousel.css";
 
 export default function InnerContent() {
   const { state, dispatch } = useContext(ContentContext);
+  console.log('INNER CONTENT STATE', state)
   let text;
   if (text === "PLAY") {
     return (className = "play-color");
@@ -18,6 +19,9 @@ export default function InnerContent() {
     make: "#fed436",
     wonder: "#28424c",
   };
+
+  // let new_slide =
+  //   ContentData[state.current_section][state.current_subsection][1];
 
   return (
     <div className="flex flex-center space-between narrow center column ">
@@ -41,15 +45,18 @@ export default function InnerContent() {
       >
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
-          // [state.current_slide]
+          //[state.current_slide]
         ).map((slide) => {
-          console.log("slide in carousel map", slide);
-          console.log(
-            "content",
-            ContentData[state.current_section][state.current_subsection]
-            // [state.current_slide]
-            [slide]
-          );
+
+          // slide = new_slide;
+          // console.log("SLIDE in carousel map", slide);
+          // console.log(
+          //   "CONTENT",
+          //   // [state.current_slide]
+          //   ContentData[state.current_section][state.current_subsection][
+          //   1
+          //   ]
+          // );
           return (
             <>
               <div className="flex column full-height ">
@@ -58,7 +65,8 @@ export default function InnerContent() {
                     src={
                       ContentData[state.current_section][
                         state.current_subsection
-                      ][slide]["img"]
+                      ][slide]
+                    ["img"]
                     }
                   />
                 </div>

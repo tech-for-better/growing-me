@@ -33,11 +33,13 @@ function reducer(state, action) {
       console.log("CURRENT SUBsection ", current_subsection);
       return { ...state, current_subsection };
     case ACTIONS.UPDATE_CURRENT_SLIDE:
+      // console.log("NEW_SLIDE", new_slide);
+      console.log('ACTION.NEW_SLIDE', action.new_slide);
       const current_slide = action.new_slide;
       console.log("CURRENT slide ", current_slide);
       return { ...state, current_slide };
     //case ACTIONS.SET_MULTIPLE:
-     // return { ...state, ...action.payload }; // <---- HERE
+    // return { ...state, ...action.payload }; // <---- HERE
     default:
       return state;
   }
