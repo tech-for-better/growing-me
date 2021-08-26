@@ -41,9 +41,15 @@ export default function InnerContent() {
       >
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
+          // [state.current_slide]
         ).map((slide) => {
           console.log("slide in carousel map", slide);
-
+          console.log(
+            "content",
+            ContentData[state.current_section][state.current_subsection]
+            // [state.current_slide]
+            [slide]
+          );
           return (
             <>
               <div className="flex column full-height ">

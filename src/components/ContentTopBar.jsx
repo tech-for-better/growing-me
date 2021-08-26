@@ -24,48 +24,77 @@ export default function ContentTopBar() {
       <a
         className={`${state.current_subsection === "play" ? "" : "opaque"}`}
         href="#"
-        onClick={() =>
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "play",
-          })
-        }
+        onClick={() => {
+          dispatch(
+            {
+              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              new_sub_section: "play",
+            }
+          );
+          dispatch(
+            {
+              type: ACTIONS.UPDATE_CURRENT_SLIDE,
+              new_slide: "1",
+            }
+          );
+        }}
       >
         <img className="top-bar-btn" src={PlayNav2} />
       </a>
       <a
         className={`${state.current_subsection === "think" ? "" : "opaque"}`}
         href="#"
-        onClick={() =>
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "think",
-          })
-        }
+        onClick={() => {
+          dispatch(
+            {
+              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              new_sub_section: "think",
+            }
+          );
+          dispatch(
+            {
+              type: ACTIONS.UPDATE_CURRENT_SLIDE,
+              new_slide: "1",
+            }
+          );
+          // {
+          //   type: ACTIONS.SET_MULTIPLE,
+          //   payload: { new_sub_section: "think", new_slide: "1" },
+          // }
+        }}
       >
         <img className="top-bar-btn" src={ThinkNav2} />
       </a>
       <a
         className={`${state.current_subsection === "make" ? "" : "opaque"}`}
         href="#"
-        onClick={() =>
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "make",
-          })
-        }
+        onClick={() => {
+          dispatch(
+            {
+              type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              new_sub_section: "make",
+            });
+            dispatch({
+              type: ACTIONS.UPDATE_CURRENT_SLIDE,
+              new_slide: "1",
+            });
+        }}
       >
         <img className="top-bar-btn" src={MakeNav2} />
       </a>
       <a
         className={`${state.current_subsection === "wonder" ? "" : "opaque"}`}
         href="#"
-        onClick={() =>
+        onClick={() => {
           dispatch({
             type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
             new_sub_section: "wonder",
-          })
-        }
+          });
+          dispatch({
+            type: ACTIONS.UPDATE_CURRENT_SLIDE,
+            new_slide: "1",
+          });
+        }}
       >
         <img className="top-bar-btn" src={WonderNav2} />
       </a>
