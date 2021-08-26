@@ -33,10 +33,17 @@ export default function InnerContent() {
         Welcome to the {`${state.current_subsection}`.toUpperCase()} Section{" "}
       </h2> */}
       {/* <div> */}
-      <Carousel className="mobile-margin-sm" showThumbs={false}>
+      <Carousel
+        className="mobile-margin-sm"
+        showThumbs={false}
+        autoPlay={false}
+        infiniteLoop={true}
+      >
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
         ).map((slide) => {
+          console.log("slide in carousel map", slide);
+
           return (
             <>
               <div className="flex column full-height ">
