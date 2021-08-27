@@ -36,6 +36,7 @@ export default function ContentTopBar() {
             new_slide:
               ContentData[state.current_section][state.current_subsection][1],
           });
+          // setting two disptach causes delay - here attempted to combine. 
           // {
           //   type: ACTIONS.SET_MULTIPLE,
           //   payload: { new_sub_section: "think", new_slide: "1" },
