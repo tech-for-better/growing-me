@@ -61,8 +61,8 @@ const initialState = {
     tree: {
       tree_location: null,
       background: null,
-      growing: null,
-      who_around: null,
+      // growing: null,
+      // who_around: null,
       // growing_coords: { left: 80, top: 20 },
       // whoAround_coords: { left: 100, top: 20 },
       // growing_left: 800,
@@ -70,8 +70,8 @@ const initialState = {
       // who_around_left: 100,
       // who_around_top: 20,
       boxes: {
-        a: { top: 0, left: 2, isGrowing: true, src: null },
-        b: { top: 1, left: 3, isGrowing: false, src: null},
+        // a: { top: 0, left: 2, isGrowing: true, src: null },
+        // b: { top: 1, left: 3, isGrowing: false, src: null},
       },
     },
     gallery: {

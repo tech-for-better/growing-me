@@ -8,7 +8,7 @@ export async function getMeTree() {
   let { data, error, status } = await supabase
     .from("me_tree")
     .select(
-      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left,boxes`
+      `background, tree_location, who_around, growing,boxes`
     )
     .eq("id", user.id)
     .single();
@@ -222,38 +222,38 @@ export async function setTreeLocationData(tree_location) {
   }
 }
 
-export async function setWhoAroundData(who_around) {
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    who_around: [who_around],
-  };
+// export async function setWhoAroundData(who_around) {
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     who_around: [who_around],
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
-export async function setGrowingData(growing) {
-  console.log("set growing data", growing);
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    growing: [growing],
-  };
+// export async function setGrowingData(growing) {
+//   console.log("set growing data", growing);
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     growing: [growing],
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
 // export async function setGrowingLeftData(growing_left) {
 //   console.log("set growing left data", growing_left);
@@ -446,11 +446,13 @@ export async function setData(data) {
       return setGalleryData(data.gallery.images);
     } else if (changingValue === "tree_location") {
       return setTreeLocationData(data.tree.tree_location);
-    } else if (changingValue === "growing") {
-      return setGrowingData(data.tree.growing);
-    } else if (changingValue === "who_around") {
-      return setWhoAroundData(data.tree.who_around);
-    } else if (changingValue === "background") {
+    }
+    // else if (changingValue === "growing") {
+    //   return setGrowingData(data.tree.growing);
+    // } else if (changingValue === "who_around") {
+    //   return setWhoAroundData(data.tree.who_around);
+    // }
+    else if (changingValue === "background") {
       return setBackgroundData(data.tree.background);
     }
     // else if (changingValue === "growing_left") {
