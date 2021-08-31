@@ -40,6 +40,7 @@ import heartBlob from "/assets/heart_blob.svg";
 import cloudyBlob from "/assets/cloudy_blob.svg";
 import ovalBlob from "/assets/oval_blob.svg";
 import funnyFaces from "/assets/funny_faces.svg";
+import bin from "/assets/icomoon-free_bin.svg"
 import logo from "/assets/Logo.svg";
 import Container from "./Container";
 import { toPng } from "html-to-image";
@@ -235,6 +236,9 @@ export function MeTree() {
             </div>
             <div className="empty-area"></div>
             <div className="flex row flex-end margin-btn mobile-margin-sm">
+                {/* <div>
+                  <img src={bin} alt="bin" />
+                </div> */}
               <div>
                 <Link to="/content">
                   <button className="button primary block">

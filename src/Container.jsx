@@ -8,6 +8,7 @@ import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
 import { MeTreeContext } from "./App";
 
+
 export default function Container({ hideSourceOnDrag }) {
   const { state, setState } = useContext(MeTreeContext);
   console.log("STATE in container", state);
@@ -56,9 +57,10 @@ export default function Container({ hideSourceOnDrag }) {
             isGrowing={isGrowing}
             src={src}
             hideSourceOnDrag={hideSourceOnDrag}
-          ></Box>
+          />
         );
       })}
+
     </DndContainer>
   );
 }
