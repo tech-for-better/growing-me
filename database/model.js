@@ -8,7 +8,7 @@ export async function getMeTree() {
   let { data, error, status } = await supabase
     .from("me_tree")
     .select(
-      `background, tree_location, who_around, growing, growing_left, growing_top, who_around_top, who_around_left,boxes`
+      `background, tree_location, who_around, growing,boxes`
     )
     .eq("id", user.id)
     .single();
@@ -20,38 +20,38 @@ export async function getMeTree() {
   return data;
 }
 
-export async function setTreeData(
-  background,
-  treeLocation,
-  whoAround,
-  growing,
-  growing_coords,
-  whoAround_coords,
-  boxes
-) {
-  const user = supabase.auth.user();
-  console.log("model.setTreeData");
+// export async function setTreeData(
+//   background,
+//   treeLocation,
+//   whoAround,
+//   growing,
+//   // growing_coords,
+//   // whoAround_coords,
+//   boxes
+// ) {
+//   const user = supabase.auth.user();
+//   console.log("model.setTreeData");
 
-  const updates = {
-    id: user.id,
-    background,
-    tree_location: treeLocation,
-    who_around: [whoAround],
-    growing: [growing],
-    growing_left: growing_coords.left,
-    growing_top: growing_coords.top,
-    who_around_top: whoAround_coords.top,
-    who_around_left: whoAround_coords.left,
-  };
+//   const updates = {
+//     id: user.id,
+//     background,
+//     tree_location: treeLocation,
+//     who_around: [whoAround],
+//     growing: [growing],
+//     // growing_left: growing_coords.left,
+//     // growing_top: growing_coords.top,
+//     // who_around_top: whoAround_coords.top,
+//     // who_around_left: whoAround_coords.left,
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
 export async function getProfileData() {
   const user = supabase.auth.user();
@@ -222,72 +222,72 @@ export async function setTreeLocationData(tree_location) {
   }
 }
 
-export async function setWhoAroundData(who_around) {
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    who_around: [who_around],
-  };
+// export async function setWhoAroundData(who_around) {
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     who_around: [who_around],
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
-export async function setGrowingData(growing) {
-  console.log("set growing data", growing);
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    growing: [growing],
-  };
+// export async function setGrowingData(growing) {
+//   console.log("set growing data", growing);
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     growing: [growing],
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
-export async function setGrowingLeftData(growing_left) {
-  console.log("set growing left data", growing_left);
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    growing_left,
-  };
+// export async function setGrowingLeftData(growing_left) {
+//   console.log("set growing left data", growing_left);
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     growing_left,
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
-export async function setGrowingTopData(growing_top) {
-  console.log("set growing top data", growing_top);
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    growing_top,
-  };
+// export async function setGrowingTopData(growing_top) {
+//   console.log("set growing top data", growing_top);
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     growing_top,
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
 export async function setBoxesData(boxes) {
   const user = supabase.auth.user();
@@ -322,37 +322,37 @@ export async function setBoxesData(boxes) {
 //   }
 // }
 
-export async function setWhoAroundLeftData(who_around_left) {
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    who_around_left,
-  };
+// export async function setWhoAroundLeftData(who_around_left) {
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     who_around_left,
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
-export async function setWhoAroundTopData(who_around_top) {
-  const user = supabase.auth.user();
-  const updates = {
-    id: user.id,
-    who_around_top,
-  };
+// export async function setWhoAroundTopData(who_around_top) {
+//   const user = supabase.auth.user();
+//   const updates = {
+//     id: user.id,
+//     who_around_top,
+//   };
 
-  let { error } = await supabase.from("me_tree").upsert(updates, {
-    returning: "minimal", // Don't return the value after inserting
-  });
+//   let { error } = await supabase.from("me_tree").upsert(updates, {
+//     returning: "minimal", // Don't return the value after inserting
+//   });
 
-  if (error) {
-    throw error;
-  }
-}
+//   if (error) {
+//     throw error;
+//   }
+// }
 
 export async function setGalleryData(images) {
   const user = supabase.auth.user();
@@ -446,21 +446,25 @@ export async function setData(data) {
       return setGalleryData(data.gallery.images);
     } else if (changingValue === "tree_location") {
       return setTreeLocationData(data.tree.tree_location);
-    } else if (changingValue === "growing") {
-      return setGrowingData(data.tree.growing);
-    } else if (changingValue === "who_around") {
-      return setWhoAroundData(data.tree.who_around);
-    } else if (changingValue === "background") {
+    }
+    // else if (changingValue === "growing") {
+    //   return setGrowingData(data.tree.growing);
+    // } else if (changingValue === "who_around") {
+    //   return setWhoAroundData(data.tree.who_around);
+    // }
+    else if (changingValue === "background") {
       return setBackgroundData(data.tree.background);
-    } else if (changingValue === "growing_left") {
-      return setGrowingLeftData(data.tree.growing_left);
-    } else if (changingValue === "growing_top") {
-      return setGrowingTopData(data.tree.growing_top);
-    } else if (changingValue === "who_around_left") {
-      return setWhoAroundLeftData(data.tree.who_around_left);
-    } else if (changingValue === "who_around_top") {
-      return setWhoAroundTopData(data.tree.who_around_top);
-    } else if (changingValue === "boxes") {
+    }
+    // else if (changingValue === "growing_left") {
+    //   return setGrowingLeftData(data.tree.growing_left);
+    // } else if (changingValue === "growing_top") {
+    //   return setGrowingTopData(data.tree.growing_top);
+    // } else if (changingValue === "who_around_left") {
+    //   return setWhoAroundLeftData(data.tree.who_around_left);
+    // } else if (changingValue === "who_around_top") {
+    //   return setWhoAroundTopData(data.tree.who_around_top);
+    // }
+    else if (changingValue === "boxes") {
       return setBoxesData(data.tree.boxes);
     } else if (changingValue === "adult_name") {
       return setAdultNameData(data.profile.adult_name);

@@ -6,7 +6,6 @@ import { ItemTypes } from "./ItemTypes";
 import Box from "./Box";
 import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
-// import { MeTreeContext } from "./MeTree";
 import { MeTreeContext } from "./App";
 
 export default function Container({ hideSourceOnDrag }) {
@@ -29,23 +28,6 @@ export default function Container({ hideSourceOnDrag }) {
     [(state.data.tree.boxes, setState)]
   );
 
-  //   const moveBox = () => {
-  //     (id, left, top) => {
-  //       setState({
-  //         tree: {
-  //           boxes: update(state.data.tree.boxes, {
-  //             [id]: {
-  //               $merge: { left, top },
-  //             },
-  //           }),
-  //         },
-  //       });
-  //     },
-  //       [(state.data.tree.boxes, setState)];
-  // }
-
-  // console.log("CONTAINER: state.data.tree?.boxes ", state.data.tree.boxes);
-
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.BOX,
@@ -63,8 +45,8 @@ export default function Container({ hideSourceOnDrag }) {
   return (
     <DndContainer ref={drop}>
       {Object.keys(state.data.tree?.boxes || {}).map((key) => {
-        console.log("CONTAINER: in object.key", state.data.tree.boxes); //WHY SIX TIMES? - NOW TWICE
-        const { left, top, isGrowing } = state.data.tree.boxes[key];
+        console.log("CONTAINER: in object.key", state.data.tree.boxes);
+        const { left, top, isGrowing, src } = state.data.tree.boxes[key];
         return (
           <Box
             key={key}
@@ -72,8 +54,7 @@ export default function Container({ hideSourceOnDrag }) {
             left={left}
             top={top}
             isGrowing={isGrowing}
-            growing={state.data.tree.growing}
-            whoAround={state.data.tree.who_around}
+            src={src}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );

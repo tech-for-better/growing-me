@@ -61,18 +61,7 @@ const initialState = {
     tree: {
       tree_location: null,
       background: null,
-      growing: null,
-      who_around: null,
-      // growing_coords: { left: 80, top: 20 },
-      // whoAround_coords: { left: 100, top: 20 },
-      growing_left: 800,
-      growing_top: 20,
-      who_around_left: 100,
-      who_around_top: 20,
-      boxes: {
-        a: { top: 0, left: 2, isGrowing: true },
-        b: { top: 1, left: 3, isGrowing: false },
-      },
+      boxes: {},
     },
     gallery: {
       images: [],
@@ -80,8 +69,8 @@ const initialState = {
     profile: {
       adult_name: null,
       avatar_url: null,
-      child_name: "child", // i added
-      child_avatar: "./../assets/fluffy_visitors.svg", // i added
+      child_name: "child",
+      child_avatar: "./../assets/fluffy_visitors.svg", 
     },
   },
   error: null,
