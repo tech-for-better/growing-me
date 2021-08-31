@@ -22,7 +22,6 @@ import Gallery from "./Gallery";
 import Content from "./Content";
 import { getGalleryData, getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
-import { Dustbin } from "./Dustbin";
 
 export const MeTreeContext = createContext();
 
@@ -123,8 +122,8 @@ export default function Home() {
                 render={() => {
                   return (
                     <DndProvider backend={HTML5Backend}>
-                      <MeTree/>
-                      <Dustbin/>
+                      <MeTree />
+                      
                     </DndProvider>
                   );
                 }}

@@ -8,7 +8,6 @@ import update from "immutability-helper";
 import { DndContainer } from "./Layout/DndContainer.styled";
 import { MeTreeContext } from "./App";
 
-
 export default function Container({ hideSourceOnDrag }) {
   const { state, setState } = useContext(MeTreeContext);
   console.log("STATE in container", state);
@@ -43,24 +42,26 @@ export default function Container({ hideSourceOnDrag }) {
     [moveBox]
   );
 
-  return (
-    <DndContainer ref={drop}>
-      {Object.keys(state.data.tree?.boxes || {}).map((key) => {
-        console.log("CONTAINER: in object.key", state.data.tree.boxes);
-        const { left, top, isGrowing, src } = state.data.tree.boxes[key];
-        return (
-          <Box
-            key={key}
-            id={key}
-            left={left}
-            top={top}
-            isGrowing={isGrowing}
-            src={src}
-            hideSourceOnDrag={hideSourceOnDrag}
-          />
-        );
-      })}
+    return (
+      <>
+        <DndContainer ref={drop}>
+          {Object.keys(state.data.tree?.boxes || {}).map((key) => {
+            console.log("CONTAINER: in object.key", state.data.tree.boxes);
+            const { left, top, isGrowing, src } = state.data.tree.boxes[key];
+            return (
+              <Box
+                key={key}
+                id={key}
+                left={left}
+                top={top}
+                isGrowing={isGrowing}
+                src={src}
+                hideSourceOnDrag={hideSourceOnDrag}
+              />
+            );
+          })}
+        </DndContainer>
 
-    </DndContainer>
-  );
-}
+      </>
+    );
+};
