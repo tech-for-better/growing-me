@@ -26,21 +26,25 @@ export default function ContentTopBar() {
         className={`${state.current_subsection === "play" ? "" : "opaque"}`}
         href="#"
         onClick={() => {
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+          //   new_sub_section: "play",
+          // });
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SLIDE,
+          //   // new_slide: "1",
+          //   new_slide:
+          //     ContentData[state.current_section][state.current_subsection][1],
+          // });
+          //setting two disptach causes delay - here attempted to combine.
           dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "play",
+            type: ACTIONS.SET_MULTIPLE,
+            payload: {
+              current_subsection: "play",
+              current_slide: ContentData[state.current_section]["play"][1]
+              // current_slide: "1",
+            },
           });
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SLIDE,
-            // new_slide: "1",
-            new_slide:
-              ContentData[state.current_section][state.current_subsection][1],
-          });
-          // setting two disptach causes delay - here attempted to combine. 
-          // {
-          //   type: ACTIONS.SET_MULTIPLE,
-          //   payload: { new_sub_section: "think", new_slide: "1" },
-          // }
         }}
       >
         <img className="top-bar-btn" src={PlayNav2} />
@@ -49,15 +53,23 @@ export default function ContentTopBar() {
         className={`${state.current_subsection === "think" ? "" : "opaque"}`}
         href="#"
         onClick={() => {
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+          //   new_sub_section: "think",
+          // });
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SLIDE,
+          //   // new_slide: "1",
+          //   new_slide:
+          //     ContentData[state.current_section][state.current_subsection][1],
+          // });
           dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "think",
-          });
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SLIDE,
-            // new_slide: "1",
-            new_slide:
-              ContentData[state.current_section][state.current_subsection][1],
+            type: ACTIONS.SET_MULTIPLE,
+            payload: {
+              current_subsection: "think",
+              current_slide: ContentData[state.current_section]["think"][1]
+              // current_slide: "1",
+            },
           });
         }}
       >
@@ -67,16 +79,27 @@ export default function ContentTopBar() {
         className={`${state.current_subsection === "make" ? "" : "opaque"}`}
         href="#"
         onClick={() => {
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "make",
-          });
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SLIDE,
-            //
-            new_slide:
-              ContentData[state.current_section][state.current_subsection][1],
-          });
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+          //   new_sub_section: "make",
+          // });
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SLIDE,
+          //   //
+          //   new_slide:
+          //     ContentData[state.current_section][state.current_subsection][1],
+          // });
+             dispatch({
+               type: ACTIONS.SET_MULTIPLE,
+               payload: {
+                 current_subsection: "make",
+                  current_slide:
+                    ContentData[state.current_section][
+                      "make"
+                    ][1],
+                //  current_slide: "1",
+               },
+             });
         }}
       >
         <img className="top-bar-btn" src={MakeNav2} />
@@ -85,16 +108,27 @@ export default function ContentTopBar() {
         className={`${state.current_subsection === "wonder" ? "" : "opaque"}`}
         href="#"
         onClick={() => {
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "wonder",
-          });
-          dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SLIDE,
-            // new_slide: "1",
-            new_slide:
-              ContentData[state.current_section][state.current_subsection][1],
-          });
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+          //   new_sub_section: "wonder",
+          // });
+          // dispatch({
+          //   type: ACTIONS.UPDATE_CURRENT_SLIDE,
+          //   // new_slide: "1",
+          //   new_slide:
+          //     ContentData[state.current_section][state.current_subsection][1],
+          // });
+             dispatch({
+               type: ACTIONS.SET_MULTIPLE,
+               payload: {
+                 current_subsection: "wonder",
+                  current_slide:
+                    ContentData[state.current_section][
+                      "wonder"
+                    ][1],
+                //  current_slide: "1",
+               },
+             });
         }}
       >
         <img className="top-bar-btn" src={WonderNav2} />

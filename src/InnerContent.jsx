@@ -40,23 +40,21 @@ export default function InnerContent() {
       <Carousel
         className="mobile-margin-sm"
         showThumbs={false}
-        autoPlay={false}
         infiniteLoop={true}
       >
-        {Object.keys(
-          ContentData[state.current_section][state.current_subsection]
-          //[state.current_slide]
+        {/* {state.current_slide == 1 ? */}
+          {Object.keys(
+              ContentData[state.current_section][state.current_subsection]
+              // [state.current_slide]
         ).map((slide) => {
 
-          // slide = new_slide;
-          // console.log("SLIDE in carousel map", slide);
-          // console.log(
-          //   "CONTENT",
-          //   // [state.current_slide]
-          //   ContentData[state.current_section][state.current_subsection][
-          //   1
-          //   ]
-          // );
+          // slide = state.current_slide;
+          console.log("SLIDE in carousel map", slide);
+          console.log(
+            "SLIDE.IMG",
+            // [state.current_slide]
+            slide
+          );
           return (
             <>
               <div className="flex column full-height ">
@@ -64,32 +62,38 @@ export default function InnerContent() {
                   <img
                     src={
                       ContentData[state.current_section][
-                        state.current_subsection
-                      ][slide]
-                    ["img"]
+                      state.current_subsection
+                      ]
+                      [slide]
+                      ["img"]
                     }
                   />
                 </div>
                 <div
                   className="txt-background "
                   style={{
-                    backgroundColor: `${
-                      textColorToSubSectionMap[state.current_subsection]
-                    }`,
+                    backgroundColor: `${textColorToSubSectionMap[state.current_subsection]
+                      }`,
                   }}
                 >
                   <p className="white txt-lg rokkitt-font">
                     {
                       ContentData[state.current_section][
-                        state.current_subsection
-                      ][slide]["txt"]
+                      state.current_subsection
+                      ]
+                      [slide]
+                      ["txt"]
                     }
                   </p>
                 </div>
               </div>
             </>
-          );
-        })}
+                      );
+            })
+          }
+          {/* :
+          " still loading"
+        } */}
       </Carousel>
       {/* </div> */}
     </div>

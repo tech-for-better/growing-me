@@ -17,29 +17,36 @@ export const ACTIONS = {
   ADD_TO_UNLOCKED: "add_to_unlocked",
   UPDATE_CURRENT_SUB_SECTION: "update_current_sub_section",
   UPDATE_CURRENT_SLIDE: "update_current_slide",
-  // SET_MULTIPLE: "SET_MULTIPLE"
+  SET_MULTIPLE: "SET_MULTIPLE",
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.UPDATE_CURRENT_SECTION:
-      const current_section = action.new_section;
-      return { ...state, current_section };
+    // const current_section = action.new_section;
+    // return { ...state, current_section };
+      return { ...state, current_section: action.payload.current_section };
+
     case ACTIONS.ADD_TO_UNLOCKED:
       const unlocked = [...state.unlocked, action.new_unlocked];
       return { ...state, unlocked };
+
     case ACTIONS.UPDATE_CURRENT_SUB_SECTION:
-      const current_subsection = action.new_sub_section;
-      console.log("CURRENT SUBsection ", current_subsection);
-      return { ...state, current_subsection };
+      // const current_subsection = action.new_sub_section;
+      // console.log("CURRENT SUBsection ", current_subsection);
+      // return { ...state, current_subsection };
+      return { ...state, current_subsection: action.payload.current_subsection };
+
     case ACTIONS.UPDATE_CURRENT_SLIDE:
       // console.log("NEW_SLIDE", new_slide);
-      console.log('ACTION.NEW_SLIDE', action.new_slide);
-      const current_slide = action.new_slide;
-      console.log("CURRENT slide ", current_slide);
-      return { ...state, current_slide };
-    //case ACTIONS.SET_MULTIPLE:
-    // return { ...state, ...action.payload }; // <---- HERE
+      // console.log("ACTION.NEW_SLIDE", action.new_slide);
+      // const current_slide = action.new_slide;
+      // console.log("CURRENT slide ", current_slide);
+      // return { ...state, current_slide };
+      return { ...state, current_slide: action.payload.current_slide };
+    
+    case ACTIONS.SET_MULTIPLE:
+      return { ...state, ...action.payload }; // <---- HERE
     default:
       return state;
   }
