@@ -70,6 +70,10 @@ export default function Palette({ type }) {
 
   async function handleClick(event, update, src) {
     console.log("clicked a palette button", event, update, src);
+    console.log("HANDLE CLICK STATE.TREE.BOXES", state.data.tree.boxes);
+    let newGrowingId = `growing${(Object.keys(state.data.tree.boxes).length) + 1}`;
+    let newWhoAroundId = `whoAround${(Object.keys(state.data.tree.boxes).length) + 1}`;
+
     switch (src) {
       case MeTreeGarden:
       case MeTreeCloud:
@@ -102,7 +106,10 @@ export default function Palette({ type }) {
       case pizza:
         setState({
           tree: {
-            growing: src,
+            boxes: {
+              ...state.data.tree.boxes,
+              `${newGrowingId}`: { top: 0, left: 2, isGrowing: true, src: null },
+            },
           },
         });
         break;
@@ -113,7 +120,10 @@ export default function Palette({ type }) {
       case worm:
         setState({
           tree: {
-            who_around: src,
+            boxes: {
+              ...state.data.tree.boxes,
+              newWhoAroundId: { top: 1, left: 3, isGrowing: false, src: src },
+            },
           },
         });
         break;

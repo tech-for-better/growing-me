@@ -70,8 +70,8 @@ const initialState = {
       who_around_left: 100,
       who_around_top: 20,
       boxes: {
-        a: { top: 0, left: 2, isGrowing: true },
-        b: { top: 1, left: 3, isGrowing: false },
+        a: { top: 0, left: 2, isGrowing: true, src: null },
+        b: { top: 1, left: 3, isGrowing: false, src: null},
       },
     },
     gallery: {
