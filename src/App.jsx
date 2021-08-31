@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/Auth";
 
 // react-dnd
-import { render } from "react-dom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -20,9 +19,8 @@ import Login from "./Login";
 import { MeTree } from "./MeTree";
 import Gallery from "./Gallery";
 import Content from "./Content";
-import { getGalleryData, getAllData, setData } from "../database/model";
+import { getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
-// import { load, update } from "./MeTree";
 
 export const MeTreeContext = createContext();
 
@@ -43,10 +41,8 @@ export async function load() {
 }
 
 export async function update(changedData) {
-  // TODO: update the right bit of the DB using the `changedData` object
+  // Update the right bit of the DB using the `changedData` object
   // just has to return a promise (resolved value isn't used)
-
-  console.log("changedData in update fn in MeTree comp:", changedData);
   return await setData(changedData);
 }
 
@@ -96,87 +92,33 @@ export default function Home() {
     <>
       <Router>
         <AuthProvider>
-          {/* <MeTreeContext.Provider value={{ state, setState }}> */}
           <MeTreeProvider>
             <Switch>
-              {/* <Route path="/signup">
-                  <LoginTree>
-                    <Signup />
-                  </LoginTree>
-                </Route>
-
-                <Route path="/login">
-                  <LoginTree>
-                    <Login />
-                  </LoginTree>
-                </Route>
-
-                <Route path="/magic-link-login">
-                  <LoginTree>
-                    <MagicLinkLogIn />
-                  </LoginTree>
-                </Route> */}
-
               <PrivateRoute
                 exact
                 path="/"
                 render={() => {
                   return (
                     <DndProvider backend={HTML5Backend}>
-                      <MeTree
-                      // setGalleryImage={setGalleryImage}
-                      // galleryImage={galleryImage}
-                      />
+                      <MeTree />
                     </DndProvider>
                   );
                 }}
               />
-
               <PrivateRoute
                 path="/adult-profile"
                 render={() => <AdultProfile />}
-                // comp={AdultProfile}/>
               />
               <PrivateRoute
                 path="/child-profile"
                 render={() => <ChildProfile />}
-                // comp={ChildProfile} />
               />
-              <PrivateRoute
-                path="/gallery"
-                // comp={WhosePlaying} />
-                render={() => (
-                  <Gallery
-                  // state={state}
-                  // setState={setState}
-                  // galleryImage={galleryImage}
-                  // setGalleryImage={setGalleryImage}
-                  />
-                )}
-              />
-              <PrivateRoute
-                path="/content"
-                render={() => <Content />}
-                // comp={Content}/>
-              />
-
-              {/* {!session ? (
-              <LoginTree>
-                <Signup />
-                <MagicLinkLogIn />
-              </LoginTree>
-            ) : (
-              <AdultProfile key={session.user.id} session={session} />
-            )} */}
+              <PrivateRoute path="/gallery" render={() => <Gallery />} />
+              <PrivateRoute path="/content" render={() => <Content />} />
             </Switch>
-            {/* </MeTreeContext.Provider> */}
           </MeTreeProvider>
         </AuthProvider>
       </Router>
-      {/* <LoginTree>
-        <Signup />
-        <MagicLinkLogIn /> */}
-      {/* </LoginTree> */}
     </>
   );
 }
