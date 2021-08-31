@@ -1,26 +1,21 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { supabase } from "./supabaseClient";
+import { useContext } from "react";
 import logo from "/assets/Logo.svg";
 import Avatar from "./components/Avatar";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "./contexts/Auth";
-// import ChildProfile from "./ChildProfile";
 import "./Layout/adultProfile.css";
 import cuteVisitor from "/assets/cute_visitors.svg";
 import pricklyVisitor from "/assets/prickly_visitors.svg";
 import fluffyVisitor from "/assets/fluffy_visitors.svg";
 import creepyCrawlyVisitor from "/assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
-// import { getProfileData, setProfileData } from "../database/model";
 import NavMenu from "./components/NavMenu";
 import { MeTreeContext } from "./App";
 
 export default function AdultProfile() {
   const { state, setState } = useContext(MeTreeContext);
-
   const history = useHistory();
-
   const { user } = useAuth();
 
   return (

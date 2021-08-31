@@ -1,7 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import cuteVisitor from "/assets/cute_visitors.svg";
 import pricklyVisitor from "/assets/prickly_visitors.svg";
 import fluffyVisitor from "/assets/fluffy_visitors.svg";
@@ -9,7 +7,6 @@ import creepyCrawlyVisitor from "/assets/creepy_crawly_visitors.svg";
 import { ChildAvatar } from "./Layout/ChildProfile.styled";
 
 export default function ChildProfile({ session }) {
-  const [loading, setLoading] = useState(true);
   const [childUsername, setChildUsername] = useState(null);
   const [child_avatar_url, setChildAvatarUrl] = useState(null);
 
@@ -71,25 +68,6 @@ export default function ChildProfile({ session }) {
           <ChildAvatar src={creepyCrawlyVisitor} alt="" />
         </label>
       </div>
-
-      {/* <div>
-        <button
-          className="button block primary"
-          // onClick={() => updateProfile({ child_username, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? "Loading ..." : "Update"}
-        </button>
-      </div>
-
-      <div>
-        <button
-          className="button block"
-          // onClick={() => supabase.auth.signOut()}
-        >
-          Sign Out
-        </button>
-      </div> */}
     </div>
   );
 }
