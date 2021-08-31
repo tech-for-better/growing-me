@@ -70,9 +70,7 @@ export default function Palette({ type }) {
 
   async function handleClick(event, update, src) {
     console.log("clicked a palette button", event, update, src);
-    console.log("HANDLE CLICK STATE.TREE.BOXES", state.data.tree.boxes);
-    let newGrowingId = `growing${(Object.keys(state.data.tree.boxes).length) + 1}`;
-    let newWhoAroundId = `whoAround${(Object.keys(state.data.tree.boxes).length) + 1}`;
+    console.log("HANDLE CLICK STATE.TREE.BOXES", state.data.tree.boxes)
 
     switch (src) {
       case MeTreeGarden:
@@ -104,25 +102,41 @@ export default function Palette({ type }) {
       case cherries:
       case chocolate:
       case pizza:
+
+        let newGrowingId = `growing${Object.keys(state.data.tree.boxes).length + 1}`;
+        let growingObj = {};
+        growingObj[newGrowingId] = {
+          top: 0,
+          left: 2,
+          isGrowing: true,
+          src: src,
+        };
+
         setState({
           tree: {
             boxes: {
               ...state.data.tree.boxes,
-              `${newGrowingId}`: { top: 0, left: 2, isGrowing: true, src: null },
+              ...growingObj,
             },
           },
         });
         break;
+
       case cuteVisitor:
       case pricklyVisitor:
       case fluffyVisitor:
       case creepyCrawlyVisitor:
       case worm:
+
+        let newWhoId = `who${Object.keys(state.data.tree.boxes).length + 1}`;
+        let whoObj = {};
+        whoObj[newWhoId] = { top: 0, left: 2, isGrowing: false, src: src };
+
         setState({
           tree: {
             boxes: {
               ...state.data.tree.boxes,
-              newWhoAroundId: { top: 1, left: 3, isGrowing: false, src: src },
+              ...whoObj,
             },
           },
         });
