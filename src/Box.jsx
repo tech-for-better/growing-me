@@ -10,8 +10,6 @@ export default function Box({
   top,
   hideSourceOnDrag,
   children,
-  // growing,
-  // whoAround,
   isGrowing,
   src,
 }) {
@@ -33,7 +31,6 @@ export default function Box({
       ref={drag}
       style={{ left, top }}
       role="Box"
-      // src={isGrowing ? growing : whoAround}
       src={src}
           >
       {children}
