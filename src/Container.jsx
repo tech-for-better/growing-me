@@ -64,7 +64,7 @@ export default function Container({ hideSourceOnDrag }) {
     <DndContainer ref={drop}>
       {Object.keys(state.data.tree?.boxes || {}).map((key) => {
         console.log("CONTAINER: in object.key", state.data.tree.boxes); //WHY SIX TIMES? - NOW TWICE
-        const { left, top, isGrowing } = state.data.tree.boxes[key];
+        const { left, top, isGrowing, src } = state.data.tree.boxes[key];
         return (
           <Box
             key={key}
@@ -72,8 +72,9 @@ export default function Container({ hideSourceOnDrag }) {
             left={left}
             top={top}
             isGrowing={isGrowing}
-            growing={state.data.tree.growing}
-            whoAround={state.data.tree.who_around}
+            // growing={state.data.tree.growing}
+            // whoAround={state.data.tree.who_around}
+            src={src}
             hideSourceOnDrag={hideSourceOnDrag}
           ></Box>
         );
