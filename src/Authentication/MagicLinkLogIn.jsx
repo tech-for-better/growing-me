@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { supabase } from "./supabaseClient";
-import logo from "/assets/Logo.svg";
+import logo from "./../Images/Logo";
 import { LoginTree } from "../Layout/Login.styled";
 import { Link } from "react-router-dom";
 

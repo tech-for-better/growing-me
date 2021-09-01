@@ -1,14 +1,11 @@
 import React from "react";
 import { useContext } from "react";
-import logo from "/assets/Logo.svg";
+import logo from "./../Images/Logo";
 import Avatar from "./Avatar";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../Authentication/contexts/Auth";
 import "../Layout/adultProfile.css";
-import cuteVisitor from "/assets/cute_visitors.svg";
-import pricklyVisitor from "/assets/prickly_visitors.svg";
-import fluffyVisitor from "/assets/fluffy_visitors.svg";
-import creepyCrawlyVisitor from "/assets/creepy_crawly_visitors.svg";
+import { cuteVisitor, pricklyVisitor, fluffyVisitor , creepyCrawlyVisitor} from "../Images/MeTreeImages";
 import { ChildAvatar } from "../Layout/ChildProfile.styled";
 import NavMenu from "../components/NavMenu";
 import { MeTreeContext } from "../App";

@@ -11,13 +11,9 @@ import {
   ToolkitText,
 } from "../Layout/MeTree.styled";
 import NavMenu from "../components/NavMenu";
-import MeTreeGarden from "/assets/where_-_garden.svg";
-import WhatColour from "/assets/what_colour_is_your_tree.svg";
-import WhatGrows from "/assets/what_grows_on_your_tree.svg";
-import WhereTree from "/assets/where_is_your_tree.svg";
-import WhoAround from "/assets/who_is_around_your_tree.svg";
+import { MeTreeGarden, WhatColour, WhatGrows, WhereTree , WhoAround} from "../Images/MeTreeImages";
 import Palette from "./Palette";
-import logo from "/assets/Logo.svg";
+import logo from "./../Images/Logo";
 import Container from "./Container";
 import { toPng } from "html-to-image";
 import { MeTreeContext } from "../App";
