@@ -6,18 +6,19 @@ import bin from "/assets/icomoon-free_bin.svg";
 import { MeTreeContext } from "./App";
 import update from "immutability-helper";
 
-const style = {
+const binStyle = {
   height: "12rem",
   width: "12rem",
   marginRight: "1.5rem",
   marginBottom: "1.5rem",
-  color: "white",
+  color: "black",
   padding: "1rem",
   textAlign: "center",
   fontSize: "1rem",
   lineHeight: "normal",
   float: "left",
 };
+
 export const Dustbin = () => {
   const { state, setState } = useContext(MeTreeContext);
   console.log("state in dustbin", state);
@@ -43,17 +44,20 @@ export const Dustbin = () => {
     }),
   }));
   const isActive = canDrop && isOver;
-  let backgroundColor = "#222";
+  let backgroundColor = "";
   if (isActive) {
     backgroundColor = "darkgreen";
   } else if (canDrop) {
     backgroundColor = "darkkhaki";
   }
 
-  console.log("options", { canDrop, isOver });
-
   return (
-    <div ref={drop} role={"Dustbin"} style={{ ...style, backgroundColor }}>
+    <div
+      className="absolute"
+      ref={drop}
+      role={"Dustbin"}
+      style={{ ...binStyle, backgroundColor }}
+    >
       <img src={bin} alt="bin" />
       {isActive ? "Release to delete" : "Drag box to be deleted here"}
     </div>
