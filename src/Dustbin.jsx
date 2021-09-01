@@ -26,6 +26,12 @@ export const Dustbin = () => {
     (id, left, top) => {
       console.log("before delete", state.data.tree.boxes);
       delete state.data.tree.boxes[id.id];
+      // fake setState to trigger re-render
+      setState({
+        tree: {
+          boxes: { ...state.data.tree.boxes },
+        },
+      });
       console.log("after delete", state.data.tree.boxes);
     },
     [(state.data.tree.boxes, setState)]
@@ -59,7 +65,7 @@ export const Dustbin = () => {
       style={{ ...binStyle, backgroundColor }}
     >
       <img src={bin} alt="bin" />
-      {isActive ? "Release to delete" : "Drag box to be deleted here"}
+      {isActive ? "Release to delete" : "Drag item to be deleted here"}
     </div>
   );
 };
