@@ -3,7 +3,7 @@ import { useContext, useCallback } from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import bin from "/assets/icomoon-free_bin.svg";
-import { MeTreeContext } from "./App";
+import { MeTreeContext } from "../App";
 import update from "immutability-helper";
 
 const binStyle = {

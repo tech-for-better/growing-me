@@ -4,7 +4,7 @@ import {
   PaletteContainer,
   PaletteImg,
   PaletteBtn,
-} from "./Layout/Palette.styled";
+} from "../Layout/Palette.styled";
 import MeTreeGarden from "/assets/where_-_garden.svg";
 import MeTreeCloud from "/assets/where_-_cloud.svg";
 import MeTreeHeart from "/assets/where_-_on_a_big_love_heart.svg";
@@ -28,7 +28,7 @@ import heartBlob from "/assets/heart_blob.svg";
 import cloudyBlob from "/assets/cloudy_blob.svg";
 import ovalBlob from "/assets/oval_blob.svg";
 
-import { MeTreeContext } from "./App";
+import { MeTreeContext } from "../App";
 
 export default function Palette({ type }) {
   const { state, setState } = useContext(MeTreeContext);

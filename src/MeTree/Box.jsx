@@ -2,7 +2,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
-import { DraggableImageStyle } from "./Layout/DndContainer.styled";
+import { DraggableImageStyle } from "./../Layout/DndContainer.styled";
 
 export default function Box({
   id,

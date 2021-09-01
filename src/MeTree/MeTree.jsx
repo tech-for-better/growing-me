@@ -9,8 +9,8 @@ import {
   MeTreeContainer,
   BtnImage,
   ToolkitText,
-} from "./Layout/MeTree.styled";
-import NavMenu from "./components/NavMenu";
+} from "../Layout/MeTree.styled";
+import NavMenu from "../components/NavMenu";
 import MeTreeGarden from "/assets/where_-_garden.svg";
 import WhatColour from "/assets/what_colour_is_your_tree.svg";
 import WhatGrows from "/assets/what_grows_on_your_tree.svg";
@@ -20,7 +20,7 @@ import Palette from "./Palette";
 import logo from "/assets/Logo.svg";
 import Container from "./Container";
 import { toPng } from "html-to-image";
-import { MeTreeContext } from "./App";
+import { MeTreeContext } from "../App";
 import { Dustbin } from "./Dustbin";
 
 export function MeTree() {

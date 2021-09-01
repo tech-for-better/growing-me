@@ -1,4 +1,4 @@
-import { supabase } from "./../src/supabaseClient";
+import { supabase } from "./../src/Authentication/supabaseClient";
 
 export async function getMeTree() {
   console.log("model.getMeTree");

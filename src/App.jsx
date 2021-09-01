@@ -1,23 +1,23 @@
 import React from "react";
 import "./Layout/index.css";
 import { useState, useEffect, createContext } from "react";
-import { supabase } from "./supabaseClient";
+import { supabase } from "./Authentication/supabaseClient";
 import { LoginTree } from "./Layout/Login.styled";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/Auth";
+import { AuthProvider } from "./Authentication/contexts/Auth";
 
 // react-dnd
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-import AdultProfile from "./AdultProfile";
-import ChildProfile from "./ChildProfile";
-import MagicLinkLogIn from "./MagicLinkLogIn";
-import { PrivateRoute } from "./components/PrivateRoute";
-import Signup from "./Signup";
-import Login from "./Login";
-import { MeTree } from "./MeTree";
-import Gallery from "./Gallery";
+import AdultProfile from "./Profiles/AdultProfile";
+import ChildProfile from "./Profiles/ChildProfile";
+import MagicLinkLogIn from "./Authentication/MagicLinkLogIn";
+import { PrivateRoute } from "./Authentication/PrivateRoute";
+import Signup from "./Authentication/Signup";
+import Login from "./Authentication/Login";
+import { MeTree } from "./MeTree/MeTree";
+import Gallery from "./Gallery/Gallery";
 import Content from "./Activities/Content";
 import { getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
