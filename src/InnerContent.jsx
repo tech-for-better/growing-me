@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
@@ -8,7 +8,7 @@ import "./Layout/Carousel.css";
 
 export default function InnerContent() {
   const { state, dispatch } = useContext(ContentContext);
-  console.log('INNER CONTENT STATE', state)
+  console.log("INNER CONTENT STATE", state);
   let text;
   if (text === "PLAY") {
     return (className = "play-color");
@@ -20,8 +20,16 @@ export default function InnerContent() {
     wonder: "#28424c",
   };
 
-  // let new_slide =
-  //   ContentData[state.current_section][state.current_subsection][1];
+  // use useRef to get the carousel instance
+  let carousel = useRef(null);
+
+  useEffect(() => {
+    // some validation to set the slider to 0
+    if (carousel && carousel?.state?.selectedItem > 0) {
+      carousel.state.selectedItem = 0;
+    }
+  }, [state]);
+
 
   return (
     <div className="flex flex-center space-between narrow center column ">
@@ -38,26 +46,22 @@ export default function InnerContent() {
       </h2> */}
       {/* <div> */}
       <Carousel
+        key={ContentData[state.current_section][state.current_subsection]}
+        ref={(el) => (carousel = el)} // useRef
         className="mobile-margin-sm"
         showThumbs={false}
         infiniteLoop={true}
-        selectedItem={1}
+        selectedItem={0}
       >
-        {/* {state.current_slide == 1 ? */}
+        
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
-          // [state.current_slide]
-        ).map((slide) => {
-          // slide = state.current_slide;
-          console.log("SLIDE in carousel map", slide);
-          console.log(
-            "SLIDE.IMG",
-            // [state.current_slide]
-            slide
-          );
+        ).map((slide, i) => {
+          console.log("SLIDE in carousel map:", slide, i);
+
           return (
             <>
-              <div className="flex column full-height ">
+              <div className="flex column full-height " key={i}>
                 <div className="pad-bottom">
                   <img
                     src={
