@@ -1,8 +1,8 @@
 import React from "react";
 import { createContext, useReducer } from "react";
-import NavMenu from "./components/NavMenu";
-import ContentNav from "./components/ContentNav";
-import ContentTopBar from "./components/ContentTopBar";
+import NavMenu from "../components/NavMenu"
+import ContentNav from "./ContentNav";
+import ContentTopBar from "./ContentTopBar";
 import InnerContent from "./InnerContent";
 
 const initialState = {

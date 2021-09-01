@@ -3,10 +3,10 @@ import { useContext } from "react";
 import Menu from "react-burger-menu/lib/menus/slide";
 import "./../Layout/ContentNav.css";
 import Collapsible from "react-collapsible";
-import { ContentContext } from "../Content";
-import { ACTIONS } from "../Content";
+import { ContentContext } from "./Content";
+import { ACTIONS } from "./Content";
 import { Link } from "react-router-dom";
-import logo from "/assets/Logo.svg";
+import logo from "./../../public/assets/Logo.svg";
 
 export default function ContentNav() {
   const { state, dispatch } = useContext(ContentContext);

@@ -5,15 +5,17 @@ import { useContext } from "react";
 // import PlayNav from "/assets/simple_play_1.svg";
 // import WonderNav from "/assets/simple_wonder.svg";
 // import ThinkNav from "/assets/simple_think.svg";
-import MakeNav2 from "/assets/make_table.svg";
-import PlayNav2 from "/assets/play_den_button.svg";
-import WonderNav2 from "/assets/wonder_time.svg";
-import ThinkNav2 from "/assets/think_story.svg";
-import MeTreeNav from "/assets/me_tree.svg";
+import MakeNav2 from "./../../public/assets/make_table.svg";
+import PlayNav2 from "./../../public/assets/play_den_button.svg";
+import WonderNav2 from "./../../public/assets/wonder_time.svg";
+import ThinkNav2 from "./../../public/assets/think_story.svg";
+import MeTreeNav from "./../../public/assets/me_tree.svg";
 import "./../Layout/ContentNav.css";
-import { ContentContext } from "../Content";
-import { ACTIONS } from "../Content";
-import { ContentData } from "../ContentData";
+import { ContentContext } from "./Content";
+import { ACTIONS } from "./Content";
+import { ContentData } from "./ContentData";
+
+"./../../public/assets/Logo.svg";
 
 export default function ContentTopBar() {
   const { state, dispatch } = useContext(ContentContext);

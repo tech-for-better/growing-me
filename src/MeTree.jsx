@@ -17,7 +17,6 @@ import WhatGrows from "/assets/what_grows_on_your_tree.svg";
 import WhereTree from "/assets/where_is_your_tree.svg";
 import WhoAround from "/assets/who_is_around_your_tree.svg";
 import Palette from "./Palette";
-import cuteVisitor from "/assets/cute_visitors.svg";
 import logo from "/assets/Logo.svg";
 import Container from "./Container";
 import { toPng } from "html-to-image";
@@ -28,6 +27,8 @@ export function MeTree() {
   const { state, setState } = useContext(MeTreeContext);
   console.log("METREE: state", state);
 
+  const cuteVisitor =
+    "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/palette/who_around/cute_visitors.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL3BhbGV0dGUvd2hvX2Fyb3VuZC9jdXRlX3Zpc2l0b3JzLnN2ZyIsImlhdCI6MTYzMDUxMDU5MSwiZXhwIjoxOTQ1ODcwNTkxfQ.AwcfcbK8_YL5s5MY6GC4wiOhItcF1v2S4cTXEhKoRwM";
   const history = useHistory();
 
   const [visible, setVisible] = useState(false);

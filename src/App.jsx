@@ -18,7 +18,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import { MeTree } from "./MeTree";
 import Gallery from "./Gallery";
-import Content from "./Content";
+import Content from "./Activities/Content";
 import { getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
 import { ErrorBoundary } from "react-error-boundary";

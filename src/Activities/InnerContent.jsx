@@ -4,7 +4,7 @@ import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
-import "./Layout/Carousel.css";
+import "./../Layout/Carousel.css";
 
 export default function InnerContent() {
   const { state, dispatch } = useContext(ContentContext);
@@ -53,7 +53,7 @@ export default function InnerContent() {
         infiniteLoop={true}
         selectedItem={0}
       >
-        
+
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
         ).map((slide, i) => {
