@@ -24,6 +24,7 @@ export default function Container({ hideSourceOnDrag }) {
           }),
         },
       });
+      console.log("move box id", id);
     },
     [(state.data.tree.boxes, setState)]
   );
@@ -43,22 +44,24 @@ export default function Container({ hideSourceOnDrag }) {
   );
 
   return (
-    <DndContainer ref={drop}>
-      {Object.keys(state.data.tree?.boxes || {}).map((key) => {
-        console.log("CONTAINER: in object.key", state.data.tree.boxes);
-        const { left, top, isGrowing, src } = state.data.tree.boxes[key];
-        return (
-          <Box
-            key={key}
-            id={key}
-            left={left}
-            top={top}
-            isGrowing={isGrowing}
-            src={src}
-            hideSourceOnDrag={hideSourceOnDrag}
-          ></Box>
-        );
-      })}
-    </DndContainer>
+    <>
+      <DndContainer ref={drop}>
+        {Object.keys(state.data.tree?.boxes || {}).map((key) => {
+          console.log("CONTAINER: in object.key", state.data.tree.boxes);
+          const { left, top, isGrowing, src } = state.data.tree.boxes[key];
+          return (
+            <Box
+              key={key}
+              id={key}
+              left={left}
+              top={top}
+              isGrowing={isGrowing}
+              src={src}
+              hideSourceOnDrag={hideSourceOnDrag}
+            />
+          );
+        })}
+      </DndContainer>
+    </>
   );
 }

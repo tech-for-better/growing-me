@@ -10,7 +10,7 @@ export default function Box({
   top,
   hideSourceOnDrag,
   children,
-  isGrowing,
+  // isGrowing,
   src,
 }) {
   const [{ isDragging }, drag] = useDrag(
@@ -27,12 +27,7 @@ export default function Box({
     return <div ref={drag} />;
   }
   return (
-    <DraggableImageStyle
-      ref={drag}
-      style={{ left, top }}
-      role="Box"
-      src={src}
-          >
+    <DraggableImageStyle ref={drag} style={{ left, top }} role="Box" src={src}>
       {children}
     </DraggableImageStyle>
   );
