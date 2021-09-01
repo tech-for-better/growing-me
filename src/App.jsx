@@ -21,6 +21,17 @@ import Gallery from "./Gallery";
 import Content from "./Content";
 import { getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
+import { ErrorBoundary } from "react-error-boundary";
+
+function ErrorFallback({ error, resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
+}
 
 export const MeTreeContext = createContext();
 
@@ -100,7 +111,14 @@ export default function Home() {
                 render={() => {
                   return (
                     <DndProvider backend={HTML5Backend}>
-                      <MeTree />
+                      <ErrorBoundary
+                        FallbackComponent={ErrorFallback}
+                        onReset={() => {
+                          // reset the state of your app so the error doesn't happen again
+                        }}
+                      >
+                        <MeTree />
+                      </ErrorBoundary>
                     </DndProvider>
                   );
                 }}
