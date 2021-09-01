@@ -680,6 +680,10 @@ p {
   grid-area: empty;
 }
 
+.on-top {
+  z-index: 3000;
+}
+
 /* ************ MEDIA QUERIES START HERE ******** */
 
 @media only screen and (max-width: 768px) {

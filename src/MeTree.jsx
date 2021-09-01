@@ -115,75 +115,85 @@ export function MeTree() {
     }
   }
   // handles the delete drop box
-  function handleDrop(index, item, id) {
-    console.log("HANDLE DROP EVENT", index, item, id);
-    const { src } = item;
+  // function handleDrop(item) {
+  //   console.log("HANDLE DROP EVENT", item);
+  //   const { src } = item;
+  //   console.log("box id", state.data.tree.boxes.id);
+  //   //  setBoxes((prev) => prev.filter((x) => x.id !== id));
+  //   // delete state.data.tree.boxes.id
+  //   // setState({
+  //   //     tree: {
+  //   //       boxes: {
+  //   //       ...state.data.tree.boxes,
+  //   //       ...growingObj,
+  //   //     },
+  //   //   },
+  //   // });
+  //   // }
 
-    switch (src){
-      case apple:
-      case banana:
-      case batwings:
-      case cherries:
-      case chocolate:
-      case pizza:
+  // switch (src) {
+  //   case apple:
+  //   case banana:
+  //   case batwings:
+  //   case cherries:
+  //   case chocolate:
+  //   case pizza:
+  // let newGrowingId = `growing${Object.keys(state.data.tree.boxes).length + 1}`;
+  // let growingObj = {};
+  // growingObj[newGrowingId] = {
+  //   top: 0,
+  //   left: 2,
+  //   isGrowing: true,
+  //   src: src,
+  // };
 
-        // let newGrowingId = `growing${Object.keys(state.data.tree.boxes).length + 1}`;
-        // let growingObj = {};
-        // growingObj[newGrowingId] = {
-        //   top: 0,
-        //   left: 2,
-        //   isGrowing: true,
-        //   src: src,
-        // };
+  // setState({
+  //   tree: {
+  //     boxes: {
+  //       ...state.data.tree.boxes,
+  //       ...growingObj,
+  //     },
+  //   },
+  // });
+  // break;
 
-        // setState({
-        //   tree: {
-        //     boxes: {
-        //       ...state.data.tree.boxes,
-        //       ...growingObj,
-        //     },
-        //   },
-        // });
-        break;
+  // case cuteVisitor:
+  // case pricklyVisitor:
+  // case fluffyVisitor:
+  // case creepyCrawlyVisitor:
+  // case worm:
+  // let newWhoId = `who${Object.keys(state.data.tree.boxes).length + 1}`;
+  // let whoObj = {};
+  // whoObj[newWhoId] = { top: 0, left: 2, isGrowing: false, src: src };
 
-      case cuteVisitor:
-      case pricklyVisitor:
-      case fluffyVisitor:
-      case creepyCrawlyVisitor:
-      case worm:
-
-        // let newWhoId = `who${Object.keys(state.data.tree.boxes).length + 1}`;
-        // let whoObj = {};
-        // whoObj[newWhoId] = { top: 0, left: 2, isGrowing: false, src: src };
-
-        // setState({
-        //   tree: {
-        //     boxes: {
-        //       ...state.data.tree.boxes,
-        //       ...whoObj,
-        //     },
-        //   },
-        // });
-        break;
-    }
-    //   setDroppedBoxNames((prev) => [...prev, name]);
-    //   // setDroppedBoxNames(
-    //   //   update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
-    //   // );
-    //   setBoxes((prev) => prev.filter((x) => x.id !== id));
-    //   // setBoxes(update(boxes, { $splice: [[item.id, 1]] }));
-    //   setDustbins(
-    //     update(dustbins, {
-    //       [index]: {
-    //         lastDroppedItem: {
-    //           $set: item,
-    //         },
-    //       },
-    //     })
-    //   );
-    // },
-    // [droppedBoxNames, boxes, dustbins]
-  };
+  // setState({
+  //   tree: {
+  //     boxes: {
+  //       ...state.data.tree.boxes,
+  //       ...whoObj,
+  //     },
+  //   },
+  // });
+  //     break;
+  // }
+  //   setDroppedBoxNames((prev) => [...prev, name]);
+  //   // setDroppedBoxNames(
+  //   //   update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
+  //   // );
+  //   setBoxes((prev) => prev.filter((x) => x.id !== id));
+  //   // setBoxes(update(boxes, { $splice: [[item.id, 1]] }));
+  //   setDustbins(
+  //     update(dustbins, {
+  //       [index]: {
+  //         lastDroppedItem: {
+  //           $set: item,
+  //         },
+  //       },
+  //     })
+  //   );
+  // },
+  // [droppedBoxNames, boxes, dustbins]
+  // }
 
   // @TODO: avatar url not loading
   //const url = URL.createObjectURL(state.data.profile.avatar_url);
@@ -271,7 +281,7 @@ export function MeTree() {
           <div>
             <div ref={ref}>
               <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
+                <Container hideSourceOnDrag={hideSourceOnDrag}></Container>
                 <MeTreeImage
                   src={state.data.tree?.tree_location ?? MeTreeGarden}
                   alt=""
@@ -281,9 +291,12 @@ export function MeTree() {
 
               {visible ? <Palette type={paletteOption} /> : ""}
             </div>
-            <div ref={ref}>
-              <Dustbin onDrop={(item) => handleDrop(index, item, id)} />
-            </div>
+            {/* <div ref={ref}> */}
+            <Dustbin
+            // className="absolute on-top"
+            // onDrop={(item) => handleDrop(item)}
+            />
+            {/* </div> */}
 
             <div className="empty-area"></div>
             <div className="flex row flex-end margin-btn mobile-margin-sm">
