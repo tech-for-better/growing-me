@@ -40,10 +40,12 @@ import heartBlob from "/assets/heart_blob.svg";
 import cloudyBlob from "/assets/cloudy_blob.svg";
 import ovalBlob from "/assets/oval_blob.svg";
 import funnyFaces from "/assets/funny_faces.svg";
+import bin from "/assets/icomoon-free_bin.svg";
 import logo from "/assets/Logo.svg";
 import Container from "./Container";
 import { toPng } from "html-to-image";
 import { MeTreeContext } from "./App";
+import { Dustbin } from "./Dustbin";
 
 export function MeTree() {
   const { state, setState } = useContext(MeTreeContext);
@@ -113,30 +115,6 @@ export function MeTree() {
     }
   }
 
-  const ImgSrcToImportMappings = {
-    "where_-_cloud.svg": MeTreeCloud,
-    "where_-_garden.svg": MeTreeGarden,
-    "where_-_on_a_big_love_heart.svg": MeTreeHeart,
-    "where_-_another_planet.svg": MeTreePlanet,
-    "cute_visitors.svg": cuteVisitor,
-    "prickly_visitors.svg": pricklyVisitor,
-    "fluffy_visitors.svg": fluffyVisitor,
-    "creepy_crawly_visitors.svg": creepyCrawlyVisitor,
-    "home_for_worms.svg": worm,
-    "growing_apples.svg": apple,
-    "growing_bananas.svg": banana,
-    "growing_batwings.svg": batwings,
-    "growing_cherries.svg": cherries,
-    "growing_chocolate.svg": chocolate,
-    "growing_pizza.svg": pizza,
-    "mountain_blob.svg": mountainBlob,
-    "spikey_blob.svg": spikeyBlob,
-    "minecraft_blob.svg": minecraftBlob,
-    "jelly_blob.svg": jellyBlob,
-    "heart_blob.svg": heartBlob,
-    "cloudy_blob.svg": cloudyBlob,
-    "oval_blob.svg": ovalBlob,
-  };
   // @TODO: avatar url not loading
   //const url = URL.createObjectURL(state.data.profile.avatar_url);
   return (
@@ -223,7 +201,7 @@ export function MeTree() {
           <div>
             <div ref={ref}>
               <MeTreeContainer className="relative">
-                <Container hideSourceOnDrag={hideSourceOnDrag} />
+                <Container hideSourceOnDrag={hideSourceOnDrag}></Container>
                 <MeTreeImage
                   src={state.data.tree?.tree_location ?? MeTreeGarden}
                   alt=""
@@ -233,8 +211,13 @@ export function MeTree() {
 
               {visible ? <Palette type={paletteOption} /> : ""}
             </div>
+            <Dustbin />
+
             <div className="empty-area"></div>
             <div className="flex row flex-end margin-btn mobile-margin-sm">
+              {/* <div>
+                  <img src={bin} alt="bin" />
+                </div> */}
               <div>
                 <Link to="/content">
                   <button className="button primary block">

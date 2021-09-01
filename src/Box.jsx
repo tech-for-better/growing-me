@@ -10,30 +10,24 @@ export default function Box({
   top,
   hideSourceOnDrag,
   children,
-  growing,
-  whoAround,
-  isGrowing,
+  // isGrowing,
+  src,
 }) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: ItemTypes.BOX,
-      item: { id, left, top },
+      item: { id, left, top, src },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
     }),
-    [id, left, top]
+    [id, left, top, src]
   );
   if (isDragging && hideSourceOnDrag) {
     return <div ref={drag} />;
   }
   return (
-    <DraggableImageStyle
-      ref={drag}
-      style={{ left, top }}
-      role="Box"
-      src={isGrowing ? growing : whoAround}
-    >
+    <DraggableImageStyle ref={drag} style={{ left, top }} role="Box" src={src}>
       {children}
     </DraggableImageStyle>
   );
