@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router";
 import Menu from "react-burger-menu/lib/menus/slide";
-import "./../Layout/NavMenu.css";
-import { useAuth } from "./../contexts/Auth";
+import "./../layout/NavMenu.css";
+import { useAuth } from "../authentication/contexts/Auth";
 import { Link } from "react-router-dom";
 
 export default function NavMenu() {
@@ -14,7 +14,7 @@ export default function NavMenu() {
     // Ends user session
     await signOut();
     // Redirects the user to Login page
-    history.push("/login");
+    history.push("/");
   }
   return (
     <Menu right>
@@ -36,7 +36,7 @@ export default function NavMenu() {
           handleSignOut();
         }}
         className="menu-item"
-        to="/contact"
+        to="/"
       >
         Logout
       </Link>
