@@ -5,29 +5,30 @@ import {
   PaletteImg,
   PaletteBtn,
 } from "../Layout/Palette.styled";
+import MeTreeGarden from "./../images/MeTreeImages";
 import {
-  MeTreeGarden,
   MeTreeCloud,
   MeTreeHeart,
   MeTreePlanet,
   cuteVisitor,
   pricklyVisitor,
   fluffyVisitor,
-  creepyCrawlyVisitor, worm,
-apple,
-banana,
-batwings,
-cherries,
-chocolate,
-pizza,
-mountainBlob,
-spikeyBlob,
-minecraftBlob,
-jellyBlob,
- heartBlob,
-cloudyBlob,
-ovalBlob,
-} from "../Images/MeTreeImages";
+  creepyCrawlyVisitor,
+  worm,
+  apple,
+  banana,
+  batwings,
+  cherries,
+  chocolate,
+  pizza,
+  mountainBlob,
+  spikeyBlob,
+  minecraftBlob,
+  jellyBlob,
+  heartBlob,
+  cloudyBlob,
+  ovalBlob,
+} from "../images/MeTreeImages";
 
 import { MeTreeContext } from "../App";
 
@@ -71,7 +72,7 @@ export default function Palette({ type }) {
 
   async function handleClick(event, update, src) {
     console.log("clicked a palette button", event, update, src);
-    console.log("HANDLE CLICK STATE.TREE.BOXES", state.data.tree.boxes)
+    console.log("HANDLE CLICK STATE.TREE.BOXES", state.data.tree.boxes);
 
     switch (src) {
       case MeTreeGarden:
@@ -103,8 +104,9 @@ export default function Palette({ type }) {
       case cherries:
       case chocolate:
       case pizza:
-
-        let newGrowingId = `growing${Object.keys(state.data.tree.boxes).length + 1}`;
+        let newGrowingId = `growing${
+          Object.keys(state.data.tree.boxes).length + 1
+        }`;
         let growingObj = {};
         growingObj[newGrowingId] = {
           top: 0,
@@ -128,7 +130,6 @@ export default function Palette({ type }) {
       case fluffyVisitor:
       case creepyCrawlyVisitor:
       case worm:
-
         let newWhoId = `who${Object.keys(state.data.tree.boxes).length + 1}`;
         let whoObj = {};
         whoObj[newWhoId] = { top: 0, left: 2, isGrowing: false, src: src };

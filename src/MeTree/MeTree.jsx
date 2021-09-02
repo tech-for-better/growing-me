@@ -11,9 +11,10 @@ import {
   ToolkitText,
 } from "../Layout/MeTree.styled";
 import NavMenu from "../components/NavMenu";
-import { MeTreeGarden, WhatColour, WhatGrows, WhereTree , WhoAround} from "../Images/MeTreeImages";
+import MeTreeGarden from "./../images/MeTreeImages";
+import { WhatColour, WhatGrows, WhereTree , WhoAround} from "../images/MeTreeImages";
 import Palette from "./Palette";
-import logo from "./../Images/Logo";
+import logo from "../images/Logo";
 import Container from "./Container";
 import { toPng } from "html-to-image";
 import { MeTreeContext } from "../App";

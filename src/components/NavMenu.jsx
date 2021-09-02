@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import Menu from "react-burger-menu/lib/menus/slide";
 import "./../Layout/NavMenu.css";
-import { useAuth } from "../Authentication/contexts/Auth";
+import { useAuth } from "../authentication/contexts/Auth";
 import { Link } from "react-router-dom";
 
 export default function NavMenu() {

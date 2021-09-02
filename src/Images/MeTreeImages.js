@@ -1,4 +1,5 @@
-export const MeTreeGarden = "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/palette/tree_location/where_-_garden.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL3BhbGV0dGUvdHJlZV9sb2NhdGlvbi93aGVyZV8tX2dhcmRlbi5zdmciLCJpYXQiOjE2MzA1MTQyNDEsImV4cCI6MTk0NTg3NDI0MX0.pZXZnyxdAZ8cuPHC-PewJ1i6vooMzYhAo0GHD5c22zo";
+export  { MeTreeGarden as default }
+ const MeTreeGarden = "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/palette/tree_location/where_-_garden.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL3BhbGV0dGUvdHJlZV9sb2NhdGlvbi93aGVyZV8tX2dhcmRlbi5zdmciLCJpYXQiOjE2MzA1MTQyNDEsImV4cCI6MTk0NTg3NDI0MX0.pZXZnyxdAZ8cuPHC-PewJ1i6vooMzYhAo0GHD5c22zo";
 export const WhatColour =
   "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/navigation/me_tree_toolkit/what_colour_is_your_tree.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL25hdmlnYXRpb24vbWVfdHJlZV90b29sa2l0L3doYXRfY29sb3VyX2lzX3lvdXJfdHJlZS5zdmciLCJpYXQiOjE2MzA1MTQyODQsImV4cCI6MTk0NTg3NDI4NH0.H2gCUKm5hoyi1tTbM2MaNNcX7aQwchFbHNHz8SR5xJw";
 export const WhatGrows =

@@ -1,11 +1,11 @@
 import React from "react";
 import { useContext } from "react";
-import logo from "./../Images/Logo";
+import logo from "../images/Logo";
 import Avatar from "./Avatar";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../Authentication/contexts/Auth";
+import { useAuth } from "../authentication/contexts/Auth";
 import "../Layout/adultProfile.css";
-import { cuteVisitor, pricklyVisitor, fluffyVisitor , creepyCrawlyVisitor} from "../Images/MeTreeImages";
+import { cuteVisitor, pricklyVisitor, fluffyVisitor , creepyCrawlyVisitor} from "../images/MeTreeImages";
 import { ChildAvatar } from "../Layout/ChildProfile.styled";
 import NavMenu from "../components/NavMenu";
 import { MeTreeContext } from "../App";

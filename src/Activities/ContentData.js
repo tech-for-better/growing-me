@@ -151,7 +151,7 @@ export const ContentData = {
         txt: "Welcome to the Wonder Tree. Here, you’re invited to celebrate your amazing brain with pictures and words.",
       },
       2: {
-        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/wonder/wonder_badge_1_my_brain_is_amazing.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3dvbmRlci93b25kZXJfYmFkZ2VfMV9teV9icmFpbl9pc19hbWF6aW5nLnN2ZyIsImlhdCI6MTYyODYwMjM2MSwiZXhwIjoxOTQzOTYyMzYxfQ.100pIF98HE6iXEROOZxbLsXwELcB1emER9n88pfF33s",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/navigation/content_top_nav/WONDER_TREE.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL25hdmlnYXRpb24vY29udGVudF90b3BfbmF2L1dPTkRFUl9UUkVFLnN2ZyIsImlhdCI6MTYyODYwNzE2NiwiZXhwIjoxOTQzOTY3MTY2fQ.QMJvGs3n4hOTm9ikHJneiiM-kMsF6WJHcrxlUdnWqeA",
         txt: "Here you can see your journey so far and upload photos of your wonderful creations, to your Growing Me Gallery.",
       },
       3: {

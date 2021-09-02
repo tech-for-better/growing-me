@@ -1,21 +1,19 @@
 import React from "react";
 import { useContext } from "react";
-// import "./../Layout/NavMenu.css";
-// import MakeNav from "/assets/simple_make.svg";
-// import PlayNav from "/assets/simple_play_1.svg";
-// import WonderNav from "/assets/simple_wonder.svg";
-// import ThinkNav from "/assets/simple_think.svg";
-import MakeNav2 from "./../../public/assets/make_table.svg";
-import PlayNav2 from "./../../public/assets/play_den_button.svg";
-import WonderNav2 from "./../../public/assets/wonder_time.svg";
-import ThinkNav2 from "./../../public/assets/think_story.svg";
-import MeTreeNav from "./../../public/assets/me_tree.svg";
+import {
+  MakeNav2,
+  PlayNav2,
+  WonderNav2,
+  ThinkNav2,
+  MeTreeNav,
+} from "../images/Navigation";
+
 import "./../Layout/ContentNav.css";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { ContentData } from "./ContentData";
 
-"./../../public/assets/Logo.svg";
+("./../../public/assets/Logo.svg");
 
 export default function ContentTopBar() {
   const { state, dispatch } = useContext(ContentContext);
@@ -91,17 +89,17 @@ export default function ContentTopBar() {
           //   new_slide:
           //     ContentData[state.current_section][state.current_subsection][1],
           // });
-            //  dispatch({
-            //    type: ACTIONS.SET_MULTIPLE,
-            //    payload: {
-            //      current_subsection: "make",
-            //       // first_slide:
-            //       //   ContentData[state.current_section][
-            //       //     "make"
-            //       //   ][1],
-            //     //  first_slide: "1",
-            //    },
-            //  });
+          //  dispatch({
+          //    type: ACTIONS.SET_MULTIPLE,
+          //    payload: {
+          //      current_subsection: "make",
+          //       // first_slide:
+          //       //   ContentData[state.current_section][
+          //       //     "make"
+          //       //   ][1],
+          //     //  first_slide: "1",
+          //    },
+          //  });
         }}
       >
         <img className="top-bar-btn" src={MakeNav2} />
@@ -120,17 +118,17 @@ export default function ContentTopBar() {
           //   new_slide:
           //     ContentData[state.current_section][state.current_subsection][1],
           // });
-            //  dispatch({
-            //    type: ACTIONS.SET_MULTIPLE,
-            //    payload: {
-            //      current_subsection: "wonder",
-            //       // first_slide:
-            //       //   ContentData[state.current_section][
-            //       //     "wonder"
-            //       //   ][1],
-            //     //  first_slide: "1",
-            //    },
-            //  });
+          //  dispatch({
+          //    type: ACTIONS.SET_MULTIPLE,
+          //    payload: {
+          //      current_subsection: "wonder",
+          //       // first_slide:
+          //       //   ContentData[state.current_section][
+          //       //     "wonder"
+          //       //   ][1],
+          //     //  first_slide: "1",
+          //    },
+          //  });
         }}
       >
         <img className="top-bar-btn" src={WonderNav2} />

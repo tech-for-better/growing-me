@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { supabase } from "../Authentication/supabaseClient";
+import { supabase } from "../authentication/supabaseClient";
 
 export default function Avatar({ url, size, onUpload }) {
   const [avatarUrl, setAvatarUrl] = useState(null);
