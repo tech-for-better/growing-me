@@ -12,7 +12,6 @@ export default function ContentNav() {
   const { state, dispatch } = useContext(ContentContext);
   return (
     <Menu
-      // noOverlay
       burgerButtonClassName={"content-burger-btn"}
       customBurgerIcon={<img src={logo} />}
       itemListClassName={"content-item-list"}

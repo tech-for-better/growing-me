@@ -10,7 +10,6 @@ import {
 import "./../layout/ContentNav.css";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
-import { ContentData } from "./ContentData";
 
 export default function ContentTopBar() {
   const { state, dispatch } = useContext(ContentContext);
@@ -27,12 +26,6 @@ export default function ContentTopBar() {
             type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
             new_sub_section: "play",
           });
-          // dispatch({
-          //   type: ACTIONS.UPDATE_first_slide,
-          //   // new_slide: "1",
-          //   new_slide:
-          //     ContentData[state.current_section][state.current_subsection][1],
-          // });
           //setting two disptach causes delay - here attempted to combine.
           // dispatch({
           //   type: ACTIONS.SET_MULTIPLE,
@@ -55,12 +48,6 @@ export default function ContentTopBar() {
             new_sub_section: "think",
           });
           // dispatch({
-          //   type: ACTIONS.UPDATE_first_slide,
-          //   // new_slide: "1",
-          //   new_slide:
-          //     ContentData[state.current_section][state.current_subsection][1],
-          // });
-          // dispatch({
           //   type: ACTIONS.SET_MULTIPLE,
           //   payload: {
           //     current_subsection: "think",
@@ -80,12 +67,6 @@ export default function ContentTopBar() {
             type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
             new_sub_section: "make",
           });
-          // dispatch({
-          //   type: ACTIONS.UPDATE_first_slide,
-          //   //
-          //   new_slide:
-          //     ContentData[state.current_section][state.current_subsection][1],
-          // });
           //  dispatch({
           //    type: ACTIONS.SET_MULTIPLE,
           //    payload: {
@@ -109,12 +90,6 @@ export default function ContentTopBar() {
             type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
             new_sub_section: "wonder",
           });
-          // dispatch({
-          //   type: ACTIONS.UPDATE_first_slide,
-          //   // new_slide: "1",
-          //   new_slide:
-          //     ContentData[state.current_section][state.current_subsection][1],
-          // });
           //  dispatch({
           //    type: ACTIONS.SET_MULTIPLE,
           //    payload: {
