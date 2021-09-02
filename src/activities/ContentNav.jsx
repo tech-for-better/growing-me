@@ -146,7 +146,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="Your feelings matter">
+      <Collapsible trigger="Your feelings matter" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -211,7 +211,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're not alone">
+      <Collapsible trigger="You're not alone" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -276,7 +276,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're safe">
+      <Collapsible trigger="You're safe" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -341,7 +341,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're unique">
+      <Collapsible trigger="You're unique" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -406,7 +406,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're brave">
+      <Collapsible trigger="You're brave" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -471,7 +471,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You belong here">
+      <Collapsible trigger="You belong here" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -536,7 +536,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="The Future Is Bright">
+      <Collapsible trigger="The Future Is Bright" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
@@ -601,7 +601,7 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You Are A Wonder">
+      <Collapsible trigger="You Are A Wonder" className="locked">
         <Link
           className="Collapsible__contentInner "
           onClick={() => {

@@ -25,18 +25,11 @@ export default function ContentTopBar() {
         href="#"
         onClick={() => {
           dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "play",
+            type: ACTIONS.SET_MULTIPLE,
+            payload: {
+              current_subsection: "play",
+            },
           });
-          //setting two disptach causes delay - here attempted to combine.
-          // dispatch({
-          //   type: ACTIONS.SET_MULTIPLE,
-          //   payload: {
-          //     current_subsection: "play",
-          //     // first_slide: ContentData[contentState.current_section]["play"][1]
-          //     // first_slide: "1",
-          //   },
-          // });
         }}
       >
         <img className="top-bar-btn" src={PlayNav2} />
@@ -48,17 +41,11 @@ export default function ContentTopBar() {
         href="#"
         onClick={() => {
           dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "think",
+            type: ACTIONS.SET_MULTIPLE,
+            payload: {
+              current_subsection: "think",
+            },
           });
-          // dispatch({
-          //   type: ACTIONS.SET_MULTIPLE,
-          //   payload: {
-          //     current_subsection: "think",
-          //     // first_slide: ContentData[contentState.current_section]["think"][1]
-          //     // first_slide: "1",
-          //   },
-          // });
         }}
       >
         <img className="top-bar-btn" src={ThinkNav2} />
@@ -70,20 +57,11 @@ export default function ContentTopBar() {
         href="#"
         onClick={() => {
           dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "make",
+            type: ACTIONS.SET_MULTIPLE,
+            payload: {
+              current_subsection: "make",
+            },
           });
-          //  dispatch({
-          //    type: ACTIONS.SET_MULTIPLE,
-          //    payload: {
-          //      current_subsection: "make",
-          //       // first_slide:
-          //       //   ContentData[contentState.current_section][
-          //       //     "make"
-          //       //   ][1],
-          //     //  first_slide: "1",
-          //    },
-          //  });
         }}
       >
         <img className="top-bar-btn" src={MakeNav2} />
@@ -95,20 +73,11 @@ export default function ContentTopBar() {
         href="#"
         onClick={() => {
           dispatch({
-            type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-            new_sub_section: "wonder",
+            type: ACTIONS.SET_MULTIPLE,
+            payload: {
+              current_subsection: "wonder",
+            },
           });
-          //  dispatch({
-          //    type: ACTIONS.SET_MULTIPLE,
-          //    payload: {
-          //      current_subsection: "wonder",
-          //       // first_slide:
-          //       //   ContentData[contentState.current_section][
-          //       //     "wonder"
-          //       //   ][1],
-          //     //  first_slide: "1",
-          //    },
-          //  });
         }}
       >
         <img className="top-bar-btn" src={WonderNav2} />

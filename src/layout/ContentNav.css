@@ -120,3 +120,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-weight: bold;
   cursor: pointer;
 }
+
+.locked {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

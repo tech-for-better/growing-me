@@ -38,7 +38,6 @@ export default function InnerContent() {
     // handle button click here
     console.log("current section completed:", contentState.current_section);
     let currentIndex = sections.indexOf(contentState.current_section);
-    console.log("currentIndex", currentIndex);
     let unlocked_section = sections[currentIndex + 1];
     console.log("unlocked_section", unlocked_section);
     console.log("contentState", contentState);
@@ -54,6 +53,13 @@ export default function InnerContent() {
     // });
 
     // redirect to next section
+    dispatch({
+      type: ACTIONS.SET_MULTIPLE,
+      payload: {
+        current_section: unlocked_section,
+        current_subsection: "play",
+      },
+    });
   }
 
   // use useRef to get the carousel instance

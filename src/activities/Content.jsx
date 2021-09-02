@@ -16,7 +16,7 @@ export const ACTIONS = {
   // ADD_TO_UNLOCKED: "add_to_unlocked",
   UPDATE_CURRENT_SUB_SECTION: "update_current_sub_section",
   UPDATE_FIRST_SLIDE: "update_first_slide",
-  // SET_MULTIPLE: "set_multiple",
+  SET_MULTIPLE: "set_multiple",
 };
 
 function reducer(state, action) {
@@ -24,23 +24,28 @@ function reducer(state, action) {
   console.log("REDUCER, ACTION", action);
   switch (action.type) {
     case ACTIONS.UPDATE_CURRENT_SECTION:
-      const current_section = action.new_section;
-      return { ...state, current_section };
-    // return { ...state, current_section: action.payload.current_section };
+      // const current_section = action.new_section;
+      // return { ...state, current_section };
+      return { ...state, current_section: action.payload.current_section };
 
     // case ACTIONS.ADD_TO_UNLOCKED:
     //   const unlocked = [...state.unlocked, action.new_unlocked];
     //   return { ...state, unlocked };
 
     case ACTIONS.UPDATE_CURRENT_SUB_SECTION:
-      const current_subsection = action.new_sub_section;
+      // const current_subsection = action.new_sub_section;
       // console.log("CURRENT SUBsection ", current_subsection);
-      return { ...state, current_subsection };
-    // return { ...state, current_subsection: action.payload.current_subsection };
+      // return { ...state, current_subsection };
+      return {
+        ...state,
+        current_subsection: action.payload.current_subsection,
+      };
 
-    // case ACTIONS.SET_MULTIPLE:
-    //   return { ...state, ...action.payload }; // <---- HERE
+    case ACTIONS.SET_MULTIPLE:
+      console.log("HERE", action, action.type, state);
+      return { ...state, ...action.payload }; // <---- HERE
     default:
+      console.log("default path of content reducer");
       return state;
   }
 }
