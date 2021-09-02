@@ -41,17 +41,17 @@ export default function InnerContent() {
     let unlocked_section = sections[currentIndex + 1];
     console.log("unlocked_section", unlocked_section);
     console.log("contentState", contentState);
-
-    setState({
-      progress: {
-        unlocked: [...state.data.progress.unlocked, unlocked_section],
-      },
-    });
-    // dispatch({
-    //   type: ACTIONS.ADD_TO_UNLOCKED,
-    //   new_unlocked: unlocked_section,
-    // });
-
+    if (state.data.progress.unlocked.indexOf(unlocked_section) === -1) {
+      setState({
+        progress: {
+          unlocked: [...state.data.progress.unlocked, unlocked_section],
+        },
+      });
+      // dispatch({
+      //   type: ACTIONS.ADD_TO_UNLOCKED,
+      //   new_unlocked: unlocked_section,
+      // });
+    }
     // redirect to next section
     dispatch({
       type: ACTIONS.SET_MULTIPLE,
