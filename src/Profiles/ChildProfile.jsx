@@ -1,9 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import cuteVisitor from "/assets/cute_visitors.svg";
-import pricklyVisitor from "/assets/prickly_visitors.svg";
-import fluffyVisitor from "/assets/fluffy_visitors.svg";
-import creepyCrawlyVisitor from "/assets/creepy_crawly_visitors.svg";
+import {cuteVisitor, pricklyVisitor, fluffyVisitor, creepyCrawlyVisitor }from "./../images/MeTreeImages";
 import { ChildAvatar } from "../Layout/ChildProfile.styled";
 
 export default function ChildProfile({ session }) {
