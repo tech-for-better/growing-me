@@ -67,8 +67,8 @@ export default function InnerContent() {
 
   useEffect(() => {
     // some validation to set the slider to 0
-    if (carousel && carousel?.contentState?.selectedItem > 0) {
-      carousel.contentState.selectedItem = 0;
+    if (carousel && carousel?.state?.selectedItem > 0) {
+      carousel.state.selectedItem = 0;
     }
   }, [contentState]);
 
