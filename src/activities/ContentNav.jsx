@@ -19,61 +19,62 @@ export default function ContentNav() {
     >
       <Collapsible trigger="Great to meet you">
         <Link
+          id="great_to_meet_you"
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "Great To Meet You",
+              current_section: "Great To Meet You",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -83,62 +84,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="Your brain is amazing">
         <Link
+          id="your_brain_is_amazing"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "Your Brain is Amazing",
+              current_section: "Your Brain is Amazing",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -148,62 +149,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="Your feelings matter" className="locked">
         <Link
+          id="your_feelings_matter"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "Your Feelings Matter",
+              current_section: "Your Feelings Matter",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -213,62 +214,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="You're not alone" className="locked">
         <Link
+          id="your_not_alone"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're Not Alone",
+              current_section: "You're Not Alone",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -278,62 +279,63 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="You're safe" className="locked">
         <Link
+          id="your_safe"
           className="Collapsible__contentInner "
           onClick={() => {
             console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're Safe",
+              current_section: "You're Safe",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -343,62 +345,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="You're unique" className="locked">
         <Link
+          id="your_unique"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're Unique",
+              current_section: "You're Unique",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -408,62 +410,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="You're brave" className="locked">
         <Link
+          id="your_brave"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You're Brave",
+              current_section: "You're Brave",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -473,62 +475,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="You belong here" className="locked">
         <Link
+          id="you_belong_here"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You Belong Here",
+              current_section: "You Belong Here",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -538,62 +540,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="The Future Is Bright" className="locked">
         <Link
+          id="the_future_is_bright"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "The Future Is Bright",
+              current_section: "The Future Is Bright",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
@@ -603,62 +605,62 @@ export default function ContentNav() {
       </Collapsible>
       <Collapsible trigger="You Are A Wonder" className="locked">
         <Link
+          id="you_are_a_wonder"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
-              new_section: "You Are A Wonder",
+              current_section: "You Are A Wonder",
             });
           }}
         >
           <Link
-            id="home"
+            id="play"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "play",
+                current_subsection: "play",
               })
             }
           >
             Play Den
           </Link>
           <Link
-            id="home"
+            id="think"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "think",
+                current_subsection: "think",
               })
             }
           >
             Think Bank
           </Link>
           <Link
-            id="adult-profile"
+            id="make"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "make",
+                current_subsection: "make",
               })
             }
           >
             Make Station
           </Link>
           <Link
-            id="adult-profile"
+            id="wonder"
             className="menu-item"
             to="#"
             onClick={() =>
               dispatch({
                 type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                new_sub_section: "wonder",
+                current_subsection: "wonder",
               })
             }
           >
