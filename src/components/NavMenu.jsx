@@ -36,7 +36,7 @@ export default function NavMenu() {
           handleSignOut();
         }}
         className="menu-item"
-        to="/contact"
+        to="/"
       >
         Logout
       </Link>

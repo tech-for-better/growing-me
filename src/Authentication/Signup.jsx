@@ -47,6 +47,7 @@ export default function Signup() {
             id="input-email"
             type="email"
             ref={emailRef}
+            autoComplete="username"
           />
         </div>
         <div>
@@ -79,7 +80,7 @@ export default function Signup() {
       </form>
 
       <p>
-        Already have an account? <Link to="/login">Log In</Link>
+        Already have an account? <Link to="/">Log In</Link>
       </p>
       <div className="flex center width">
         <button className="button block primary magic-link ">

@@ -38,6 +38,7 @@ export default function MagicLinkLogIn() {
             id="input-email"
             type="email"
             placeholder="Your email"
+            autoComplete="username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -58,7 +59,7 @@ export default function MagicLinkLogIn() {
         </div>
         <div className="flex center width">
           <p className="text-center">
-            Already have an account? <Link to="/login">Log In</Link>
+            Already have an account? <Link to="">Log In</Link>
           </p>
         </div>
       </div>

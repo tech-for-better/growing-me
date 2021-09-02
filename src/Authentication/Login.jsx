@@ -41,6 +41,7 @@ export default function Login() {
             id="input-email"
             type="email"
             ref={emailRef}
+            autoComplete="username"
           />
         </div>
 

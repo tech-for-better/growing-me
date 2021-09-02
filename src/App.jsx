@@ -1,15 +1,13 @@
 import React from "react";
 import "./layout/index.css";
 import { useState, useEffect, createContext } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "./authentication/supabaseClient";
 import { LoginTree } from "./layout/Login.styled";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./authentication/contexts/Auth";
-
-// react-dnd
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-
 import AdultProfile from "./profiles/AdultProfile";
 import ChildProfile from "./profiles/ChildProfile";
 import MagicLinkLogIn from "./authentication/MagicLinkLogIn";
@@ -22,6 +20,7 @@ import Content from "./activities/Content";
 import { getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
 import { ErrorBoundary } from "react-error-boundary";
+import logo from "./images/Logo";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -56,6 +55,26 @@ export async function update(changedData) {
   // just has to return a promise (resolved value isn't used)
   return await setData(changedData);
 }
+
+const NoMatchPage = () => {
+  return (
+    <>
+      <div className="center text-center mobile-margin-lg">
+        <div className="margin-top">
+          <Link to={"/"}>
+            <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+        </div>
+        <h1>404 - Not found</h1>
+        <div className="center text-center">
+          <h2>
+            <Link to="/">Go Back</Link>
+          </h2>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -95,6 +114,7 @@ export default function Home() {
                 <MagicLinkLogIn />
               </LoginTree>
             </Route>
+            <Route component={NoMatchPage} />
           </Switch>
         </AuthProvider>
       </Router>
@@ -133,6 +153,7 @@ export default function Home() {
               />
               <PrivateRoute path="/gallery" render={() => <Gallery />} />
               <PrivateRoute path="/content" render={() => <Content />} />
+              <Route component={NoMatchPage} />
             </Switch>
           </MeTreeProvider>
         </AuthProvider>
