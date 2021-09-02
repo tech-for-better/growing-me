@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import logo from "../images/Logo";
 
 export default function ContentNav() {
-  const { state, dispatch } = useContext(ContentContext);
+  const { contentState, dispatch } = useContext(ContentContext);
   return (
     <Menu
       burgerButtonClassName={"content-burger-btn"}

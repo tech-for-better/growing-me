@@ -64,7 +64,7 @@ export async function getAllData() {
       const treeData = { tree: dataArray[0] };
       const galleryData = { gallery: dataArray[1] };
       const profileData = { profile: dataArray[2] };
-      const progressData = { profile: dataArray[3] };
+      const progressData = { progress: dataArray[3] };
       console.log("dataArray", dataArray);
       // this is an array of objects
       let allData = Object.assign(
@@ -264,11 +264,12 @@ export async function setGalleryData(images) {
   }
 }
 
-export async function setProgressData(progress) {
+export async function setProgressData(unlocked) {
+  console.log("data in setProgressData", unlocked);
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
-    progress,
+    unlocked,
   };
 
   let { error } = await supabase.from("progress").upsert(updates, {
@@ -307,7 +308,7 @@ export async function setData(data) {
       return setChildNameData(data.profile.child_name);
     } else if (changingValue === "child_avatar") {
       return setChildAvatarData(data.profile.child_avatar);
-    } else if (changingValue === "progress") {
+    } else if (changingValue === "unlocked") {
       return setProgressData(data.progress.unlocked);
     }
   });
