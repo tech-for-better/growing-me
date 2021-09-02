@@ -786,7 +786,9 @@ p {
   }
 
   .control-dots {
-    margin: 0;
+    /* margin: 0; */
+    margin: 3rem 0 3rem 0;
+    bottom: -17% !important;
   }
 
   .me-tree-grid {

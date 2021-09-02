@@ -52,12 +52,11 @@ export default function InnerContent() {
       <Carousel
         key={ContentData[state.current_section][state.current_subsection]}
         ref={(el) => (carousel = el)} // useRef
-        className="mobile-margin-sm"
+        className="mobile-margin-sm relative"
         showThumbs={false}
         infiniteLoop={true}
         selectedItem={0}
       >
-
         {Object.keys(
           ContentData[state.current_section][state.current_subsection]
         ).map((slide, i) => {
