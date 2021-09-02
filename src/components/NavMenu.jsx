@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import Menu from "react-burger-menu/lib/menus/slide";
-import "./../Layout/NavMenu.css";
+import "./../layout/NavMenu.css";
 import { useAuth } from "../authentication/contexts/Auth";
 import { Link } from "react-router-dom";
 

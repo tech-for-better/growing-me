@@ -52,6 +52,7 @@ export default function Login() {
             required
             type="password"
             ref={passwordRef}
+            autoComplete="current-password"
           />
         </div>
         <br />

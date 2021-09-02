@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import {cuteVisitor, pricklyVisitor, fluffyVisitor, creepyCrawlyVisitor }from "./../images/MeTreeImages";
-import { ChildAvatar } from "../Layout/ChildProfile.styled";
+import { ChildAvatar } from "../layout/ChildProfile.styled";
 
 export default function ChildProfile({ session }) {
   const [childUsername, setChildUsername] = useState(null);

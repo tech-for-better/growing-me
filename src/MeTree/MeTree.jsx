@@ -9,7 +9,7 @@ import {
   MeTreeContainer,
   BtnImage,
   ToolkitText,
-} from "../Layout/MeTree.styled";
+} from "../layout/MeTree.styled";
 import NavMenu from "../components/NavMenu";
 import MeTreeGarden from "./../images/MeTreeImages";
 import { WhatColour, WhatGrows, WhereTree , WhoAround} from "../images/MeTreeImages";

@@ -4,7 +4,7 @@ import {
   PaletteContainer,
   PaletteImg,
   PaletteBtn,
-} from "../Layout/Palette.styled";
+} from "../layout/Palette.styled";
 import MeTreeGarden from "./../images/MeTreeImages";
 import {
   MeTreeCloud,

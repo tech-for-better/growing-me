@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import Menu from "react-burger-menu/lib/menus/slide";
-import "./../Layout/ContentNav.css";
+import "./../layout/ContentNav.css";
 import Collapsible from "react-collapsible";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";

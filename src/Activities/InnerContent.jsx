@@ -4,7 +4,7 @@ import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
-import "./../Layout/Carousel.css";
+import "./../layout/Carousel.css";
 
 export default function InnerContent() {
   const { state, dispatch } = useContext(ContentContext);

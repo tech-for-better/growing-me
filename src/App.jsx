@@ -1,8 +1,8 @@
 import React from "react";
-import "./Layout/index.css";
+import "./layout/index.css";
 import { useState, useEffect, createContext } from "react";
 import { supabase } from "./authentication/supabaseClient";
-import { LoginTree } from "./Layout/Login.styled";
+import { LoginTree } from "./layout/Login.styled";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./authentication/contexts/Auth";
 

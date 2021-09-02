@@ -64,6 +64,7 @@ export default function Signup() {
             aria-describedby="passwordRequirements"
             ref={passwordRef}
             minlength="6"
+            autoComplete="new-password"
           />
         </div>
         <br />

@@ -7,13 +7,10 @@ import {
   ThinkNav2,
   MeTreeNav,
 } from "../images/Navigation";
-
-import "./../Layout/ContentNav.css";
+import "./../layout/ContentNav.css";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { ContentData } from "./ContentData";
-
-("./../../public/assets/Logo.svg");
 
 export default function ContentTopBar() {
   const { state, dispatch } = useContext(ContentContext);

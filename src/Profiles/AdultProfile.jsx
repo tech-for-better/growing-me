@@ -4,9 +4,9 @@ import logo from "../images/Logo";
 import Avatar from "./Avatar";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../authentication/contexts/Auth";
-import "../Layout/adultProfile.css";
+import "../layout/adultProfile.css";
 import { cuteVisitor, pricklyVisitor, fluffyVisitor , creepyCrawlyVisitor} from "../images/MeTreeImages";
-import { ChildAvatar } from "../Layout/ChildProfile.styled";
+import { ChildAvatar } from "../layout/ChildProfile.styled";
 import NavMenu from "../components/NavMenu";
 import { MeTreeContext } from "../App";
 
