@@ -14,7 +14,7 @@ export function PrivateRoute({ comp : Component, ...rest }) {
         // Otherwise, redirect to the login page
         return user ?
           Component ? <Component {...props} /> : rest.render(props)
-        : <Redirect to="/login" />;
+        : <Redirect to="/" />;
       }}
     ></Route>
   );

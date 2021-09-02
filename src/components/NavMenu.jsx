@@ -14,7 +14,7 @@ export default function NavMenu() {
     // Ends user session
     await signOut();
     // Redirects the user to Login page
-    history.push("/login");
+    history.push("/");
   }
   return (
     <Menu right>
