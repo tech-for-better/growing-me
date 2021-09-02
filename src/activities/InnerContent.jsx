@@ -6,6 +6,11 @@ import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
 import "./../layout/Carousel.css";
 
+function sectionCompleted() {
+  // handle button click here
+  console.log("section completed");
+}
+
 export default function InnerContent() {
   const { state, dispatch } = useContext(ContentContext);
   console.log("INNER CONTENT STATE", state);
@@ -29,7 +34,6 @@ export default function InnerContent() {
       carousel.state.selectedItem = 0;
     }
   }, [state]);
-
 
   return (
     <div className="flex flex-center space-between narrow center column ">
@@ -95,7 +99,16 @@ export default function InnerContent() {
           " still loading"
         } */}
       </Carousel>
-      {/* </div> */}
+      {state.current_subsection === "wonder" ? (
+        <button
+          onClick={() => sectionCompleted()}
+          className="absolute fixed-narrow bottom-right button primary"
+        >
+          Section complete?
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

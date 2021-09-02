@@ -87,6 +87,10 @@ body,
   max-width: 1000px;
 }
 
+.fixed-narrow {
+  width: 200px;
+}
+
 .x-narrow {
   width: 20vw;
 }
@@ -425,6 +429,11 @@ button.primary,
 .top-right {
   right: 20px;
   top: 10px;
+}
+
+.bottom-right {
+  right: 20px;
+  bottom: 10px;
 }
 
 .delete {
@@ -794,6 +803,14 @@ p {
   .mobile-gap {
     gap: 0.5rem;
     padding: 0;
+  }
+
+  .bottom-right {
+    margin-top: 3rem;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    right: auto;
   }
 }
 
