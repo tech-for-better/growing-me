@@ -21,7 +21,6 @@ export default function ContentNav() {
         <Link
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
               type: ACTIONS.UPDATE_CURRENT_SECTION,
               new_section: "Great To Meet You",

@@ -8,7 +8,7 @@ import InnerContent from "./InnerContent";
 const initialState = {
   current_section: "Your Brain is Amazing",
   current_subsection: "play",
-  unlocked: ["great to meet you", "your brain is amazing"],
+  unlocked: ["Great To Meet You", "Your Brain is Amazing"],
 };
 
 export const ACTIONS = {

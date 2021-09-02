@@ -1,5 +1,7 @@
 import { supabase } from "../src/authentication/supabaseClient";
 
+// GET FUNCTIONS
+
 export async function getMeTree() {
   console.log("model.getMeTree");
   const user = supabase.auth.user();
@@ -7,9 +9,7 @@ export async function getMeTree() {
 
   let { data, error, status } = await supabase
     .from("me_tree")
-    .select(
-      `background, tree_location, who_around, growing,boxes`
-    )
+    .select(`background, tree_location, who_around, growing,boxes`)
     .eq("id", user.id)
     .single();
 
@@ -19,39 +19,6 @@ export async function getMeTree() {
   console.log("data from getMetree", data);
   return data;
 }
-
-// export async function setTreeData(
-//   background,
-//   treeLocation,
-//   whoAround,
-//   growing,
-//   // growing_coords,
-//   // whoAround_coords,
-//   boxes
-// ) {
-//   const user = supabase.auth.user();
-//   console.log("model.setTreeData");
-
-//   const updates = {
-//     id: user.id,
-//     background,
-//     tree_location: treeLocation,
-//     who_around: [whoAround],
-//     growing: [growing],
-//     // growing_left: growing_coords.left,
-//     // growing_top: growing_coords.top,
-//     // who_around_top: whoAround_coords.top,
-//     // who_around_left: whoAround_coords.left,
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
 
 export async function getProfileData() {
   const user = supabase.auth.user();
@@ -69,6 +36,68 @@ export async function getProfileData() {
   console.log("PROFILE DATA: ", data);
   return data;
 }
+
+export async function getGalleryData() {
+  const user = supabase.auth.user();
+  if (!user) return;
+
+  let { data, error, status } = await supabase
+    .from("gallery")
+    .select(`images`)
+    .eq("id", user.id)
+    .single();
+
+  if (error && status !== 406) {
+    throw error;
+  }
+  return data;
+}
+
+export async function getAllData() {
+  const treeData = getMeTree();
+  const galleryData = getGalleryData();
+  const profileData = getProfileData();
+  const progressData = getProgressData();
+
+  return await Promise.all([treeData, galleryData, profileData, progressData])
+    .then((dataArray) => {
+      const treeData = { tree: dataArray[0] };
+      const galleryData = { gallery: dataArray[1] };
+      const profileData = { profile: dataArray[2] };
+      const progressData = { profile: dataArray[3] };
+      console.log("dataArray", dataArray);
+      // this is an array of objects
+      let allData = Object.assign(
+        treeData,
+        galleryData,
+        profileData,
+        progressData
+      );
+      console.log("allData", allData);
+      return allData;
+    })
+    .catch((error) => {
+      console.error("error!!", error, error.message);
+    });
+}
+
+export async function getProgressData() {
+  const user = supabase.auth.user();
+  if (!user) return;
+
+  let { data, error, status } = await supabase
+    .from("progress")
+    .select(`unlocked`)
+    .eq("id", user.id)
+    .single();
+
+  if (error && status !== 406) {
+    throw error;
+  }
+  return data;
+}
+
+// SET FUNCTIONS
 
 export async function setAllProfileData({
   adult_name,
@@ -95,25 +124,6 @@ export async function setAllProfileData({
     throw error;
   }
 }
-
-// export async function setProfileData(single_data) {
-//   console.log("Entered setProfileData", single_data);
-//   const user = supabase.auth.user();
-
-//   const updates = {
-//     id: user.id,
-//     single_data,
-//     updated_at: new Date(),
-//   };
-
-//   let { error } = await supabase.from("profiles").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
 
 export async function setChildAvatarData(child_avatar) {
   const user = supabase.auth.user();
@@ -222,73 +232,6 @@ export async function setTreeLocationData(tree_location) {
   }
 }
 
-// export async function setWhoAroundData(who_around) {
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     who_around: [who_around],
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-
-// export async function setGrowingData(growing) {
-//   console.log("set growing data", growing);
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     growing: [growing],
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-
-// export async function setGrowingLeftData(growing_left) {
-//   console.log("set growing left data", growing_left);
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     growing_left,
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-
-// export async function setGrowingTopData(growing_top) {
-//   console.log("set growing top data", growing_top);
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     growing_top,
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-
 export async function setBoxesData(boxes) {
   const user = supabase.auth.user();
   const updates = {
@@ -304,55 +247,6 @@ export async function setBoxesData(boxes) {
     throw error;
   }
 }
-
-// export async function setWhoAroundCoordsData(whoAround_coords) {
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     who_around_top: whoAround_coords.top,
-//     who_around_left: whoAround_coords.left,
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-
-// export async function setWhoAroundLeftData(who_around_left) {
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     who_around_left,
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-
-// export async function setWhoAroundTopData(who_around_top) {
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     who_around_top,
-//   };
-
-//   let { error } = await supabase.from("me_tree").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
 
 export async function setGalleryData(images) {
   const user = supabase.auth.user();
@@ -370,67 +264,21 @@ export async function setGalleryData(images) {
   }
 }
 
-export async function getGalleryData() {
+export async function setProgressData(progress) {
   const user = supabase.auth.user();
-  if (!user) return;
+  const updates = {
+    id: user.id,
+    progress,
+  };
 
-  let { data, error, status } = await supabase
-    .from("gallery")
-    .select(`images`)
-    .eq("id", user.id)
-    .single();
+  let { error } = await supabase.from("progress").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
 
-  if (error && status !== 406) {
+  if (error) {
     throw error;
   }
-  return data;
 }
-
-export async function getAllData() {
-  const treeData = getMeTree();
-  const galleryData = getGalleryData();
-  const profileData = getProfileData();
-
-  return await Promise.all([treeData, galleryData, profileData])
-    .then((dataArray) => {
-      const treeData = { tree: dataArray[0] };
-      const galleryData = { gallery: dataArray[1] };
-      const profileData = { profile: dataArray[2] };
-      console.log("dataArray", dataArray);
-      // this is an array of objects
-      let allData = Object.assign(treeData, galleryData, profileData);
-      console.log("allData", allData);
-      return allData;
-    })
-    .catch((error) => {
-      console.error("error!!", error, error.message);
-    });
-}
-
-// export async function setAllData(data) {
-//   console.log("setAllData - data", data);
-//   const treeDataSaved = setTreeData(
-//     data.tree.background,
-//     data.tree.treeLocation,
-//     data.tree.whoAround,
-//     data.tree.growing,
-//     data.tree.growing_coords,
-//     data.tree.whoAround_coords
-//   );
-//   const galleryDataSaved = setGalleryData(data.gallery.images);
-//   const profileDataSaved = setProfileData(
-//     data.profile.adult_name,
-//     data.profile.avatar_url,
-//     data.profile.child_name,
-//     data.profile.child_avatar
-//   );
-
-//   return;
-//   await Promise.all([treeDataSaved, galleryDataSaved, profileDataSaved])
-//   .catch((error) => {
-//     console.error("error!!", error, error.message);
-//   });
-// }
 
 export async function setData(data) {
   console.log("setData - data", data);
@@ -446,25 +294,9 @@ export async function setData(data) {
       return setGalleryData(data.gallery.images);
     } else if (changingValue === "tree_location") {
       return setTreeLocationData(data.tree.tree_location);
-    }
-    // else if (changingValue === "growing") {
-    //   return setGrowingData(data.tree.growing);
-    // } else if (changingValue === "who_around") {
-    //   return setWhoAroundData(data.tree.who_around);
-    // }
-    else if (changingValue === "background") {
+    } else if (changingValue === "background") {
       return setBackgroundData(data.tree.background);
-    }
-    // else if (changingValue === "growing_left") {
-    //   return setGrowingLeftData(data.tree.growing_left);
-    // } else if (changingValue === "growing_top") {
-    //   return setGrowingTopData(data.tree.growing_top);
-    // } else if (changingValue === "who_around_left") {
-    //   return setWhoAroundLeftData(data.tree.who_around_left);
-    // } else if (changingValue === "who_around_top") {
-    //   return setWhoAroundTopData(data.tree.who_around_top);
-    // }
-    else if (changingValue === "boxes") {
+    } else if (changingValue === "boxes") {
       return setBoxesData(data.tree.boxes);
     } else if (changingValue === "adult_name") {
       return setAdultNameData(data.profile.adult_name);
@@ -475,28 +307,8 @@ export async function setData(data) {
       return setChildNameData(data.profile.child_name);
     } else if (changingValue === "child_avatar") {
       return setChildAvatarData(data.profile.child_avatar);
+    } else if (changingValue === "progress") {
+      return setProgressData(data.progress.unlocked);
     }
   });
 }
-
-// function deleteImageFromGallery(image) {
-//   const { data, error } = await supabase
-//     .from("gallery")
-//     .delete()
-//     .match({ id: user.id });
-
-//   const user = supabase.auth.user();
-//   const updates = {
-//     id: user.id,
-//     images,
-//   };
-
-//   let { error } = await supabase.from("gallery").upsert(updates, {
-//     returning: "minimal", // Don't return the value after inserting
-//   });
-
-//   if (error) {
-//     throw error;
-//   }
-// }
-// }
