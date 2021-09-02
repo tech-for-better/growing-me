@@ -34,7 +34,7 @@ function reducer(state, action) {
 
     case ACTIONS.UPDATE_CURRENT_SUB_SECTION:
       // const current_subsection = action.new_sub_section;
-      // console.log("CURRENT SUBsection ", current_subsection);
+      console.log("CURRENT SUBsection ", current_subsection);
       // return { ...state, current_subsection };
       return {
         ...state,

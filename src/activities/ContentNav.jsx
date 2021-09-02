@@ -23,20 +23,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "Great To Meet You",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "Great To Meet You",
+              },
             });
+            // dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "Great To Meet You",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -45,11 +58,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -58,11 +78,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -71,11 +98,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -88,20 +122,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "Your Brain is Amazing",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "Your Brain is Amazing",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "Your Brain is Amazing",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -110,11 +157,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -123,11 +177,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -136,11 +197,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -153,20 +221,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "Your Feelings Matter",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "Your Feelings Matter",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "Your Feelings Matter",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -175,11 +256,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -188,11 +276,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -201,11 +296,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -218,20 +320,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "You're Not Alone",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "You're Not Alone",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "You're Not Alone",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -240,11 +355,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -253,11 +375,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -266,11 +395,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -282,22 +418,34 @@ export default function ContentNav() {
           id="your_safe"
           className="Collapsible__contentInner "
           onClick={() => {
-            console.log("great to meet you clicked");
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "You're Safe",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "You're Safe",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "You're Safe",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -306,11 +454,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -319,11 +474,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -332,11 +494,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -349,20 +518,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "You're Unique",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "You're Unique",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "You're Unique",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -371,11 +553,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -384,11 +573,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -397,11 +593,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -414,20 +617,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "You're Brave",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "You're Brave",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "You're Brave",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -436,11 +652,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -449,11 +672,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -462,11 +692,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -479,20 +716,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "You Belong Here",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "You Belong Here",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "You Belong Here",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -501,11 +751,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -514,11 +771,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -527,11 +791,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -544,20 +815,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "The Future Is Bright",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "The Future Is Bright",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "The Future Is Bright",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -566,11 +850,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -579,11 +870,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -592,11 +890,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
@@ -609,20 +914,33 @@ export default function ContentNav() {
           className="Collapsible__contentInner "
           onClick={() => {
             return dispatch({
-              type: ACTIONS.UPDATE_CURRENT_SECTION,
-              current_section: "You Are A Wonder",
+              type: ACTIONS.SET_MULTIPLE,
+              payload: {
+                current_section: "You Are A Wonder",
+              },
             });
+            // return dispatch({
+            //   type: ACTIONS.UPDATE_CURRENT_SECTION,
+            //   current_section: "You Are A Wonder",
+            // });
           }}
         >
           <Link
             id="play"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "play",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "play",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "play",
+              // })
             }
           >
             Play Den
@@ -631,11 +949,18 @@ export default function ContentNav() {
             id="think"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "think",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "think",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "think",
+              // })
             }
           >
             Think Bank
@@ -644,11 +969,18 @@ export default function ContentNav() {
             id="make"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "make",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "make",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "make",
+              // })
             }
           >
             Make Station
@@ -657,11 +989,18 @@ export default function ContentNav() {
             id="wonder"
             className="menu-item"
             to="#"
-            onClick={() =>
-              dispatch({
-                type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
-                current_subsection: "wonder",
-              })
+            onClick={
+              () =>
+                dispatch({
+                  type: ACTIONS.SET_MULTIPLE,
+                  payload: {
+                    current_subsection: "wonder",
+                  },
+                })
+              // dispatch({
+              //   type: ACTIONS.UPDATE_CURRENT_SUB_SECTION,
+              //   current_subsection: "wonder",
+              // })
             }
           >
             Wonder Tree
