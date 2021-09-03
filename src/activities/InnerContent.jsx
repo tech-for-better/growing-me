@@ -80,6 +80,8 @@ export default function InnerContent() {
   let carousel = useRef(null);
 
   useEffect(() => {
+    console.log("state in carousel use effect", state);
+    console.log("carousel use effect", carousel.state.selectedItem);
     // some validation to set the slider to 0
     if (carousel && carousel?.state?.selectedItem > 0) {
       carousel.state.selectedItem = 0;
