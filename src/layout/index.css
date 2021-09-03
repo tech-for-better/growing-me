@@ -821,3 +821,16 @@ p {
     justify-content: center;
   }
 } */
+
+.inner-content_background{
+  /* background-image: url(""); */
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  width:100%;
+  position: relative;
+}
+.inner-content-container{
+    bottom: 400px;
+    left: 260px;
+}

@@ -135,6 +135,7 @@
 }
 .carousel.carousel-slider {
   background-color: white;
+  /* background-color: transparent; makes carousel background transparent */
   /* border: 3px solid #bcd38c; */
   border-radius: 1rem;
   position: relative;
@@ -158,6 +159,7 @@
   overflow: hidden;
   margin: auto;
   width: 100%;
+
   -webkit-transition: height 0.15s ease-in;
   -moz-transition: height 0.15s ease-in;
   -ms-transition: height 0.15s ease-in;
