@@ -6,7 +6,12 @@ import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
 import "./../layout/Carousel.css";
 import { MeTreeContext } from "../App";
-import { make_only, play_only, think_book_only, wonder_leaf_only } from "../images/ActivitiesImages/InnerContentBackgroundImages";
+import {
+  make_with_background,
+  play_with_background,
+  think_with_background,
+  wonder_with_background,
+} from "../images/ActivitiesImages/InnerContentBackgroundImages";
 
 export default function InnerContent() {
   const { contentState, dispatch } = useContext(ContentContext);
@@ -20,10 +25,10 @@ export default function InnerContent() {
   };
 
   let backgroundImgToSubSectionMap = {
-    play: play_only,
-    think: think_book_only,
-    make: make_only,
-    wonder: wonder_leaf_only,
+    play: play_with_background,
+    think: think_with_background,
+    make: make_with_background,
+    wonder: wonder_with_background,
   };
 
   const sections = [
@@ -78,19 +83,22 @@ export default function InnerContent() {
   }, [contentState]);
 
   return (
-    <div
-      className="inner-content_background"
-      style={{
-        backgroundImage: `url(${
-          backgroundImgToSubSectionMap[contentState.current_subsection]
-        })`,
-      }}
-    >
+    <>
       <div className="flex flex-center space-between narrow center column">
-        <h1 className="text-center margin-top txt-xlg mobile-margin-sm">
+        <h1 className="text-center txt-xlg mobile-margin-sm">
           {contentState.current_section}
         </h1>
-        {/* <h2
+      </div>
+      <div
+        className="inner-content_background"
+        style={{
+          backgroundImage: `url(${
+            backgroundImgToSubSectionMap[contentState.current_subsection]
+          })`,
+        }}
+      >
+        <div className="flex flex-center space-between narrow center column">
+          {/* <h2
         className="text-center txt-lg rokkitt-font mobile-hide"
         style={{
           color: `${textColorToSubSectionMap[contentState.current_subsection]}`,
@@ -98,75 +106,76 @@ export default function InnerContent() {
       >
         Welcome to the {`${contentState.current_subsection}`.toUpperCase()} Section{" "}
       </h2> */}
-        {/* <div> */}
-        <Carousel
-          key={
-            ContentData[contentState.current_section][
-              contentState.current_subsection
-            ]
-          }
-          ref={(el) => (carousel = el)} // useRef
-          className="mobile-margin-sm relative"
-          showThumbs={false}
-          infiniteLoop={true}
-          selectedItem={0}
-        >
-          {Object.keys(
-            ContentData[contentState.current_section][
-              contentState.current_subsection
-            ]
-          ).map((slide, i) => {
-            console.log("SLIDE in carousel map:", slide, i);
+          {/* <div> */}
+          <Carousel
+            key={
+              ContentData[contentState.current_section][
+                contentState.current_subsection
+              ]
+            }
+            ref={(el) => (carousel = el)} // useRef
+            className="mobile-margin-sm relative"
+            showThumbs={false}
+            infiniteLoop={true}
+            selectedItem={0}
+          >
+            {Object.keys(
+              ContentData[contentState.current_section][
+                contentState.current_subsection
+              ]
+            ).map((slide, i) => {
+              console.log("SLIDE in carousel map:", slide, i);
 
-            return (
-              <>
-                <div className="flex column full-height " key={i}>
-                  <div className="pad-bottom">
-                    <img
-                      src={
-                        ContentData[contentState.current_section][
-                          contentState.current_subsection
-                        ][slide]["img"]
-                      }
-                    />
+              return (
+                <>
+                  <div className="flex column full-height " key={i}>
+                    <div className="pad-bottom">
+                      <img
+                        src={
+                          ContentData[contentState.current_section][
+                            contentState.current_subsection
+                          ][slide]["img"]
+                        }
+                      />
+                    </div>
+                    <div
+                      className="txt-background "
+                      style={{
+                        backgroundColor: `${
+                          textColorToSubSectionMap[
+                            contentState.current_subsection
+                          ]
+                        }`,
+                      }}
+                    >
+                      <p className="white txt-sm rokkitt-font">
+                        {
+                          ContentData[contentState.current_section][
+                            contentState.current_subsection
+                          ][slide]["txt"]
+                        }
+                      </p>
+                    </div>
                   </div>
-                  <div
-                    className="txt-background "
-                    style={{
-                      backgroundColor: `${
-                        textColorToSubSectionMap[
-                          contentState.current_subsection
-                        ]
-                      }`,
-                    }}
-                  >
-                    <p className="white txt-lg rokkitt-font">
-                      {
-                        ContentData[contentState.current_section][
-                          contentState.current_subsection
-                        ][slide]["txt"]
-                      }
-                    </p>
-                  </div>
-                </div>
-              </>
-            );
-          })}
-          {/* :
+                </>
+              );
+            })}
+            {/* :
           " still loading"
         } */}
-        </Carousel>
-        {contentState.current_subsection === "wonder" ? (
-          <button
-            onClick={() => sectionCompleted()}
-            className="absolute fixed-narrow bottom-right button primary"
-          >
-            Section complete?
-          </button>
-        ) : (
-          ""
-        )}
+          </Carousel>
+          {contentState.current_subsection === "wonder" ? (
+            <button
+              onClick={() => sectionCompleted()}
+              className="absolute fixed-narrow bottom-right button primary"
+            >
+              Section complete?
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

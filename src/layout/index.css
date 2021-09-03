@@ -825,10 +825,11 @@ p {
 .inner-content_background{
   /* background-image: url(""); */
   background-size: cover;
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
   background-position: center;
-  width:100%;
-  position: relative;
+  width:100vw;
+  position: absolute;
+  margin: 0 auto;
 }
 .inner-content-container{
     bottom: 400px;

@@ -66,7 +66,7 @@
 
 .carousel {
   position: relative;
-  width: 100%;
+  width: 40vw;
 }
 .carousel * {
   -webkit-box-sizing: border-box;
@@ -142,6 +142,8 @@
   margin: 0 1rem;
   padding: 2rem 0 0 0;
   /* overflow: hidden; */
+  width: 40vw;
+  margin: 10rem auto;
 }
 .carousel.carousel-slider .control-arrow {
   top: 0;
