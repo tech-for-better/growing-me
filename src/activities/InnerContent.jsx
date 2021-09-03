@@ -6,11 +6,14 @@ import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
 import "./../layout/Carousel.css";
 import { MeTreeContext } from "../App";
+import { LeftArrow, RightArrow } from "../layout/arrows.styled";
 import {
   make_with_background,
   play_with_background,
   think_with_background,
   wonder_with_background,
+  left_arrow,
+  right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
 
 export default function InnerContent() {
@@ -124,6 +127,46 @@ export default function InnerContent() {
             showThumbs={false}
             infiniteLoop={true}
             selectedItem={0}
+            renderArrowPrev={(onClickHandler, hasPrev, label) =>
+              hasPrev && (
+                <LeftArrow
+                  // type="button"
+                  onClick={onClickHandler}
+                  title={label}
+                />
+                // <button
+                //   type="button"
+                //   onClick={onClickHandler}
+                //   title={label}
+                //   style={{
+                //     ...leftArrowStyles,
+                //   }}
+                // >
+                //   <img src={left_arrow} alt="" />
+                // </button>
+              )
+            }
+            renderArrowNext={(onClickHandler, hasNext, label) =>
+              hasNext && (
+                <RightArrow
+                  type="button"
+                  onClick={onClickHandler}
+                  title={label}
+                >
+                  {/* <img src={right_arrow} alt="" /> */}
+                </RightArrow>
+                // <button
+                //   type="button"
+                //   onClick={onClickHandler}
+                //   title={label}
+                //   style={{
+                //     ...rightArrowStyles,
+                //   }}
+                // >
+                //   <img src={right_arrow} alt="" />
+                // </button>
+              )
+            }
           >
             {Object.keys(
               ContentData[contentState.current_section][
