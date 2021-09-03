@@ -12,11 +12,12 @@ const binStyle = {
   marginRight: "1.5rem",
   marginBottom: "1.5rem",
   color: "black",
-  padding: "1rem",
+  padding: "0 1rem",
   textAlign: "center",
   fontSize: "1rem",
   lineHeight: "normal",
-  float: "left",
+  float: "right",
+  marginTop: "-1rem",
 };
 
 export const Dustbin = () => {
@@ -52,14 +53,17 @@ export const Dustbin = () => {
   const isActive = canDrop && isOver;
   let backgroundColor = "";
   if (isActive) {
-    backgroundColor = "darkgreen";
+    // backgroundColor = "darkgreen";
+    // backgroundColor = "#cc492f";
+    backgroundColor = "#d66d59";
   } else if (canDrop) {
-    backgroundColor = "darkkhaki";
+    // backgroundColor = "darkkhaki";
+    backgroundColor = "#b4bdc1";
   }
 
   return (
     <div
-      className="absolute"
+      // className="absolute"
       ref={drop}
       role={"Dustbin"}
       style={{ ...binStyle, backgroundColor }}

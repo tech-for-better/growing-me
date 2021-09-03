@@ -72,7 +72,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -92,7 +92,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -112,7 +112,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -171,7 +171,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -191,7 +191,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -211,7 +211,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -270,7 +270,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -290,7 +290,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -310,7 +310,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -369,7 +369,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -389,7 +389,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -409,7 +409,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -468,7 +468,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -488,7 +488,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -508,7 +508,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -567,7 +567,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -587,7 +587,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -607,7 +607,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -666,7 +666,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -686,7 +686,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -706,7 +706,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -765,7 +765,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -785,7 +785,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -805,7 +805,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -864,7 +864,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -884,7 +884,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -904,7 +904,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>
@@ -963,7 +963,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Think Bank
+            Think Story
           </Link>
           <Link
             id="make"
@@ -983,7 +983,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Make Station
+            Make Table
           </Link>
           <Link
             id="wonder"
@@ -1003,7 +1003,7 @@ export default function ContentNav() {
               // })
             }
           >
-            Wonder Tree
+            Wonder Time
           </Link>
         </Link>
       </Collapsible>

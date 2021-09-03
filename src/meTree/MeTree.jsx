@@ -186,13 +186,10 @@ export function MeTree() {
 
               {visible ? <Palette type={paletteOption} /> : ""}
             </div>
-            <Dustbin />
 
             <div className="empty-area"></div>
             <div className="flex row flex-end margin-btn mobile-margin-sm">
-              {/* <div>
-                  <img src={bin} alt="bin" />
-                </div> */}
+              <Dustbin />
               <div>
                 <Link to="/content">
                   <button className="button primary block">

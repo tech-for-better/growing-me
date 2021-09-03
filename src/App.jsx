@@ -31,7 +31,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
         </Link>
       </div>
       <div className="center text-center">
-        <p className="margin-top">Something went wrong:</p>
+        <p >Something went wrong:</p>
         <pre>{error.message}</pre>
       </div>
       <div className="flex flex-center">
