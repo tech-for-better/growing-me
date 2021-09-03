@@ -11,17 +11,21 @@ import {
   play_with_background,
   think_with_background,
   wonder_with_background,
-} from "../images/ActivitiesImages/InnerContentBackgroundImages";
+} from "../images/activitiesImages/InnerContentBackgroundImages";
 
 export default function InnerContent() {
   const { contentState, dispatch } = useContext(ContentContext);
   const { state, setState } = useContext(MeTreeContext);
 
   let textColorToSubSectionMap = {
-    play: "#abc961",
-    think: "#337d8e",
-    make: "#fed436",
-    wonder: "#28424c",
+    // play: "#abc961",
+    // think: "#337d8e",
+    // make: "#fed436",
+    // wonder: "#28424c",
+    play: "transparent",
+    think: "transparent",
+    make: "transparent",
+    wonder: "transparent",
   };
 
   let backgroundImgToSubSectionMap = {
@@ -148,7 +152,7 @@ export default function InnerContent() {
                         }`,
                       }}
                     >
-                      <p className="white txt-sm rokkitt-font">
+                      <p className="dark-font txt-sm rokkitt-font">
                         {
                           ContentData[contentState.current_section][
                             contentState.current_subsection

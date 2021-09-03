@@ -134,16 +134,16 @@
   vertical-align: top;
 }
 .carousel.carousel-slider {
-  background-color: white;
-  /* background-color: transparent; makes carousel background transparent */
+  /* background-color: white; */
+  background-color: transparent;
   /* border: 3px solid #bcd38c; */
   border-radius: 1rem;
   position: relative;
   margin: 0 1rem;
   padding: 2rem 0 0 0;
   /* overflow: hidden; */
-  width: 40vw;
-  margin: 10rem auto;
+  width: 40vw !important;
+  margin: 13rem auto;
 }
 .carousel.carousel-slider .control-arrow {
   top: 0;
@@ -292,7 +292,7 @@
   top: -8px;
   right: 22px;
   padding: 5px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
   color: #384b4a;
 }

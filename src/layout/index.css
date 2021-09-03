@@ -585,6 +585,10 @@ button.primary,
   color: white;
 }
 
+.dark-font {
+  color: #384b4a;
+}
+
 p {
   font-size: 1.5rem;
 }
@@ -822,16 +826,18 @@ p {
   }
 } */
 
-.inner-content_background{
+.inner-content_background {
   /* background-image: url(""); */
-  background-size: cover;
+  /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: center;
-  width:100vw;
-  position: absolute;
-  margin: 0 auto;
+  width: 100vw;
+  /* position: absolute; */
+  /* margin: 0 auto; */
+  margin: -7rem auto;
+  background-attachment: fixed;
 }
-.inner-content-container{
-    bottom: 400px;
-    left: 260px;
+.inner-content-container {
+  bottom: 400px;
+  left: 260px;
 }
