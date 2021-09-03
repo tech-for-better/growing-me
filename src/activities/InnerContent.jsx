@@ -6,19 +6,36 @@ import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
 import "./../layout/Carousel.css";
 import { MeTreeContext } from "../App";
+import { LeftArrow, RightArrow } from "../layout/arrows.styled";
+import {
+  make_with_background,
+  play_with_background,
+  think_with_background,
+  wonder_with_background,
+  left_arrow,
+  right_arrow,
+} from "../images/activitiesImages/InnerContentBackgroundImages";
 
 export default function InnerContent() {
   const { contentState, dispatch } = useContext(ContentContext);
   const { state, setState } = useContext(MeTreeContext);
-  let text;
-  if (text === "PLAY") {
-    return (className = "play-color");
-  }
+
   let textColorToSubSectionMap = {
-    play: "#abc961",
-    think: "#337d8e",
-    make: "#fed436",
-    wonder: "#28424c",
+    // play: "#abc961",
+    // think: "#337d8e",
+    // make: "#fed436",
+    // wonder: "#28424c",
+    play: "transparent",
+    think: "transparent",
+    make: "transparent",
+    wonder: "transparent",
+  };
+
+  let backgroundImgToSubSectionMap = {
+    play: play_with_background,
+    think: think_with_background,
+    make: make_with_background,
+    wonder: wonder_with_background,
   };
 
   const sections = [
@@ -66,6 +83,8 @@ export default function InnerContent() {
   let carousel = useRef(null);
 
   useEffect(() => {
+    console.log("state in carousel use effect", state);
+    console.log("carousel use effect", carousel.state.selectedItem);
     // some validation to set the slider to 0
     if (carousel && carousel?.state?.selectedItem > 0) {
       carousel.state.selectedItem = 0;
@@ -73,11 +92,23 @@ export default function InnerContent() {
   }, [contentState]);
 
   return (
-    <div className="flex flex-center space-between narrow center column ">
-      <h1 className="text-center margin-top txt-xlg mobile-margin-sm">
-        {contentState.current_section}
-      </h1>
-      {/* <h2
+    <>
+      <div className="flex flex-center space-between narrow center column">
+        <h1 className="text-center txt-xlg mobile-margin-sm margin-top-btm-1">
+          {contentState.current_section}
+        </h1>
+      </div>
+
+      <div
+        className="inner-content_background"
+        style={{
+          backgroundImage: `url(${
+            backgroundImgToSubSectionMap[contentState.current_subsection]
+          })`,
+        }}
+      >
+        <div className="flex flex-center space-between narrow center column">
+          {/* <h2
         className="text-center txt-lg rokkitt-font mobile-hide"
         style={{
           color: `${textColorToSubSectionMap[contentState.current_subsection]}`,
@@ -85,72 +116,116 @@ export default function InnerContent() {
       >
         Welcome to the {`${contentState.current_subsection}`.toUpperCase()} Section{" "}
       </h2> */}
-      {/* <div> */}
-      <Carousel
-        key={
-          ContentData[contentState.current_section][
-            contentState.current_subsection
-          ]
-        }
-        ref={(el) => (carousel = el)} // useRef
-        className="mobile-margin-sm relative"
-        showThumbs={false}
-        infiniteLoop={true}
-        selectedItem={0}
-      >
-        {Object.keys(
-          ContentData[contentState.current_section][
-            contentState.current_subsection
-          ]
-        ).map((slide, i) => {
-          console.log("SLIDE in carousel map:", slide, i);
-
-          return (
-            <>
-              <div className="flex column full-height " key={i}>
-                <div className="pad-bottom">
-                  <img
-                    src={
-                      ContentData[contentState.current_section][
-                        contentState.current_subsection
-                      ][slide]["img"]
-                    }
-                  />
-                </div>
-                <div
-                  className="txt-background "
-                  style={{
-                    backgroundColor: `${
-                      textColorToSubSectionMap[contentState.current_subsection]
-                    }`,
-                  }}
+          {/* <div> */}
+          <Carousel
+            key={
+              ContentData[contentState.current_section][
+                contentState.current_subsection
+              ]
+            }
+            ref={(el) => (carousel = el)} // useRef
+            className="mobile-margin-sm relative"
+            showThumbs={false}
+            infiniteLoop={true}
+            selectedItem={0}
+            renderArrowPrev={(onClickHandler, hasPrev, label) =>
+              hasPrev && (
+                <LeftArrow
+                  // type="button"
+                  onClick={onClickHandler}
+                  title={label}
+                />
+                // <button
+                //   type="button"
+                //   onClick={onClickHandler}
+                //   title={label}
+                //   style={{
+                //     ...leftArrowStyles,
+                //   }}
+                // >
+                //   <img src={left_arrow} alt="" />
+                // </button>
+              )
+            }
+            renderArrowNext={(onClickHandler, hasNext, label) =>
+              hasNext && (
+                <RightArrow
+                  type="button"
+                  onClick={onClickHandler}
+                  title={label}
                 >
-                  <p className="white txt-lg rokkitt-font">
-                    {
-                      ContentData[contentState.current_section][
-                        contentState.current_subsection
-                      ][slide]["txt"]
-                    }
-                  </p>
-                </div>
-              </div>
-            </>
-          );
-        })}
-        {/* :
+                  {/* <img src={right_arrow} alt="" /> */}
+                </RightArrow>
+                // <button
+                //   type="button"
+                //   onClick={onClickHandler}
+                //   title={label}
+                //   style={{
+                //     ...rightArrowStyles,
+                //   }}
+                // >
+                //   <img src={right_arrow} alt="" />
+                // </button>
+              )
+            }
+          >
+            {Object.keys(
+              ContentData[contentState.current_section][
+                contentState.current_subsection
+              ]
+            ).map((slide, i) => {
+              console.log("SLIDE in carousel map:", slide, i);
+
+              return (
+                <>
+                  <div className="flex column full-height " key={i}>
+                    <div className="pad-bottom">
+                      <img
+                        src={
+                          ContentData[contentState.current_section][
+                            contentState.current_subsection
+                          ][slide]["img"]
+                        }
+                      />
+                    </div>
+                    <div
+                      className="txt-background "
+                      style={{
+                        backgroundColor: `${
+                          textColorToSubSectionMap[
+                            contentState.current_subsection
+                          ]
+                        }`,
+                      }}
+                    >
+                      <p className="dark-font txt-sm rokkitt-font">
+                        {
+                          ContentData[contentState.current_section][
+                            contentState.current_subsection
+                          ][slide]["txt"]
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+            {/* :
           " still loading"
         } */}
-      </Carousel>
-      {contentState.current_subsection === "wonder" ? (
-        <button
-          onClick={() => sectionCompleted()}
-          className="absolute fixed-narrow bottom-right button primary"
-        >
-          Section complete?
-        </button>
-      ) : (
-        ""
-      )}
-    </div>
+          </Carousel>
+          {contentState.current_subsection === "wonder" ? (
+            <button
+              onClick={() => sectionCompleted()}
+              className="absolute fixed-narrow bottom-right button primary"
+            >
+              Section complete?
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+    </>
   );
 }

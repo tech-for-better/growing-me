@@ -66,7 +66,7 @@
 
 .carousel {
   position: relative;
-  width: 100%;
+  width: 40vw;
 }
 .carousel * {
   -webkit-box-sizing: border-box;
@@ -134,13 +134,16 @@
   vertical-align: top;
 }
 .carousel.carousel-slider {
-  background-color: white;
+  /* background-color: white; */
+  background-color: transparent;
   /* border: 3px solid #bcd38c; */
   border-radius: 1rem;
   position: relative;
   margin: 0 1rem;
   padding: 2rem 0 0 0;
   /* overflow: hidden; */
+  width: 40vw !important;
+  margin: 17rem auto;
 }
 .carousel.carousel-slider .control-arrow {
   top: 0;
@@ -158,6 +161,7 @@
   overflow: hidden;
   margin: auto;
   width: 100%;
+
   -webkit-transition: height 0.15s ease-in;
   -moz-transition: height 0.15s ease-in;
   -ms-transition: height 0.15s ease-in;
@@ -248,7 +252,7 @@
 .carousel .control-dots {
   position: absolute;
   left: -5%;
-  bottom: -11%;
+  bottom: -15%;
   /* margin: 3rem; */
   margin: 1rem 3rem 3rem 3rem;
   padding: 0;
@@ -270,7 +274,7 @@
   opacity: 0.3;
   filter: alpha(opacity=30);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
-  background: #fff;
+  background: #28424c;
   border-radius: 50%;
   width: 8px;
   height: 8px;
@@ -288,7 +292,7 @@
   top: -8px;
   right: 22px;
   padding: 5px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
   color: #384b4a;
 }

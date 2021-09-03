@@ -63,7 +63,9 @@ export default function Content() {
           <ContentNav />
           <NavMenu />
         </div>
+
         <InnerContent />
+       
       </ContentContext.Provider>
     </>
   );
