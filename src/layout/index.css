@@ -828,16 +828,22 @@ p {
 
 .inner-content_background {
   /* background-image: url(""); */
+  background-attachment: fixed;
   /* background-size: cover; */
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   width: 100vw;
   /* position: absolute; */
   /* margin: 0 auto; */
-  margin: -7rem auto;
-  background-attachment: fixed;
+  margin: 0 auto;
+
+
 }
 .inner-content-container {
   bottom: 400px;
   left: 260px;
+}
+
+.margin-top-btm-1{
+  margin: 4rem 0;
 }

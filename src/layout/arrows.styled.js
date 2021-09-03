@@ -13,7 +13,7 @@ export const LeftArrow = styled.button`
   border: none;
   cursor: pointer;
   z-index: 2;
-  top: 8rem;
+  top: 10rem;
   position: absolute;
   opacity: 0.7;
   &:hover {
@@ -30,7 +30,7 @@ export const RightArrow = styled.button`
   border: none;
   z-index: 2;
   cursor: pointer;
-  top: 8rem;
+  top: 10rem;
   right: 1rem;
   position: absolute;
   opacity: 0.7;

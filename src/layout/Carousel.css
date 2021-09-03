@@ -143,7 +143,7 @@
   padding: 2rem 0 0 0;
   /* overflow: hidden; */
   width: 40vw !important;
-  margin: 13rem auto;
+  margin: 17rem auto;
 }
 .carousel.carousel-slider .control-arrow {
   top: 0;
@@ -252,7 +252,7 @@
 .carousel .control-dots {
   position: absolute;
   left: -5%;
-  bottom: -11%;
+  bottom: -15%;
   /* margin: 3rem; */
   margin: 1rem 3rem 3rem 3rem;
   padding: 0;
