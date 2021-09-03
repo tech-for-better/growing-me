@@ -70,7 +70,10 @@ const initialState = {
       adult_name: null,
       avatar_url: null,
       child_name: "child",
-      child_avatar: "./../assets/fluffy_visitors.svg", 
+      child_avatar: "./../assets/fluffy_visitors.svg",
+    },
+    progress: {
+      unlocked: ["Great To Meet You"],
     },
   },
   error: null,

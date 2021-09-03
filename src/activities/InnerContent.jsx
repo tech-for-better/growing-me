@@ -5,10 +5,11 @@ import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
 import { ContentData } from "./ContentData";
 import "./../layout/Carousel.css";
+import { MeTreeContext } from "../App";
 
 export default function InnerContent() {
-  const { state, dispatch } = useContext(ContentContext);
-  console.log("INNER CONTENT STATE", state);
+  const { contentState, dispatch } = useContext(ContentContext);
+  const { state, setState } = useContext(MeTreeContext);
   let text;
   if (text === "PLAY") {
     return (className = "play-color");
@@ -20,6 +21,47 @@ export default function InnerContent() {
     wonder: "#28424c",
   };
 
+  const sections = [
+    "Great To Meet You",
+    "Your Brain is Amazing",
+    "Your Feelings Matter",
+    "You're Not Alone",
+    "You're Safe",
+    "You're Unique",
+    "You're Brave",
+    "You Belong Here",
+    "The Future Is Bright",
+    "You Are A Wonder",
+  ];
+
+  async function sectionCompleted() {
+    // handle button click here
+    console.log("current section completed:", contentState.current_section);
+    let currentIndex = sections.indexOf(contentState.current_section);
+    let unlocked_section = sections[currentIndex + 1];
+    console.log("unlocked_section", unlocked_section);
+    console.log("contentState", contentState);
+    if (state.data.progress.unlocked.indexOf(unlocked_section) === -1) {
+      setState({
+        progress: {
+          unlocked: [...state.data.progress.unlocked, unlocked_section],
+        },
+      });
+      // dispatch({
+      //   type: ACTIONS.ADD_TO_UNLOCKED,
+      //   new_unlocked: unlocked_section,
+      // });
+    }
+    // redirect to next section
+    dispatch({
+      type: ACTIONS.SET_MULTIPLE,
+      payload: {
+        current_section: unlocked_section,
+        current_subsection: "play",
+      },
+    });
+  }
+
   // use useRef to get the carousel instance
   let carousel = useRef(null);
 
@@ -28,34 +70,38 @@ export default function InnerContent() {
     if (carousel && carousel?.state?.selectedItem > 0) {
       carousel.state.selectedItem = 0;
     }
-  }, [state]);
-
+  }, [contentState]);
 
   return (
     <div className="flex flex-center space-between narrow center column ">
       <h1 className="text-center margin-top txt-xlg mobile-margin-sm">
-        {state.current_section}
+        {contentState.current_section}
       </h1>
       {/* <h2
         className="text-center txt-lg rokkitt-font mobile-hide"
         style={{
-          color: `${textColorToSubSectionMap[state.current_subsection]}`,
+          color: `${textColorToSubSectionMap[contentState.current_subsection]}`,
         }}
       >
-        Welcome to the {`${state.current_subsection}`.toUpperCase()} Section{" "}
+        Welcome to the {`${contentState.current_subsection}`.toUpperCase()} Section{" "}
       </h2> */}
       {/* <div> */}
       <Carousel
-        key={ContentData[state.current_section][state.current_subsection]}
+        key={
+          ContentData[contentState.current_section][
+            contentState.current_subsection
+          ]
+        }
         ref={(el) => (carousel = el)} // useRef
-        className="mobile-margin-sm"
+        className="mobile-margin-sm relative"
         showThumbs={false}
         infiniteLoop={true}
         selectedItem={0}
       >
-
         {Object.keys(
-          ContentData[state.current_section][state.current_subsection]
+          ContentData[contentState.current_section][
+            contentState.current_subsection
+          ]
         ).map((slide, i) => {
           console.log("SLIDE in carousel map:", slide, i);
 
@@ -65,8 +111,8 @@ export default function InnerContent() {
                 <div className="pad-bottom">
                   <img
                     src={
-                      ContentData[state.current_section][
-                        state.current_subsection
+                      ContentData[contentState.current_section][
+                        contentState.current_subsection
                       ][slide]["img"]
                     }
                   />
@@ -75,14 +121,14 @@ export default function InnerContent() {
                   className="txt-background "
                   style={{
                     backgroundColor: `${
-                      textColorToSubSectionMap[state.current_subsection]
+                      textColorToSubSectionMap[contentState.current_subsection]
                     }`,
                   }}
                 >
                   <p className="white txt-lg rokkitt-font">
                     {
-                      ContentData[state.current_section][
-                        state.current_subsection
+                      ContentData[contentState.current_section][
+                        contentState.current_subsection
                       ][slide]["txt"]
                     }
                   </p>
@@ -95,7 +141,16 @@ export default function InnerContent() {
           " still loading"
         } */}
       </Carousel>
-      {/* </div> */}
+      {contentState.current_subsection === "wonder" ? (
+        <button
+          onClick={() => sectionCompleted()}
+          className="absolute fixed-narrow bottom-right button primary"
+        >
+          Section complete?
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

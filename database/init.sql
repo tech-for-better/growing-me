@@ -67,3 +67,10 @@ CREATE TABLE gallery (
   images varchar[],
   primary key (id)
 );
+
+CREATE TABLE progress (
+  id uuid references auth.users not null,
+  unlocked varchar[],
+  primary key (id)
+);
+
