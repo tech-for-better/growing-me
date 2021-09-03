@@ -24,10 +24,19 @@ import logo from "./images/Logo";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
+    <div role="alert" className="center text-center mobile-margin-lg">
+      <div className="margin-top">
+        <Link to={"/"}>
+          <img src={logo} className="App-logo" alt="logo" />
+        </Link>
+      </div>
+      <div className="center text-center">
+        <p className="margin-top">Something went wrong:</p>
+        <pre>{error.message}</pre>
+      </div>
+      <div className="flex flex-center">
+      <button onClick={resetErrorBoundary} className="button login-button block primary max-width">Try again</button>
+      </div>
     </div>
   );
 }
@@ -56,7 +65,7 @@ export async function update(changedData) {
   return await setData(changedData);
 }
 
-const NoMatchPage = () => {
+const NotFound = () => {
   return (
     <>
       <div className="center text-center mobile-margin-lg">
@@ -114,7 +123,7 @@ export default function Home() {
                 <MagicLinkLogIn />
               </LoginTree>
             </Route>
-            <Route component={NoMatchPage} />
+            <Route component={NotFound} />
           </Switch>
         </AuthProvider>
       </Router>
@@ -153,7 +162,7 @@ export default function Home() {
               />
               <PrivateRoute path="/gallery" render={() => <Gallery />} />
               <PrivateRoute path="/content" render={() => <Content />} />
-              <Route component={NoMatchPage} />
+              <Route component={NotFound} />
             </Switch>
           </MeTreeProvider>
         </AuthProvider>
