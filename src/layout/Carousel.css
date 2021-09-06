@@ -134,8 +134,8 @@
   vertical-align: top;
 }
 .carousel.carousel-slider {
-  /* background-color: white; */
-  background-color: transparent;
+  background-color: white;
+  /* background-color: transparent; */
   /* border: 3px solid #bcd38c; */
   border-radius: 1rem;
   position: relative;

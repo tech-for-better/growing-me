@@ -8,10 +8,10 @@ import "./../layout/Carousel.css";
 import { MeTreeContext } from "../App";
 import { LeftArrow, RightArrow } from "../layout/arrows.styled";
 import {
-  make_with_background,
-  play_with_background,
-  think_with_background,
-  wonder_with_background,
+  makepic,
+  playpic,
+  thinkpic,
+  wonderpic,
   left_arrow,
   right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
@@ -32,10 +32,10 @@ export default function InnerContent() {
   };
 
   let backgroundImgToSubSectionMap = {
-    play: play_with_background,
-    think: think_with_background,
-    make: make_with_background,
-    wonder: wonder_with_background,
+    play: playpic,
+    think: thinkpic,
+    make: makepic,
+    wonder: wonderpic,
   };
 
   const sections = [
@@ -93,11 +93,11 @@ export default function InnerContent() {
 
   return (
     <>
-      <div className="flex flex-center space-between narrow center column">
+      {/* <div className="flex flex-center space-between narrow center column">
         <h1 className="text-center txt-xlg mobile-margin-sm margin-top-btm-1">
           {contentState.current_section}
         </h1>
-      </div>
+      </div> */}
 
       <div
         className="inner-content_background"
