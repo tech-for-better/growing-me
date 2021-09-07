@@ -98,7 +98,7 @@ export default function InnerContent() {
           {contentState.current_section}
         </h1>
       </div> */}
-
+      {/* <div className="inner-content-container"></div> */}
       <div
         className="inner-content_background"
         style={{
@@ -217,7 +217,7 @@ export default function InnerContent() {
           {contentState.current_subsection === "wonder" ? (
             <button
               onClick={() => sectionCompleted()}
-              className="absolute fixed-narrow bottom-right button primary"
+              className="absolute fixed-narrow min-width bottom-right button primary"
             >
               Section complete?
             </button>

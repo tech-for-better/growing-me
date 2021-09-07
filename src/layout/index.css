@@ -432,8 +432,8 @@ button.primary,
 }
 
 .bottom-right {
-  right: 20px;
-  bottom: 10px;
+  right: 30%;
+  bottom: 46%;
 }
 
 .delete {
@@ -792,7 +792,8 @@ p {
   .control-dots {
     /* margin: 0; */
     margin: 3rem 0 3rem 0;
-    bottom: -17% !important;
+    bottom: -21% !important;
+
   }
 
   .me-tree-grid {
@@ -828,22 +829,44 @@ p {
 
 .inner-content_background {
   /* background-image: url(""); */
-  background-attachment: fixed;
-  /* background-size: cover; */
+  /* background-attachment: fixed; */
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom;
+  /* background-position: bottom; */
+  background-position: center;
   width: 100vw;
+  height: 89.5vh;
   /* position: absolute; */
   /* margin: 0 auto; */
-  margin: 0 auto;
-
-
 }
 .inner-content-container {
   bottom: 400px;
   left: 260px;
 }
 
-.margin-top-btm-1{
+.margin-top-btm-1 {
   margin: 4rem 0;
+}
+.min-width{
+  width: min-content;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+.bottom-right {
+  right: -53%;
+  /* bottom: 46%; */
+}
 }

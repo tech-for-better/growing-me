@@ -13,12 +13,17 @@ export const LeftArrow = styled.button`
   border: none;
   cursor: pointer;
   z-index: 2;
-  top: 10rem;
+  top: 16rem;
+  left: 1rem;
   position: absolute;
   opacity: 0.7;
   &:hover {
     opacity: 1;
   }
+  @media only screen and (min-width: 768px) {
+     top: 9rem;
+    left: -3rem;
+    }
 `;
 
 export const RightArrow = styled.button`
@@ -30,11 +35,15 @@ export const RightArrow = styled.button`
   border: none;
   z-index: 2;
   cursor: pointer;
-  top: 10rem;
-  right: 1rem;
+  top: 16rem;
+  right: 0rem;
   position: absolute;
   opacity: 0.7;
   &:hover {
     opacity: 1;
   }
+  @media only screen and (min-width: 768px) {
+     top: 9rem;
+    right: -4rem;
+    }
 `;

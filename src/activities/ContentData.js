@@ -96,7 +96,7 @@ export const ContentData = {
       },
       3: {
         img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_4.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ180LnN2ZyIsImlhdCI6MTYyODYwMTg1NSwiZXhwIjoxOTQzOTYxODU1fQ.WkLarDLp9kC8w7NITsm_HItlALsGNK_Ii3nDxvlMUUY",
-        txt: "The thinking bit is where the thinking buds live. We help you learn and come up with new ideas. We're really clever, and interesting. When we feel safe, and calm, we can learn: music, dance, coding and more! It's so exciting when us thinking buds start to blossom!",
+        txt: "The thinking bit is where the thinking buds live. We help you learn and come up with new ideas.We're really clever, and interesting. When we feel safe, and calm, we can learn: music, dance, coding and more!",
       },
       4: {
         img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/content/your_brain_is_amazing/think/Your_brain_is_amazing_8.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL2NvbnRlbnQveW91cl9icmFpbl9pc19hbWF6aW5nL3RoaW5rL1lvdXJfYnJhaW5faXNfYW1hemluZ184LnN2ZyIsImlhdCI6MTYyODYwMTkwMSwiZXhwIjoxOTQzOTYxOTAxfQ.LiHw0Ufw-6Cm5KqEeQVnQ34Jo0NwbDXy1EpbQ171Qwc",

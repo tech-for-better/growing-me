@@ -37,3 +37,4 @@ export const  cloudyBlob = "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/
 export const  ovalBlob = "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/palette/background/oval_blob.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL3BhbGV0dGUvYmFja2dyb3VuZC9vdmFsX2Jsb2Iuc3ZnIiwiaWF0IjoxNjMwNTE0NzE1LCJleHAiOjE5NDU4NzQ3MTV9.OWoOtGQPnpg6SwWcwCr9wGzgeQk6rW7guzy-J4YEgWg";
 export const bin =
   "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/palette/icomoon-free_bin.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL3BhbGV0dGUvaWNvbW9vbi1mcmVlX2Jpbi5zdmciLCJpYXQiOjE2MzA2ODM1NzksImV4cCI6MTk0NjA0MzU3OX0.64ExmkDo4QTQLreRjvVFqZ9ZWPbjInkRrMGHQZrWBXI";
+  
