@@ -305,25 +305,6 @@
   opacity: 1;
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .carousel.carousel-slider {
-    background-color: white;
-    /* background-color: transparent; */
-    /* border: 3px solid #bcd38c; */
-    border-radius: 1rem;
-    /* position: relative; */
-    position: absolute;
-    /* left: 20%; */
-    left: 13%;
-    padding: 2rem 0 0 0;
-    /* overflow: hidden; */
-    width: 50vw !important;
-    /* margin: 17% auto; */
-    margin: 60% auto 0 auto;
-  }
-}
-
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .carousel.carousel-slider {
@@ -345,4 +326,77 @@
     margin: 3rem 0 3rem 0;
     bottom: -24% !important;
   }
+  .bottom-right {
+      right: -40%;
+    bottom: -395px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+  .carousel.carousel-slider {
+    background-color: white;
+    border-radius: 1rem;
+    position: absolute;
+    left: -11%;
+    padding: 2rem 0 0 0;
+    width: 74vw !important;
+    margin: 26% auto 0 auto;
+}
+ .bottom-right {
+       right: -50%;
+    bottom: 50px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .carousel.carousel-slider {
+    background-color: white;
+    border-radius: 1rem;
+    position: absolute;
+    left: 10%;
+    padding: 2rem 0 0 0;
+    width: 50vw !important;
+    margin: 70% auto 0 auto;
+    }
+    .carousel .control-dots {
+      bottom:-21%;
+    }
+    .bottom-right {
+    right: 5%;
+    bottom: 80%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .carousel.carousel-slider {
+    background-color: white;
+    border-radius: 1rem;
+    position: absolute;
+    left: 16%;
+    padding: 2rem 0 0 0;
+    width: 44vw !important;
+    margin: 48% auto 0 auto;
+  }
+  .bottom-right {
+    right: 5%;
+    bottom: 80%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .carousel.carousel-slider {
+    background-color: white;
+    border-radius: 1rem;
+    position: absolute;
+    left: 16%;
+    padding: 2rem 0 0 0;
+    width: 37vw !important;
+    margin: 32% auto 0 auto;
+}
+.carousel .control-dots {
+  bottom:-20%;
+}
 }
