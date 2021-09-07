@@ -21,9 +21,15 @@ export const LeftArrow = styled.button`
     opacity: 1;
   }
   @media only screen and (min-width: 768px) {
-     top: 9rem;
+    top: 9rem;
     left: -3rem;
-    }
+  }
+  @media only screen and (max-width: 600px) {
+    top: 9rem;
+    left: -2.5rem;
+    width: 25px;
+    height: 50px;
+  }
 `;
 
 export const RightArrow = styled.button`
@@ -43,7 +49,13 @@ export const RightArrow = styled.button`
     opacity: 1;
   }
   @media only screen and (min-width: 768px) {
-     top: 9rem;
+    top: 9rem;
     right: -4rem;
-    }
+  }
+  @media only screen and (max-width: 600px) {
+    top: 9rem;
+    right: -2.5rem;
+    width: 25px;
+    height: 50px;
+  }
 `;

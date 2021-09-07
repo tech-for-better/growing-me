@@ -851,8 +851,7 @@ p {
   width: min-content;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}
@@ -869,4 +868,14 @@ p {
   right: -53%;
   /* bottom: 46%; */
 }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+.inner-content_background {
+  background-image: none !important;
+  width: 100vw;
+  height: 89.5vh;
+
+}
+
 }

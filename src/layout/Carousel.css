@@ -143,13 +143,12 @@
   /* position: relative; */
   position: absolute;
   /* left:20%; */
-  left:19%;
+  left: 19%;
   padding: 2rem 0 0 0;
   /* overflow: hidden; */
   width: 40vw !important;
   /* margin: 17% auto; */
-      margin: 26% auto 0 auto;
-
+  margin: 26% auto 0 auto;
 }
 .carousel.carousel-slider .control-arrow {
   top: 0;
@@ -322,5 +321,28 @@
     width: 50vw !important;
     /* margin: 17% auto; */
     margin: 60% auto 0 auto;
+  }
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .carousel.carousel-slider {
+    background-color: white;
+    /* background-color: transparent; */
+    /* border: 3px solid #bcd38c; */
+    border-radius: 1rem;
+    /* position: relative; */
+    position: absolute;
+    /* left: 20%; */
+    left: -4%;
+    padding: 2rem 0 0 0;
+    /* overflow: hidden; */
+    width: 71vw !important;
+    /* margin: 17% auto; */
+    margin: 18% auto 0 auto;
+  }
+  .control-dots {
+    margin: 3rem 0 3rem 0;
+    bottom: -24% !important;
+  }
 }
