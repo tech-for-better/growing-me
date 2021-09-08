@@ -161,7 +161,9 @@ export default function Home() {
                 render={() => <ChildProfile />}
               />
               <PrivateRoute path="/gallery" render={() => <Gallery />} />
-              <PrivateRoute path="/content" render={() => <Content />} />
+
+                <PrivateRoute path="/content" render={() => <Content />} />
+
               <Route component={NotFound} />
             </Switch>
           </MeTreeProvider>
