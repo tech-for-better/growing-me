@@ -7,9 +7,11 @@ import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Link } from "react-router-dom";
 import logo from "../images/Logo";
+import { MeTreeContext } from "../App";
 
 export default function ContentNav() {
   const { contentState, dispatch } = useContext(ContentContext);
+  const { state, setState } = useContext(MeTreeContext);
   return (
     <Menu
       burgerButtonClassName={"content-burger-btn"}
@@ -17,7 +19,17 @@ export default function ContentNav() {
       itemListClassName={"content-item-list"}
       itemClassName={"content-item"}
     >
-      <Collapsible trigger="Great to meet you">
+      <Collapsible
+        trigger="Great to meet you"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("Great To Meet You")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("Great To Meet You")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="great_to_meet_you"
           className="Collapsible__contentInner "
@@ -116,7 +128,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="Your brain is amazing">
+      <Collapsible
+        trigger="Your brain is amazing"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("Your Brain is Amazing")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("Your Brain is Amazing")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="your_brain_is_amazing"
           className="Collapsible__contentInner "
@@ -215,7 +237,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="Your feelings matter" className="locked">
+      <Collapsible
+        trigger="Your feelings matter"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("Your Feelings Matter")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("Your Feelings Matter")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="your_feelings_matter"
           className="Collapsible__contentInner "
@@ -314,7 +346,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're not alone" className="locked">
+      <Collapsible
+        trigger="You're not alone"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("You're Not Alone")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("You're Not Alone")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="your_not_alone"
           className="Collapsible__contentInner "
@@ -413,7 +455,13 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're safe" className="locked">
+      <Collapsible
+        trigger="You're safe"
+        triggerDisabled={!state.data.progress.unlocked.includes("You're Safe")}
+        className={`${
+          state.data.progress.unlocked.includes("You're Safe") ? "" : "locked"
+        }`}
+      >
         <Link
           id="your_safe"
           className="Collapsible__contentInner "
@@ -512,7 +560,15 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're unique" className="locked">
+      <Collapsible
+        trigger="You're unique"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("You're Unique")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("You're Unique") ? "" : "locked"
+        }`}
+      >
         <Link
           id="your_unique"
           className="Collapsible__contentInner "
@@ -611,7 +667,13 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You're brave" className="locked">
+      <Collapsible
+        trigger="You're brave"
+        triggerDisabled={!state.data.progress.unlocked.includes("You're Brave")}
+        className={`${
+          state.data.progress.unlocked.includes("You're Brave") ? "" : "locked"
+        }`}
+      >
         <Link
           id="your_brave"
           className="Collapsible__contentInner "
@@ -710,7 +772,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You belong here" className="locked">
+      <Collapsible
+        trigger="You belong here"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("You Belong Here")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("You Belong Here")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="you_belong_here"
           className="Collapsible__contentInner "
@@ -809,7 +881,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="The Future Is Bright" className="locked">
+      <Collapsible
+        trigger="The Future Is Bright"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("The Future Is Bright")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("The Future Is Bright")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="the_future_is_bright"
           className="Collapsible__contentInner "
@@ -908,7 +990,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="You Are A Wonder" className="locked">
+      <Collapsible
+        trigger="You Are A Wonder"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("You Are A Wonder")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("You Are A Wonder")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="you_are_a_wonder"
           className="Collapsible__contentInner "

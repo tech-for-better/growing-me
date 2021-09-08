@@ -1,12 +1,12 @@
 import React from "react";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer , useContext} from "react";
 import NavMenu from "../components/NavMenu";
 import ContentNav from "./ContentNav";
 import ContentTopBar from "./ContentTopBar";
 import InnerContent from "./InnerContent";
 
 const initialState = {
-  current_section: "Your Brain is Amazing",
+  current_section: "Great To Meet You",
   current_subsection: "play",
   // unlocked: ["Great To Meet You", "Your Brain is Amazing"],
 };
@@ -65,7 +65,7 @@ export default function Content() {
         </div>
 
         <InnerContent />
-       
+
       </ContentContext.Provider>
     </>
   );

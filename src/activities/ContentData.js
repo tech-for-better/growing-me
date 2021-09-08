@@ -8,11 +8,11 @@ export const ContentData = {
         txt: "Welcome back to the Play den! We'll start, like we always start Growing Me time with a fun and relaxing activity together. Let's go!",
       },
       2: {
-        img: "public/assets/simple_play_1.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/navigation/content_top_nav/PLAY_DEN.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL25hdmlnYXRpb24vY29udGVudF90b3BfbmF2L1BMQVlfREVOLnN2ZyIsImlhdCI6MTYyODYwNzE2NCwiZXhwIjoxOTQzOTY3MTY0fQ.BFVhdsdXMj-C1Hw6YqXzojOulErg7P9i2RSBWpNf5ZM",
         txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       },
       3: {
-        img: "public/assets/simple_play_1.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/navigation/content_top_nav/PLAY_DEN.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL25hdmlnYXRpb24vY29udGVudF90b3BfbmF2L1BMQVlfREVOLnN2ZyIsImlhdCI6MTYyODYwNzE2NCwiZXhwIjoxOTQzOTY3MTY0fQ.BFVhdsdXMj-C1Hw6YqXzojOulErg7P9i2RSBWpNf5ZM",
         txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       },
     },
@@ -22,11 +22,11 @@ export const ContentData = {
         txt: "Welcome to The Think Bank! Lets go!",
       },
       2: {
-        img: "public/assets/simple_think.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/navigation/content_top_nav/THINK_BANK.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL25hdmlnYXRpb24vY29udGVudF90b3BfbmF2L1RISU5LX0JBTksuc3ZnIiwiaWF0IjoxNjI4NjA3MTY1LCJleHAiOjE5NDM5NjcxNjV9.BKX5zF6cgi0fW1lbld4jiBtpZavbjIogUUvH4nl4lEc",
         txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       },
       3: {
-        img: "public/assets/simple_think.svg",
+        img: "https://vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/private/navigation/content_top_nav/THINK_BANK.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcml2YXRlL25hdmlnYXRpb24vY29udGVudF90b3BfbmF2L1RISU5LX0JBTksuc3ZnIiwiaWF0IjoxNjI4NjA3MTY1LCJleHAiOjE5NDM5NjcxNjV9.BKX5zF6cgi0fW1lbld4jiBtpZavbjIogUUvH4nl4lEc",
         txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       },
     },
