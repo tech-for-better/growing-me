@@ -828,22 +828,36 @@ p {
 
 .inner-content_background {
   /* background-image: url(""); */
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   /* background-size: cover; */
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: top;
   width: 100vw;
   /* position: absolute; */
   /* margin: 0 auto; */
   margin: 0 auto;
-
-
+  height: 100vh;
 }
 .inner-content-container {
   bottom: 400px;
   left: 260px;
 }
 
-.margin-top-btm-1{
+.margin-top-btm-1 {
   margin: 4rem 0;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 767px) {
+  .inner-content_background {
+    background-image: none !important;
+    width: 100vw;
+  }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .bottom-right {
+    right: -50%;
+    bottom: 80%;
+  }
 }

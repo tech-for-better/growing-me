@@ -93,11 +93,11 @@ export default function InnerContent() {
 
   return (
     <>
-      <div className="flex flex-center space-between narrow center column">
+      {/* <div className="flex flex-center space-between narrow center column">
         <h1 className="text-center txt-xlg mobile-margin-sm margin-top-btm-1">
           {contentState.current_section}
         </h1>
-      </div>
+      </div> */}
 
       <div
         className="inner-content_background"

@@ -136,14 +136,17 @@
 .carousel.carousel-slider {
   /* background-color: white; */
   background-color: transparent;
-  /* border: 3px solid #bcd38c; */
   border-radius: 1rem;
-  position: relative;
-  margin: 0 1rem;
+  /* position: relative; */
+  /* margin: 0 1rem; */
   padding: 2rem 0 0 0;
   /* overflow: hidden; */
   width: 40vw !important;
-  margin: 17rem auto;
+  /* margin: 17rem auto; */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .carousel.carousel-slider .control-arrow {
   top: 0;
@@ -251,20 +254,16 @@
 }
 .carousel .control-dots {
   position: absolute;
-  left: -5%;
+  /* left: -5%; */
   bottom: -15%;
   /* margin: 3rem; */
-  margin: 1rem 3rem 3rem 3rem;
+  /* margin: 1rem 3rem 3rem 3rem; */
   padding: 0;
   text-align: center;
   width: 100%;
   z-index: 1;
 }
-@media (min-width: 960px) {
-  .carousel .control-dots {
-    /* bottom: 0; */
-  }
-}
+
 .carousel .control-dots .dot {
   -webkit-transition: opacity 0.25s ease-in;
   -moz-transition: opacity 0.25s ease-in;
@@ -298,4 +297,41 @@
 }
 .carousel:hover .slide .legend {
   opacity: 1;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .carousel.carousel-slider {
+    width: 71vw !important;
+  }
+  .control-dots {
+    margin: 3rem 0 3rem 0;
+    bottom: -24% !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .carousel.carousel-slider {
+    width: 74vw !important;
+  }
+  .bottom-right {
+    right: -50%;
+    bottom: 50px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .bottom-right {
+    right: 5%;
+    bottom: 80%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .bottom-right {
+    right: 5%;
+    bottom: 80%;
+  }
 }
