@@ -39,6 +39,7 @@ acabb3 - grey
   padding: 0;
   margin: 0;
   background-color: #ecf0d9;
+  overflow: hidden;
 }
 
 * {
@@ -372,6 +373,10 @@ input[disabled] {
 }
 .opacity-half {
   opacity: 50%;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 /* Button */
@@ -793,7 +798,6 @@ p {
     /* margin: 0; */
     margin: 3rem 0 3rem 0;
     bottom: -21% !important;
-
   }
 
   .me-tree-grid {
@@ -835,9 +839,10 @@ p {
   /* background-position: bottom; */
   background-position: center;
   width: 100vw;
-  height: 89.5vh;
+  /* height: 89.5vh; */
   /* position: absolute; */
   /* margin: 0 auto; */
+  height: 100vh;
 }
 .inner-content-container {
   bottom: 400px;
@@ -847,48 +852,47 @@ p {
 .margin-top-btm-1 {
   margin: 4rem 0;
 }
-.min-width{
+.min-width {
   width: min-content;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 767px) {
-.inner-content_background {
-  background-image: none !important;
-  width: 100vw;
-  height: 89.5vh;
-
-}
+  .inner-content_background {
+    background-image: none !important;
+    width: 100vw;
+    /* height: 89.5vh; */
+  }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
- .bottom-right {
+  .bottom-right {
     right: -50%;
     bottom: 80%;
-}
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-.bottom-right {
-  right: -53%;
-  /* bottom: 46%; */
-}
+  .bottom-right {
+    /* right: -53%; */
+    /* bottom: 46%; */
+  }
   .inner-content_background {
-  height: 91.5vh;
- }
+    /* height: 91.5vh; */
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-   .inner-content_background {
-  height: 91.5vh;
- }
+  .inner-content_background {
+    /* height: 91.5vh; */
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-   .inner-content_background {
-  height: 91.5vh;
- }
+  .inner-content_background {
+    /* height: 91.5vh; */
+  }
 }

@@ -65,7 +65,6 @@ export default function Content() {
         </div>
 
         <InnerContent />
-       
       </ContentContext.Provider>
     </>
   );

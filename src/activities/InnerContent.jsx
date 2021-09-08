@@ -12,6 +12,10 @@ import {
   playpic,
   thinkpic,
   wonderpic,
+  make_only,
+  think_book_only,
+  play_only,
+  wonder_leaf_only,
   left_arrow,
   right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
@@ -37,6 +41,13 @@ export default function InnerContent() {
     make: makepic,
     wonder: wonderpic,
   };
+
+  // let backgroundImgToSubSectionMap = {
+  //   play: play_only,
+  //   think: think_book_only,
+  //   make: make_only,
+  //   wonder: wonder_leaf_only,
+  // };
 
   const sections = [
     "Great To Meet You",
