@@ -19,7 +19,17 @@ export default function ContentNav() {
       itemListClassName={"content-item-list"}
       itemClassName={"content-item"}
     >
-      <Collapsible trigger="Great to meet you">
+      <Collapsible
+        trigger="Great to meet you"
+        triggerDisabled={
+          !state.data.progress.unlocked.includes("Great To Meet You")
+        }
+        className={`${
+          state.data.progress.unlocked.includes("Great To Meet You")
+            ? ""
+            : "locked"
+        }`}
+      >
         <Link
           id="great_to_meet_you"
           className="Collapsible__contentInner "
@@ -118,12 +128,17 @@ export default function ContentNav() {
           </Link>
         </Link>
       </Collapsible>
-      <Collapsible trigger="Your brain is amazing" triggerDisabled={
+      <Collapsible
+        trigger="Your brain is amazing"
+        triggerDisabled={
           !state.data.progress.unlocked.includes("Your Brain is Amazing")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("Your Brain is Amazing")
+            ? ""
+            : "locked"
+        }`}
       >
-
         <Link
           id="your_brain_is_amazing"
           className="Collapsible__contentInner "
@@ -227,7 +242,11 @@ export default function ContentNav() {
         triggerDisabled={
           !state.data.progress.unlocked.includes("Your Feelings Matter")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("Your Feelings Matter")
+            ? ""
+            : "locked"
+        }`}
       >
         <Link
           id="your_feelings_matter"
@@ -332,7 +351,11 @@ export default function ContentNav() {
         triggerDisabled={
           !state.data.progress.unlocked.includes("You're Not Alone")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("You're Not Alone")
+            ? ""
+            : "locked"
+        }`}
       >
         <Link
           id="your_not_alone"
@@ -435,7 +458,9 @@ export default function ContentNav() {
       <Collapsible
         trigger="You're safe"
         triggerDisabled={!state.data.progress.unlocked.includes("You're Safe")}
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("You're Safe") ? "" : "locked"
+        }`}
       >
         <Link
           id="your_safe"
@@ -540,7 +565,9 @@ export default function ContentNav() {
         triggerDisabled={
           !state.data.progress.unlocked.includes("You're Unique")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("You're Unique") ? "" : "locked"
+        }`}
       >
         <Link
           id="your_unique"
@@ -643,7 +670,9 @@ export default function ContentNav() {
       <Collapsible
         trigger="You're brave"
         triggerDisabled={!state.data.progress.unlocked.includes("You're Brave")}
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("You're Brave") ? "" : "locked"
+        }`}
       >
         <Link
           id="your_brave"
@@ -748,7 +777,11 @@ export default function ContentNav() {
         triggerDisabled={
           !state.data.progress.unlocked.includes("You Belong Here")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("You Belong Here")
+            ? ""
+            : "locked"
+        }`}
       >
         <Link
           id="you_belong_here"
@@ -853,7 +886,11 @@ export default function ContentNav() {
         triggerDisabled={
           !state.data.progress.unlocked.includes("The Future Is Bright")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("The Future Is Bright")
+            ? ""
+            : "locked"
+        }`}
       >
         <Link
           id="the_future_is_bright"
@@ -958,7 +995,11 @@ export default function ContentNav() {
         triggerDisabled={
           !state.data.progress.unlocked.includes("You Are A Wonder")
         }
-        className="locked"
+        className={`${
+          state.data.progress.unlocked.includes("You Are A Wonder")
+            ? ""
+            : "locked"
+        }`}
       >
         <Link
           id="you_are_a_wonder"
