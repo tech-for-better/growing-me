@@ -10,7 +10,7 @@ function reducer(state, action) {
     // When LOAD finishes fetching initial remote data
     case "RESOLVE_LOAD": {
       console.log("RESOLVE_LOAD data:action.data", action.data);
-      if (!action.data.profile && !action.data.tree) {
+      if (!action.data?.profile && !action.data?.tree) {
         return { status: "success", data: state.data, error: null };
       }
       return { status: "success", data: action.data, error: null };
