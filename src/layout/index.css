@@ -714,7 +714,13 @@ p {
   .me-tree-area {
     width: 100vw;
   }
-
+  .ready-mobile {
+    width: max-content;
+    margin-right: 1rem;
+    float: right;
+    font-size: 1.2rem;
+    padding: 0.3rem;
+  }
   .mobile-column {
     flex-direction: column !important;
   }
