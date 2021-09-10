@@ -5,6 +5,7 @@ export const Toolkit = styled.div`
   flex-direction: row;
   padding: 1rem 1rem 0 1rem;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ToolkitButton = styled.button`
@@ -32,7 +33,6 @@ export const ToolkitButton = styled.button`
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     transform: scale(1.05);
   }
-
 `;
 // padding: 0.5rem 1rem;
 
@@ -82,23 +82,24 @@ export const BtnImage = styled.img`
   }
 `;
 
-// export const BinStyle = styled.div`
-// height: "12rem",
-//   width: "12rem",
-//   color: "black",
-//   padding: "0 1rem",
-//   textAlign: "center",
-//   fontSize: "1rem",
-//   lineHeight: "normal",
-//   // float: "right",
-//   marginTop: "-1rem",
-//   position: "absolute",
-//   right: "2rem",
-//   top: "60rem",
-//   @media (max-width: 768px) {
-//     top: "35rem",
-//   }
-// `;
+export const BinStyle = styled.div`
+  height: 12rem;
+  width: 12rem;
+  color: black;
+  padding: 0 1rem;
+  text-align: center;
+
+  position: absolute;
+  right: 2rem;
+  bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 768px) {
+    width: 8rem;
+    height: 9rem;
+  }
+`;
 
 // COLOURS
 // d6f7d - darkblue

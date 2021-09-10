@@ -5,24 +5,7 @@ import { ItemTypes } from "./ItemTypes";
 import { bin } from "./../images/MeTreeImages";
 import { MeTreeContext } from "../App";
 import update from "immutability-helper";
-
-const binStyle = {
-  height: "12rem",
-  width: "12rem",
-  color: "black",
-  padding: "0 1rem",
-  textAlign: "center",
-  fontSize: "1rem",
-  lineHeight: "normal",
-  // float: "right",
-  marginTop: "-1rem",
-  position: "absolute",
-  right: "-1rem",
-  bottom: "5rem",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-};
+import { BinStyle } from "../layout/MeTree.styled";
 
 export const Dustbin = () => {
   const { state, setState } = useContext(MeTreeContext);
@@ -66,14 +49,9 @@ export const Dustbin = () => {
   }
 
   return (
-    <div
-      // className="absolute"
-      ref={drop}
-      role={"Dustbin"}
-      style={{ ...binStyle, backgroundColor }}
-    >
-      <img src={bin} alt="bin" />
+    <BinStyle ref={drop} role={"Dustbin"} style={{ backgroundColor }}>
+      <img src={bin} alt="bin" style={{ width: "100%" }} />
       {isActive ? "Release to delete" : "Drag item to be deleted here"}
-    </div>
+    </BinStyle>
   );
 };

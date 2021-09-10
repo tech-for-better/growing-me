@@ -15,7 +15,7 @@ export const PaletteContainer = styled.div`
     height: 150px;
     max-width: 25vw;
     right: 2rem;
-    top: 16rem;
+    top: 25rem;
   }
 `;
 

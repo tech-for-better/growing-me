@@ -133,9 +133,9 @@ export function MeTree() {
         </div>
       </div>
 
-      <div className="flex column center text-center items-center flex-grow me-tree-area">
+      <div className="relative flex column center text-center items-center flex-grow me-tree-area">
         {" "}
-        <h1 className="txt-xlg margin-top">
+        <h1 className="txt-xlg margin-top mobile-margin-lg">
           {state.data.profile?.adult_name
             ? "Welcome back " + state.data.profile?.adult_name
             : "Welcome back care giver"}
@@ -192,11 +192,13 @@ export function MeTree() {
               </MeTreeContainer>
 
               {visible ? <Palette type={paletteOption} /> : ""}
+              <div>
+                <Dustbin />
+              </div>
             </div>
-
-            <div className="flex row flex-end margin-btn mobile-margin-sm">
+            {/* <div className="flex row flex-end margin-btn mobile-margin-sm">
               <Dustbin />
-            </div>
+            </div> */}
 
             <div className="flex row flex-end margin-btn mobile-margin-sm">
               <div>
