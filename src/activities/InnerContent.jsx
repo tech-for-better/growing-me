@@ -1,5 +1,6 @@
 import React from "react";
-import { useContext, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useContext, useRef, useEffect, useState } from "react";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
@@ -19,6 +20,37 @@ import {
 export default function InnerContent() {
   const { contentState, dispatch } = useContext(ContentContext);
   const { state, setState } = useContext(MeTreeContext);
+  const [uploading, setUploading] = useState(false);
+  const history = useHistory();
+
+  async function uploadWonderImage(event) {
+    try {
+      setUploading(true);
+
+      if (!event.target.files || event.target.files.length === 0) {
+        throw new Error("You must select an image to upload.");
+      }
+
+      const file = event.target.files[0];
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      let { error: uploadError } = await supabase.storage
+        .from("wonder-gallery")
+        .upload(filePath, file);
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      onUpload(filePath);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setUploading(false);
+    }
+  }
 
   let textColorToSubSectionMap = {
     // play: "#abc961",
@@ -64,10 +96,6 @@ export default function InnerContent() {
           unlocked: [...state.data.progress.unlocked, unlocked_section],
         },
       });
-      // dispatch({
-      //   type: ACTIONS.ADD_TO_UNLOCKED,
-      //   new_unlocked: unlocked_section,
-      // });
     }
     // redirect to next section
     dispatch({
@@ -118,6 +146,8 @@ export default function InnerContent() {
     }
   }, [contentState]);
 
+
+
   return (
     <>
       {/* <div className="flex flex-center space-between narrow center column">
@@ -156,23 +186,7 @@ export default function InnerContent() {
             infiniteLoop={true}
             selectedItem={0}
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
-              hasPrev && (
-                <LeftArrow
-                  // type="button"
-                  onClick={onClickHandler}
-                  title={label}
-                />
-                // <button
-                //   type="button"
-                //   onClick={onClickHandler}
-                //   title={label}
-                //   style={{
-                //     ...leftArrowStyles,
-                //   }}
-                // >
-                //   <img src={left_arrow} alt="" />
-                // </button>
-              )
+              hasPrev && <LeftArrow onClick={onClickHandler} title={label} />
             }
             renderArrowNext={(onClickHandler, hasNext, label) =>
               hasNext && (
@@ -180,19 +194,7 @@ export default function InnerContent() {
                   type="button"
                   onClick={onClickHandler}
                   title={label}
-                >
-                  {/* <img src={right_arrow} alt="" /> */}
-                </RightArrow>
-                // <button
-                //   type="button"
-                //   onClick={onClickHandler}
-                //   title={label}
-                //   style={{
-                //     ...rightArrowStyles,
-                //   }}
-                // >
-                //   <img src={right_arrow} alt="" />
-                // </button>
+                ></RightArrow>
               )
             }
           >
@@ -237,17 +239,47 @@ export default function InnerContent() {
                 </>
               );
             })}
-            {/* :
-          " still loading"
-        } */}
           </Carousel>
           {contentState.current_subsection === "wonder" ? (
-            <button
-              onClick={() => sectionCompleted()}
-              className="absolute fixed-narrow bottom-right button primary"
-            >
-              Section complete?
-            </button>
+            <>
+              <div className="flex column wonder-buttons ">
+                <div>
+                  <button
+                    onClick={() => sectionCompleted()}
+                    className=" fixed-narrow button primary "
+                  >
+                    Section Completed
+                  </button>
+                </div>
+                <div>
+                  <button
+                    onClick={() => history.push("/gallery")}
+                    className=" fixed-narrow button primary "
+                  >
+                    View Gallery
+                  </button>
+                </div>
+                <div>
+                  <label
+                    className=" fixed-narrow button primary margin-none  "
+                    htmlFor="single"
+                  >
+                    {uploading ? "Uploading ..." : "Upload"}
+                  </label>
+                  <input
+                    style={{
+                      visibility: "hidden",
+                      position: "absolute",
+                    }}
+                    type="file"
+                    id="single"
+                    accept="image/*"
+                    onChange={uploadWonderImage}
+                    disabled={uploading}
+                  />
+                </div>
+              </div>
+            </>
           ) : (
             <button
               onClick={() => moveToNextSection()}
