@@ -7,7 +7,7 @@ export const PaletteContainer = styled.div`
   border-radius: 20px;
   position: absolute;
   right: 2rem;
-  top: 18rem;
+  top: 37rem;
   overflow: auto;
   //   display: grid;
   //   grid-template-rows: 1fr;
@@ -15,7 +15,15 @@ export const PaletteContainer = styled.div`
     height: 150px;
     max-width: 25vw;
     right: 2rem;
-    top: 16rem;
+    top: 25rem;
+  }
+  @media (max-width: 600px) {
+    height: 100px;
+    max-width: 25vw;
+    left: 29%;
+    top: 91%;
+    width: 100%;
+    margin: 1rem;
   }
 `;
 
