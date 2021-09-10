@@ -66,6 +66,10 @@ const initialState = {
     gallery: {
       images: [],
     },
+    // gallery: {
+    //   me_tree_images: [],
+    //   wonder_tree_images: [],
+    // },
     profile: {
       adult_name: null,
       avatar_url: null,

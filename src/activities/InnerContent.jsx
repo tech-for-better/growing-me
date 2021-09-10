@@ -23,34 +23,53 @@ export default function InnerContent() {
   const [uploading, setUploading] = useState(false);
   const history = useHistory();
 
-  async function uploadWonderImage(event) {
-    try {
-      setUploading(true);
+  // async function downloadImage(path) {
+  //   try {
+  //     const { data, error } = await supabase.storage
+  //       .from("wonder-gallery")
+  //       .download(path);
+  //     if (error) {
+  //       throw error;
+  //     }
+  //     const url = URL.createObjectURL(data);
+  //      setState({
+  //       gallery: {
+  //      wonder_tree_images: [],
+  //   },
+  //     });
+  //   } catch (error) {
+  //     console.log("Error downloading image: ", error.message);
+  //   }
+  // }
 
-      if (!event.target.files || event.target.files.length === 0) {
-        throw new Error("You must select an image to upload.");
-      }
+  // async function uploadWonderImage(event) {
+  //   try {
+  //     setUploading(true);
 
-      const file = event.target.files[0];
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `${fileName}`;
+  //     if (!event.target.files || event.target.files.length === 0) {
+  //       throw new Error("You must select an image to upload.");
+  //     }
 
-      let { error: uploadError } = await supabase.storage
-        .from("wonder-gallery")
-        .upload(filePath, file);
+  //     const file = event.target.files[0];
+  //     const fileExt = file.name.split(".").pop();
+  //     const fileName = `${Math.random()}.${fileExt}`;
+  //     const filePath = `${fileName}`;
 
-      if (uploadError) {
-        throw uploadError;
-      }
+  //     let { error: uploadError } = await supabase.storage
+  //       .from("wonder-gallery")
+  //       .upload(filePath, file);
 
-      onUpload(filePath);
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setUploading(false);
-    }
-  }
+  //     if (uploadError) {
+  //       throw uploadError;
+  //     }
+
+  //     onUpload(filePath);
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setUploading(false);
+  //   }
+  // }
 
   let textColorToSubSectionMap = {
     // play: "#abc961",
@@ -274,8 +293,8 @@ export default function InnerContent() {
                     type="file"
                     id="single"
                     accept="image/*"
-                    onChange={uploadWonderImage}
-                    disabled={uploading}
+                    // onChange={uploadWonderImage}
+                    // disabled={uploading}
                   />
                 </div>
               </div>
