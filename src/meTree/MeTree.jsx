@@ -149,8 +149,8 @@ export function MeTree() {
           to change anything?
         </h2>
         {/* <div className="mobile-narrow">*/}
-        <div className="me-tree-container--mobile me-tree-grid me-tree-desktop">
-          <div className="toolkit-area">
+        <div className="me-tree-container--mobile me-tree-grid me-tree-desktop items-center">
+          <div>
             <Toolkit>
               <ToolkitButton onClick={() => handleClick("WhatColour")}>
                 <BtnImage src={WhatColour} alt="" />
@@ -194,8 +194,10 @@ export function MeTree() {
               {visible ? <Palette type={paletteOption} /> : ""}
             </div>
 
-            {/* <div className="empty-area"></div> */}
-            <Dustbin />
+            <div className="flex row flex-end margin-btn mobile-margin-sm">
+              <Dustbin />
+            </div>
+
             <div className="flex row flex-end margin-btn mobile-margin-sm">
               <div>
                 <Link to="/content">

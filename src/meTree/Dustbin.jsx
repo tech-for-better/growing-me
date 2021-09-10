@@ -17,11 +17,12 @@ const binStyle = {
   // float: "right",
   marginTop: "-1rem",
   position: "absolute",
-  right: "2rem",
-  top: "60rem",
+  right: "-1rem",
+  bottom: "5rem",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
-
-
 
 export const Dustbin = () => {
   const { state, setState } = useContext(MeTreeContext);

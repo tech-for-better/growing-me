@@ -4,16 +4,7 @@ export const Toolkit = styled.div`
   display: flex;
   flex-direction: row;
   padding: 1rem 1rem 0 1rem;
-  @media (max-width: 768px) {
-    flex-direction: row;
-    position: fixed;
-    bottom: 0;
-    z-index: 4000;
-    width: 100vw;
-    justify-content: space-around;
-    overflow: scroll;
-    margin: 0rem;
-  }
+  align-items: center;
 `;
 
 export const ToolkitButton = styled.button`
@@ -35,15 +26,13 @@ export const ToolkitButton = styled.button`
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   max-width: 10rem;
+  width: max-content;
   &:hover {
     background-color: #337d8e;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     transform: scale(1.05);
   }
-  @media (max-width: 768px) {
-    margin-left: 0.1rem;
-    max-width: 3.5rem;
-  }
+
 `;
 // padding: 0.5rem 1rem;
 
@@ -92,6 +81,24 @@ export const BtnImage = styled.img`
     max-width: 50px;
   }
 `;
+
+// export const BinStyle = styled.div`
+// height: "12rem",
+//   width: "12rem",
+//   color: "black",
+//   padding: "0 1rem",
+//   textAlign: "center",
+//   fontSize: "1rem",
+//   lineHeight: "normal",
+//   // float: "right",
+//   marginTop: "-1rem",
+//   position: "absolute",
+//   right: "2rem",
+//   top: "60rem",
+//   @media (max-width: 768px) {
+//     top: "35rem",
+//   }
+// `;
 
 // COLOURS
 // d6f7d - darkblue
