@@ -17,6 +17,14 @@ export const PaletteContainer = styled.div`
     right: 2rem;
     top: 25rem;
   }
+  @media (max-width: 600px) {
+    height: 100px;
+    max-width: 25vw;
+    left: 29%;
+    top: 91%;
+    width: 100%;
+    margin: 1rem;
+  }
 `;
 
 export const PaletteImg = styled.img`

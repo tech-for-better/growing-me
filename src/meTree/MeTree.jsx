@@ -144,7 +144,7 @@ export function MeTree() {
             : " and young person "}
           !
         </h1>
-        <h2 className="narrow rokkitt-font">
+        <h2 className="narrow rokkitt-font mobile-hide">
           Here’s your Me Tree from last time - it’s looking good! Would you like
           to change anything?
         </h2>
@@ -203,7 +203,7 @@ export function MeTree() {
             <div className="flex row flex-end margin-btn mobile-margin-sm">
               <div>
                 <Link to="/content">
-                  <button className="button primary block">
+                  <button className="button primary block ready-mobile">
                     Ready to play?
                   </button>
                 </Link>

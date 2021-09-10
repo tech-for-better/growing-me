@@ -6,6 +6,9 @@ export const Toolkit = styled.div`
   padding: 1rem 1rem 0 1rem;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 `;
 
 export const ToolkitButton = styled.button`
@@ -32,6 +35,9 @@ export const ToolkitButton = styled.button`
     background-color: #337d8e;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     transform: scale(1.05);
+  }
+  @media (max-width: 768px) {
+    padding: 0.8%;
   }
 `;
 // padding: 0.5rem 1rem;
@@ -71,6 +77,12 @@ export const MeTreeContainer = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 30rem;
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+  }
 `;
 
 export const BtnImage = styled.img`
@@ -98,6 +110,14 @@ export const BinStyle = styled.div`
   @media (max-width: 768px) {
     width: 8rem;
     height: 9rem;
+  }
+  @media (max-width: 600px) {
+    width: 7rem;
+    height: 7rem;
+    font-size: 0;
+    left: 2%;
+    bottom: -9%;
+    padding: 1rem;
   }
 `;
 
