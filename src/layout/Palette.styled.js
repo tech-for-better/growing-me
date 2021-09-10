@@ -7,7 +7,7 @@ export const PaletteContainer = styled.div`
   border-radius: 20px;
   position: absolute;
   right: 2rem;
-  top: 18rem;
+  top: 37rem;
   overflow: auto;
   //   display: grid;
   //   grid-template-rows: 1fr;

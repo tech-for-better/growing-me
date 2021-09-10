@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Toolkit = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 1rem 1rem 0 1rem;
   @media (max-width: 768px) {
     flex-direction: row;

@@ -9,16 +9,19 @@ import update from "immutability-helper";
 const binStyle = {
   height: "12rem",
   width: "12rem",
-  marginRight: "1.5rem",
-  marginBottom: "1.5rem",
   color: "black",
   padding: "0 1rem",
   textAlign: "center",
   fontSize: "1rem",
   lineHeight: "normal",
-  float: "right",
+  // float: "right",
   marginTop: "-1rem",
+  position: "absolute",
+  right: "2rem",
+  top: "60rem",
 };
+
+
 
 export const Dustbin = () => {
   const { state, setState } = useContext(MeTreeContext);
