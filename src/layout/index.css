@@ -861,3 +861,7 @@ p {
     bottom: 80%;
   }
 }
+
+.max-content{
+  width: max-content;
+}
