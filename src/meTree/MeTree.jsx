@@ -81,8 +81,40 @@ export function MeTree() {
       });
   };
 
-  if (state.status === "loading") return <h1>Initialising...</h1>;
-  if (state.status === "error") return <div>Something went wrong!</div>;
+
+
+
+
+  if (state.status === "loading")
+  return
+  <div className="center text-center mobile-margin-lg">
+    <div className="margin-top">
+      <Link to={"/"}>
+        <img src={logo} className="App-logo" alt="logo" />
+      </Link>
+    </div>
+    <h1>Initialising</h1>
+    {/* <div className="center text-center">
+      <h2>
+        <Link to="/">Go Back</Link>
+      </h2>
+    </div> */}
+  </div>;
+
+  if (state.status === "error") return
+  <div className="center text-center mobile-margin-lg">
+    <div className="margin-top">
+      <Link to={"/"}>
+        <img src={logo} className="App-logo" alt="logo" />
+      </Link>
+    </div>
+    <h1>Something went wrong!</h1>
+    <div className="center text-center">
+      <h2>
+        <Link to="/">Go Back</Link>
+      </h2>
+    </div>
+  </div>;;
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
