@@ -6,12 +6,28 @@ import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
 
+const categories = [
+  'all',
+  'Me Tree',
+  'Wonder Time',
+];
 
+const categoriesMapping = {
+  all: [
+    "state.data.gallery.me_tree_images",
+    "state.data.gallery.wonder_time_images",
+  ],
+  "Me Tree": "state.data.gallery.me_tree_images",
+  "Wonder Time": "state.data.gallery.wonder_time_images",
+};
 
-export default function Gallery() {
+export default function Gallery({ category, setCategory }) {
   const { state, setState } = useContext(MeTreeContext);
   // console.log("in gallery ", state.data.gallery?.me_tree_images);
-  console.log("in gallery wonder_time ", state.data.gallery?.wonder_time_images);
+  console.log(
+    "in gallery wonder_time ",
+    state.data.gallery?.wonder_time_images
+  );
 
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
@@ -38,6 +54,16 @@ export default function Gallery() {
       });
     }
   }
+  let combinedImageArray = [...state.data.gallery?.me_tree_images, ...state.data.gallery?.wonder_time_images]
+  console.log("combinedArray Gallery" , combinedImageArray);
+
+  // Need to combine data from me tree and wonder time into one array of objects, with src and catergory keys, which
+  // we then map and filter and display as list 
+  // combinedImageArray.map(a => {
+  //   let newImageObj = {
+
+  //   }
+  // })
 
   return (
     <>
@@ -66,9 +92,33 @@ export default function Gallery() {
           Here you can see all your saved MeTree's!
         </h2>
       </div>
+      <section>
+        <fieldset>
+          <legend>Categories</legend>
+          {categories.map((cat) => (
+            <label htmlFor={cat} key={cat}>
+              {cat}
+              <input
+                type="radio"
+                name=""
+                id={cat}
+                value={cat}
+                checked={cat === category}
+                onChange={(event) => setCategory(event.target.value)}
+              />
+            </label>
+          ))}
+        </fieldset>
+      </section>
       <div className="flex flex-center">
         <ul className="li-none gap grid mobile-gap ">
-          {state.data.gallery?.me_tree_images
+          {combinedImageArray
+            // .filter(
+            //   (image) =>
+            //     category === "all" ||
+            //     Object.values(categoriesMapping) ===
+            //       Object.keys(categoriesMapping)
+            // )
             .filter((image) => image !== null)
             .map(
               (image) => (
@@ -104,8 +154,9 @@ export default function Gallery() {
               //)
             )}
         </ul>
-        <ul className="li-none gap grid mobile-gap ">
+        {/* <ul className="li-none gap grid mobile-gap ">
           {state.data.gallery?.wonder_time_images
+            // .filter((image) => category === "all" || image.category === category)
             .filter((image) => image !== null)
             .map((image) => (
               <li className="relative">
@@ -122,7 +173,7 @@ export default function Gallery() {
                 />
               </li>
             ))}
-        </ul>
+        </ul> */}
       </div>
     </>
   );
