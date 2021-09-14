@@ -64,7 +64,8 @@ const initialState = {
       boxes: {},
     },
     gallery: {
-      images: [],
+      me_tree_images: [],
+      wonder_time_images: [],
     },
     profile: {
       adult_name: null,
