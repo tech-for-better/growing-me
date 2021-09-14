@@ -1,10 +1,11 @@
 import React from "react";
-import {useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "../components/NavMenu";
 import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
+import { WonderTimeImage } from "./../activities/WonderTimeImage";
 
 export default function Gallery() {
   const { state, setState } = useContext(MeTreeContext);
@@ -89,6 +90,14 @@ export default function Gallery() {
               //)
             )}
         </ul>
+        <WonderTimeImage
+          url={wonder_time_images}
+          size={150}
+          onUpload={(url) => {
+            setImageUrl(url);
+            // ({ username, website, avatar_url: url })
+          }}
+        />
       </div>
     </>
   );
