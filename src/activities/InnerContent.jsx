@@ -79,6 +79,33 @@ export default function InnerContent() {
     });
   }
 
+  function moveToNextSection() {
+    console.log("move to next section", contentState.current_section);
+    if (contentState.current_subsection === "play") {
+      dispatch({
+        type: ACTIONS.SET_MULTIPLE,
+        payload: {
+          current_subsection: "think",
+        },
+      });
+    }
+    if (contentState.current_subsection === "think") {
+      dispatch({
+        type: ACTIONS.SET_MULTIPLE,
+        payload: {
+          current_subsection: "make",
+        },
+      });
+    }
+    if (contentState.current_subsection === "make") {
+      dispatch({
+        type: ACTIONS.SET_MULTIPLE,
+        payload: {
+          current_subsection: "wonder",
+        },
+      });
+    }
+  }
   // use useRef to get the carousel instance
   let carousel = useRef(null);
 
@@ -222,7 +249,12 @@ export default function InnerContent() {
               Section complete?
             </button>
           ) : (
-            ""
+            <button
+              onClick={() => moveToNextSection()}
+              className="absolute fixed-narrow bottom-right button primary max-content"
+            >
+              Next Activity
+            </button>
           )}
         </div>
       </div>
