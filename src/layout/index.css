@@ -879,3 +879,8 @@ p {
 .min-content {
   width: min-content;
 }
+.wonder-buttons{
+  align-items: flex-end;
+  gap: 1rem;
+  margin-right: -21%;
+}

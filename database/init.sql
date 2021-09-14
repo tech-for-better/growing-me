@@ -62,9 +62,41 @@ create table me_tree (
 
 --- gallery table
 
+insert into storage.buckets (id, name)
+values ('wonder-gallery', 'wonder-gallery');
+
+CREATE POLICY "Give users access to own folder z7mhxc_0" ON storage.objects FOR
+SELECT
+  USING (
+    bucket_id = 'wonder-gallery'
+    AND auth.uid():: text = (storage.foldername(name)) [ 1 ]
+  );
+
+CREATE POLICY "Give users access to own folder z7mhxc_1" ON storage.objects FOR INSERT WITH CHECK (
+  bucket_id = 'wonder-gallery'
+  AND auth.uid():: text = (storage.foldername(name)) [ 1 ]
+);
+
+CREATE POLICY "Give anon users access to JPG images in folder z7mhxc_0" ON storage.objects FOR
+SELECT
+  USING (
+    bucket_id = 'wonder-gallery'
+    AND storage."extension"(name) = 'jpg'
+    AND LOWER((storage.foldername(name)) [ 1 ]) = 'public'
+    AND auth.role() = 'anon'
+  );
+
+CREATE POLICY "Give anon users access to JPG images in folder z7mhxc_1" ON storage.objects FOR INSERT WITH CHECK (
+  bucket_id = 'wonder-gallery'
+  AND storage."extension"(name) = 'jpg'
+  AND LOWER((storage.foldername(name)) [ 1 ]) = 'public'
+  AND auth.role() = 'anon'
+);
+
 CREATE TABLE gallery (
   id uuid references auth.users not null,
-  images varchar[],
+  me_tree_images varchar[],
+  wonder_time_images varchar[],
   primary key (id)
 );
 
@@ -74,3 +106,8 @@ CREATE TABLE progress (
   primary key (id)
 );
 
+CREATE POLICY "Anyone can upload an images z7mhxc_0" ON storage.objects FOR INSERT WITH CHECK ((bucket_id = 'wonder-gallery':: text));
+
+CREATE POLICY "Images are public z7mhxc_0" ON storage.objects FOR
+SELECT
+  USING ((bucket_id = 'wonder-gallery':: text));

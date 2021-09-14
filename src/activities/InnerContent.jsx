@@ -1,5 +1,7 @@
 import React from "react";
-import { useContext, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useContext, useRef, useEffect, useState } from "react";
+import { supabase } from "../authentication/supabaseClient";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
@@ -16,9 +18,113 @@ import {
   right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
 
-export default function InnerContent() {
+export default function InnerContent({ url }) {
   const { contentState, dispatch } = useContext(ContentContext);
   const { state, setState } = useContext(MeTreeContext);
+  const [uploading, setUploading] = useState(false);
+  const history = useHistory();
+
+  // useEffect(() => {
+  //   if (url) downloadImage(url);
+  // }, [url]);
+
+  // async function downloadImage(path) {
+  //   console.log("path in downloadimage", path);
+  //   try {
+  //     const { data, error } = await supabase.storage
+  //       .from("wonder-gallery")
+  //       .download(path);
+  //     console.log("data in download image", data);
+  //     if (error) {
+  //       throw error;
+  //     }
+  //     const url = URL.createObjectURL(data);
+  //     console.log("url in download image", url);
+  //     setState({
+  //       gallery: {
+  //         wonder_tree_images: [url],
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log("Error downloading image: ", error.message);
+  //   }
+  // }
+
+  // async function uploadWonderTimeImage(event) {
+  //   try {
+  //     setUploading(true);
+
+  //     if (!event.target.files || event.target.files.length === 0) {
+  //       throw new Error("You must select an image to upload.");
+  //     }
+
+  //     const file = event.target.files[0];
+  //     // const fileExt = file.name.split(".").pop();
+  //     // const fileName = `${Math.random()}.${fileExt}`;
+  //     // const filePath = `${fileName}`;
+
+  //     // console.log("filePath WONDER TIME", filePath);
+  //     console.log("file WONDER TIME", file);
+
+  //     let { error: uploadError } = await supabase.storage
+  //       .from("wonder-gallery")
+  //       .upload(file.name, file);
+
+  //     if (uploadError) {
+  //       throw uploadError;
+  //     }
+
+  //     downloadImage(file);
+
+  //     // setState({
+  //     //   gallery: {
+  //     //     wonder_time_images: [filePath]
+  //     //   }
+  //     // });
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setUploading(false);
+  //   }
+  // }
+
+  const saveToGallery = () => {
+    // make sure the gallery row exists for this user
+    if (!state.data.gallery) {
+      setState({
+        gallery: {
+          wonder_time_images: [],
+        },
+      });
+    }
+    if (ref.current === null) {
+      return;
+    }
+
+    // toPng(ref.current, { cacheBust: true })
+    //   .then(async (dataUrl) => {
+    //     // alert(
+    //     //   "You will shortly be redirected to the gallery. Please close this alert box and wait a moment..."
+    //     // );
+    //     // @TODO
+    //     // const link = document.createElement("a");
+    //     // link.download = "my-me-tree.png";
+    //     // link.href = dataUrl;
+    //     // link.click();
+
+    //     setState({
+    //       gallery: {
+    //         me_tree_images: [...state.data.gallery.wonder_time_images, dataUrl],
+    //       },
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .finally(() => {
+    //     history.push("/gallery");
+    //   });
+  };
 
   let textColorToSubSectionMap = {
     // play: "#abc961",
@@ -64,10 +170,6 @@ export default function InnerContent() {
           unlocked: [...state.data.progress.unlocked, unlocked_section],
         },
       });
-      // dispatch({
-      //   type: ACTIONS.ADD_TO_UNLOCKED,
-      //   new_unlocked: unlocked_section,
-      // });
     }
     // redirect to next section
     dispatch({
@@ -156,23 +258,7 @@ export default function InnerContent() {
             infiniteLoop={true}
             selectedItem={0}
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
-              hasPrev && (
-                <LeftArrow
-                  // type="button"
-                  onClick={onClickHandler}
-                  title={label}
-                />
-                // <button
-                //   type="button"
-                //   onClick={onClickHandler}
-                //   title={label}
-                //   style={{
-                //     ...leftArrowStyles,
-                //   }}
-                // >
-                //   <img src={left_arrow} alt="" />
-                // </button>
-              )
+              hasPrev && <LeftArrow onClick={onClickHandler} title={label} />
             }
             renderArrowNext={(onClickHandler, hasNext, label) =>
               hasNext && (
@@ -180,19 +266,7 @@ export default function InnerContent() {
                   type="button"
                   onClick={onClickHandler}
                   title={label}
-                >
-                  {/* <img src={right_arrow} alt="" /> */}
-                </RightArrow>
-                // <button
-                //   type="button"
-                //   onClick={onClickHandler}
-                //   title={label}
-                //   style={{
-                //     ...rightArrowStyles,
-                //   }}
-                // >
-                //   <img src={right_arrow} alt="" />
-                // </button>
+                ></RightArrow>
               )
             }
           >
@@ -237,17 +311,47 @@ export default function InnerContent() {
                 </>
               );
             })}
-            {/* :
-          " still loading"
-        } */}
           </Carousel>
           {contentState.current_subsection === "wonder" ? (
-            <button
-              onClick={() => sectionCompleted()}
-              className="absolute fixed-narrow bottom-right button primary"
-            >
-              Section complete?
-            </button>
+            <>
+              <div className="flex column wonder-buttons ">
+                <div>
+                  <button
+                    onClick={() => sectionCompleted()}
+                    className=" fixed-narrow button primary "
+                  >
+                    Section Completed
+                  </button>
+                </div>
+                <div>
+                  <button
+                    onClick={() => history.push("/gallery")}
+                    className=" fixed-narrow button primary "
+                  >
+                    View Gallery
+                  </button>
+                </div>
+                <div>
+                  <label
+                    className=" fixed-narrow button primary margin-none  "
+                    htmlFor="single"
+                  >
+                    {uploading ? "Uploading ..." : "Upload"}
+                  </label>
+                  <input
+                    style={{
+                      visibility: "hidden",
+                      position: "absolute",
+                    }}
+                    type="file"
+                    id="single"
+                    accept="image/*"
+                    onChange={uploadWonderTimeImage}
+                    disabled={uploading}
+                  />
+                </div>
+              </div>
+            </>
           ) : (
             <button
               onClick={() => moveToNextSection()}

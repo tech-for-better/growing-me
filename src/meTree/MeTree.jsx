@@ -48,7 +48,7 @@ export function MeTree() {
     if (!state.data.gallery) {
       setState({
         gallery: {
-          images: [],
+          me_tree_images: [],
         },
       });
     }
@@ -58,6 +58,7 @@ export function MeTree() {
 
     toPng(ref.current, { cacheBust: true })
       .then(async (dataUrl) => {
+        console.log("dataURL in metree", dataUrl);
         // alert(
         //   "You will shortly be redirected to the gallery. Please close this alert box and wait a moment..."
         // );
@@ -69,7 +70,7 @@ export function MeTree() {
 
         setState({
           gallery: {
-            images: [...state.data.gallery.images, dataUrl],
+            me_tree_images: [...state.data.gallery.me_tree_images, dataUrl],
           },
         });
       })
@@ -81,12 +82,7 @@ export function MeTree() {
       });
   };
 
-
-
-
-
-  if (state.status === "loading")
-  return
+  if (state.status === "loading") return;
   <div className="center text-center mobile-margin-lg">
     <div className="margin-top">
       <Link to={"/"}>
@@ -101,7 +97,7 @@ export function MeTree() {
     </div> */}
   </div>;
 
-  if (state.status === "error") return
+  if (state.status === "error") return;
   <div className="center text-center mobile-margin-lg">
     <div className="margin-top">
       <Link to={"/"}>
@@ -114,7 +110,7 @@ export function MeTree() {
         <Link to="/">Go Back</Link>
       </h2>
     </div>
-  </div>;;
+  </div>;
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {

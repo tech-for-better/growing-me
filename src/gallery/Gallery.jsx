@@ -1,27 +1,26 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { supabase } from "../authentication/supabaseClient";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "../components/NavMenu";
-import { getGalleryData } from "../../database/model";
 import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
+import { WonderTimeImage } from "./../activities/WonderTimeImage";
 
 export default function Gallery() {
   const { state, setState } = useContext(MeTreeContext);
-  // console.log("in gallery ", state.data.gallery?.images);
+  // console.log("in gallery ", state.data.gallery?.me_tree_images);
 
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
 
-  async function deleteImage(image) {
-    let imagesArray = state.data.gallery?.images;
+  async function deleteImage(me_tree_images) {
+    let imagesArray = state.data.gallery?.me_tree_images;
     let imageIndex = imagesArray.indexOf(image);
     imagesArray[imageIndex] = null;
     setState({
       gallery: {
-        images: imagesArray,
+        me_tree_images: imagesArray,
       },
     });
   }
@@ -55,7 +54,7 @@ export default function Gallery() {
       </div>
       <div className="flex flex-center">
         <ul className="li-none gap grid mobile-gap ">
-          {state.data.gallery?.images
+          {state.data.gallery?.me_tree_images
             .filter((image) => image !== null)
             .map(
               (image) => (
@@ -91,6 +90,14 @@ export default function Gallery() {
               //)
             )}
         </ul>
+        <WonderTimeImage
+          url={wonder_time_images}
+          size={150}
+          onUpload={(url) => {
+            setImageUrl(url);
+            // ({ username, website, avatar_url: url })
+          }}
+        />
       </div>
     </>
   );
