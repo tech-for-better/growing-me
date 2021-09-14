@@ -65,11 +65,8 @@ const initialState = {
     },
     gallery: {
       me_tree_images: [],
+      wonder_time_images: [],
     },
-    // gallery: {
-    //   me_tree_me_tree_images: [],
-    //   wonder_tree_images: [],
-    // },
     profile: {
       adult_name: null,
       avatar_url: null,

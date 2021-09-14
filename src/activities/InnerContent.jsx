@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useContext, useRef, useEffect, useState } from "react";
+import { supabase } from "../authentication/supabaseClient";
 import { ContentContext } from "./Content";
 import { ACTIONS } from "./Content";
 import { Carousel } from "react-responsive-carousel";
@@ -17,59 +18,108 @@ import {
   right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
 
-export default function InnerContent() {
+export default function InnerContent({ url }) {
   const { contentState, dispatch } = useContext(ContentContext);
   const { state, setState } = useContext(MeTreeContext);
   const [uploading, setUploading] = useState(false);
   const history = useHistory();
 
-  // async function downloadImage(path) {
-  //   try {
-  //     const { data, error } = await supabase.storage
-  //       .from("wonder-gallery")
-  //       .download(path);
-  //     if (error) {
-  //       throw error;
-  //     }
-  //     const url = URL.createObjectURL(data);
-  //      setState({
-  //       gallery: {
-  //      wonder_tree_images: [],
-  //   },
-  //     });
-  //   } catch (error) {
-  //     console.log("Error downloading image: ", error.message);
-  //   }
-  // }
+  useEffect(() => {
+    if (url) downloadImage(url);
+  }, [url]);
 
-  // async function uploadWonderImage(event) {
-  //   try {
-  //     setUploading(true);
+  async function downloadImage(path) {
+    try {
+      const { data, error } = await supabase.storage
+        .from("wonder-gallery")
+        .download(path);
+      if (error) {
+        throw error;
+      }
+      const url = URL.createObjectURL(data);
+      setState({
+        gallery: {
+          wonder_tree_images: [...url],
+        },
+      });
+    } catch (error) {
+      console.log("Error downloading image: ", error.message);
+    }
+  }
 
-  //     if (!event.target.files || event.target.files.length === 0) {
-  //       throw new Error("You must select an image to upload.");
-  //     }
+  async function uploadWonderTimeImage(event) {
+    try {
+      setUploading(true);
 
-  //     const file = event.target.files[0];
-  //     const fileExt = file.name.split(".").pop();
-  //     const fileName = `${Math.random()}.${fileExt}`;
-  //     const filePath = `${fileName}`;
+      if (!event.target.files || event.target.files.length === 0) {
+        throw new Error("You must select an image to upload.");
+      }
 
-  //     let { error: uploadError } = await supabase.storage
-  //       .from("wonder-gallery")
-  //       .upload(filePath, file);
+      const file = event.target.files[0];
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
 
-  //     if (uploadError) {
-  //       throw uploadError;
-  //     }
+      console.log("filePath WONDER TIME", filePath)
+      console.log("file WONDER TIME", file);
 
-  //     onUpload(filePath);
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setUploading(false);
-  //   }
-  // }
+      let { error: uploadError } = await supabase.storage
+        .from("wonder-gallery")
+        .upload(filePath, file);
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      setState({
+        gallery: {
+          wonder_time_images: [filePath]
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  const saveToGallery = () => {
+    // make sure the gallery row exists for this user
+    if (!state.data.gallery) {
+      setState({
+        gallery: {
+          wonder_time_images: [],
+        },
+      });
+    }
+    if (ref.current === null) {
+      return;
+    }
+
+    // toPng(ref.current, { cacheBust: true })
+    //   .then(async (dataUrl) => {
+    //     // alert(
+    //     //   "You will shortly be redirected to the gallery. Please close this alert box and wait a moment..."
+    //     // );
+    //     // @TODO
+    //     // const link = document.createElement("a");
+    //     // link.download = "my-me-tree.png";
+    //     // link.href = dataUrl;
+    //     // link.click();
+
+    //     setState({
+    //       gallery: {
+    //         me_tree_images: [...state.data.gallery.wonder_time_images, dataUrl],
+    //       },
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .finally(() => {
+    //     history.push("/gallery");
+    //   });
+  };
 
   let textColorToSubSectionMap = {
     // play: "#abc961",
@@ -164,8 +214,6 @@ export default function InnerContent() {
       carousel.state.selectedItem = 0;
     }
   }, [contentState]);
-
-
 
   return (
     <>
@@ -293,8 +341,8 @@ export default function InnerContent() {
                     type="file"
                     id="single"
                     accept="image/*"
-                    // onChange={uploadWonderImage}
-                    // disabled={uploading}
+                    onChange={uploadWonderTimeImage}
+                    disabled={uploading}
                   />
                 </div>
               </div>

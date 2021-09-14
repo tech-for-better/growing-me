@@ -43,7 +43,7 @@ export async function getGalleryData() {
 
   let { data, error, status } = await supabase
     .from("gallery")
-    .select(`me_tree_images`)
+    .select(`me_tree_images, wonder_time_images`)
     .eq("id", user.id)
     .single();
 
@@ -248,11 +248,27 @@ export async function setBoxesData(boxes) {
   }
 }
 
-export async function setGalleryData(me_tree_images) {
+export async function setMeTreeImagesData(me_tree_images) {
   const user = supabase.auth.user();
   const updates = {
     id: user.id,
     me_tree_images,
+  };
+
+  let { error } = await supabase.from("gallery").upsert(updates, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function setWonderTimeImagesData(wonder_time_images) {
+  const user = supabase.auth.user();
+  const updates = {
+    id: user.id,
+    wonder_time_images,
   };
 
   let { error } = await supabase.from("gallery").upsert(updates, {
@@ -292,9 +308,11 @@ export async function setData(data) {
     console.log("optionChange", Object.keys(optionChange));
     let changingValue = Object.keys(optionChange)[0];
     if (changingValue === "me_tree_images") {
-      return setGalleryData(data.gallery.me_tree_images);
+      return setMeTreeImagesData(data.gallery.me_tree_images);
     } else if (changingValue === "tree_location") {
       return setTreeLocationData(data.tree.tree_location);
+    } else if (changingValue === "wonder_time_images") {
+      return setWonderTimeImagesData(data.gallery.wonder_time_images);
     } else if (changingValue === "background") {
       return setBackgroundData(data.tree.background);
     } else if (changingValue === "boxes") {

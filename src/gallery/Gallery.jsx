@@ -1,9 +1,7 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { supabase } from "../authentication/supabaseClient";
+import {useContext } from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "../components/NavMenu";
-import { getGalleryData } from "../../database/model";
 import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
