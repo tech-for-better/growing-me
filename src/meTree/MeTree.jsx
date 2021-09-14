@@ -48,7 +48,7 @@ export function MeTree() {
     if (!state.data.gallery) {
       setState({
         gallery: {
-          images: [],
+          me_tree_images: [],
         },
       });
     }
@@ -69,7 +69,7 @@ export function MeTree() {
 
         setState({
           gallery: {
-            images: [...state.data.gallery.images, dataUrl],
+            me_tree_images: [...state.data.gallery.me_tree_images, dataUrl],
           },
         });
       })

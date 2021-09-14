@@ -64,7 +64,7 @@ create table me_tree (
 
 CREATE TABLE gallery (
   id uuid references auth.users not null,
-  images varchar[],
+  me_tree_images varchar[],
   primary key (id)
 );
 
@@ -73,4 +73,3 @@ CREATE TABLE progress (
   unlocked varchar[],
   primary key (id)
 );
-

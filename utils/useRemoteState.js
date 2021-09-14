@@ -64,10 +64,10 @@ const initialState = {
       boxes: {},
     },
     gallery: {
-      images: [],
+      me_tree_images: [],
     },
     // gallery: {
-    //   me_tree_images: [],
+    //   me_tree_me_tree_images: [],
     //   wonder_tree_images: [],
     // },
     profile: {
