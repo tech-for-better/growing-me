@@ -16,15 +16,27 @@ export default function Gallery() {
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
 
-  async function deleteImage(me_tree_images) {
-    let imagesArray = state.data.gallery?.me_tree_images;
-    let imageIndex = imagesArray.indexOf(image);
-    imagesArray[imageIndex] = null;
-    setState({
-      gallery: {
-        me_tree_images: imagesArray,
-      },
-    });
+  async function deleteImage(image) {
+    if (state.data.gallery?.me_tree_images.indexOf(image) >= 0) {
+      let imagesArray = state.data.gallery?.me_tree_images;
+      let imageIndex = imagesArray.indexOf(image);
+      imagesArray[imageIndex] = null;
+      setState({
+        gallery: {
+          me_tree_images: imagesArray,
+        },
+      });
+    }
+    if (state.data.gallery?.wonder_time_images.indexOf(image) >= 0) {
+      let imagesArray = state.data.gallery?.wonder_time_images;
+      let imageIndex = imagesArray.indexOf(image);
+      imagesArray[imageIndex] = null;
+      setState({
+        gallery: {
+          wonder_time_images: imagesArray,
+        },
+      });
+    }
   }
 
   return (
@@ -92,23 +104,24 @@ export default function Gallery() {
               //)
             )}
         </ul>
-        <ul>
-          {state.data.gallery?.wonder_time_images.map((blob) => (
-            <li className="relative">
-              <button
-                // onClick={() => deleteImage(image)}
-                className="delete absolute top-right txt-lg"
-              >
-                X
-              </button>
-              <img
-                className="gallery-width"
-                // url={blob || ""}
-                src={blob}
-                alt="A snapshot of your wonder time image"
-              />
-            </li>
-          ))}
+        <ul className="li-none gap grid mobile-gap ">
+          {state.data.gallery?.wonder_time_images
+            .filter((image) => image !== null)
+            .map((image) => (
+              <li className="relative">
+                <button
+                  onClick={() => deleteImage(image)}
+                  className="delete absolute top-right txt-lg"
+                >
+                  X
+                </button>
+                <img
+                  className="gallery-width"
+                  src={image}
+                  alt="A snapshot of your wonder time image"
+                />
+              </li>
+            ))}
         </ul>
       </div>
     </>

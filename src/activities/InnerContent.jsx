@@ -59,7 +59,7 @@ export default function InnerContent() {
 
       setState({
         gallery: {
-          wonder_time_images: [signedURL],
+          wonder_time_images: [...state.data.gallery.wonder_time_images, signedURL],
         },
       });
       // setState({
