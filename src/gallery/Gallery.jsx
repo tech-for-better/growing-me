@@ -6,9 +6,12 @@ import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
 
+
+
 export default function Gallery() {
   const { state, setState } = useContext(MeTreeContext);
   // console.log("in gallery ", state.data.gallery?.me_tree_images);
+  console.log("in gallery wonder_time ", state.data.gallery?.wonder_time_images);
 
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
@@ -88,6 +91,24 @@ export default function Gallery() {
               )
               //)
             )}
+        </ul>
+        <ul>
+          {state.data.gallery?.wonder_time_images.map((blob) => (
+            <li className="relative">
+              <button
+                // onClick={() => deleteImage(image)}
+                className="delete absolute top-right txt-lg"
+              >
+                X
+              </button>
+              <img
+                className="gallery-width"
+                // url={blob || ""}
+                src={blob}
+                alt="A snapshot of your wonder time image"
+              />
+            </li>
+          ))}
         </ul>
       </div>
     </>
