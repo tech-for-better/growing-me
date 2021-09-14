@@ -17,6 +17,7 @@ import {
   left_arrow,
   right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
+import { uploadImage } from "./../activities/WonderTimeImage";
 
 export default function InnerContent({ url }) {
   const { contentState, dispatch } = useContext(ContentContext);
@@ -346,7 +347,7 @@ export default function InnerContent({ url }) {
                     type="file"
                     id="single"
                     accept="image/*"
-                    onChange={uploadWonderTimeImage}
+                    onChange={uploadImage}
                     disabled={uploading}
                   />
                 </div>

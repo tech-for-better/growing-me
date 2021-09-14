@@ -3,6 +3,53 @@ import { useEffect, useState, useContext } from "react";
 import { supabase } from "../authentication/supabaseClient";
 import { MeTreeContext } from "../App";
 
+export async function downloadImage(path) {
+  try {
+    const { data, error } = await supabase.storage
+      .from("wonder-gallery")
+      .download(path);
+    if (error) {
+      throw error;
+    }
+    const url = URL.createObjectURL(data);
+    setState({
+      gallery: {
+        wonder_tree_images: [url],
+      },
+    });
+  } catch (error) {
+    console.log("Error downloading image: ", error.message);
+  }
+}
+
+export async function uploadImage(event) {
+  try {
+    setUploading(true);
+
+    if (!event.target.files || event.target.files.length === 0) {
+      throw new Error("You must select an image to upload.");
+    }
+
+    const file = event.target.files[0];
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Math.random()}.${fileExt}`;
+    const filePath = `${fileName}`;
+
+    let { error: uploadError } = await supabase.storage
+      .from("wonder-gallery")
+      .upload(filePath, file);
+
+    if (uploadError) {
+      throw uploadError;
+    }
+
+    onUpload(filePath);
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    setUploading(false);
+  }
+}
 export default function WonderTimeImage({ url, size, onUpload }) {
   const { state, setState } = useContext(MeTreeContext);
   const [uploading, setUploading] = useState(false);
@@ -10,54 +57,6 @@ export default function WonderTimeImage({ url, size, onUpload }) {
   useEffect(() => {
     if (url) downloadImage(url);
   }, [url]);
-
-  async function downloadImage(path) {
-    try {
-      const { data, error } = await supabase.storage
-        .from("wonder-gallery")
-        .download(path);
-      if (error) {
-        throw error;
-      }
-      const url = URL.createObjectURL(data);
-      setState({
-        gallery: {
-          wonder_tree_images: [url],
-        },
-      });
-    } catch (error) {
-      console.log("Error downloading image: ", error.message);
-    }
-  }
-
-  async function uploadImage(event) {
-    try {
-      setUploading(true);
-
-      if (!event.target.files || event.target.files.length === 0) {
-        throw new Error("You must select an image to upload.");
-      }
-
-      const file = event.target.files[0];
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `${fileName}`;
-
-      let { error: uploadError } = await supabase.storage
-        .from("wonder-gallery")
-        .upload(filePath, file);
-
-      if (uploadError) {
-        throw uploadError;
-      }
-
-      onUpload(filePath);
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setUploading(false);
-    }
-  }
 
   return (
     <div className="center">
@@ -74,7 +73,7 @@ export default function WonderTimeImage({ url, size, onUpload }) {
           style={{ height: size, width: size }}
         />
       )}
-      <div className="center" style={{ width: size }}>
+      {/* <div className="center" style={{ width: size }}>
         <label className="button primary block" htmlFor="single">
           {uploading ? "Uploading ..." : "Upload"}
         </label>
@@ -89,7 +88,7 @@ export default function WonderTimeImage({ url, size, onUpload }) {
           onChange={uploadImage}
           disabled={uploading}
         />
-      </div>
+      </div> */}
     </div>
   );
 }
