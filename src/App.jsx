@@ -16,6 +16,7 @@ import Signup from "./authentication/Signup";
 import Login from "./authentication/Login";
 import { MeTree } from "./meTree/MeTree";
 import Gallery from "./gallery/Gallery";
+import Settings from "./authentication/Settings";
 import Content from "./activities/Content";
 import { getAllData, setData } from "../database/model";
 import useRemoteState from "../utils/useRemoteState";
@@ -31,11 +32,16 @@ function ErrorFallback({ error, resetErrorBoundary }) {
         </Link>
       </div>
       <div className="center text-center">
-        <p >Something went wrong:</p>
+        <p>Something went wrong:</p>
         <pre>{error.message}</pre>
       </div>
       <div className="flex flex-center">
-      <button onClick={resetErrorBoundary} className="button login-button block primary max-width">Try again</button>
+        <button
+          onClick={resetErrorBoundary}
+          className="button login-button block primary max-width"
+        >
+          Try again
+        </button>
       </div>
     </div>
   );
@@ -161,8 +167,9 @@ export default function Home() {
                 render={() => <ChildProfile />}
               />
               <PrivateRoute path="/gallery" render={() => <Gallery />} />
+              <PrivateRoute path="/settings" render={() => <Settings />} />
 
-                <PrivateRoute path="/content" render={() => <Content />} />
+              <PrivateRoute path="/content" render={() => <Content />} />
 
               <Route component={NotFound} />
             </Switch>
