@@ -6,7 +6,7 @@ export const PaletteContainer = styled.div`
   border: #337d8e solid;
   border-radius: 20px;
   position: absolute;
-  right: 2rem;
+  left: 2rem;
   top: 37rem;
   overflow: auto;
   //   display: grid;
@@ -16,6 +16,9 @@ export const PaletteContainer = styled.div`
     max-width: 25vw;
     right: 2rem;
     top: 25rem;
+  }
+  @media (max-width: 1200px) {
+    left: 2rem;
   }
   @media (max-width: 600px) {
     height: 100px;

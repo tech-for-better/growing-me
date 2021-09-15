@@ -209,11 +209,11 @@ export function MeTree() {
 
           <div>
             <div
-            // ref={ref}
+            ref={ref}
             >
               <MeTreeContainer
                 className="relative center margin-top margin-top-md"
-                ref={ref}
+                // ref={ref}
               >
                 <Container hideSourceOnDrag={hideSourceOnDrag}></Container>
                 <MeTreeImage
