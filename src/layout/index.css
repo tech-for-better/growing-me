@@ -437,15 +437,20 @@ button.primary,
 }
 
 .delete {
-  padding: 5px 12px;
   border: none;
-  background: none;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px 14px;
 }
 
 .delete:hover {
-  border: 2px dashed #cc492f;
-  padding: 3px 10px 3px 10px;
   cursor: pointer;
+  background-color: #cc492f;
+  color: white;
+}
+
+.red {
+  color: #cc492f;
 }
 
 .footer {
@@ -664,6 +669,10 @@ p {
   margin: 1rem;
 }
 
+.margin-top-sm {
+  margin-top: 1rem;
+}
+
 .margin-btn {
   margin-top: 2.5rem;
 }
@@ -879,7 +888,7 @@ p {
 .min-content {
   width: min-content;
 }
-.wonder-buttons{
+.wonder-buttons {
   align-items: flex-end;
   gap: 1rem;
   margin-right: -21%;
