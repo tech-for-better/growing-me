@@ -113,15 +113,15 @@ export default function Gallery({ category, setCategory }) {
         </fieldset>
       </section>
       <div className="flex flex-center">
-        <ul className="li-none gap grid mobile-gap ">
-          {combinedImageArray.length ? (
-            combinedImageArray
-              .filter(
-                (image) => category === "all" || image.category === category
-              )
-              .map(
-                (image) => (
-                  // image ? (
+        {combinedImageArray.length ? (
+          combinedImageArray
+            .filter(
+              (image) => category === "all" || image.category === category
+            )
+            .map(
+              (image) => (
+                // image ? (
+                <ul className="li-none gap grid mobile-gap ">
                   <li className="relative">
                     <button
                       onClick={() => deleteImage(image)}
@@ -135,18 +135,18 @@ export default function Gallery({ category, setCategory }) {
                       alt="An image in your gallery"
                     />
                   </li>
-                )
-                // ) : (
-                //   <li className="">No images to display!</li>
-                // )
-                //)
+                </ul>
               )
-          ) : (
-            <li className="">
-              <h1>Nothing in your gallery!</h1>
-            </li>
-          )}
-        </ul>
+              // ) : (
+              // <h1 className="text-center margin-top red">No images to display!</h1>
+              // )
+              //)
+            )
+        ) : (
+          <h1 className="text-center margin-top red">
+            Nothing in your gallery!
+          </h1>
+        )}
       </div>
     </>
   );

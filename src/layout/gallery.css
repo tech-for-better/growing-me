@@ -24,4 +24,5 @@
 fieldset {
   border: 0.5px solid #779321;
   border-radius: 5px;
+  max-width: 650px !important;
 }

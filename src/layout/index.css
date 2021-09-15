@@ -437,15 +437,20 @@ button.primary,
 }
 
 .delete {
-  padding: 5px 12px;
   border: none;
-  background: none;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px 14px;
 }
 
 .delete:hover {
-  border: 2px dashed #cc492f;
-  padding: 3px 10px 3px 10px;
   cursor: pointer;
+  background-color: #cc492f;
+  color: white;
+}
+
+.red {
+  color: #cc492f;
 }
 
 .footer {
