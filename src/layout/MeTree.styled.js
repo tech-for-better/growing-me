@@ -78,10 +78,11 @@ export const MeTreeContainer = styled.div`
   border-radius: 20px;
   width: 30rem;
   @media (max-width: 768px) {
-    width: 90vw;
+    // width: 90vw;
   }
   @media (max-width: 600px) {
     margin-top: 1rem;
+    width: 90vw;
   }
 `;
 
