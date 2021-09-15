@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router";
 import "./layout/index.css";
 import { useState, useEffect, createContext } from "react";
 import { Link } from "react-router-dom";
@@ -14,6 +15,7 @@ import MagicLinkLogIn from "./authentication/MagicLinkLogIn";
 import { PrivateRoute } from "./authentication/PrivateRoute";
 import Signup from "./authentication/Signup";
 import Login from "./authentication/Login";
+import PasswordReset from "./authentication/PasswordReset"
 import { MeTree } from "./meTree/MeTree";
 import Gallery from "./gallery/Gallery";
 import Settings from "./authentication/Settings";
@@ -91,6 +93,26 @@ const NotFound = () => {
   );
 };
 
+// export const LocationDisplay = () => {
+//   const location = useLocation();
+
+// const location = useLocation();
+// const { hash } = new URL(location);
+// const paramsString = hash.replace("#", "");
+// const params = new URLSearchParams(paramsString);
+
+//   // const { hash } = useLocation();
+//   // const paramsString = hash.replace("#", "");
+//   // const params = new URLSearchParams(paramsString);
+
+//   // let access_token = params.get("access_token");
+
+//   // console.log(params.get("type")); // "recovery"
+//   // console.log("params.get(access_token)", access_token); // "x"
+
+//   return <div data-testid="location-display">{location.pathname}</div>;
+// }
+
 export default function Home() {
   const [session, setSession] = useState(null);
   const [category, setCategory] = useState("all");
@@ -124,13 +146,30 @@ export default function Home() {
                 <Signup />
               </LoginTree>
             </Route>
-
             <Route path="/magic-link-login">
               <LoginTree>
                 <MagicLinkLogIn />
               </LoginTree>
             </Route>
             <Route component={NotFound} />
+
+            {/* {params.get("type") === "recovery" ? (
+              <Route path="/password-reset">
+                <ErrorBoundary
+                  FallbackComponent={ErrorFallback}
+                  onReset={() => {
+                    // reset the state of your app so the error doesn't happen again
+                  }}
+                >
+                  <LoginTree>
+                    <PasswordReset />
+                  </LoginTree>
+                </ErrorBoundary>
+              </Route>
+            ) : (
+              ""
+            )} */}
+
           </Switch>
         </AuthProvider>
       </Router>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router";
 import { useResetPassword } from "react-supabase";
 import { supabase } from "./supabaseClient";
 import { useContext } from "react";
@@ -27,6 +28,7 @@ export default function Settings() {
       return <div>Error sending email</div>;
     }
   }
+
 
   return (
     <>
