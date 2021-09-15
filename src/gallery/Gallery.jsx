@@ -1,28 +1,69 @@
 import React from "react";
-import {useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "../components/NavMenu";
 import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
+import "../layout/gallery.css";
 
-export default function Gallery() {
+const categories = ["all", "Me Tree", "Wonder Time"];
+
+export default function Gallery({ category, setCategory }) {
   const { state, setState } = useContext(MeTreeContext);
   // console.log("in gallery ", state.data.gallery?.me_tree_images);
+  console.log(
+    "in gallery wonder_time ",
+    state.data.gallery?.wonder_time_images
+  );
 
   // if (state.data.gallery.images.length === 0)
   //   return <div>Loading images...</div>;
 
-  async function deleteImage(me_tree_images) {
-    let imagesArray = state.data.gallery?.me_tree_images;
-    let imageIndex = imagesArray.indexOf(image);
-    imagesArray[imageIndex] = null;
-    setState({
-      gallery: {
-        me_tree_images: imagesArray,
-      },
-    });
+  async function deleteImage(image) {
+    console.log("combinedImage in delete", combinedImageArray);
+    console.log("image in delete", image);
+    let arrIndex = combinedImageArray.indexOf(image);
+    console.log("arrIndex", arrIndex);
+    combinedImageArray[arrIndex] = null;
+    if (state.data.gallery?.me_tree_images.indexOf(image.src) >= 0) {
+      let imagesArray = state.data.gallery?.me_tree_images;
+      let imageIndex = imagesArray.indexOf(image.src);
+      imagesArray[imageIndex] = null;
+      setState({
+        gallery: {
+          me_tree_images: imagesArray,
+        },
+      });
+    }
+    if (state.data.gallery?.wonder_time_images.indexOf(image.src) >= 0) {
+      let imagesArray = state.data.gallery?.wonder_time_images;
+      let imageIndex = imagesArray.indexOf(image.src);
+      imagesArray[imageIndex] = null;
+      setState({
+        gallery: {
+          wonder_time_images: imagesArray,
+        },
+      });
+    }
   }
+
+  // create array of image objects labelled with category
+  let combinedImageArray = [];
+  state.data.gallery?.me_tree_images
+    .filter((image) => image !== null)
+    .map((image) => {
+      let obj = { src: image, category: "Me Tree" };
+      combinedImageArray.push(obj);
+    });
+
+  state.data.gallery?.wonder_time_images
+    .filter((image) => image !== null)
+    .map((image) => {
+      let obj = { src: image, category: "Wonder Time" };
+      combinedImageArray.push(obj);
+    });
+  console.log("combinedImage after map", combinedImageArray);
 
   return (
     <>
@@ -51,44 +92,65 @@ export default function Gallery() {
           Here you can see all your saved MeTree's!
         </h2>
       </div>
+      <section>
+        <fieldset className="narrow center flex flex-center margin-top-sm">
+          <legend className="txt-md">Categories</legend>
+          {categories.map((cat) => (
+            <div className="category-selection">
+              <input
+                type="radio"
+                name=""
+                id={cat}
+                value={cat}
+                checked={cat === category}
+                onChange={(event) => setCategory(event.target.value)}
+              />
+              <label htmlFor={cat} key={cat} className="text-center">
+                {cat}
+              </label>
+            </div>
+          ))}
+        </fieldset>
+      </section>
       <div className="flex flex-center">
-        <ul className="li-none gap grid mobile-gap ">
-          {state.data.gallery?.me_tree_images
-            .filter((image) => image !== null)
-            .map(
-              (image) => (
-                // image == undefined ? (
-                //   <li className="relative invisible">
-                //     <button
-                //       onClick={() => deleteImage(image)}
-                //       className="delete invisible absolute top-right txt-lg"
-                //     >
-                //       X
-                //     </button>
-                //     <img
-                //       className="invisible"
-                //       src={image}
-                //       alt="A snapshot of your Me Tree"
-                //     />
-                //   </li>
-                // ) : (
-                <li className="relative">
-                  <button
-                    onClick={() => deleteImage(image)}
-                    className="delete absolute top-right txt-lg"
-                  >
-                    X
-                  </button>
-                  <img
-                    className="gallery-width"
-                    src={image}
-                    alt="A snapshot of your Me Tree"
-                  />
-                </li>
+        <div className="li-none gap grid mobile-gap margin-top-md">
+          {combinedImageArray.length ? (
+            combinedImageArray
+              .filter(
+                (image) => category === "all" || image.category === category
               )
-              //)
-            )}
-        </ul>
+              .map(
+                (image) => (
+                  // image ? (
+
+                  <div className="relative square30">
+                    <button
+                      onClick={() => deleteImage(image)}
+                      className="delete absolute top-right txt-lg"
+                    >
+                      X
+                    </button>
+                    <img
+                      className="gallery-width"
+                      src={image.src}
+                      alt="An image in your gallery"
+                    />
+                  </div>
+
+                )
+                // ) : (
+                // <h1 className="text-center margin-top red">No images to display!</h1>
+                // )
+                //)
+              )
+          ) : (
+              <div className="flex flex-center" >
+            <h1 className="text-center margin-top red">
+              Nothing in your gallery!
+            </h1>
+            </div>
+          )}
+          </div>
       </div>
     </>
   );

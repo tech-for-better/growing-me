@@ -93,6 +93,7 @@ const NotFound = () => {
 
 export default function Home() {
   const [session, setSession] = useState(null);
+  const [category, setCategory] = useState("all");
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -166,7 +167,12 @@ export default function Home() {
                 path="/child-profile"
                 render={() => <ChildProfile />}
               />
-              <PrivateRoute path="/gallery" render={() => <Gallery />} />
+              <PrivateRoute
+                path="/gallery"
+                render={() => (
+                  <Gallery category={category} setCategory={setCategory} />
+                )}
+              />
               <PrivateRoute path="/settings" render={() => <Settings />} />
 
               <PrivateRoute path="/content" render={() => <Content />} />

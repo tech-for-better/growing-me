@@ -213,8 +213,10 @@ export function MeTree() {
           </div>
 
           <div>
-            <div ref={ref}>
-              <MeTreeContainer className="relative center margin-top">
+            <div
+            // ref={ref}
+            >
+              <MeTreeContainer className="relative center margin-top margin-top-md" ref={ref}>
                 <Container hideSourceOnDrag={hideSourceOnDrag}></Container>
                 <MeTreeImage
                   src={state.data.tree?.tree_location ?? MeTreeGarden}

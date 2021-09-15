@@ -83,3 +83,7 @@ CREATE POLICY "Anyone can upload an images z7mhxc_0" ON storage.objects FOR INSE
 CREATE POLICY "Images are public z7mhxc_0" ON storage.objects FOR
 SELECT
   USING ((bucket_id = 'wonder-gallery':: text));
+  
+CREATE POLICY "Images are public z7mhxc_0" ON storage.objects FOR
+SELECT
+  USING ((bucket_id = 'wonder-gallery':: text));

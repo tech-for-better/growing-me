@@ -18,30 +18,55 @@ import {
   right_arrow,
 } from "../images/activitiesImages/InnerContentBackgroundImages";
 
-export default function InnerContent({ url }) {
+export default function InnerContent() {
   const { contentState, dispatch } = useContext(ContentContext);
   const { state, setState } = useContext(MeTreeContext);
   const [uploading, setUploading] = useState(false);
   const history = useHistory();
 
-  useEffect(() => {
-    if (url) downloadImage(url);
-  }, [url]);
+  // useEffect(() => {
+  //   if (url) downloadImage(url);
+  // }, [url]);
+
+    // const fileName =
+    //     "data:image/png;base64,vxavjjcpsaykzxkhimor.supabase.in/storage/v1/object/sign/wonder-gallery/0.008441166888429219.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ3b25kZXItZ2FsbGVyeS8wLjAwODQ0MTE2Njg4ODQyOTIxOS5qcGciLCJpYXQiOjE2MzE2MzIwMTAsImV4cCI6MTk0Njk5MjAxMH0.-nRf82pRRLUgoMH9_3-uRrdSmS7VjVi-eTvsbVcSmMg";
+    //   const url = URL.createObjectURL(fileName);
+    //   console.log(" downloadImageURL", url)
 
   async function downloadImage(path) {
+    console.log('downloadImage path', path)
+
+    // let imagePath = `wonder-gallery/${path}`;
+    // console.log("downloadImage imagePath", imagePath);
     try {
-      const { data, error } = await supabase.storage
+      // const { data, error } = await supabase
+      //   .storage
+      //   .from('wonder-gallery')
+      //   .download(path);
+      // console.log(" downloadImage data", data)
+      // const url = URL.createObjectURL(data);
+      // console.log(" downloadImageURL", url)
+
+      const { signedURL, error } = await supabase.storage
         .from("wonder-gallery")
-        .download(path);
+        .createSignedUrl(path, 60);
       if (error) {
         throw error;
       }
-      const url = URL.createObjectURL(data);
+      console.log(" downloadImage signedURL", signedURL);
+      // const url = URL.createObjectURL(signedURL);
+      // console.log(" downloadImageURL", url)
+
       setState({
         gallery: {
-          wonder_tree_images: [...url],
+          wonder_time_images: [...state.data.gallery.wonder_time_images, signedURL],
         },
       });
+      // setState({
+      //   gallery: {
+      //     wonder_time_images: [path],
+      //   },
+      // });
     } catch (error) {
       console.log("Error downloading image: ", error.message);
     }
@@ -70,12 +95,12 @@ export default function InnerContent({ url }) {
       if (uploadError) {
         throw uploadError;
       }
-
-      setState({
-        gallery: {
-          wonder_time_images: [filePath]
-        }
-      });
+      downloadImage(filePath);;
+      // setState({
+      //   gallery: {
+      //     wonder_time_images: [filePath]
+      //   }
+      // });
     } catch (error) {
       alert(error.message);
     } finally {

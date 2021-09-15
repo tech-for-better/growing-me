@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Toolkit = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 1rem 1rem 0 1rem;
+  // padding: 1rem 1rem 0 1rem;
   align-items: center;
   justify-content: center;
   @media (max-width: 768px) {
@@ -86,8 +86,8 @@ export const MeTreeContainer = styled.div`
 `;
 
 export const BtnImage = styled.img`
-  height: 100px;
-  max-width: 100px;
+  height: 80px;
+  max-width: 80px;
   @media (max-width: 768px) {
     height: 50px;
     max-width: 50px;

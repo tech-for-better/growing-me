@@ -18,7 +18,9 @@ export default function Avatar({ url, size, onUpload }) {
       if (error) {
         throw error;
       }
+      console.log("data in avatar downloadImage fn", data);
       const url = URL.createObjectURL(data);
+      console.log('url in avatar downloadImage fn', url)
       setAvatarUrl(url);
     } catch (error) {
       console.log("Error downloading image: ", error.message);
