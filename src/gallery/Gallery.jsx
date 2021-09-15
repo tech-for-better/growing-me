@@ -5,6 +5,7 @@ import NavMenu from "../components/NavMenu";
 import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
+import "../layout/gallery.css";
 
 const categories = ["all", "Me Tree", "Wonder Time"];
 
@@ -87,11 +88,10 @@ export default function Gallery({ category, setCategory }) {
         </h2>
       </div>
       <section>
-        <fieldset>
-          <legend>Categories</legend>
+        <fieldset className="narrow center flex flex-center margin-top-sm">
+          <legend className="txt-md">Categories</legend>
           {categories.map((cat) => (
-            <label htmlFor={cat} key={cat}>
-              {cat}
+            <div className="category-selection">
               <input
                 type="radio"
                 name=""
@@ -100,7 +100,10 @@ export default function Gallery({ category, setCategory }) {
                 checked={cat === category}
                 onChange={(event) => setCategory(event.target.value)}
               />
-            </label>
+              <label htmlFor={cat} key={cat}>
+                {cat}
+              </label>
+            </div>
           ))}
         </fieldset>
       </section>
