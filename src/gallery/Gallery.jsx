@@ -136,7 +136,6 @@ export default function Gallery({ category, setCategory }) {
                       alt="An image in your gallery"
                     />
                   </div>
-
                 )
                 // ) : (
                 // <h1 className="text-center margin-top red">No images to display!</h1>
@@ -144,13 +143,13 @@ export default function Gallery({ category, setCategory }) {
                 //)
               )
           ) : (
-              <div className="flex flex-center" >
-            <h1 className="text-center margin-top red">
-              Nothing in your gallery!
-            </h1>
+            <div className="flex flex-center grid-span-2">
+              <h1 className="text-center margin-top red">
+                Nothing in your gallery!
+              </h1>
             </div>
           )}
-          </div>
+        </div>
       </div>
     </>
   );

@@ -628,12 +628,15 @@ p {
   height:30vh;
   width: 30vw;
 }
-
+.grid-span-2{
+  grid-column: span 2; 
+}
 .gallery-width {
   /* width: 30vw; */
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
+  object-fit: contain;
 }
 .magic-link {
   background-color: #d19f00 !important;

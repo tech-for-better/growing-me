@@ -30,6 +30,9 @@ export default function NavMenu() {
       <Link className="menu-item" to="/gallery">
         Gallery
       </Link>
+      <Link className="menu-item" to="/settings">
+        Settings
+      </Link>
       <Link
         onClick={(e) => {
           e.preventDefault();
