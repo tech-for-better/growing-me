@@ -628,7 +628,9 @@ p {
   height:30vh;
   width: 30vw;
 }
-
+.grid-span-2{
+  grid-column: span 2; 
+}
 .gallery-width {
   /* width: 30vw; */
   width: 100%;
