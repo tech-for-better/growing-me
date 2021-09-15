@@ -81,27 +81,22 @@ export function MeTree() {
       });
   };
 
-
-
-
-
   if (state.status === "loading")
-  return
-  <div className="center text-center mobile-margin-lg">
-    <div className="margin-top">
-      <Link to={"/"}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </Link>
-    </div>
-    <h1>Initialising</h1>
-    {/* <div className="center text-center">
-      <h2>
-        <Link to="/">Go Back</Link>
-      </h2>
-    </div> */}
-  </div>;
+    return (
+      <div className="center text-center mobile-margin-lg">
+        <div className="margin-top">
+          <Link to={"/"}>
+            <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+        </div>
 
-  if (state.status === "error") return
+        <div className="center text-center">
+          <h1>Initialising</h1>
+        </div>
+      </div>
+    );
+
+  if (state.status === "error") return;
   <div className="center text-center mobile-margin-lg">
     <div className="margin-top">
       <Link to={"/"}>
@@ -114,7 +109,7 @@ export function MeTree() {
         <Link to="/">Go Back</Link>
       </h2>
     </div>
-  </div>;;
+  </div>;
 
   function handleClick(paletteType) {
     if (paletteType == paletteOption) {
@@ -216,7 +211,10 @@ export function MeTree() {
             <div
             // ref={ref}
             >
-              <MeTreeContainer className="relative center margin-top margin-top-md" ref={ref}>
+              <MeTreeContainer
+                className="relative center margin-top margin-top-md"
+                ref={ref}
+              >
                 <Container hideSourceOnDrag={hideSourceOnDrag}></Container>
                 <MeTreeImage
                   src={state.data.tree?.tree_location ?? MeTreeGarden}
