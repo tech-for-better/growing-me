@@ -1,25 +1,12 @@
 import React from "react";
-import {useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "../components/NavMenu";
 import logo from "../images/Logo";
 import cuteVisitor from "../images/MeTreeImages";
 import { MeTreeContext } from "../App";
 
-const categories = [
-  'all',
-  'Me Tree',
-  'Wonder Time',
-];
-
-const categoriesMapping = {
-  all: [
-    "state.data.gallery.me_tree_images",
-    "state.data.gallery.wonder_time_images",
-  ],
-  "Me Tree": "state.data.gallery.me_tree_images",
-  "Wonder Time": "state.data.gallery.wonder_time_images",
-};
+const categories = ["all", "Me Tree", "Wonder Time"];
 
 export default function Gallery({ category, setCategory }) {
   const { state, setState } = useContext(MeTreeContext);
@@ -54,16 +41,23 @@ export default function Gallery({ category, setCategory }) {
       });
     }
   }
-  let combinedImageArray = [...state.data.gallery?.me_tree_images, ...state.data.gallery?.wonder_time_images]
-  console.log("combinedArray Gallery" , combinedImageArray);
 
-  // Need to combine data from me tree and wonder time into one array of objects, with src and catergory keys, which
-  // we then map and filter and display as list 
-  // combinedImageArray.map(a => {
-  //   let newImageObj = {
+  // create array of image objects labelled with category
+  let combinedImageArray = [];
+  state.data.gallery?.me_tree_images
+    .filter((image) => image !== null)
+    .map((image) => {
+      let obj = { src: image, category: "Me Tree" };
+      combinedImageArray.push(obj);
+    });
 
-  //   }
-  // })
+  state.data.gallery?.wonder_time_images
+    .filter((image) => image !== null)
+    .map((image) => {
+      let obj = { src: image, category: "Wonder Time" };
+      combinedImageArray.push(obj);
+    });
+  console.log("combinedImage after map", combinedImageArray);
 
   return (
     <>
@@ -112,68 +106,39 @@ export default function Gallery({ category, setCategory }) {
       </section>
       <div className="flex flex-center">
         <ul className="li-none gap grid mobile-gap ">
-          {combinedImageArray
-            // .filter(
-            //   (image) =>
-            //     category === "all" ||
-            //     Object.values(categoriesMapping) ===
-            //       Object.keys(categoriesMapping)
-            // )
-            .filter((image) => image !== null)
-            .map(
-              (image) => (
-                // image == undefined ? (
-                //   <li className="relative invisible">
-                //     <button
-                //       onClick={() => deleteImage(image)}
-                //       className="delete invisible absolute top-right txt-lg"
-                //     >
-                //       X
-                //     </button>
-                //     <img
-                //       className="invisible"
-                //       src={image}
-                //       alt="A snapshot of your Me Tree"
-                //     />
-                //   </li>
-                // ) : (
-                <li className="relative">
-                  <button
-                    onClick={() => deleteImage(image)}
-                    className="delete absolute top-right txt-lg"
-                  >
-                    X
-                  </button>
-                  <img
-                    className="gallery-width"
-                    src={image}
-                    alt="A snapshot of your Me Tree"
-                  />
-                </li>
+          {combinedImageArray.length ? (
+            combinedImageArray
+              .filter(
+                (image) => category === "all" || image.category === category
               )
-              //)
-            )}
+              .map(
+                (image) => (
+                  // image ? (
+                  <li className="relative">
+                    <button
+                      onClick={() => deleteImage(image)}
+                      className="delete absolute top-right txt-lg"
+                    >
+                      X
+                    </button>
+                    <img
+                      className="gallery-width"
+                      src={image.src}
+                      alt="An image in your gallery"
+                    />
+                  </li>
+                )
+                // ) : (
+                //   <li className="">No images to display!</li>
+                // )
+                //)
+              )
+          ) : (
+            <li className="">
+              <h1>Nothing in your gallery!</h1>
+            </li>
+          )}
         </ul>
-        {/* <ul className="li-none gap grid mobile-gap ">
-          {state.data.gallery?.wonder_time_images
-            // .filter((image) => category === "all" || image.category === category)
-            .filter((image) => image !== null)
-            .map((image) => (
-              <li className="relative">
-                <button
-                  onClick={() => deleteImage(image)}
-                  className="delete absolute top-right txt-lg"
-                >
-                  X
-                </button>
-                <img
-                  className="gallery-width"
-                  src={image}
-                  alt="A snapshot of your wonder time image"
-                />
-              </li>
-            ))}
-        </ul> */}
       </div>
     </>
   );
