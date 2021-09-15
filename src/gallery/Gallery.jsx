@@ -105,7 +105,7 @@ export default function Gallery({ category, setCategory }) {
                 checked={cat === category}
                 onChange={(event) => setCategory(event.target.value)}
               />
-              <label htmlFor={cat} key={cat}>
+              <label htmlFor={cat} key={cat} className="text-center">
                 {cat}
               </label>
             </div>
@@ -113,16 +113,17 @@ export default function Gallery({ category, setCategory }) {
         </fieldset>
       </section>
       <div className="flex flex-center">
-        {combinedImageArray.length ? (
-          combinedImageArray
-            .filter(
-              (image) => category === "all" || image.category === category
-            )
-            .map(
-              (image) => (
-                // image ? (
-                <ul className="li-none gap grid mobile-gap ">
-                  <li className="relative">
+        <div className="li-none gap grid mobile-gap margin-top-md">
+          {combinedImageArray.length ? (
+            combinedImageArray
+              .filter(
+                (image) => category === "all" || image.category === category
+              )
+              .map(
+                (image) => (
+                  // image ? (
+
+                  <div className="relative square30">
                     <button
                       onClick={() => deleteImage(image)}
                       className="delete absolute top-right txt-lg"
@@ -134,19 +135,22 @@ export default function Gallery({ category, setCategory }) {
                       src={image.src}
                       alt="An image in your gallery"
                     />
-                  </li>
-                </ul>
+                  </div>
+
+                )
+                // ) : (
+                // <h1 className="text-center margin-top red">No images to display!</h1>
+                // )
+                //)
               )
-              // ) : (
-              // <h1 className="text-center margin-top red">No images to display!</h1>
-              // )
-              //)
-            )
-        ) : (
-          <h1 className="text-center margin-top red">
-            Nothing in your gallery!
-          </h1>
-        )}
+          ) : (
+              <div className="flex flex-center" >
+            <h1 className="text-center margin-top red">
+              Nothing in your gallery!
+            </h1>
+            </div>
+          )}
+          </div>
       </div>
     </>
   );
