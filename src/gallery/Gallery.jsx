@@ -21,9 +21,14 @@ export default function Gallery({ category, setCategory }) {
   //   return <div>Loading images...</div>;
 
   async function deleteImage(image) {
-    if (state.data.gallery?.me_tree_images.indexOf(image) >= 0) {
+    console.log("combinedImage in delete", combinedImageArray);
+    console.log("image in delete", image);
+    let arrIndex = combinedImageArray.indexOf(image);
+    console.log("arrIndex", arrIndex);
+    combinedImageArray[arrIndex] = null;
+    if (state.data.gallery?.me_tree_images.indexOf(image.src) >= 0) {
       let imagesArray = state.data.gallery?.me_tree_images;
-      let imageIndex = imagesArray.indexOf(image);
+      let imageIndex = imagesArray.indexOf(image.src);
       imagesArray[imageIndex] = null;
       setState({
         gallery: {
@@ -31,9 +36,9 @@ export default function Gallery({ category, setCategory }) {
         },
       });
     }
-    if (state.data.gallery?.wonder_time_images.indexOf(image) >= 0) {
+    if (state.data.gallery?.wonder_time_images.indexOf(image.src) >= 0) {
       let imagesArray = state.data.gallery?.wonder_time_images;
-      let imageIndex = imagesArray.indexOf(image);
+      let imageIndex = imagesArray.indexOf(image.src);
       imagesArray[imageIndex] = null;
       setState({
         gallery: {
